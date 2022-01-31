@@ -11,13 +11,21 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true,
         },
-
-        name: {
+        userName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        userPassword: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        userEmail: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         }
-
     },
         {
             timestamps: false,
@@ -25,3 +33,5 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+// userName, userPassword, userEmail

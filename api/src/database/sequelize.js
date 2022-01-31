@@ -1,3 +1,5 @@
+// Se conecta a la BD con las credenciales de el archivo .env
+
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const {
