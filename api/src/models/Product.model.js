@@ -22,14 +22,8 @@ module.exports = (sequelize) => {
             defaultValue: ''
         },
 
-        idCategory: {
-            type: DataTypes.INTEGER,
-            defaultValue: '50'
-        },
-
         favorite: {
-            type: DataTypes.INTEGER,
-            defaultValue: '50'
+            type: DataTypes.BOOLEAN,
         }
     },
         {
