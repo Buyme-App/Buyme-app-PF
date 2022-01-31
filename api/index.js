@@ -1,10 +1,10 @@
 const server = require('./src/server');
 require('dotenv').config();
 const colors = require('colors')
+const showErrors = require('../api/src/messageConsole');
 
 
-
-
+showErrors('getData', 'Err:kldjfsofoifjifjoijfosi')
 
 
 const PORT = process.env.PORT || 3001;
