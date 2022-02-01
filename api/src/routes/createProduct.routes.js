@@ -19,4 +19,6 @@ router.post('/', async (req, res) => {
             return 500
         }   
     }
-})
+});
+
+module.exports = router;

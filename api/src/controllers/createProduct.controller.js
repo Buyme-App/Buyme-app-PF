@@ -2,6 +2,7 @@ const {product} = require('../database/db');
 const showErrors = require('../messageConsole');
 
 // Funcion controladora para crear un producto en la base de datos.
+
 async function createProduct(name, price, favorite){
 
     try {
