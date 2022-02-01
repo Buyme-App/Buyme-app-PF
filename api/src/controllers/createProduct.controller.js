@@ -1,4 +1,4 @@
-const {product} = require('../database/db');
+const {Product} = require('../database/db');
 const showErrors = require('../messageConsole');
 
 // Funcion controladora para crear un producto en la base de datos.
@@ -6,7 +6,7 @@ const showErrors = require('../messageConsole');
 async function createProduct(name, price, favorite){
 
     try {
-         const createProduct = await product.create({
+         const createProduct = await Product.create({
              name,
              price,
              favorite
