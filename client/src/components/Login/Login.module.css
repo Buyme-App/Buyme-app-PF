@@ -9,7 +9,7 @@
     width: 450px;
     padding: 40px;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 5rem;
     border-radius: 2rem;
     border-color: black;
     color: gray;
@@ -31,7 +31,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     color: gray;
     border-color: gray;
 }
@@ -41,4 +41,25 @@
     border-radius: 20px;
     margin: 10px;
     padding: 8px 25px 8px 25px;
+
+}
+
+.link {
+    font-size: 11px;
+    text-decoration: none;
+    color: black;
+    margin-left: 5px;
+}
+
+.signUp {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+
+.restPassword {
+    display: flex;
+    margin-top: -5px;
+    justify-content: flex-end;
+
 }

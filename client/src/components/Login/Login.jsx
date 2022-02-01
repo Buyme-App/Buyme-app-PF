@@ -62,9 +62,17 @@ export default function Login(){
                         placeholder="Enter Password"
                         onChange={(e) => {handleChange(e)}} 
                     />
+                    <div className={styles.restPassword}>
+                        <h6>Forgot your</h6>
+                        <Link to='/restorePassword' className={styles.link} >Password?</Link>
+                    </div>
                 </div>
                 <button className={styles.btn} type="submit">Login</button>
-                <button className={styles.btn} type="submit">Login with Gmail</button>
+                
+                <div className={styles.signUp}>
+                    <h6>Don't you have an account?</h6>
+                    <Link to='/signUp' className={styles.link} >Sign up</Link>
+                </div>
             </form>
         </div>
     )
