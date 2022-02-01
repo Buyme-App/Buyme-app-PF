@@ -1,6 +1,6 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const getAdminDB = require('../controllers/getDataAdmin.controller');
-const showErrors = require('../api/src/messageConsole');
+const showErrors = require('../../src/messageConsole');
 const router = Router();
 
 
