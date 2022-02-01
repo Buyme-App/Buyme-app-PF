@@ -1,11 +1,18 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <h1>Hola Front team</h1>
+      <Routes>
+        <Route exact path='/admin' element={<Login/>}/>
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
