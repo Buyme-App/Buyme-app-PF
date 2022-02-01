@@ -1,17 +1,18 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './components/Login/Login';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/Login/Login";
+import PassRecovery from "./components/PassRecovery/PassRecovery";
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <Routes>
-        <Route exact path='/admin' element={<Login/>}/>
-      </Routes>
-    </div>
+      <div className="App">
+        <Routes>
+          <Route exact path="/admin" element={<Login />} />
+          <Route path="/admin/restorePassword" element={<PassRecovery />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
