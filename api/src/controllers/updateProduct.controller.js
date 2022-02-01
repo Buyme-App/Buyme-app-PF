@@ -1,11 +1,11 @@
-const {product} = require('../database/db');
+const {Product} = require('../database/db');
 const showErrors = require('../messageConsole');
 
 async function updateProduct(id, name, price, favorite){
 
     try {
         
-        const updateItem = await product.update({
+        const updateItem = await Product.update({
             name,
             price,
             favorite
