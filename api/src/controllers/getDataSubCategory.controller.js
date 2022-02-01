@@ -3,7 +3,7 @@ const showErrors = require("../api/src/messageConsole");
 
 async function getSubCategoryDB(name) {
   try {
-    const subCategoriesData = await Categories.findAll({
+    const subCategoriesData = await Sub-Categories.findAll({
       where: { name: name },
     });
     if (subCategoriesData) {
