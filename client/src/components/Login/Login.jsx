@@ -21,7 +21,6 @@ export default function Login() {
       ...input, //ademas de lo que tiene
       [e.target.name]: e.target.value, //agregale lo que el usuario pone
     });
-    setErrors(validator(input));
   }
 
   function handleSubmit(e) {
@@ -42,6 +41,12 @@ export default function Login() {
 
       //navigate('/home');
     } else alert("Corrija los errores de los campos");
+  }
+
+  function errorsHandler(e) {
+    let form = { [e.target.name]: input[e.target.name] };
+    let fails = validator(form);
+    setErrors((prev) => ({ ...prev, ...fails }));
   }
 
   // useEffect(() => {
@@ -66,6 +71,7 @@ export default function Login() {
             onChange={(e) => {
               handleChange(e);
             }}
+            onBlur={(e) => errorsHandler(e)}
           />
           {errors && <small>{errors.email}</small>}
         </div>
@@ -79,9 +85,7 @@ export default function Login() {
             onChange={(e) => {
               handleChange(e);
             }}
-            onBlur={(e) => handleChange(e)}
           />
-          {errors.password ? <small>{errors.password}</small> : null}
 
           <div className={styles.restPassword}>
             <h6>Forgot your</h6>
@@ -93,13 +97,6 @@ export default function Login() {
         <button className={styles.btn} type="submit">
           Login
         </button>
-
-        <div className={styles.signUp}>
-          <h6>Don't you have an account?</h6>
-          <Link to="/signUp" className={styles.link}>
-            Sign up
-          </Link>
-        </div>
       </form>
     </div>
   );

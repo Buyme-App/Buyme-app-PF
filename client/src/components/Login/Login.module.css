@@ -39,8 +39,13 @@
 .btn {
   border-style: solid;
   border-radius: 20px;
+  cursor: pointer;
   margin: 10px;
   padding: 8px 25px 8px 25px;
+}
+.btn:hover {
+  background-color: rgb(163, 128, 128);
+  font-weight: bold;
 }
 
 .link {
@@ -48,12 +53,6 @@
   text-decoration: none;
   color: black;
   margin-left: 5px;
-}
-
-.signUp {
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: -20px;
 }
 
 .restPassword {
