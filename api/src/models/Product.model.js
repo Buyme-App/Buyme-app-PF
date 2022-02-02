@@ -6,8 +6,7 @@ module.exports = (sequelize) => {
     sequelize.define("product", {
 
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
@@ -61,10 +60,7 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: true
         },
-        sales:{
-            type: DataTypes.ARRAY(DataTypes.INTEGER),
-            allowNull: true
-        },
-
     });
 };
+
+// Update
