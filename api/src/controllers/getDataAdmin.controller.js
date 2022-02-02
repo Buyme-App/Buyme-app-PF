@@ -1,15 +1,13 @@
-const {Admin} = require('../database/db');
-const showErrors = require('../api/src/messageConsole');
+const { Admin } = require('../database/db');
+const showErrors = require('../../src/messageConsole');
 
 
-
-
-async function getAdminDB(){
+async function getAdminDB() {
 
     try {
-        
+
         const AdminData = await Admin.findAll()
-        if(AdminData){
+        if (AdminData) {
             return AdminData;
         }
         return {}

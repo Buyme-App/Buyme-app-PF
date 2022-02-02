@@ -26,12 +26,7 @@ module.exports = (sequelize) => {
             allowNull: false,
             unique: true
         }
-    },
-        {
-            timestamps: false,
-            freezeTableName: true,
-        }
-    );
+    });
 };
 
 // userName, userPassword, userEmail

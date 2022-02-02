@@ -1,0 +1,14 @@
+.main_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25px 10px;
+}
+.main_container {
+  border-radius: 20px;
+  background: #e0e0e0;
+  box-shadow: 36px 36px 69px #d0d0d0, -36px -36px 69px #f0f0f0;
+  min-height: 95vh;
+  width: 96%;
+}
