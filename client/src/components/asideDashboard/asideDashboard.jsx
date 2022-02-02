@@ -13,7 +13,7 @@ export default function Aside(){
     return (
         <div className={styles.box}>
             <ul>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconH} src={iconHome} alt="icon"/>Home</button></li>
+                <li><button className={styles.btn} type="submit"><img className={styles.iconH} src={iconHome} alt="icon"/><span>Home</span> </button></li>
                 <li><button className={styles.btn} type="submit"><img className={styles.iconS} src={iconSale} alt="icon"/>Sales</button></li>
                 <li><button className={styles.btn} type="submit"><img className={styles.iconNP} src={iconNP} alt="icon"/>New Product</button></li>
                 <li><button className={styles.btn} type="submit"><img className={styles.iconP} src={iconProd} alt="icon"/>Products</button></li>
