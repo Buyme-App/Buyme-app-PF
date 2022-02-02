@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
     // defino el modelo
-    sequelize.define('product', {
+    sequelize.define("product", {
 
         id: {
             type: DataTypes.UUID,
@@ -19,16 +19,10 @@ module.exports = (sequelize) => {
         },
         price: {
             type: DataTypes.INTEGER,
-            defaultValue: ''
         },
 
         favorite: {
             type: DataTypes.BOOLEAN,
         }
-    },
-        {
-            timestamps: false,
-            freezeTableName: true,
-        }
-    );
+    });
 };
