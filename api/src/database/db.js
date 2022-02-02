@@ -18,14 +18,22 @@ fs.readdirSync(path.join(__dirname, '../models'))
 modelDefiners.forEach(model => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
+
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Admin, Product, Categories, Subcategories } = sequelize.models;
+const { Category, SubCategory, Product, Admin } = sequelize.models;
 
 // Aca vendrian las relaciones
+
+SubCategory.belongsTo(Category, { through: "category_subCategory" });
+Category.belongsToMany(SubCategory, { through: "category_subCategory" });
+
+Product.belongsTo(SubCategory, { through: "product_subCategory" });
+Product.belongsTo(Category, { through: "product_Category" });
+SubCategory.belongsToMany(Product, { through: "product_subCategory" });
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

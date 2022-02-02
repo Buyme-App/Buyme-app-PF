@@ -2,22 +2,24 @@ const server = require('./src/server');
 require('dotenv').config();
 const colors = require('colors')
 const showErrors = require('../api/src/messageConsole');
-
-
+const { conn } = require('./src/database/db.js');
 
 const PORT = process.env.PORT || 3001;
 
 // Start server
-const main = () => {
 
-    server.listen(PORT, () => {
+const main = async () => {
+    try {
+        await conn.sync({ force: true })
 
-        console.log(colors.black.bgGreen(`==>> Server ins running on PORT: ${PORT} `));
-    })
+        server.listen(PORT, () => {
+            console.log(colors.black.bgGreen(`==>> Server is running on PORT: ${PORT} `));
+        })
+    }
+    catch (err) {
+        console.log('error', err)
+    }
 };
-
-
-
 
 main();
 

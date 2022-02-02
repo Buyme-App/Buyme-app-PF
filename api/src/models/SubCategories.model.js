@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
-  sequelize.define("Sub-Categories", {
+  sequelize.define("subCategory", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
