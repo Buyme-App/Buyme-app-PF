@@ -30,4 +30,5 @@ async function getProductDetail(req) {
 }
 
 module.exports = getProductDetail;
+// Fixed
 
