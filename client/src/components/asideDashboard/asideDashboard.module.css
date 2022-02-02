@@ -1,0 +1,40 @@
+.box {
+    box-sizing: border-box;
+    margin: 0;
+    padding-top: 5%;
+    min-height: 100vh;
+    width: 250px;
+    background-color: #ead7ff;
+}
+
+.btn, .btn2{
+    width: 250px;
+    height: 50px;
+    display: list-item;
+    border-style: solid;
+    border-color: #ead7ff;
+    border-width: 1px;
+    color: #4c2c92;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn2 {
+    margin-top: 60px;
+    background-color: #debfff;
+    border-style: solid;
+    border-color: #debfff;
+}
+
+.btn img {
+    height: 2.3rem;
+    margin-left: -2rem;
+
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
