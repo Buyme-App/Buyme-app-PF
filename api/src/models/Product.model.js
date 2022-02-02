@@ -23,6 +23,47 @@ module.exports = (sequelize) => {
 
         favorite: {
             type: DataTypes.BOOLEAN,
-        }
+        },
+
+        maker: { //fabricante
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        model: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        SKU: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        offerPrice:{
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stock: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        inventary: {
+            type: DataTypes.INTEGER,
+        },
+        featured:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+        paused:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+        sales:{
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
+            allowNull: true
+        },
+
     });
 };
