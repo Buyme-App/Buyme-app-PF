@@ -7,7 +7,7 @@ import validator from "../functions/validator";
 
 export default function Login() {
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   //const login = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
 
@@ -31,15 +31,16 @@ export default function Login() {
     });
     //si ambos campos están vacíos
     if (Object.values(input).every((e) => e === ""))
-      return setErrors(validator(input));
+      return setErrors(validator({email: input.email}));
     //si las props de error poseen algun valor, haveError será true
     const haveError = Object.values(errors).some((v) => v !== undefined);
+    
 
     if (haveError === false) {
       //dispatch(login(input));
       alert("Ingresando...");
 
-      //navigate('/home');
+      navigate('/admin/home');
     } else alert("Corrija los errores de los campos");
   }
 
@@ -67,7 +68,7 @@ export default function Login() {
             type="text"
             value={input.email}
             name="email"
-            placeholder="Enter Email adress"
+            placeholder="Enter email address"
             onChange={(e) => {
               handleChange(e);
             }}

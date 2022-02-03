@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 const main = async () => {
     try {
-        await conn.sync({ force: false })
+        await conn.sync({ force: true })
 
         server.listen(PORT, () => {
             console.log(colors.black.bgGreen(`==>> Server is running on PORT: ${PORT} `));
