@@ -4,8 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
 import AdminHome from "./components/AdminHome/AdminHome";
-import Aside from "./components/asideDashboard/asideDashboard";
-import Sales from "./components/Sales/Sales";
+
 
 function App() {
   return (
@@ -22,3 +21,5 @@ function App() {
 }
 
 export default App;
+
+

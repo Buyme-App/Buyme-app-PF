@@ -1,0 +1,78 @@
+.page {
+    display: block;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    /* margin: 3%; */
+}
+
+.title {
+    font-size: 3rem;
+    color: grey;
+    margin-top: 5%;
+}
+
+.button {
+    width: 15rem;
+    height: 2.5rem;
+    background-color: var(--color-principal-violet);
+    color: white;
+    border-style: solid;
+    border-radius: .25rem;
+    border-color: transparent;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-hover-principal);
+}
+
+.chart {
+    border-style: solid;
+    border-color: grey;
+    border-radius: .25rem;
+    border-width: .1rem;
+    width: 100%;
+    padding: 1.5%;
+    padding-left: 10%;
+    display: flex;
+    margin-left: 35%;
+    margin-bottom: -.2%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-principal-violet);
+}
+
+.details {
+    border-style: solid;
+    border-color: grey;
+    border-radius: .25rem;
+    border-width: .1rem;
+    width: 50rem;
+    padding: 3%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-principal-violet);
+    margin-left: 35%;
+    margin-bottom: -.15%;
+}
+
+.delete {
+    width: 4%;
+    color: var(--color-principal-violet);
+    cursor: pointer;
+}
+
+h2 {
+    color: grey;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    display: flex;
+    margin-left: 25%;
+    font-size: 1.75rem;
+}
