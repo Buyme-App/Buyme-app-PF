@@ -19,7 +19,7 @@ export default function AdminHome() {
     <div className={style.main_box}>
       <h1>Dashboard Home</h1> <br />
       <div className={style.main_container}>
-        <Aside setPanelActive={setPanelActive}/>
+        <Aside setPanelActive={setPanelActive} panelActive={panelActive}/>
         <section>
           <span>renderizado de contenido</span>
           {panelActive.sales && <Sales/>}

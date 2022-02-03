@@ -48,7 +48,9 @@
 .btn:hover {
     background-color: var(--color-light-violet);
 }
-
+.active {
+    background-color: var(--color-light-violet);
+}
 .btn2:hover {
     background-color: var(--color-light-violet);
 }
