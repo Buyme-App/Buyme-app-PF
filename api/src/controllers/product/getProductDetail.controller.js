@@ -1,9 +1,9 @@
-const { Product } = require("../database/db.js");
-const showErrors = require("../messageConsole.js");
+const { Product } = require("../../database/db.js");
+const showErrors = require("../../messageConsole.js");
 const { Op } = require("sequelize");
 
 //Contralador que busca en Product por Id o por Cadena de texto incluida en name del producto y devuelve el o los registros que matcheen
-async function getProductDetail() {
+async function getProductDetail(req) {
   try {
     const { idProduct, nameProduct } = req.params;
     if (idProduct) {
@@ -30,4 +30,5 @@ async function getProductDetail() {
 }
 
 module.exports = getProductDetail;
+// Fixed
 

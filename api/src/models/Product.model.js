@@ -5,13 +5,13 @@ module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define("product", {
 
+
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
         },
-
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,7 +22,47 @@ module.exports = (sequelize) => {
         },
 
         favorite: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0 //Added
+        },
+
+        maker: { //fabricante
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        model: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        SKU: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        offerPrice:{
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stock: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        inventary: {
+            type: DataTypes.INTEGER,
+        },
+        featured:{
             type: DataTypes.BOOLEAN,
-        }
+            allowNull: true
+        },
+        paused:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+
     });
 };
+
+// Update

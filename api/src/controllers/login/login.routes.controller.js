@@ -1,7 +1,7 @@
 //Funcion que trabaja sobre ruta /login mira si no hay email mira si hay usuario y si hay ve que el password coincida
 //Por ahora si ingresa un email devuelve el mismo email
 
-const showErrors = require("../messageConsole");
+const showErrors = require("../../messageConsole");
 
 async function loginRoutesController(req, res) {
     try {

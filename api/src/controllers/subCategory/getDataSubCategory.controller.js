@@ -1,4 +1,4 @@
-const { Categories } = require("../database/db");
+const { Categories } = require("../../database/db");
 const showErrors = require("../api/src/messageConsole");
 
 async function getSubCategoryDB(name) {
