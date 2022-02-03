@@ -8,7 +8,8 @@ async function getAllUsers() {
     try {
 
         const userData = await User.findAll()
-        if (userData > 0) {
+        
+        if (userData) {
             return userData;
         }else{
             return false;

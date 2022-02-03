@@ -3,7 +3,9 @@ const getAllUsers = require('../../controllers/user/getAllUsers.controller');
 const showErrors = require('../../messageConsole');
 const router = Router();
 
-// Ruta para ob
+// Ruta para obtener todos los usuarios administrativos, invoca al controlador getAllUsers()
+// y se le retorna los usuarios junto con la data o false si no hay usuarios.
+
 router.get('/', async (req, res) => {
 
     try {
@@ -12,7 +14,7 @@ router.get('/', async (req, res) => {
         else return res.status(404).send('There are no users in the database')
 
     } catch (error) {
-        showErrors('/getDataAdmin', error)
+        showErrors('/getAllUsers', error)
         res.status(404)
     }
 });
