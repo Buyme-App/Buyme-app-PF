@@ -15,5 +15,8 @@ code {
 :root {
   --color-violet:#debfff;
   --color-light-violet:#ead7ff;
-  --color-principal-violet:#4c2c92;
+  --color-principal1-violet:#4c2c92;
+  --color-principal-violet:#874CB6;
+  --color-buttons-pink: #FF66C4;
+  --color-buttonsHover-pink: #e46ec0;
 }

@@ -55,15 +55,15 @@ export default function Login() {
 
   return (
     <div className={styles.form}>
-      <h1 className={styles.title}>Log into your account</h1>
+      <h2 className={styles.title}>Log into your account</h2>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
         <div className={styles.input}>
-          <label>Email</label>
-          <input
+          {/* <label c>Email</label> */}
+          <input className={styles.input}
             type="text"
             value={input.email}
             name="email"
@@ -75,9 +75,10 @@ export default function Login() {
           />
           {errors && <small>{errors.email}</small>}
         </div>
-        <div className={styles.input}>
-          <label>Password</label>
-          <input
+        <br/>
+        <div>
+          {/* <label>Password</label> */}
+          <input className={styles.input}
             type="password"
             value={input.password}
             name="password"
@@ -88,9 +89,8 @@ export default function Login() {
           />
 
           <div className={styles.restPassword}>
-            <h6>Forgot your</h6>
-            <Link to="/admin/restorePassword" className={styles.link}>
-              Password?
+            <Link className={styles.link} to="/admin/restorePassword">
+            Forgot your password?
             </Link>
           </div>
         </div>

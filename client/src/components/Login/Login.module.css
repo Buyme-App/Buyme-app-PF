@@ -6,53 +6,64 @@
 
 .form {
   width: 450px;
-  padding: 40px;
+  padding: 70px;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 65px;
   border-radius: 2rem;
-  border-color: black;
+  border-style: none;
   color: gray;
 
   font-size: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.5);
-  background-color: white;
+  box-shadow: 0 0 3px 3px rgba(216, 212, 212, 0.5);
+  /* background-color: var(--color-principal-violet); */
+  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  background-repeat: no-repeat;
+  background-position-x: -185px;
+  background-position-y: -50px;
   font-weight: 700;
 }
 .form small {
   color: black;
 }
 .title {
-  color: gray;
-  margin-bottom: 30px;
+  color: white;
+  margin-bottom: 50px;
 }
 
 .form input {
   width: 100%;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 20px;
   color: gray;
-  border-color: gray;
+  border-style: none;
+  /* border-color: red; */
 }
 
 .btn {
-  border-style: solid;
-  border-radius: 20px;
+  margin-top: 40px;
+  border-style: none;
+  border-radius: 8px;
   cursor: pointer;
-  margin: 10px;
-  padding: 8px 25px 8px 25px;
+  width: 130px;
+  height: 35px;
+  background-color: var(--color-buttons-pink);
+  color:white;
+  /* margin: 10px; */
+  /* padding: 8px 25px 8px 25px; */
 }
 .btn:hover {
-  background-color: rgb(163, 128, 128);
-  font-weight: bold;
+  background-color: var(--color-buttonsHover-pink);
+  /* font-weight: bold; */
 }
 
 .link {
   font-size: 11px;
   text-decoration: none;
-  color: black;
-  margin-left: 5px;
+  color: white;
+  margin-right: 98px;
+  margin-top: 15px;
 }
 
 .restPassword {
