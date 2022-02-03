@@ -24,7 +24,7 @@ export default function PassRecovery() {
     if (haveError === false) {
       setInput({ email: "" });
       /* aqui agregar action para hacer el post del email */
-      alert("Enviado al back");
+      alert("Request sent");
     } else alert("Resuelva los errores en el campo antes de enviar");
   };
   return (

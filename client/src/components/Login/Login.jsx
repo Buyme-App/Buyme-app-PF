@@ -67,7 +67,7 @@ export default function Login() {
             type="text"
             value={input.email}
             name="email"
-            placeholder="Enter Email adress"
+            placeholder="Enter email address"
             onChange={(e) => {
               handleChange(e);
             }}
