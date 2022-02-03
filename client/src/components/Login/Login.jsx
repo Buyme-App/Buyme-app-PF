@@ -31,9 +31,10 @@ export default function Login() {
     });
     //si ambos campos están vacíos
     if (Object.values(input).every((e) => e === ""))
-      return setErrors(validator(input));
+      return setErrors(validator({email: input.email}));
     //si las props de error poseen algun valor, haveError será true
     const haveError = Object.values(errors).some((v) => v !== undefined);
+    
 
     if (haveError === false) {
       //dispatch(login(input));
