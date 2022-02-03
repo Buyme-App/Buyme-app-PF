@@ -82,7 +82,7 @@ export default function Sales() {
             e.customer.toUpperCase().includes(value.toUpperCase())
         )
       );
-    } else alert("Campo de busqueda vacío");
+    } else alert("Search field empty");
   };
   const refreshHandler = () => {
     setRender(example);
@@ -107,9 +107,7 @@ export default function Sales() {
             />
           </div>
           {!render.length ? (
-            <h1 className={sStyle.notMatch}>
-              No se han encontrado coincidencias
-            </h1>
+            <h1 className={sStyle.notMatch}>No matches found</h1>
           ) : null}
 
           {/* -----------selects-------------- */}
