@@ -7,18 +7,30 @@ const router = Router();
 // y responde con la data del producto creado o un error 500.
 router.post('/', async (req, res) => {
 
-    const {name, price, favorite} = req.body;
+    
+    const {name,price,favorite,maker,model,description,SKU,offerPrice,stock,inventary,featured,paused} = req.body;
 
-    if(name && price && favorite){
+        if(name){
+            try {
+                const create = await createProduct(name, price, favorite,maker,model,description,SKU,
+                                                    offerPrice,stock,inventary,featured,paused,
+                                                    );
+                
+                if(create) return res.json({message:'Product created', data: create});
+                else{
+                    return res.status(500).send('Error failed to create product');
+                }
+
+            } catch (error) {
+                showErrors('post/createProduct', error);
+                return 500
+            }   
+        }else{
+            return res.send('Name is required');
+        }
         
-        try {
-            const create = await createProduct(name, parseInt(price), favorite);
-            res.json({message:'Product created', data: create});
-        } catch (error) {
-            showErrors('post/createProduct', error);
-            return 500
-        }   
-    }
+        
+    
 });
 
 module.exports = router;

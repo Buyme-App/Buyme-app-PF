@@ -5,13 +5,6 @@ module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define("product", {
 
-        id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            allowNull: false,
-            primaryKey: true,
-        },
-
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -61,10 +54,7 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: true
         },
-        sales:{
-            type: DataTypes.ARRAY(DataTypes.INTEGER),
-            allowNull: true
-        },
+        
 
     });
 };
