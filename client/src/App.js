@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
 import AdminHome from "./components/AdminHome/AdminHome";
+//terminan los imports
 
 function App() {
   return (
