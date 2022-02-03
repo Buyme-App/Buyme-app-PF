@@ -68,6 +68,6 @@ p {
   cursor: pointer;
   width: 130px;
   height: 35px;
-  background-color: var(--color-buttons-pink);
+  background-color: var(--color-pink-buttons);
   color:white;
 }
