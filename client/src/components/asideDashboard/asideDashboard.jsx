@@ -27,7 +27,7 @@ const clickHandler = (e)=> {
 
                 <li  ><button className={`${styles.btn} ${panelActive.categories && styles.active}`} type="submit" id="categories" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconCa} src={iconCat} alt="icon"/>Categories</button></li>
 
-                <li  ><button className={`${styles.btn} ${panelActive.categories && styles.active}`} type="submit" id="customers" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconCu} src={iconCus} alt="icon"/>Customers</button></li>
+                <li  ><button className={`${styles.btn} ${panelActive.customers && styles.active}`} type="submit" id="customers" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconCu} src={iconCus} alt="icon"/>Customers</button></li>
 
                 <li ><button className={`${styles.btn} ${panelActive.queries && styles.active}`}type="submit"  id="queries"  onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconQ} src={iconQue} alt="icon"/>Queries</button></li>
 
