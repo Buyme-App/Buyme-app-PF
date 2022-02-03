@@ -7,7 +7,7 @@ import validator from "../functions/validator";
 
 export default function Login() {
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   //const login = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
 
@@ -39,7 +39,7 @@ export default function Login() {
       //dispatch(login(input));
       alert("Ingresando...");
 
-      //navigate('/home');
+      navigate('/admin/home');
     } else alert("Corrija los errores de los campos");
   }
 

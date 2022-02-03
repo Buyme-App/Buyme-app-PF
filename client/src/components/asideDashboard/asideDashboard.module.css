@@ -3,10 +3,14 @@
     margin: 0;
     padding-top: 5%;
     min-height: 100vh;
-    width: 250px;
+    min-width: 250px;
+    border-radius: in;
     background-color: var(--color-light-violet);
 }
-
+.box ul {
+    list-style: none;
+   
+}
 .btn, .btn2{
     width: 100%;
     height: 50px; 

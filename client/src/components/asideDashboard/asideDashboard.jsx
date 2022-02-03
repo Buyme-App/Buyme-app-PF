@@ -8,19 +8,30 @@ import iconNP from '../../assets/IconoCrearProducto.png';
 import iconQue from '../../assets/IconoConsultas.png';
 import iconSale from '../../assets/IconoVentas.png';
 
-export default function Aside(){
 
+export default function Aside({setPanelActive}){
+const clickHandler = (e)=> {
+        console.log( `${e}`)
+    setPanelActive({[e]: true})
+}
     return (
         <div className={styles.box}>
             <ul>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconH} src={iconHome} alt="icon"/><span>Home</span> </button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconS} src={iconSale} alt="icon"/>Sales</button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconNP} src={iconNP} alt="icon"/>New Product</button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconP} src={iconProd} alt="icon"/>Products</button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconCa} src={iconCat} alt="icon"/>Categories</button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconCu} src={iconCus} alt="icon"/>Customers</button></li>
-                <li><button className={styles.btn} type="submit"><img className={styles.iconQ} src={iconQue} alt="icon"/>Queries</button></li>
-                <li><button className={styles.btn} type="submit">Account</button></li>
+                <li ><button className={styles.btn} type="submit" id="home" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconH} src={iconHome} alt="icon"/><span>Home</span> </button></li>
+
+                <li  ><button className={styles.btn} type="submit" id="sales" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconS} src={iconSale} alt="icon"/>Sales</button></li>
+
+                <li  ><button className={styles.btn} type="submit" id="newProduct" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconNP} src={iconNP} alt="icon"/>New Product</button></li>
+
+                <li ><button className={styles.btn} type="submit" id="products"  onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconP} src={iconProd} alt="icon"/>Products</button></li>
+
+                <li  ><button className={styles.btn} type="submit" id="categories" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconCa} src={iconCat} alt="icon"/>Categories</button></li>
+
+                <li  ><button className={styles.btn} type="submit" id="customers" onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconCu} src={iconCus} alt="icon"/>Customers</button></li>
+
+                <li ><button className={styles.btn} type="submit"  id="queries"  onClick={(e) => clickHandler(e.target.id)}><img className={styles.iconQ} src={iconQue} alt="icon"/>Queries</button></li>
+
+                <li  ><button className={styles.btn} type="submit" id="account" onClick={(e) => clickHandler(e.target.id)}>Account</button></li>
             </ul>
             <button className={styles.btn2} type="submit">Log out</button>
         </div>
