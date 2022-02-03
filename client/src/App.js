@@ -5,7 +5,6 @@ import Login from "./components/Login/Login";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
 import AdminHome from "./components/AdminHome/AdminHome";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -21,5 +20,3 @@ function App() {
 }
 
 export default App;
-
-
