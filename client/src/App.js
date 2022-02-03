@@ -17,11 +17,6 @@ function App() {
         <Routes>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
-          <Route exact path="/admin/home/aside" element={<Aside />} />
-          <Route exact path="/admin/home/account" element={<Account />} />
-          <Route exact path="/admin/home/addUser" element={<AddUser />} />
-          <Route exact path="/admin/home/changeEmail" element={<ChangeEmail />} />
-          <Route exact path="/admin/home/changePassword" element={<ChangePassword />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />
         </Routes>
       </div>
