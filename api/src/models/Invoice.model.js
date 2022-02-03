@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     productsIds: {
-      type: DataTypes.ARRAY(DataTypes.UUID),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: false,
     },
     total: {
