@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState , useEffect } from 'react';
 import styles from "./AdminNewProduct.module.css";
-import Uploader from '../Uploader/Uploader';
+// import Uploader from '../Uploader/Uploader';
 import Editor from './CKEditor';
 
 // function validate(input) {
@@ -273,7 +273,7 @@ export default function AdminNewProduct(){
             </div>
             <h3>Upload your images * <small>(jpg, png and gif formats)</small></h3>
             <div className={styles.uploader}>
-                <Uploader />
+                {/* <Uploader /> */}
             </div>
             <button className={styles.create} type='submit'>CREATE PRODUCT</button>
         </form>

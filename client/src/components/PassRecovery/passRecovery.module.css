@@ -1,12 +1,12 @@
 .main {
-  background-color: rgb(85, 98, 177);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
 }
 .content {
-  background-color: rgb(212, 202, 202);
+  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
   width: 400px;
   height: 500px;
   display: flex;
@@ -15,21 +15,27 @@
   padding: 20px;
   -webkit-box-shadow: 0px 9px 13px -2px #000000;
   box-shadow: 0px 9px 13px -2px #000000;
+  background-position-x: -185px;
+  background-position-y: -50px;
 }
-.content .input,
-h1,
-.main p {
-  width: 100%;
+h1{
+  color: white;
+  font-size: 27px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: 80px;
 }
+
 
 .main p {
   display: inline-block;
   text-align: center;
-  background-color: rgb(46, 46, 40);
-  padding: 18px;
   border-radius: 20px;
   color: #fff;
-  height: fit-content;
+  font-size: 13px;
+  width: 100%;
 }
 .input {
   /* background-color: rgb(161, 136, 136); */
@@ -40,7 +46,7 @@ h1,
   padding: 6px;
 }
 .input input {
-  width: 100%;
+  width: 330px;
   padding: 10px;
   border: none;
   border-radius: 10px;
@@ -54,9 +60,11 @@ h1,
   padding: 6px;
 }
 .button_div input {
+  border-style: none;
+  border-radius: 8px;
   cursor: pointer;
-  width: 100px;
-  padding: 8px;
-  border-radius: 10px;
-  background-color: rgba(35, 35, 211, 0.753);
+  width: 130px;
+  height: 35px;
+  background-color: var(--color-pink-buttons);
+  color:white;
 }
