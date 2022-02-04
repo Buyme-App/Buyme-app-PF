@@ -11,7 +11,7 @@ async function loginRoutesController(userEmail, userPassword) {
       const result = await User.findOne({ where: { email: userEmail } });
       if (result === null) return 404;
       else {
-        let compareIqual = bcrypt.compareSync(userPassword, result.password);
+        let compareIqual = await bcrypt.compare(userPassword, result.password);
         if (compareIqual) return 200;
         else return 401;
       }
