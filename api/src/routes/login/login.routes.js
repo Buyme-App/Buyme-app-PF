@@ -1,4 +1,5 @@
 //Ruta para loguearse y obtener autorizacion,  si existe el email del usuario y tiene password valido contra la DB
+
 const { Router } = require("express");
 const router = Router();
 const showErrors = require("../../messageConsole");
