@@ -1,32 +1,35 @@
 const express = require('express');
 
 const home = require('./home.routes'); //
-const login = require('./login.routes'); //
+const login = require('./login/login.routes'); //
 
 // Jose
-const routerGetProductDetail = require('../routes/getProductDetail.routes'); //
+const routerGetProductDetail = require('./product/getProductDetail.routes'); //
 
 // Victor
-const routerGetAllUsers = require('./getAllUsers.routes'); //
-const routerCreatePro = require('./createProduct.routes'); //
-const routerUpdatePro = require('./updateProduct.routes'); //
-const routerDeletePro = require('./deleteProduct.routes'); //
-const routerGetProducts = require ('./getAllProducts.routes.js'); //
-
+const routerGetAllUsers = require('./user/getAllUsers.routes'); //
+const routerCreatePro = require('./product/createProduct.routes'); //
+const routerUpdatePro = require('./product/updateProduct.routes'); //
+const routerDeletePro = require('./product/deleteProduct.routes'); //
+const routerGetProducts = require ('./product/getAllProducts.routes.js'); //
 
 //Jose
-const postCreateCategory=require('./postCreateCategory.route'); //
-const getCategory=require('./getCategory.route'); //
-const deleteCategory=require('./deleteCategory.routes'); //
-const modifyCategory=require('./modifyCategory.routes'); //
-const postCreateSubCategory=require('./postCreateSubCategory.route'); //
-const getSubcategory=require('./getSubCategory.route'); //
-const deleteSubCategory=require('./deleteSubCategory.routes'); //
-const modifySubCategory=require('./modifySubCategory.routes'); //
+const postCreateCategory=require('./category/postCreateCategory.route'); //
+const getCategory=require('./category/getCategory.route'); //
+const deleteCategory=require('./category/deleteCategory.routes'); //
+const modifyCategory=require('./category/modifyCategory.routes'); //
+const postCreateSubCategory=require('./subcategory/postCreateSubCategory.route'); //
+const getSubcategory=require('./subcategory/getSubCategory.route'); //
+const deleteSubCategory=require('./subcategory/deleteSubCategory.routes'); //
+const modifySubCategory=require('./subcategory/modifySubCategory.routes'); //
 
 //Nico
-const createInvoice = require('./createInvoice.routes') //
+const createInvoice = require('./invoice/createInvoice.routes') //
 
+const routerCreateUser = require('./user/createUser.routes');
+const routerGetOneUser = require('./user/getOneUser.routes');
+const routerUpdateUser = require('./user/updateUser.routes');
+const routerDeleteUser = require('./user/deleteUser.routes');
 
 const routes = (server) => {
     server.use('/', home);
@@ -50,9 +53,10 @@ const routes = (server) => {
     server.use('/delSubCat', deleteSubCategory); //ok
     server.use('/modSubCat', modifySubCategory); //ok
 
-
-
-
+    server.use('/createUser', routerCreateUser);
+    server.use('/getUser', routerGetOneUser);
+    server.use('/updateUser', routerUpdateUser);
+    server.use('/deleteUser', routerDeleteUser);
 }
 
 module.exports = routes;
