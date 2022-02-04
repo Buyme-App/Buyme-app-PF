@@ -31,6 +31,10 @@ const routerGetOneUser = require('./user/getOneUser.routes');
 const routerUpdateUser = require('./user/updateUser.routes');
 const routerDeleteUser = require('./user/deleteUser.routes');
 
+const hashPassword=require('./hash/hashPassword.route');
+const getAllInvoices = require("./invoice/getAllInvoices.routes");
+const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
+
 const routes = (server) => {
     server.use('/', home);
     server.use('/getAllUsers', routerGetAllUsers);
@@ -57,6 +61,10 @@ const routes = (server) => {
     server.use('/getUser', routerGetOneUser);
     server.use('/updateUser', routerUpdateUser);
     server.use('/deleteUser', routerDeleteUser);
+
+    server.use('/hash', hashPassword);
+    server.use("/getAllInvoices", getAllInvoices);
+    server.use("/getInvoiceDetail", getInvoiceDetail);
 }
 
 module.exports = routes;

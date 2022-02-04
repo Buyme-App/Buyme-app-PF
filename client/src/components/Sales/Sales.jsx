@@ -113,7 +113,7 @@ export default function Sales() {
           {/* -----------selects-------------- */}
           <div className={sStyle.selects_box}>
             <button className={sStyle.refresh} onClick={refreshHandler}>
-              <FaRedo size={18} />
+              <FaRedo size={14} />
             </button>
 
             <select

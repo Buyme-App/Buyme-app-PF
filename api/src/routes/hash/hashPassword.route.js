@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const showErrors = require("../../messageConsole");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 router.post("/", (req, res) => {
   try {

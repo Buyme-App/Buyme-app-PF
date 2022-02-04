@@ -8,12 +8,6 @@
     /* margin: 3%; */
 }
 
-.title {
-    font-size: 3rem;
-    color: grey;
-    margin-top: 5%;
-}
-
 .button {
     width: 15rem;
     height: 2.5rem;
@@ -30,16 +24,22 @@
     background-color: var(--color-hover-principal);
 }
 
+.table {
+    display: inline;
+    justify-content: center; 
+    align-items: center;
+}
+
 .chart {
     border-style: solid;
     border-color: grey;
     border-radius: .25rem;
     border-width: .1rem;
-    width: 100%;
+    width: 50rem;
     padding: 1.5%;
-    padding-left: 10%;
+    padding-left: 8.5%;
     display: flex;
-    margin-left: 35%;
+    margin-left: 11%;
     margin-bottom: -.2%;
     font-size: 1.25rem;
     font-weight: 700;
@@ -58,7 +58,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-principal-violet);
-    margin-left: 35%;
+    margin-left: 11%;
     margin-bottom: -.15%;
 }
 
@@ -70,9 +70,9 @@
 
 h2 {
     color: grey;
-    margin-top: 7%;
-    margin-bottom: 2%;
+    margin-top: 3%;
+    margin-bottom: 4%;
     display: flex;
-    margin-left: 25%;
+    margin-left: 11%;
     font-size: 1.75rem;
 }

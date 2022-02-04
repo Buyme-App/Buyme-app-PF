@@ -1,12 +1,16 @@
-import React from 'react';
-import { useState , useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 import styles from "./AdminNewProduct.module.css";
-import Uploader from '../Uploader/Uploader';
-import Editor from './CKEditor';
+
+
+import Uploader from "./Uploader";
+import Editor from "./CKEditor";
+
+
 
 // function validate(input) {
 //     let errors = {};
-    
+
 //     if (input.name.length < 4) {
 //         errors.name = '<- Min 4 characters'
 //     }
@@ -88,177 +92,187 @@ import Editor from './CKEditor';
 //     return errors;
 // }
 
-export default function AdminNewProduct(){
-    const [errors, setErrors] = useState({});
-    const [input, setInput] = useState({
-        category: '',
-        name: '',
-        brand: '',
-        model: '',
-        sku: '',
-        price: '',
-        discount: '',
-        stock: '',
-        featured: '',
-        description: '',
-        images: ''
-    })
+export default function AdminNewProduct() {
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({
+    category: "",
+    name: "",
+    brand: "",
+    model: "",
+    sku: "",
+    price: "",
+    discount: "",
+    stock: "",
+    featured: "",
+    description: "",
+    images: "",
+  });
 
-    // function handleSelectChange(e){
-    //     setInput({
-    //         ...input,
-    //         [e.target.name]: e.target.value 
-    //     })
-    //     setErrors(validate({
-    //         ...input,
-    //         [e.target.name]: e.target.value
-    //     }))
-    // }
+  // function handleSelectChange(e){
+  //     setInput({
+  //         ...input,
+  //         [e.target.name]: e.target.value
+  //     })
+  //     setErrors(validate({
+  //         ...input,
+  //         [e.target.name]: e.target.value
+  //     }))
+  // }
 
-    // function handleInputChange(e){
-    //     setInput({
-    //         ...input,
-    //         [e.target.name]: e.target.value 
-    //     })
-    //     setErrors(validate({
-    //         ...input,
-    //         [e.target.name]: e.target.value
-    //     }))
-    // }
+  // function handleInputChange(e){
+  //     setInput({
+  //         ...input,
+  //         [e.target.name]: e.target.value
+  //     })
+  //     setErrors(validate({
+  //         ...input,
+  //         [e.target.name]: e.target.value
+  //     }))
+  // }
 
-    // document.getElementById('isOffer').onchange = function() {
-    //     document.getElementById('discount').disabled = !this.checked;
-    // };
+  // document.getElementById('isOffer').onchange = function() {
+  //     document.getElementById('discount').disabled = !this.checked;
+  // };
 
-    return (
-        <div className={styles.main}>
-            <h1>Create New Product</h1>
-            <h3>Category *</h3>
-            {/* <form onSubmit={(e) => handleSubmit(e)}> */}
-            <form>
-            <div className={styles.inputs}>
-            {/* <select name="Categories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
-            <select name="Categories" className={styles.select}>
-                <option value="" selected disabled>Select Category</option>
-                <option value="" disabled>Mobile Phones</option>
-                <option value="mobPhones"> • Mobile Phones</option>
-                <option value="mobPhonesAcc"> • Accesories</option>
-                <option value="" disabled>Computing</option>
-                <option value="laptops"> • Laptop Computers</option>
-                <option value="desktop"> • Desktop Computers</option>
-                <option value="monitors"> • Monitors</option>
-                <option value="printers"> • Printers</option>
-                <option value="pcAcc"> • Accesories</option>
-                <option value="" disabled>Video Games</option>
-                <option value="consoles"> • Consoles</option>
-                <option value="consolesAcc"> • Accesories</option>
-            </select>
-            <div className={styles.errors}>{errors.name && (
-                <span>{errors.name}</span>
-            )}</div>
-            </div>
+  return (
+    <div className={styles.main}>
+      <h1>Create New Product</h1>
+      <h3>Category *</h3>
+      {/* <form onSubmit={(e) => handleSubmit(e)}> */}
+      <form>
+        <div className={styles.inputs}>
+          {/* <select name="Categories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
+          <select name="Categories" className={styles.select}>
+            <option value="" selected disabled>
+              Select Category
+            </option>
+            <option value="" disabled>
+              Mobile Phones
+            </option>
+            <option value="mobPhones"> • Mobile Phones</option>
+            <option value="mobPhonesAcc"> • Accesories</option>
+            <option value="" disabled>
+              Computing
+            </option>
+            <option value="laptops"> • Laptop Computers</option>
+            <option value="desktop"> • Desktop Computers</option>
+            <option value="monitors"> • Monitors</option>
+            <option value="printers"> • Printers</option>
+            <option value="pcAcc"> • Accesories</option>
+            <option value="" disabled>
+              Video Games
+            </option>
+            <option value="consoles"> • Consoles</option>
+            <option value="consolesAcc"> • Accesories</option>
+          </select>
+          <div className={styles.errors}>
+            {errors.name && <span>{errors.name}</span>}
+          </div>
+        </div>
 
-            <h3>Product Name *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='name'
-            type='text'
+        <h3>Product Name *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="name"
+            type="text"
             // value={input.name}
             className={styles.input}
-            placeholder='E.g.: Apple AirPods (2nd Generation)'
+            placeholder="E.g.: Apple AirPods (2nd Generation)"
             // onChange={(e) => handleInputChange(e)}
-            />
-            <div className={styles.errors}>{errors.name && (
-                <span>{errors.name}</span>
-            )}</div>
-            </div>
+          />
+          <div className={styles.errors}>
+            {errors.name && <span>{errors.name}</span>}
+          </div>
+        </div>
 
-            <h3>Brand *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='brand'
-            type='text'
+        <h3>Brand *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="brand"
+            type="text"
             // value={brand}
             className={styles.input}
-            placeholder='E.g.: Apple'
+            placeholder="E.g.: Apple"
             // onChange={(e) => handleInputChange(e)}
-            />
-            <div className={styles.errors}>{errors.brand && (
-                <span>{errors.brand}</span>
-            )}</div>
-            </div>
+          />
+          <div className={styles.errors}>
+            {errors.brand && <span>{errors.brand}</span>}
+          </div>
+        </div>
 
-            <h3>Model *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='model'
-            type='text'
+        <h3>Model *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="model"
+            type="text"
             // value={model}
             className={styles.input}
-            placeholder='E.g.: Airpods'
+            placeholder="E.g.: Airpods"
             // onChange={(e) => handleInputChange(e)}
-            />
-            <div className={styles.errors}>{errors.model && (
-                <span>{errors.model}</span>
-            )}</div>
-            </div>
+          />
+          <div className={styles.errors}>
+            {errors.model && <span>{errors.model}</span>}
+          </div>
+        </div>
 
-            <h3>SKU / Article number  *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='sku'
-            type='text'
+        <h3>SKU / Article number *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="sku"
+            type="text"
             // value={sku}
             className={styles.input}
-            placeholder='E.g.: AJ123456'
+            placeholder="E.g.: AJ123456"
             // onChange={(e) => handleInputChange(e)}
-            />
-            <div className={styles.errors}>{errors.sku && (
-                <span>{errors.sku}</span>
-            )}</div>
-            </div>
+          />
+          <div className={styles.errors}>
+            {errors.sku && <span>{errors.sku}</span>}
+          </div>
+        </div>
 
-            <h3>Price *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='price'
-            type='text'
+        <h3>Price *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="price"
+            type="text"
             // value={price}
             className={styles.input}
-            placeholder='E.g.: 100'
+            placeholder="E.g.: 100"
             // onChange={(e) => handleInputChange(e)}
-            />
-            <div className={styles.errors}>{errors.price && (
-                <span>{errors.price}</span>
-            )}</div>
-            </div>
+          />
+          <div className={styles.errors}>
+            {errors.price && <span>{errors.price}</span>}
+          </div>
+        </div>
 
-            <h3>Reduced Price
-                <input id='isoffer' type='checkbox' className={styles.checkbox} />
-            </h3>
-            <div className={styles.inputs}>
-            <input
-            id='discount'
-            type='text'
+        <h3>
+          Reduced Price
+          <input id="isoffer" type="checkbox" className={styles.checkbox} />
+        </h3>
+        <div className={styles.inputs}>
+          <input
+            id="discount"
+            type="text"
             // value={discount}
             className={styles.input}
-            placeholder='E.g.: 100'
-            disabled='disabled'
+            placeholder="E.g.: 100"
+            disabled="disabled"
             // onChange={(e) => handleInputChange(e)}
-            />
-            </div>
+          />
+        </div>
 
-            <h3>Stock *</h3>
-            <div className={styles.inputs}>
-            <input
-            id='stock'
-            type='text'
+        <h3>Stock *</h3>
+        <div className={styles.inputs}>
+          <input
+            id="stock"
+            type="text"
             // value={stock}
             className={styles.input}
-            placeholder='E.g.: 100'
+            placeholder="E.g.: 100"
             // onChange={(e) => handleInputChange(e)}
-            />
-            </div>
+          />
+        </div>
+
 
             <h3>Featured Product *</h3>
             {/* <select name="Types" className={styles.types} onChange={(e) => handleSelect(e)}> */}
@@ -273,10 +287,16 @@ export default function AdminNewProduct(){
             </div>
             <h3>Upload your images * <small>(jpg, png and gif formats)</small></h3>
             <div className={styles.uploader}>
-                <Uploader />
+                {/* <Uploader /> */}
             </div>
             <button className={styles.create} type='submit'>CREATE PRODUCT</button>
         </form>
+
         </div>
-    )
+        <button className={styles.create} type="submit">
+          CREATE PRODUCT
+        </button>
+      </form>
+    </div>
+  );
 }
