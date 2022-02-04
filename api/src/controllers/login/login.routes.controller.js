@@ -4,7 +4,7 @@
 
 const { User } = require("../../database/db.js");
 const showErrors = require("../../messageConsole");
-const bcrypt = require("bcrypt");
+const bcrypt = require("../handleBcrypts/handleBcrypts"); // Fixed
 
 async function loginRoutesController(userName, userPassword, userEmail) {
   try {
@@ -28,3 +28,5 @@ async function loginRoutesController(userName, userPassword, userEmail) {
 }
 
 module.exports = loginRoutesController;
+
+
