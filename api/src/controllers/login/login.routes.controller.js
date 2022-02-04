@@ -1,6 +1,5 @@
 //Funcion que trabaja sobre ruta /login mira si no hay email mira si hay usuario y si hay ve que el password coincida
 //Por ahora si ingresa un email devuelve el mismo email
-
 const { User } = require("../../database/db.js");
 const showErrors = require("../../messageConsole");
 const bcrypt = require("../handleBcrypts/handleBcrypts"); // Fixed
@@ -11,7 +10,7 @@ async function loginRoutesController(userEmail, userPassword) {
       const result = await User.findOne({ where: { email: userEmail } });
       if (result === null) return 404;
       else {
-        let compareIqual = await bcrypt.compare(userPassword, result.password); 
+        let compareIqual = await bcrypt.compare(userPassword, result.password);
         if (compareIqual) return 200;
         else return 401;
       }
@@ -23,15 +22,3 @@ async function loginRoutesController(userEmail, userPassword) {
 }
 
 module.exports = loginRoutesController;
-
-
-
-
-
-
-
-
-
-
-
-
