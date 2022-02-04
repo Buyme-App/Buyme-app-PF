@@ -1,12 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./AdminNewProduct.module.css";
-
-
 import Uploader from "./Uploader";
 import Editor from "./CKEditor";
-
-
 
 // function validate(input) {
 //     let errors = {};
@@ -136,7 +132,8 @@ export default function AdminNewProduct() {
 
   return (
     <div className={styles.main}>
-      <h1>Create New Product</h1>
+      {/* <h1>Create New Product</h1> */}
+      <h1 className={styles.title}>Create New Product</h1>
       <h3>Category *</h3>
       {/* <form onSubmit={(e) => handleSubmit(e)}> */}
       <form>
@@ -273,25 +270,24 @@ export default function AdminNewProduct() {
           />
         </div>
 
-
-            <h3>Featured Product *</h3>
-            {/* <select name="Types" className={styles.types} onChange={(e) => handleSelect(e)}> */}
-            <select name="Types" className={styles.select}>
-                <option value="" selected disabled>Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            <h3>Description *</h3>
-            <div className={styles.ckeditor}>
-            <Editor />
-            </div>
-            <h3>Upload your images * <small>(jpg, png and gif formats)</small></h3>
-            <div className={styles.uploader}>
-                {/* <Uploader /> */}
-            </div>
-            <button className={styles.create} type='submit'>CREATE PRODUCT</button>
-        </form>
-
+        <h3>Featured Product *</h3>
+        {/* <select name="Types" className={styles.types} onChange={(e) => handleSelect(e)}> */}
+        <select name="Types" className={styles.select}>
+          <option value="" selected disabled>
+            Select
+          </option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <h3>Description *</h3>
+        <div className={styles.ckeditor}>
+          <Editor />
+        </div>
+        <h3>
+          Upload your images * <small>(jpg, png and gif formats)</small>
+        </h3>
+        <div className={styles.uploader}>
+          <Uploader />
         </div>
         <button className={styles.create} type="submit">
           CREATE PRODUCT
