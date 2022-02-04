@@ -1,5 +1,5 @@
 .sales_container {
-  background-color: rgb(211, 225, 235);
+  /* background-color: rgb(211, 225, 235); */
   min-height: 100vh;
   padding: 3%;
 }
@@ -19,7 +19,7 @@
 }
 .input_box {
   width: 100%;
-  background-color: rgba(230, 59, 59, 0.137);
+  /* background-color: rgba(230, 59, 59, 0.137); */
   display: flex;
   flex-flow: row wrap;
   height: 200px;

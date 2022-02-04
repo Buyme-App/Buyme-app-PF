@@ -9,4 +9,4 @@ const compare = async (passPlain, hashPass)=>{
 return await bcrypt.compare(passPlain, hashPass)
 }
 
-module.exports = { encrypt, compare } //Exports
+module.exports = { encrypt, compare }
