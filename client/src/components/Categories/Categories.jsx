@@ -1,8 +1,11 @@
 import React from "react";
 import styles from './Categories.module.css';
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import SelectCategories from "./SelectCategories";
 
 export default function Categories (){
+
+    const [checkSubcat, setCheckSubcat] = useState(false);
 
     const [input, setInput] = React.useState({
         category: "",
@@ -30,13 +33,16 @@ export default function Categories (){
             setInput({
                 ...input,
                 subcategory: e.target.value
+                
             })
+            setCheckSubcat(true);
+        } else {
+            setCheckSubcat(false);
         }
     };
 
     return (
         <div>
-            <div> <Link to='/admin/home' ><button className={styles.btn}>Go back</button></Link></div>
             <h1 className={styles.title}>Categories</h1>
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
                 
@@ -56,13 +62,13 @@ export default function Categories (){
                         type="checkbox" 
                         value={input.subcategory}
                         name="subcategory"
-                        onChange={(e) => {handleCheck(e)}}
+                        onClick={(e) => handleCheck(e)}
                     />
                 </div>
-                
-                <select className={styles.select}>
-                    <option value="cat1">categoria1</option>
-                </select>
+                <SelectCategories
+                    trigger={checkSubcat} 
+                    setTrigger={setCheckSubcat}>
+                </SelectCategories>
                 <button className={styles.btn} type="submit">
                 Submit
                 </button>
