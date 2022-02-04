@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const getAllProducts = require('../../controllers/product/getAllProducts.controller');
+const getPaginatedProducts = require('../../controllers/product/getPaginatedProducts.controller');
 const showErrors = require('../../messageConsole');
 const router = Router();
 

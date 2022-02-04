@@ -35,6 +35,9 @@ const hashPassword=require('./hash/hashPassword.route');
 const getAllInvoices = require("./invoice/getAllInvoices.routes");
 const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
 
+const getPaginatedProducts = require("./product/getPaginatedProducts.routes");
+
+
 const routes = (server) => {
     server.use('/', home);
     server.use('/getAllUsers', routerGetAllUsers);
@@ -65,6 +68,7 @@ const routes = (server) => {
     server.use('/hash', hashPassword);
     server.use("/getAllInvoices", getAllInvoices);
     server.use("/getInvoiceDetail", getInvoiceDetail);
+    server.use("/paginatedProducts", getInvoiceDetail);
 }
 
 module.exports = routes;
