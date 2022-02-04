@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
 import AdminHome from "./components/AdminHome/AdminHome";
+import Sales from "./components/Sales/Sales"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />
+          <Route path="/admin/sales" element={<Sales/>} />
         </Routes>
       </div>
     </BrowserRouter>

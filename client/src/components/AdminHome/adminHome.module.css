@@ -8,8 +8,8 @@
 }
 .main_container {
   border-radius: 20px;
-  background: #e0e0e0;
-  box-shadow: 36px 36px 69px #d0d0d0, -36px -36px 69px #f0f0f0;
+  /* background: #e0e0e0; */
+  /* box-shadow: 36px 36px 69px #d0d0d0, -36px -36px 69px #f0f0f0; */
   min-height: 95vh;
   width: 96%;
   display: flex;
