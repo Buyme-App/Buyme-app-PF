@@ -19,7 +19,7 @@ export default function AdminHome() {
     queries: false,
     account: false
   });
-  rreturn (
+  return (
     <div className={style.main_box}>
       <h1>Dashboard Home</h1> <br />
       <div className={style.main_container}>
