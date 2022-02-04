@@ -54,6 +54,7 @@ export default function Login() {
   // }, []);
 
   return (
+    <div className={styles.gral}>
     <div className={styles.form}>
       <h2 className={styles.title}>Log into your account</h2>
       <form
@@ -98,6 +99,7 @@ export default function Login() {
           Login
         </button>
       </form>
+    </div>
     </div>
   );
 }
