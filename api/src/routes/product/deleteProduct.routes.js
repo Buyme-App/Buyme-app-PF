@@ -17,7 +17,7 @@ router.delete('/:id', async (req, res) => {
 
     } catch (error) {
         
-        showErrors('/delete/:id', error);
+        showErrors('/deleteProduct/:id', error);
         return 500
     }
 
