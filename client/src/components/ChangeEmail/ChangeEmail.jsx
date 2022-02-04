@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './ChangeEmail.module.css'
 
-export default function ChangeEmail(){
-    const navigate = useNavigate();
+export default function ChangeEmail(props){
+    // const navigate = useNavigate();
 
     const [input, setInput] = React.useState({
         email: "",
@@ -28,14 +28,17 @@ export default function ChangeEmail(){
             password: "",
             newEmail: ""
         });
-        navigate('/admin/home/account');
+        // navigate('/admin/home/account');
     }
 
-    return (
-        <div>
-            <div> <Link to='/admin/home/account' ><button className={styles.btn}>Go back</button></Link></div>
-            <h1 className={styles.title}>Change Email</h1>
+    return (props.trigger) ? (
+        <div className={styles.popup}>
+            {props.children}
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
+                <div className={styles.divTitle}>
+                    <h1 className={styles.title}>Change Email</h1>
+                    <button className={styles.close} onClick={() => props.setTrigger(false)}>x</button>
+                </div>
                 
                 <div className={styles.input}>
                     <label>Email:</label>
@@ -69,10 +72,10 @@ export default function ChangeEmail(){
                     />
                     
                 </div>
-                <button className={styles.btn} type="submit">
+                <button onClick={() => props.setTrigger(false)} className={styles.btn} type="submit">
                 Submit
                 </button>
             </form>
         </div>
-    )
+    ) : '';
 }
