@@ -7,7 +7,7 @@ import styles from "./Login.module.css";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   //const login = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
 
@@ -52,9 +52,11 @@ export default function Login() {
     e.preventDefault();
 
     //si ambos campos están vacíos
+
     if (input.email === "" || input.password === "") {
       return setErrors(loginValidate(input));
     }
+
     //si las props de error poseen algun valor, haveError será true
     const haveError = Object.values(errors).some((v) => v !== undefined);
 
@@ -65,7 +67,9 @@ export default function Login() {
         password: "",
       });
       alert("Ingresando...");
+
       navigate("/admin/home");
+
     } else alert("Corrija los errores de los campos");
   }
 
@@ -81,6 +85,7 @@ export default function Login() {
   // }, []);
 
   return (
+    <div className={styles.gral}>
     <div className={styles.form}>
       <h1 className={styles.title}>Log into your account</h1>
       <form
@@ -89,8 +94,8 @@ export default function Login() {
         }}
       >
         <div className={styles.input}>
-          <label>Email</label>
-          <input
+          {/* <label c>Email</label> */}
+          <input className={styles.input}
             type="text"
             value={input.email}
             name="email"
@@ -102,9 +107,10 @@ export default function Login() {
           />
           {errors && <small>{errors.email}</small>}
         </div>
-        <div className={styles.input}>
-          <label>Password</label>
-          <input
+        <br/>
+        <div>
+          {/* <label>Password</label> */}
+          <input className={styles.input}
             type="password"
             value={input.password}
             name="password"
@@ -117,9 +123,8 @@ export default function Login() {
           {errors && <small>{errors.password}</small>}
 
           <div className={styles.restPassword}>
-            <h6>Forgot your</h6>
-            <Link to="/admin/restorePassword" className={styles.link}>
-              Password?
+            <Link className={styles.link} to="/admin/restorePassword">
+            Forgot your password?
             </Link>
           </div>
         </div>
@@ -127,6 +132,7 @@ export default function Login() {
           Login
         </button>
       </form>
+    </div>
     </div>
   );
 }

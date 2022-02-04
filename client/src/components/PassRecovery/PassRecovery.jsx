@@ -31,10 +31,7 @@ export default function PassRecovery() {
     <div className={s.main}>
       <div className={s.content}>
         <h1>Reset Password</h1>
-        <p>
-          Please enter your email address. We will send you an email to reset
-          your password.
-        </p>
+     
         <div className={s.input}>
           <input
             type="email"
@@ -45,6 +42,9 @@ export default function PassRecovery() {
             onBlur={(e) => emailHandler(e.target.value)}
           />{" "}
           {errors && <small>{errors.email}</small>}
+          <p>
+          We sent you an email to change your password !
+        </p>
         </div>
 
         <div className={s.button_div}>
