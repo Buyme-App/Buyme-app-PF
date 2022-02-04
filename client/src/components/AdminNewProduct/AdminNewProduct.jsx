@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState , useEffect } from 'react';
 import styles from "./AdminNewProduct.module.css";
-import Uploader from '../Uploader/Uploader';
+import Uploader from './Uploader';
 import Editor from './CKEditor';
 
 // function validate(input) {

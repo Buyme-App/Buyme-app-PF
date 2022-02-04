@@ -1,23 +1,41 @@
 import React from "react";
 import styles from './Account.module.css';
 import {MdOutlineDelete} from 'react-icons/md';
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import ChangePassword from "../ChangePassword/ChangePassword";
+import ChangeEmail from "../ChangeEmail/ChangeEmail";
+import AddUser from "../AddUsers/AddUser";
 
 export default function Account (){
 
+    const [btnChangeP, setBtnChangeP] = useState(false);
+    const [btnChangeE, setBtnChangeE] = useState(false);
+    const [btnAddUser, setBtnAddUser] = useState(false);
+
     return (
         <div className={styles.page}>
-            <h1 className={styles.title}>Account</h1>
             <h2>My Account</h2>
             <div className={styles.box}>
-                <Link to='/admin/home/changeEmail'><button className={styles.button} type="submit">Change Email</button></Link>
-                <Link to='/admin/home/changePassword'><button className={styles.button} type="submit">Change Password</button></Link>
-                <Link to='/admin/home/addUser'><button className={styles.button} type="submit">Add User</button></Link>
+                <button onClick={() => setBtnChangeE(true)} className={styles.button} type="submit">Change Email</button>
+                <button onClick={() => setBtnChangeP(true)} className={styles.button} type="submit">Change Password</button>
+                <button onClick={() => setBtnAddUser(true)} className={styles.button} type="submit">Add User</button>
             </div>
+            <ChangePassword 
+                trigger={btnChangeP} 
+                setTrigger={setBtnChangeP}>
+            </ChangePassword>
+            <ChangeEmail 
+                trigger={btnChangeE} 
+                setTrigger={setBtnChangeE}>
+            </ChangeEmail>
+            <AddUser 
+                trigger={btnAddUser} 
+                setTrigger={setBtnAddUser}>
+            </AddUser>
             <h2>Users</h2>
-            <div><table style={{'marginBottom': '10%'}}>
+            <div><table className={styles.table}>
                     <tr className={styles.chart}>
-                        <td>ID</td>
+                        <td >ID</td>
                         <td style={{'paddingLeft': '16%'}}>Name</td>
                         <td style={{'paddingLeft': '24%'}}>Email</td>
                     </tr>

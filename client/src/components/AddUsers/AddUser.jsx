@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from './AddUser.module.css';
 import validator from "../functions/validator";
 
-export default function AddUser (){
-    const navigate = useNavigate();
+export default function AddUser (props){
+    // const navigate = useNavigate();
     const [errors, setErrors] = useState({});
 
     const [input, setInput] = React.useState({
@@ -42,7 +42,7 @@ export default function AddUser (){
 
         //navigate('/home');
         } else alert("Corrija los errores de los campos");
-        navigate('/admin/home/account');
+        // navigate('/admin/home/account');
     }
 
     function errorsHandler(e) {
@@ -51,11 +51,14 @@ export default function AddUser (){
         setErrors((prev) => ({ ...prev, ...fails }));
     }
 
-    return (
-        <div>
-            <div> <Link to='/admin/home/account' ><button className={styles.btn}>Go back</button></Link></div>
-            <h1 className={styles.title}>Add New User</h1>
+    return (props.trigger) ? (
+        <div className={styles.popup}>
+            {props.children}
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
+                <div className={styles.divTitle}>
+                    <h1 className={styles.title}>Add New User</h1>
+                    <button className={styles.close} onClick={() => props.setTrigger(false)}>x</button>
+                </div>
                 <div className={styles.input}>
                     <label>Name:</label>
                     <input 
@@ -91,10 +94,10 @@ export default function AddUser (){
                    
                 </div>
                 
-                <button className={styles.btn} type="submit">
+                <button onClick={() => props.setTrigger(false)} className={styles.btn} type="submit">
                 Submit
                 </button>
             </form>
         </div>
-    )
+    ) : '';
 }
