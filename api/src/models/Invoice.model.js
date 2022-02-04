@@ -10,11 +10,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     products: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false,
-    },
-    productsIds: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.JSON,
       allowNull: false,
     },
     total: {
