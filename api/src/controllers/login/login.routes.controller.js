@@ -5,21 +5,17 @@ const { User } = require("../../database/db.js");
 const showErrors = require("../../messageConsole");
 const bcrypt = require("bcrypt");
 
-async function loginRoutesController(userName, userPassword, userEmail) {
+async function loginRoutesController(userEmail, userPassword) {
   try {
-    if (userName) {
-      const result = await User.findOne({ where: { name: userName } });
+    if (userEmail) {
+      const result = await User.findOne({ where: { email: userEmail } });
       if (result === null) return 404;
       else {
         let compareIqual = bcrypt.compareSync(userPassword, result.password);
         if (compareIqual) return 200;
         else return 401;
       }
-    } else {
-      if (userEmail) return res.send(userEmail);
-      //para manejar despues loguearse con validacion de google, u otro
-      else return 401;
-    }
+    } else return 401;
   } catch (e) {
     showErrors("loginRoutesController", e);
     return res.send(e);
