@@ -8,7 +8,7 @@ async function getAllProducts() {
     try {
 
         const products = await Product.findAll()
-        if (products) {
+        if (products.length > 0) {
             return products;
         }else{
             return false;
