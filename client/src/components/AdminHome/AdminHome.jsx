@@ -2,7 +2,7 @@ import React from "react";
 import Aside from "../asideDashboard/asideDashboard";
 import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import Sales from "../Sales/Sales";
-import AdminNewProduct from "../AdminNewProduct/AdminNewProduct";
+import AdminNewProduct from "../AdminNewProduct/AdminNewProduct.jsx";
 import AdminProducts from "../AdminProducts/AdminProducts";
 import Queries from "../Queries/Queries";
 import Account from "../Account/Account";
@@ -29,7 +29,7 @@ export default function AdminHome() {
           {/* <span>renderizado de contenido</span> */}
           {panelActive.home && <AdminDashboard />}
           {panelActive.sales && <Sales />}
-          {panelActive.newProduct && <AdminNewProduct />}
+          {panelActive.newProduct && <h1>new procduct component</h1>}
           {panelActive.products && <AdminProducts />}
           {panelActive.categories && <Categories />}
           {panelActive.customers && <h1>Customers section</h1>}

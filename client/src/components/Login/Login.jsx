@@ -7,7 +7,7 @@ import styles from "./Login.module.css";
 
 export default function Login() {
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   //const login = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
 
@@ -69,7 +69,6 @@ export default function Login() {
       alert("Ingresando...");
 
       navigate("/admin/home");
-
     } else alert("Corrija los errores de los campos");
   }
 
@@ -86,53 +85,55 @@ export default function Login() {
 
   return (
     <div className={styles.gral}>
-    <div className={styles.form}>
-      <h1 className={styles.title}>Log into your account</h1>
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <div className={styles.input}>
-          {/* <label c>Email</label> */}
-          <input className={styles.input}
-            type="text"
-            value={input.email}
-            name="email"
-            placeholder="Enter email address"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            onBlur={(e) => errorsHandler(e)}
-          />
-          {errors && <small>{errors.email}</small>}
-        </div>
-        <br/>
-        <div>
-          {/* <label>Password</label> */}
-          <input className={styles.input}
-            type="password"
-            value={input.password}
-            name="password"
-            placeholder="Enter Password"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            onBlur={(e) => errorsHandler(e)}
-          />
-          {errors && <small>{errors.password}</small>}
-
-          <div className={styles.restPassword}>
-            <Link className={styles.link} to="/admin/restorePassword">
-            Forgot your password?
-            </Link>
+      <div className={styles.form}>
+        <h1 className={styles.title}>Log into your account</h1>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <div className={styles.input}>
+            {/* <label c>Email</label> */}
+            <input
+              className={styles.input}
+              type="text"
+              value={input.email}
+              name="email"
+              placeholder="Enter email address"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              onBlur={(e) => errorsHandler(e)}
+            />
+            {errors && <small>{errors.email}</small>}
           </div>
-        </div>
-        <button className={styles.btn} type="submit">
-          Login
-        </button>
-      </form>
-    </div>
+          <br />
+          <div>
+            {/* <label>Password</label> */}
+            <input
+              className={styles.input}
+              type="password"
+              value={input.password}
+              name="password"
+              placeholder="Enter Password"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              onBlur={(e) => errorsHandler(e)}
+            />
+            {errors && <small>{errors.password}</small>}
+
+            <div className={styles.restPassword}>
+              <Link className={styles.link} to="/admin/restorePassword">
+                Forgot your password?
+              </Link>
+            </div>
+          </div>
+          <button className={styles.btn} type="submit">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,49 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.596);
+  backdrop-filter: blur(7px);
+}
+
+.confirm_box {
+  background-color: rgb(91, 27, 151);
+  display: flex;
+  flex-flow: wrap;
+  width: 300px;
+  padding: 40px 20px;
+  border-radius: 8px;
+}
+.confirm_box h3 {
+  width: 100%;
+  text-align: center;
+}
+
+.confirm_box ul {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+}
+.confirm_box ul li {
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 4px 5px;
+  cursor: pointer;
+}
+.confirm_box ul li:hover {
+  background-color: rgb(37, 32, 32);
+  color: #fff;
+}
+.confirm_box ul li:active {
+  position: relative;
+  top: 2px;
+}

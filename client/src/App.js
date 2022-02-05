@@ -14,7 +14,6 @@ function App() {
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />
-          <Route path="/admin/sales" element={<Sales/>} />
         </Routes>
       </div>
     </BrowserRouter>
