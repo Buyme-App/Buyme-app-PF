@@ -8,11 +8,11 @@ const router = Router();
 // Ruta para actualizar un producto, invoca al controlador updateProduct()
 //  y se le retorna true si fue actualizado o false si no se actualizo.
 
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
 
-    const {id} = req.params;
     
-    const {name, price,favorite,maker,model,
+    
+    const {id, name, price,favorite,maker,model,
             description,SKU,offerPrice,stock,
             inventary,featured,paused,} = req.body;
 
