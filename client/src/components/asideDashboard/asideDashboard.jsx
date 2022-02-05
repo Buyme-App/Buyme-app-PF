@@ -7,20 +7,30 @@ import iconCus from "../../assets/IconoClientes.png";
 import iconNP from "../../assets/IconoCrearProducto.png";
 import iconQue from "../../assets/IconoConsultas.png";
 import iconSale from "../../assets/IconoVentas.png";
+
 import iconAcc from "../../assets/IconoAccount.png";
 import iconLog from "../../assets/IconoLogOut.png";
 import { Navigate, useNavigate } from "react-router";
 
+import Confirm from "./Confirm/Confirm";
+
+
 export default function Aside({ setPanelActive, panelActive }) {
+  const [activateConfirm, setActivateConfirm] = React.useState(false);
+
   const clickHandler = (e) => {
     console.log(`${e}`);
     setPanelActive({ [e]: true });
   };
-  const navigate = useNavigate();
-  const logOut = () => {};
+
+  const logOut = () => {
+    setActivateConfirm((prev) => !prev);
+    console.log(activateConfirm);
+  };
   return (
     <div className={styles.gral}>
     <div className={styles.box}>
+      {activateConfirm && <Confirm setActivateConfirm={setActivateConfirm} />}
       <ul>
         <li>
           <button
