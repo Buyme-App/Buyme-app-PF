@@ -7,6 +7,8 @@ import iconCus from "../../assets/IconoClientes.png";
 import iconNP from "../../assets/IconoCrearProducto.png";
 import iconQue from "../../assets/IconoConsultas.png";
 import iconSale from "../../assets/IconoVentas.png";
+import iconAcc from "../../assets/IconoAccount.png";
+import iconLog from "../../assets/IconoLogOut.png";
 import { Navigate, useNavigate } from "react-router";
 
 export default function Aside({ setPanelActive, panelActive }) {
@@ -17,6 +19,7 @@ export default function Aside({ setPanelActive, panelActive }) {
   const navigate = useNavigate();
   const logOut = () => {};
   return (
+    <div className={styles.gral}>
     <div className={styles.box}>
       <ul>
         <li>
@@ -116,13 +119,16 @@ export default function Aside({ setPanelActive, panelActive }) {
             id="account"
             onClick={(e) => clickHandler(e.target.id)}
           >
+           <img className={styles.iconAcc} src={iconAcc} alt="icon" />
             Account
           </button>
         </li>
       </ul>
       <button className={styles.btn2} type="submit" onClick={logOut}>
+       <img className={styles.iconLog} src={iconLog} alt="icon" />
         Log out
       </button>
+    </div>
     </div>
   );
 }
