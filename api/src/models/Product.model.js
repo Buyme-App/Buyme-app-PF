@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
             unique: true
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL(25, 2),
         },
 
         favorite: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BOOLEAN,
             defaultValue: 0 //Added
         },
 
