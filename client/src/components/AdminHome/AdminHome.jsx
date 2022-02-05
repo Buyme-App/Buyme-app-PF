@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Aside from "../asideDashboard/asideDashboard";
 import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import Sales from "../Sales/Sales";
@@ -8,8 +8,13 @@ import Queries from "../Queries/Queries";
 import Account from "../Account/Account";
 import style from "./adminHome.module.css";
 import Categories from "../Categories/Categories";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function AdminHome() {
+  const navigate = useNavigate();
+  const globalState = useSelector((state) => state);
+
   const [panelActive, setPanelActive] = React.useState({
     home: true,
     sales: false,
@@ -20,6 +25,11 @@ export default function AdminHome() {
     queries: false,
     account: false,
   });
+
+  React.useEffect(() => {
+    !globalState.login && navigate("/admin");
+  }, [globalState]);
+
   return (
     <div className={style.main_box}>
       <h1>Dashboard Home</h1> <br />

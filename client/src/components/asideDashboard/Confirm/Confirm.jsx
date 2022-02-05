@@ -7,7 +7,10 @@ export default function Confirm(props) {
   const cancelHandler = () => {
     props.setActivateConfirm((prev) => !prev);
   };
-  const acceptHandler = () => navigate("/admin");
+  const acceptHandler = () => {
+    window.location.replace("/admin");
+    // navigate("/admin")
+  };
   return (
     <div className={`${style.container} `}>
       <div className={style.confirm_box}>

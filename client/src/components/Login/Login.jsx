@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Login.module.css";
-// import validator from "../functions/validator";
+import { login } from "../../redux/actions";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const login = useSelector((state) => state.login);
+  const globalState = useSelector((state) => state);
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = React.useState({
@@ -37,7 +37,7 @@ export default function Login() {
         error.password = "No se admiten espacios en blanco";
       else error.password = undefined;
     }
-    console.log("error validator", error);
+
     return error;
   };
 
@@ -52,7 +52,6 @@ export default function Login() {
     e.preventDefault();
 
     //si ambos campos están vacíos
-
     if (input.email === "" || input.password === "") {
       return setErrors(loginValidate(input));
     }
@@ -61,27 +60,21 @@ export default function Login() {
     const haveError = Object.values(errors).some((v) => v !== undefined);
 
     if (haveError === false) {
-      //dispatch(login(input));
-      setInput({
-        email: "",
-        password: "",
-      });
-      alert("Ingresando...");
-
-      navigate("/admin/home");
-    } else alert("Corrija los errores de los campos");
+      const credential = login(dispatch, input.email, input.password);
+      alert("Loading...");
+    } else alert("There are still errors in the fields");
   }
 
   function errorsHandler(e) {
-    console.log("errorH", e.target.name);
+    // console.log("errorH", e.target.name);
     let form = { [e.target.name]: input[e.target.name] };
     let fails = loginValidate(form);
     setErrors((prev) => ({ ...prev, ...fails }));
   }
-  console.log(errors);
-  // useEffect(() => {
-  //     dispatch(Login());
-  // }, []);
+
+  useEffect(() => {
+    globalState.login && navigate("/admin/home");
+  }, [globalState]);
 
   return (
     <div className={styles.gral}>
