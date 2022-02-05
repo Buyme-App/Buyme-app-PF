@@ -26,9 +26,11 @@ export default function AdminHome() {
     account: false,
   });
 
-  React.useEffect(() => {
-    !globalState.login && navigate("/admin");
-  }, [globalState]);
+  // Comentar para no loguearte
+  
+  // React.useEffect(() => {
+  //   !globalState.login && navigate("/admin");
+  // }, [globalState]);
 
   return (
     <div className={style.main_box}>
