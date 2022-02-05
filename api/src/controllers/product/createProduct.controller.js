@@ -8,8 +8,7 @@ async function createProduct(name, price, favorite,maker,model,description,
                              ){
    
    // Se pasan a int los parametros para ser ingresados en la base de datos.
-    parseInt(price);
-    parseInt(favorite);
+    parseFloat(price);
     parseInt(SKU);
     parseInt(offerPrice);
     parseInt(stock);
