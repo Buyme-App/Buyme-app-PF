@@ -89,9 +89,9 @@ export default function Sales() {
   };
   //jj
   return (
-    <div>
+    <div className={sStyle.gral}>
       <div className={sStyle.sales_container}>
-        <h1 className={sStyle.title}>Sales</h1>
+        {/* <h1 className={sStyle.title}>Sales</h1> */}
 
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
