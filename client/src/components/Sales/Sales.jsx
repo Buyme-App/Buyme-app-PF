@@ -4,60 +4,60 @@ import sStyle from "./sales.module.css";
 export default function Sales() {
   let example = [
     {
-      order: "#005",
-      date: "1/02/22",
-      products: "Iphone 11",
-      total: "$300.200",
-      customer: "Jan perez",
-    },
-    {
-      order: "#006",
-      date: "1/02/22",
-      products: "Iphone 11",
-      total: "$300.200",
-      customer: "Pedro",
-    },
-    {
-      order: "#002",
-      date: "1/02/22",
-      products: "Iphone 11",
-      total: "$300.200",
-      customer: "Alejando ",
-    },
-    {
-      order: "#001",
-      date: "1/02/22",
-      products: "Iphone 11",
-      total: "$300.200",
-      customer: "Taylor Swift",
-    },
-    {
-      order: "#004",
-      date: "1/02/22",
-      products: "AirPods",
-      total: "$50.000",
-      customer: "Hermione Granger",
-    },
-    {
-      order: "#003",
-      date: "1/02/22",
-      products: "Asus",
-      total: "$900.200",
-      customer: "Jan perez",
-    },
-    {
       order: "#053",
-      date: "1/02/22",
+      date: "01/02/2022",
       products: "Smarhphone",
       total: "$900.200",
       customer: "Sofia Mieres",
     },
     {
       order: "#013",
-      date: "1/02/22",
+      date: "01/02/2022",
       products: "Microondas",
       total: "$30.200",
       customer: "Graciela alfano",
+    },
+    {
+      order: "#006",
+      date: "01/02/2022",
+      products: "Iphone 11",
+      total: "$300.200",
+      customer: "Pedro",
+    },
+    {
+      order: "#005",
+      date: "01/02/2022",
+      products: "Iphone 11",
+      total: "$300.200",
+      customer: "Jan perez",
+    },
+    {
+      order: "#004",
+      date: "01/02/2022",
+      products: "AirPods",
+      total: "$50.000",
+      customer: "Hermione Granger",
+    },
+    {
+      order: "#003",
+      date: "01/02/2022",
+      products: "Asus",
+      total: "$900.200",
+      customer: "Jan perez",
+    },
+    {
+      order: "#002",
+      date: "01/02/2022",
+      products: "Iphone 11",
+      total: "$300.200",
+      customer: "Alejando ",
+    },
+    {
+      order: "#001",
+      date: "01/02/2022",
+      products: "Iphone 11",
+      total: "$300.200",
+      customer: "Taylor Swift",
     },
   ];
   const [render, setRender] = React.useState(example);
@@ -97,7 +97,7 @@ export default function Sales() {
           <div className={sStyle.input}>
             <input
               type="search"
-              placeholder="Search by order, name or email..."
+              placeholder="Search by customers or products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -121,8 +121,8 @@ export default function Sales() {
               id=""
               onChange={(e) => orderByDate(e.target.value)}
             >
-              <option>Ascendent</option>
-              <option>Descendent</option>
+              <option value='Descendent'>Descendent by Order #</option>
+              <option value='Ascendent'>Ascendent by Order #</option>
             </select>
           </div>
         </div>
