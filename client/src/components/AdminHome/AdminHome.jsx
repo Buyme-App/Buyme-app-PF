@@ -6,8 +6,9 @@ import AdminNewProduct from "../AdminNewProduct/AdminNewProduct.jsx";
 import AdminProducts from "../AdminProducts/AdminProducts";
 import Queries from "../Queries/Queries";
 import Account from "../Account/Account";
-import style from "./adminHome.module.css";
 import Categories from "../Categories/Categories";
+import Customers from "../Customers/Customers";
+import style from "./adminHome.module.css";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
@@ -44,7 +45,7 @@ export default function AdminHome() {
           {panelActive.newProduct && <AdminNewProduct />}
           {panelActive.products && <AdminProducts />}
           {panelActive.categories && <Categories />}
-          {panelActive.customers && <h1>Customers section</h1>}
+          {panelActive.customers && <Customers />}
           {panelActive.queries && <Queries />}
           {panelActive.account && <Account />}
         </section>
