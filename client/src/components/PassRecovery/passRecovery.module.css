@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
+  background-image: url(--colors-bg-admin);
 }
 .content {
-  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
   width: 400px;
   height: 500px;
   display: flex;
