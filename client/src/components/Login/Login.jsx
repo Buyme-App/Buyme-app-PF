@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Login.module.css";
-import { login } from "../../redux/actions";
+import { errorModal, loading, login } from "../../redux/actions";
+import Loader from "../Loader/Loader";
+import Error from "./ErrorPopUp/Error";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [notValidated, setNotValidated] = React.useState(true);
 
   const loginValidate = (form) => {
     let error = {};
@@ -60,8 +63,12 @@ export default function Login() {
     const haveError = Object.values(errors).some((v) => v !== undefined);
 
     if (haveError === false) {
+      loading(dispatch, true);
       const credential = login(dispatch, input.email, input.password);
-      alert("Loading...");
+      credential.then((re) => {
+        re ? navigate("/admin/home") : errorModal(dispatch, true);
+      });
+      // alert("Loading...");
     } else alert("There are still errors in the fields");
   }
 
@@ -73,11 +80,14 @@ export default function Login() {
   }
 
   useEffect(() => {
-    globalState.login && navigate("/admin/home");
-  }, [globalState]);
+    login(dispatch);
+    loading(dispatch, false);
+  }, []);
 
   return (
     <div className={styles.gral}>
+      {/* ---------loader-------- */}
+      {globalState.loading && <Loader />}
       <div className={styles.form}>
         <h1 className={styles.title}>Log into your account</h1>
         <form
@@ -85,6 +95,10 @@ export default function Login() {
             handleSubmit(e);
           }}
         >
+          {/* --------error popup---------- */}
+          {globalState.error && (
+            <Error msg="An error occurred while validating the data" />
+          )}
           <div className={styles.input}>
             {/* <label c>Email</label> */}
             <input

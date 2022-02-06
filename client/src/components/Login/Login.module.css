@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.gral{
+.gral {
   background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
   /* background-repeat: no-repeat;
   background-size: cover; */
@@ -13,13 +13,14 @@
 }
 
 .form {
+  position: relative;
   width: 450px;
   padding: 70px;
   border-radius: 2rem;
   border-style: none;
   color: gray;
   font-size: 16px;
-  margin:auto;
+  margin: auto;
   /* box-shadow: 0 0 3px 3px rgba(216, 212, 212, 0.5); */
   -webkit-box-shadow: 0px 9px 13px -2px #000000;
   box-shadow: 0px 9px 13px -2px #000000;
@@ -57,7 +58,7 @@
   width: 130px;
   height: 35px;
   background-color: var(--color-pink-buttons);
-  color:white;
+  color: white;
   /* margin: 10px; */
   /* padding: 8px 25px 8px 25px; */
 }
