@@ -13,6 +13,7 @@
 }
 
 .form {
+  position: relative;
   background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
   width: 400px;
   height: 500px;
@@ -58,7 +59,7 @@
   width: 130px;
   height: 35px;
   background-color: var(--color-pink-buttons);
-  color:white;
+  color: white;
   /* margin: 10px; */
   /* padding: 8px 25px 8px 25px; */
 }

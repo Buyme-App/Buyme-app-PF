@@ -1,8 +1,10 @@
-import { LOGIN } from "../actions";
+import { LOGIN, LOADING, ERROR_MODAL } from "../actions";
 
 const initialState = {
   state: [],
   login: null,
+  loading: false,
+  error: false,
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -11,7 +13,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         login: action.payload,
       };
-
+    case LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case ERROR_MODAL:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return { ...state };
   }
