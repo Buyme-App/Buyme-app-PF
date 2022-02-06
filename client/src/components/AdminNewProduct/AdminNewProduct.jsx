@@ -1,298 +1,432 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState , useEffect } from 'react';
+import { getAllProducts, createProduct } from '../../redux/actions';
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
 import Uploader from "./Uploader";
 import Editor from "./CKEditor";
 
-// function validate(input) {
-//     let errors = {};
+function validate(input) {
+    let errors = {};
+    if (input.name.length < 5) {
+        errors.name = 'Name must have at least 5 characters'
+    }
+    if (input.name.length > 30) {
+        errors.name = 'Name must have at most 30 characters'
+    }
+    if (!input.name) {
+      errors.name = 'Name is required'
+    }
+    const validName = /^[0-9A-Za-z -]*(?<!\.)$/;
+    if(input.name.length > 0 && !validName.test(input.name)) {
+        errors.name = 'Only letters, numbers, spaces and (-)'
+    }
 
-//     if (input.name.length < 4) {
-//         errors.name = '<- Min 4 characters'
-//     }
-//     if (input.name.length > 15) {
-//         errors.name = '<- Max 15 characters'
-//     }
-//     if (!input.name) {
-//         errors.name = '<- Name is required'
-//     }
-//     // if(!/^[A-Za-z-]*(?<!\.)$/.test(input.name)) {
-//     //     errors.name = '<- Only letters and (-)'
-//     // }
+    if (!input.maker) {
+      errors.maker = 'Brand is required'
+    }
 
-//     const validName = /^[A-Za-z-]*$/;
+    if (!input.model) {
+      errors.model = 'Model is required'
+    }
 
-//     if(input.name.length > 0 && !validName.test(input.name)) {
-//         errors.name = '<- Only letters and (-)'
-//     }
+    if(input.name.length > 0 && !validName.test(input.name)) {
+        errors.name = 'Only letters, numbers, spaces and (-)'
+    }
 
-//     if (input.hp < 0) {
-//         errors.hp = '<- Positive numbers only'
-//     }
-//     if (input.hp > 200) {
-//         errors.hp = '<- 200 max value'
-//     }
-//     if (input.hp % 1 !== 0 || input.hp.includes('.')) {
-//         errors.hp = '<- Integer numbers only'
-//     }
+    if (input.SKU.length > 0 && input.SKU < 0) {
+      errors.sku = 'Positive numbers only, max 8 digits'
+    }
+    if (input.SKU.length > 8) {
+      errors.sku = 'Max 8 digits'
+    }
+    if (input.SKU % 1 !== 0 || input.SKU.includes('.')) {
+        errors.sku = 'Integer numbers only'
+    }
+    if (!input.SKU) {
+      errors.sku = 'SKU is required'
+    }
 
-//     if (input.attack < 0) {
-//         errors.attack = '<- Positive numbers only'
-//     }
-//     if (input.attack > 200) {
-//         errors.attack = '<- 200 max value'
-//     }
-//     if (input.attack % 1 !== 0 || input.attack.includes('.')) {
-//         errors.attack = '<- Integer numbers only'
-//     }
+    if (input.price.length > 0 && input.price < 0) {
+        errors.price = 'Positive numbers only'
+    }
+    if (!input.price) {
+      errors.price = 'Price is required'
+    }
 
-//     if (input.defense < 0) {
-//         errors.defense = '<- Positive numbers only'
-//     }
-//     if (input.defense > 200) {
-//         errors.defense = '<- 200 max value'
-//     }
-//     if (input.defense % 1 !== 0 || input.defense.includes('.')) {
-//         errors.defense = '<- Integer numbers only'
-//     }
+    if (input.offerPrice.length > 0 && input.offerPrice < 0) {
+      errors.offerPrice = 'Positive numbers only'
+    }
+    if (!input.offerPrice) {
+      errors.offerPrice = 'Price is required'
+    }
 
-//     if (input.speed < 0) {
-//         errors.speed = '<- Positive numbers only'
-//     }
-//     if (input.speed > 200) {
-//         errors.speed = '<- 200 max value'
-//     }
-//     if (input.speed % 1 !== 0 || input.speed.includes('.')) {
-//         errors.speed = '<- Integer numbers only'
-//     }
+    if (!input.featured) {
+      errors.featured = 'Featured is required'
+    }
 
-//     if (input.height < 0) {
-//         errors.height = '<- Positive numbers only'
-//     }
-//     if (input.height > 200) {
-//         errors.height = '<- 200 max value'
-//     }
-//     if (input.height % 1 !== 0 || input.height.includes('.')) {
-//         errors.height = '<- Integer numbers only'
-//     }
+    if (!input.paused) {
+      errors.paused = 'Status is required'
+    }
 
-//     if (input.weight < 0) {
-//         errors.weight = '<- Positive numbers only'
-//     }
-//     if (input.weight > 1000) {
-//         errors.weight = '<- 1000 max value'
-//     }
-//     if (input.weight % 1 !== 0 || input.weight.includes('.')) {
-//         errors.weight = '<- Integer numbers only'
-//     }
-//     return errors;
-// }
+    if (input.stock.length > 0 && input.stock < 0) {
+      errors.stock = 'Positive numbers only'
+    }
+    if (input.stock % 1 !== 0 || input.stock.includes('.')) {
+      errors.stock = 'Integer numbers only'
+    }
+    if (!input.stock) {
+      errors.stock = 'At least a Stock of 0 is required'
+    }
 
-export default function AdminNewProduct() {
-  const [errors, setErrors] = useState({});
-  const [input, setInput] = useState({
-    category: "",
-    name: "",
-    brand: "",
-    model: "",
-    sku: "",
-    price: "",
-    discount: "",
-    stock: "",
-    featured: "",
-    description: "",
-    images: "",
-  });
+    if (input.inventary.length > 0 && input.inventary < 0) {
+      errors.inventary = 'Positive numbers only'
+    }
+    if (input.inventary % 1 !== 0 || input.inventary.includes('.')) {
+      errors.inventary = 'Integer numbers only'
+    }
+    if (!input.inventary) {
+      errors.inventary = 'At least an Inventary of 0 is required'
+    }
 
-  // function handleSelectChange(e){
-  //     setInput({
-  //         ...input,
-  //         [e.target.name]: e.target.value
-  //     })
-  //     setErrors(validate({
-  //         ...input,
-  //         [e.target.name]: e.target.value
-  //     }))
-  // }
+    return errors;
+}
 
-  // function handleInputChange(e){
-  //     setInput({
-  //         ...input,
-  //         [e.target.name]: e.target.value
-  //     })
-  //     setErrors(validate({
-  //         ...input,
-  //         [e.target.name]: e.target.value
-  //     }))
-  // }
+export default function PokemonCreate(){
+    const dispatch = useDispatch();
+    const history = useNavigate();
 
-  // document.getElementById('isOffer').onchange = function() {
-  //     document.getElementById('discount').disabled = !this.checked;
-  // };
+    useEffect(() => {
+      dispatch(getAllProducts());
+      // dispatch(getCategories());
+    },[dispatch])
 
-  return (
-    <div className={styles.main}>
-      {/* <h1>Create New Product</h1> */}
-      <h1 className={styles.title}>Create New Product</h1>
-      <h3>Category *</h3>
-      {/* <form onSubmit={(e) => handleSubmit(e)}> */}
-      <form>
-        <div className={styles.inputs}>
-          {/* <select name="Categories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
-          <select name="Categories" className={styles.select}>
-            <option value="" selected disabled>
-              Select Category
-            </option>
-            <option value="" disabled>
-              Mobile Phones
-            </option>
-            <option value="mobPhones"> • Mobile Phones</option>
-            <option value="mobPhonesAcc"> • Accesories</option>
-            <option value="" disabled>
-              Computing
-            </option>
-            <option value="laptops"> • Laptop Computers</option>
-            <option value="desktop"> • Desktop Computers</option>
-            <option value="monitors"> • Monitors</option>
-            <option value="printers"> • Printers</option>
-            <option value="pcAcc"> • Accesories</option>
-            <option value="" disabled>
-              Video Games
-            </option>
-            <option value="consoles"> • Consoles</option>
-            <option value="consolesAcc"> • Accesories</option>
+    const allProdutcs = useSelector((state) => state.allproducts);
+    // const allCategories = useSelector((state) => state.allcategories);
+    
+    const [errors, setErrors] = useState({});
+    const [input, setInput] = useState({
+        name: '',
+        maker: '',
+        model: '',
+        SKU: '',
+        price: '',
+        offerPrice: '',
+        stock: '',
+        inventary: '',
+        description: '',
+        featured: '',
+        paused: '',
+    })
+
+    function handleInputChange(e){
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value 
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    // function handleSelect(e){
+    //   setInput({
+    //       ...input,
+    //       [e.target.name]: e.target.value 
+    //   })
+    //   setErrors(validate({
+    //       ...input,
+    //       [e.target.name]: e.target.value
+    //   }))
+    // }
+
+    // function handleSelect(e){
+    //     if(input.type.includes(e.target.value)){
+    //         setInput({
+    //             ...input,
+    //             type: input.type.filter(t => t === e.target.value)
+    //         })
+    //     } else {
+    //         setInput({
+    //             ...input,
+    //             type: [...input.type, e.target.value]
+    //         })
+    //     }
+    // }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        // const errors = validate(input);
+        // if (allPokemons.find((p) =>p.name.toLowerCase() === input.name.toLowerCase().trim())) {
+        if (allProdutcs.find(p =>p.name === input.name)) {
+            alert('Name already exists! Please choose a different name.');
+            // setInput({
+            //     name: '',
+            //   });
+            setErrors(validate({
+              ...input,
+              [e.target.name]: 'Name already exists!',
+            }));
+            // history('/home');
+        } else if (!Object.keys(errors).length) {
+          dispatch(createProduct(input));
+          alert('Product created succssesfully!!');
+          setInput({
+            name: '',
+            maker: '',
+            model: '',
+            SKU: '',
+            price: '',
+            offerPrice: '',
+            stock: '',
+            inventary: '',
+            featured: '',
+            description: '',
+            paused: '',
+            images: '',
+
+          });
+          history('/admin/home');
+        } else {
+          alert('Please review the form!');
+        }
+      }
+
+    // function handleDelete(e){
+    //     setInput({
+    //         ...input,
+    //         type: input.type.filter(t => t !== e)
+    //     })
+    // }
+
+    return (
+      <div className={styles.main}>
+        {/* <h1 className={styles.title}>Create New Product</h1> */}
+        <h3>Category *</h3>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className={styles.inputs}>
+            {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
+            <select name="SubCategories" className={styles.select}>
+              <option value="" selected disabled>
+                Select Category
+              </option>
+              <option value="" disabled>
+                Mobile Phones
+              </option>
+              <option value="Mobile Phones"> • Mobile Phones</option>
+              <option value="Mobile Phones Accesories"> • Mobile Phones Accesories</option>
+              <option value="" disabled>
+                Computing
+              </option>
+              <option value="Laptop Computers"> • Laptop Computers</option>
+              <option value="Desktop Computers"> • Desktop Computers</option>
+              <option value="Monitors"> • Monitors</option>
+              <option value="Printers"> • Printers</option>
+              <option value="Computing Accesories"> • Computing Accesories</option>
+              <option value="" disabled>
+                Video Games
+              </option>
+              <option value="Consoles"> • Consoles</option>
+              <option value="Consoles Accesories"> • Consoles Accesories</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.categorie && <span>{errors.categorie}</span>}
+            </div>
+          </div>
+  
+          <h3>Product Name *</h3>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.name}
+              name= "name"
+              className={styles.input}
+              placeholder="E.g.: Apple AirPods (2nd Generation)"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <div className={styles.errors}>
+              {errors.name && <span>{errors.name}</span>}
+            </div>
+          </div>
+  
+          <h3>Brand *</h3>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.maker}
+              name="maker"
+              className={styles.input}
+              placeholder="E.g.: Apple"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <div className={styles.errors}>
+              {errors.maker && <span>{errors.maker}</span>}
+            </div>
+          </div>
+  
+          <div className={styles.row}>
+            <div className={styles.inputs1}>
+              <h3>Model *</h3>
+              <div className={styles.inputs2}>
+                <input
+                  type="text"
+                  value={input.model}
+                  name= "model"
+                  className={styles.input}
+                  placeholder="E.g.: Airpods"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className={styles.errors}>
+                  {errors.model && <span>{errors.model}</span>}
+                </div>
+              </div>
+            </div>
+    
+            <div className={styles.inputs1}>
+              <h3>SKU *</h3>
+              <div className={styles.inputs2}>
+                <input
+                  type="text"
+                  value={input.SKU}
+                  name= "SKU"
+                  className={styles.input}
+                  placeholder="E.g.: AJ123456"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className={styles.errors}>
+                  {errors.sku && <span>{errors.sku}</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.row}>
+          <div className={styles.inputs1}>
+            <h3>Price *</h3>
+            <div className={styles.inputs2}>
+              <input
+                type="text"
+                value={input.price}
+                name= "price"
+                className={styles.input}
+                placeholder="E.g.: 100"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errors}>
+                {errors.price && <span>{errors.price}</span>}
+              </div>
+            </div>
+            </div>
+    
+            <div className={styles.inputs1}>
+            <h3>Reduced Price
+              <input id="isoffer" type="checkbox" className={styles.checkbox} />
+            </h3>
+            <div className={styles.inputs2}>
+              <input
+                type="text"
+                value={input.offerPrice}
+                name= "offerPrice"
+                className={styles.input}
+                placeholder="E.g.: 100"
+                // disabled="disabled"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errors}>
+                {errors.offerPrice && <span>{errors.offerPrice}</span>}
+              </div>
+              </div>
+            </div>
+          </div>
+  
+          <div className={styles.row}>
+          <div className={styles.inputs1}>
+          <h3>Stock *</h3>
+          <div className={styles.inputs2}>
+            <input
+              type="text"
+              value={input.stock}
+              name= "stock"
+              className={styles.input}
+              placeholder="E.g.: 100"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <div className={styles.errors}>
+              {errors.stock && <span>{errors.stock}</span>}
+            </div>
+          </div>
+          </div>
+  
+          <div className={styles.inputs1}>
+          <h3>Inventory *</h3>
+          <div className={styles.inputs2}>
+            <input
+              type="text"
+              value={input.inventary}
+              name= "inventary"
+              className={styles.input}
+              placeholder="E.g.: 100"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <div className={styles.errors}>
+              {errors.inventary && <span>{errors.inventary}</span>}
+            </div>
+          </div>
+          </div>
+          </div>
+  
+          <div className={styles.row}>
+          <div className={styles.inputs1}>
+          <h3>Featured Product *</h3>
+          <div className={styles.inputs2}>
+          <select name="featured" className={styles.select} onChange={(e) => handleInputChange(e)}>
+            <option value="" selected disabled>Select</option>
+            <option value="false">No</option>
+            <option value="true">Yes</option>
           </select>
           <div className={styles.errors}>
-            {errors.name && <span>{errors.name}</span>}
+            {errors.featured && <span>{errors.featured}</span>}
           </div>
-        </div>
+          </div>
+          </div>
 
-        <h3>Product Name *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="name"
-            type="text"
-            // value={input.name}
-            className={styles.input}
-            placeholder="E.g.: Apple AirPods (2nd Generation)"
-            // onChange={(e) => handleInputChange(e)}
-          />
+          {/* <select value="false" name="Featured" className={styles.select}>
+            {featured.map((e) => (
+            <option value={e.value}>{e.label}</option>
+            ))}
+          </select> */}
+  
+          <div className={styles.inputs1}>
+          <h3>Status *</h3>
+          <div className={styles.inputs2}>
+          <select name="paused" className={styles.select} onChange={(e) => handleInputChange(e)}>
+            <option value="" selected disabled>Select</option>
+            <option value="true">Inactive</option>
+            <option value="false">Active</option>
+          </select>
           <div className={styles.errors}>
-            {errors.name && <span>{errors.name}</span>}
+            {errors.paused && <span>{errors.paused}</span>}
           </div>
-        </div>
-
-        <h3>Brand *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="brand"
-            type="text"
-            // value={brand}
-            className={styles.input}
-            placeholder="E.g.: Apple"
-            // onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.brand && <span>{errors.brand}</span>}
           </div>
-        </div>
-
-        <h3>Model *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="model"
-            type="text"
-            // value={model}
-            className={styles.input}
-            placeholder="E.g.: Airpods"
-            // onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.model && <span>{errors.model}</span>}
           </div>
-        </div>
-
-        <h3>SKU / Article number *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="sku"
-            type="text"
-            // value={sku}
-            className={styles.input}
-            placeholder="E.g.: AJ123456"
-            // onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.sku && <span>{errors.sku}</span>}
           </div>
-        </div>
-
-        <h3>Price *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="price"
-            type="text"
-            // value={price}
-            className={styles.input}
-            placeholder="E.g.: 100"
-            // onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.price && <span>{errors.price}</span>}
+  
+          <h3>Description</h3>
+          <div className={styles.ckeditor}>
+            <Editor />
           </div>
-        </div>
-
-        <h3>
-          Reduced Price
-          <input id="isoffer" type="checkbox" className={styles.checkbox} />
-        </h3>
-        <div className={styles.inputs}>
-          <input
-            id="discount"
-            type="text"
-            // value={discount}
-            className={styles.input}
-            placeholder="E.g.: 100"
-            disabled="disabled"
-            // onChange={(e) => handleInputChange(e)}
-          />
-        </div>
-
-        <h3>Stock *</h3>
-        <div className={styles.inputs}>
-          <input
-            id="stock"
-            type="text"
-            // value={stock}
-            className={styles.input}
-            placeholder="E.g.: 100"
-            // onChange={(e) => handleInputChange(e)}
-          />
-        </div>
-
-        <h3>Featured Product *</h3>
-        {/* <select name="Types" className={styles.types} onChange={(e) => handleSelect(e)}> */}
-        <select name="Types" className={styles.select}>
-          <option value="" selected disabled>
-            Select
-          </option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <h3>Description *</h3>
-        <div className={styles.ckeditor}>
-          <Editor />
-        </div>
-        <h3>
-          Upload your images * <small>(jpg, png and gif formats)</small>
-        </h3>
-        <div className={styles.uploader}>
-          <Uploader />
-        </div>
-        <button className={styles.create} type="submit">
-          CREATE PRODUCT
-        </button>
-      </form>
-    </div>
-  );
-}
+          <h3>
+            Upload your images <small>(jpg, png and gif formats)</small>
+          </h3>
+          <div className={styles.uploader}>
+            <Uploader />
+          </div>
+          <button className={styles.create} type='submit' disabled={!input.name}>
+            CREATE PRODUCT
+          </button>
+        </form>
+      </div>
+    );
+  }

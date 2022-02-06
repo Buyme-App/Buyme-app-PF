@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
 
+// export const ACTION = "ACTION";
+// estos son ejemplos
+
 export const LOGIN = "LOGIN";
 export const LOADING = "LOADGIN";
 export const ERROR_MODAL = "ERROR_MODAL";
-// export const ACTION = "ACTION";
-//estos son ejemplos
-// export const firstAction = () => {};
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -44,3 +44,21 @@ export const errorModal = (dispatch, payload) => {
     payload,
   });
 };
+
+export function getAllProducts(){
+    return async function(dispatch){
+        var json= await axios.get('http://localhost:3001/getAllProducts');
+        return dispatch({
+            type: 'GET_ALL_PRODUCTS',
+            payload: json.data
+        })
+    }
+}
+
+export function createProduct(payload){
+    return async function (dispatch) {
+        var response = await axios.post('http://localhost:3001/createProduct', payload);
+        // console.log(response);
+        return response;
+    }
+}

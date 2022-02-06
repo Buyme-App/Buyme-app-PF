@@ -41,7 +41,7 @@ export default function AdminHome() {
           {/* <span>renderizado de contenido</span> */}
           {panelActive.home && <AdminDashboard />}
           {panelActive.sales && <Sales />}
-          {panelActive.newProduct && <h1>new procduct component</h1>}
+          {panelActive.newProduct && <AdminNewProduct />}
           {panelActive.products && <AdminProducts />}
           {panelActive.categories && <Categories />}
           {panelActive.customers && <h1>Customers section</h1>}
