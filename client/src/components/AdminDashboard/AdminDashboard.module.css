@@ -58,7 +58,7 @@ h1 {
 .alert .text {
     padding: 15px;
     /* display: block; */
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .alert .text span {
@@ -71,7 +71,7 @@ h1 {
     padding: 10px;
     width: 50vw;
     color: #fff;
-    background: #5400b0;
+    background: var(--color-principal-violet);
     border-radius: 5px 5px 0 0;
 }
 

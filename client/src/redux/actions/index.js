@@ -1,6 +1,49 @@
 import axios from "axios";
+import { useNavigate } from "react-router";
+
 // export const ACTION = "ACTION";
 // estos son ejemplos
+
+export const LOGIN = "LOGIN";
+export const LOADING = "LOADGIN";
+export const ERROR_MODAL = "ERROR_MODAL";
+
+export const login = async (dispatch, email, password) => {
+  try {
+    let credential = await axios.post("/login", {
+      userEmail: email,
+      userPassword: password,
+    });
+    console.log("credentials from action", credential);
+
+    dispatch({
+      type: LOGIN,
+      payload: true,
+    });
+    return credential;
+  } catch (error) {
+    loading(dispatch, false);
+    dispatch({
+      type: LOGIN,
+      payload: null,
+    });
+
+    console.log(error);
+  }
+};
+
+export const loading = (dispatch, payload) => {
+  dispatch({
+    type: LOADING,
+    payload,
+  });
+};
+export const errorModal = (dispatch, payload) => {
+  dispatch({
+    type: ERROR_MODAL,
+    payload,
+  });
+};
 
 export function getAllProducts(){
     return async function(dispatch){
@@ -19,12 +62,3 @@ export function createProduct(payload){
         return response;
     }
 }
-
-
-// export function postProduct(payload) {
-// 	return async function (dispatch) {
-// 		axios.post(`/createProduct`, payload).then(r => {
-// 			dispatch({ type: 'POST_NEW_PRODUCT', payload: r.data });
-// 		});
-// 	};
-// }

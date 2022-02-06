@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
+  background-color: var(--color-bg-admin);
 }
 .content {
-  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
   width: 400px;
   height: 500px;
   display: flex;
@@ -20,12 +20,13 @@
 }
 h1{
   color: white;
-  font-size: 27px;
+  font-size: 25px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
-  margin-left: 80px;
+  margin-left: 87px;
+  margin-top: 30px;
 }
 
 
@@ -43,13 +44,13 @@ h1{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  /* padding: 6px; */
 }
 .input input {
   width: 330px;
   padding: 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 .button_div {
   width: 100%;
@@ -58,6 +59,7 @@ h1{
   justify-content: center;
   align-items: center;
   padding: 6px;
+  margin-bottom: 38px;
 }
 .button_div input {
   border-style: none;

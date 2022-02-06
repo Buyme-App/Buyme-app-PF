@@ -23,16 +23,16 @@ async function getOneUser(param){
         }
     }else{
 
-        param = param[0].toUpperCase() + param.slice(1);
+        // param = param[0].toUpperCase() + param.slice(1);
         
         try {
             
 
-            const user = await User.findOne({
-                where: {name: param}
-            })
+            const user = await User.findAll();
 
-            if(user) return user;
+            const result = user.filter(u => u.name.toLowerCase().includes(param.toLowerCase()));
+
+            if(result.length > 0) return result;
             else return false;
         
         } catch (error) {

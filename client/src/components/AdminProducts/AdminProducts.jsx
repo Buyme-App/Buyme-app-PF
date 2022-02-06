@@ -91,7 +91,7 @@ export default function AdminProducts() {
   return (
     <div>
       <div className={sStyle.sales_container}>
-        <h1 className={sStyle.title}>Products</h1>
+        {/* <h1 className={sStyle.title}>Products</h1> */}
 
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
@@ -113,7 +113,7 @@ export default function AdminProducts() {
           {/* -----------selects-------------- */}
           <div className={sStyle.selects_box}>
             <button className={sStyle.refresh} onClick={refreshHandler}>
-              <FaRedo size={18} />
+              <FaRedo size={14} />
             </button>
 
             <select

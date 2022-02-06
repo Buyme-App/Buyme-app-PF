@@ -8,12 +8,12 @@ const router = Router();
 
 
 
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
 
-    const {id} = req.params;
-    const {name, password, email, role, token} = req.body;
+    
+    const {id, name, password, email, role, token} = req.body;
 
-    if(name && password && email && role && token){
+    if(id && name && password && email && role && token){
 
         try {
             const update = await updateUser(id, name, password, email, role, token);
