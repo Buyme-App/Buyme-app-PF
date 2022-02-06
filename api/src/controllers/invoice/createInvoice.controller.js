@@ -27,10 +27,15 @@ async function createInvoice(products) {
     }));
 
     //añade la cantidad a los productos
-    resolve = resolve.map((product) => ({
-      ...product,
-      quantity: products.find((product) => product.id === product.id).quantity,
-    }));
+    resolve = resolve.map(
+      (product) => (
+        console.log(product.quantity),
+        {
+          ...product,
+          quantity: products.find((e) => e.id === product.id).quantity,
+        }
+      )
+    );
 
     //calcula el total
     const total = resolve.reduce((total, product) => {
