@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
 
         favorite: {
             type: DataTypes.BOOLEAN,
-            defaultValue: 0 //Added
+            defaultValue: false //Added
         },
 
         maker: { //fabricante
