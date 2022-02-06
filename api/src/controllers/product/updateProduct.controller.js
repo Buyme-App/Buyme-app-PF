@@ -34,7 +34,7 @@ async function updateProduct(id, name, price, favorite,
             paused,
             sales 
         },
-        {where: {id: id}}
+        {where: {id: parseInt(id)}}
         );
 
         if(updateItem > 0) return true;

@@ -4,10 +4,7 @@
   box-sizing: border-box;
 }
 
-.gral {
-  background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
-  /* background-repeat: no-repeat;
-  background-size: cover; */
+
   padding: 60px;
   height: 577px;
 }
@@ -24,7 +21,7 @@
   /* box-shadow: 0 0 3px 3px rgba(216, 212, 212, 0.5); */
   -webkit-box-shadow: 0px 9px 13px -2px #000000;
   box-shadow: 0px 9px 13px -2px #000000;
-  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
   background-repeat: no-repeat;
   background-position-x: -185px;
   background-position-y: -50px;
