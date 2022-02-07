@@ -42,7 +42,9 @@ export default function Categories (){
     };
 
     return (
-        <div className={styles.gral}>
+
+        <div>
+
             {/* <h1 className={styles.title}>Categories</h1> */}
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
                 

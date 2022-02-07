@@ -15,7 +15,7 @@
 /* contenedor del input y el icon */
 .input {
   width: 100%;
-  position: relative;
+  /* position: relative; */
 }
 .input input {
   border-radius: 8px;
@@ -26,12 +26,12 @@
   box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
 }
 .icon {
-  font-size: 28px;
-  position: absolute;
-  right: 2%;
-  top: 20%;
-
-  height: 23px;
+  margin-left: -30px;
+  margin-right: 20px;
+  /* position:relative; */
+  align-content: center;  
+  height: 17px;
+  top: 8px;
   cursor: pointer;
 }
 .icon:hover {
