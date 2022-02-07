@@ -1,14 +1,18 @@
-import { LOGIN, LOADING, ERROR_MODAL, GET_ALL_USERS, POST_USERS } from "../actions";
+import {
+  LOGIN,
+  LOADING,
+  ERROR_MODAL,
+  GET_ALL_USERS,
+  POST_USERS,
+} from "../actions/index";
 
 const initialState = {
-  state: [],
   allUsers: [],
+  allProducts: [],
   login: null,
   loading: false,
   error: false,
 };
-
-
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -27,27 +31,26 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
-    case 'GET_ALL_PRODUCTS':
-            return {
-                ...state,
-                allproducts: action.payload
-            };
-    case 'POST_NEW_PRODUCT':
-        return {
-            ...state
-        };
+    case "GET_ALL_PRODUCTS":
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    case "POST_NEW_PRODUCT":
+      return {
+        ...state,
+      };
     case GET_ALL_USERS:
       return {
         ...state,
-        allUsers: action.payload
+        allUsers: action.payload,
       };
     case POST_USERS:
       return {
-          ...state,
-          allUsers: [...state.allUsers, action.payload]
+        ...state,
+        allUsers: [...state.allUsers, action.payload],
       };
     default:
-        return state;
+      return state;
   }
-
 }
