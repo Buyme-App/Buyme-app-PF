@@ -82,7 +82,7 @@
     border-style: none;
 
     margin-top: -75px;
-
+  }
   
   .selects_box select:hover{
     background-color: var(--color-principal-violet-hover);
