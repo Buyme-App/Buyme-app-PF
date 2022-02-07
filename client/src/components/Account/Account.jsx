@@ -14,7 +14,7 @@ export default function Account (){
 
     return (
         <div className={styles.page}>
-            <h2>My Account</h2>
+            {/* <h2>My Account</h2> */}
             <div className={styles.box}>
                 <button onClick={() => setBtnChangeE(true)} className={styles.button} type="submit">Change Email</button>
                 <button onClick={() => setBtnChangeP(true)} className={styles.button} type="submit">Change Password</button>
