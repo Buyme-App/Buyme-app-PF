@@ -28,8 +28,11 @@ const { Category, SubCategory, Product, Admin, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 
-SubCategory.belongsTo(Category, { through: "category_subCategory" });
-Category.belongsToMany(SubCategory, { through: "category_subCategory" });
+//asociacion de uno a muchos--> Category a SubCategory s
+Category.hasMany(SubCategory);     //clave externa definida en SubCategory
+SubCategory.belongsTo(Category);   //clave externa definida en SubCategory
+
+
 
 Product.belongsTo(SubCategory, { through: "product_subCategory" });
 Product.belongsTo(Category, { through: "product_Category" });

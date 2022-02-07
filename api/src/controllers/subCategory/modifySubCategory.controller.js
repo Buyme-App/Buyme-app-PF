@@ -1,12 +1,16 @@
+//Fix
 const { SubCategory } = require("../../database/db");
 const showErrors = require("../../messageConsole");
 
-async function modifySubCategoryDB(idCat, nameCat) {
+async function modifySubCategoryDB(idCat, nameCat, category) {
   try {
-    const row = await SubCategory.findByPk(idCat);
+
+
+    let row = await SubCategory.findByPk(idCat);
     if (row === null) return 404;
     else {
-      row.name = nameCat;
+      if (nameCat) row.name = nameCat;
+      if (category) row.categoryId = category;
       row.save()
         .then(function () {
           return 200;

@@ -1,3 +1,4 @@
+//fix
 const { Router } = require("express");
 const deleteCategoryDB = require("../../controllers/category/deleteCategory.controller");
 const router = Router();
@@ -19,3 +20,4 @@ router.delete("/:idCat", async (req, res) => {
 });
 
 module.exports = router;
+
