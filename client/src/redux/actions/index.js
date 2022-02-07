@@ -8,6 +8,7 @@ export const LOGIN = "LOGIN";
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_ALL_USERS = 'GET_ALL_USERS';
+export const POST_USERS = 'POST_USERS';
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -67,7 +68,10 @@ export function createProduct(payload){
 export function postUser(payload){
   return async function(){
       let json = await axios.post('http://localhost:3001/createUser', payload);
-      return json;
+      return ({
+        type: POST_USERS,
+        payload: json.data
+      })
   }
 };
 
@@ -75,7 +79,7 @@ export function getAllUsers(payload){
   return async function(dispatch){
     let json = await axios.get('http://localhost:3001/getAllUsers');
     return dispatch({
-      type: 'GET_ALL_USERS',
+      type: GET_ALL_USERS,
       payload: json.data
     })
   }

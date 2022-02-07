@@ -27,7 +27,7 @@ export default function AddUser (props){
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(input);
+        // console.log(input);
         dispatch(postUser(input));
         alert('User created successfully!');
         setInput({
@@ -50,7 +50,7 @@ export default function AddUser (props){
         // } else alert("Corrija los errores de los campos");
         props.setTrigger(false)
     }
-
+    
     function errorsHandler(e) {
         let form = { [e.target.name]: input[e.target.name] };
         let fails = validator(form);
