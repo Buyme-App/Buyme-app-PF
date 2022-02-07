@@ -8,7 +8,7 @@ import ChangeEmail from "./ChangeEmail/ChangeEmail";
 import AddUser from "./AddUsers/AddUser";
 import { getAllUsers } from "../../redux/actions";
 
-export default function Account ({id, name, email}){
+export default function Account (){
     const dispatch = useDispatch();
     const allUsers = useSelector((state) => state.allUsers);
     const [btnChangeP, setBtnChangeP] = useState(false);
@@ -19,6 +19,7 @@ export default function Account ({id, name, email}){
         dispatch(getAllUsers());
     },[dispatch]);
 
+    console.log(allUsers);
     return (
         <div className={styles.page}>
             {/* <h2>My Account</h2> */}
@@ -55,6 +56,7 @@ export default function Account ({id, name, email}){
                             <td>{el.id}</td>
                             <td>{el.name}</td>
                             <td>{el.email}</td>
+                            <td>{el.role}</td>
                             <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
                         </tr>
                     )
@@ -62,6 +64,7 @@ export default function Account ({id, name, email}){
                         <td>1</td>
                         <td>Juan Topo</td>
                         <td>juani@gmail.com</td>
+                        <td>administrador</td>
                         <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
                      </tr>
                 )

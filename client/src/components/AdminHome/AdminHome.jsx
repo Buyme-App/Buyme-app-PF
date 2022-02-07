@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Aside from "../asideDashboard/asideDashboard";
 import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import Sales from "../Sales/Sales";
-import AdminNewProduct from "../AdminNewProduct/AdminNewProduct.jsx";
+import AdminNewProduct from "../AdminNewProduct/AdminNewProduct";
 import AdminProducts from "../AdminProducts/AdminProducts";
 import Queries from "../Queries/Queries";
 import Account from "../Account/Account";

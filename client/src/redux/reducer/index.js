@@ -1,4 +1,4 @@
-import { LOGIN, LOADING, ERROR_MODAL, GET_ALL_USERS } from "../actions";
+import { LOGIN, LOADING, ERROR_MODAL, GET_ALL_USERS, POST_USERS } from "../actions";
 
 const initialState = {
   state: [],
@@ -41,9 +41,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allUsers: action.payload
       };
-    case 'POST_USER':
+    case POST_USERS:
       return {
           ...state,
+          allUsers: [...state.allUsers, action.payload]
       };
     default:
         return state;
