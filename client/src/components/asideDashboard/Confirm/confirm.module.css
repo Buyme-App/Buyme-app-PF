@@ -10,6 +10,7 @@
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.596);
   backdrop-filter: blur(7px);
+  z-index: 99999999;
 }
 
 .confirm_box {
