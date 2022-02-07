@@ -1,6 +1,6 @@
 .queries_box{
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 0px;
 }
 .queries_box .title {
     padding: 10px 10px;
@@ -15,6 +15,34 @@
     display: flex;
     flex-direction: column;
     
+}
+.reviewer_span{
+    color:#333;
+margin-top: 23px;
+    width: 100%;
+    margin: 0 auto;
+;
+display: inline-block;
+}
+.reviewer_box{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.assign_btn{
+    padding:15px;
+    margin:5px;
+    border-radius: 8px;
+    background-color: rgb(245, 250, 250);
+}
+.assign_btn:hover{
+    background-color: rgb(143, 137, 137);
+    cursor: pointer;
+
 }
 
 .ul_titles{

@@ -1,16 +1,23 @@
 import React from "react";
 import styles from './Account.module.css';
 import {MdOutlineDelete} from 'react-icons/md';
-import { useState } from "react";
-import ChangePassword from "../ChangePassword/ChangePassword";
-import ChangeEmail from "../ChangeEmail/ChangeEmail";
-import AddUser from "../AddUsers/AddUser";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ChangePassword from "./ChangePassword/ChangePassword";
+import ChangeEmail from "./ChangeEmail/ChangeEmail";
+import AddUser from "./AddUsers/AddUser";
+import { getAllUsers } from "../../redux/actions";
 
-export default function Account (){
-
+export default function Account ({id, name, email}){
+    const dispatch = useDispatch();
+    const allUsers = useSelector((state) => state.allUsers);
     const [btnChangeP, setBtnChangeP] = useState(false);
     const [btnChangeE, setBtnChangeE] = useState(false);
     const [btnAddUser, setBtnAddUser] = useState(false);
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+    },[dispatch]);
 
     return (
         <div className={styles.page}>
@@ -39,24 +46,26 @@ export default function Account (){
                         <td style={{'paddingLeft': '16%'}}>Name</td>
                         <td style={{'paddingLeft': '24%'}}>Email</td>
                     </tr>
-                    <tr className={styles.details}>
+                   
+                    {
+                allUsers.length?
+                allUsers.map(el => {
+                    return (
+                        <tr key={el.id} className={styles.details}>
+                            <td>{el.id}</td>
+                            <td>{el.name}</td>
+                            <td>{el.email}</td>
+                            <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
+                        </tr>
+                    )
+                }) : (<tr className={styles.details}>
                         <td>1</td>
-                        <td>User1</td>
-                        <td>user1@gmail.com</td>
+                        <td>Juan Topo</td>
+                        <td>juani@gmail.com</td>
                         <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
-                    </tr>
-                    <tr className={styles.details}>
-                        <td>2</td>
-                        <td>User2</td>
-                        <td>user2@gmail.com</td>
-                        <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
-                    </tr>
-                    <tr className={styles.details}>
-                        <td>3</td>
-                        <td>User3</td>
-                        <td>user3@gmail.com</td>
-                        <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
-                    </tr>
+                     </tr>
+                )
+            }
                 </table>
             </div>
         </div>

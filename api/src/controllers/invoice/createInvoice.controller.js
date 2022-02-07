@@ -29,7 +29,6 @@ async function createInvoice(products) {
     //añade la cantidad a los productos
     resolve = resolve.map(
       (product) => (
-        console.log(product.quantity),
         {
           ...product,
           quantity: products.find((e) => e.id === product.id).quantity,

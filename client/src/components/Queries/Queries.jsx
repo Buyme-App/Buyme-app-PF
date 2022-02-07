@@ -1,5 +1,5 @@
 import React from "react";
-
+import sStyle from "../Sales/sales.module.css";
 import styles from "./queries.module.css";
 
 export default function Queries() {
@@ -45,39 +45,96 @@ export default function Queries() {
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam, necessitatibus et magni consequuntur eius fugiat illum doloribus distinctio autem...",
     },
   ];
+  const admins = ["admin1", "admin2", "admin3", "admin4", "admin5"];
 
   const [ejemplo, setEjemplo] = React.useState([...json]);
+  const [reviewers, setReviewers] = React.useState([...admins]);
+  const [selected, setSelected] = React.useState({});
+  console.log("selecteeeed", selected);
+
+  const onSelectChange = (e, value) => {
+    let key = e.target.id;
+    console.log(key);
+    setSelected((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const assignHandler = (value) => {
+    let reviewerAdded = ejemplo.map((e, index) => ({
+      ...e,
+      reviewer: selected[index],
+    }));
+
+    setEjemplo((prev) => [...reviewerAdded]);
+  };
 
   return (
     <div className={styles.queries_box}>
       {/* <h1 className={styles.title}>Queries</h1> */}
       <div className={styles.container}>
-        <ul className={styles.ul_titles}>
-          <li>Name</li>
-          <li>Email</li>
-          <li>Phone</li>
-          <li>Message</li>
-        </ul>
+        {/* -------------------- */}
+        <div className={sStyle.table_container}>
+          <table>
+            <thead>
+              <tr>
+                <th>Reviewer</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+              </tr>
+            </thead>
 
-        {ejemplo &&
-          ejemplo.map((e, i) => {
-            return (
-              <ul key={i} className={styles.ul_file}>
-                <li className={styles.li_file_name}>
-                  <input type="checkbox" className={styles.check_input} />
-                  <span>{e.name}</span>
-                </li>
-                <li>
-                  <a href={`mailto: ${e.email}`}> {e.email}</a>
-                </li>
-                <li>{e.phone}</li>
-                <li className={styles.li_message}>
-                  <span>{e.date}</span>
-                  <p>{e.message}</p>
-                </li>
-              </ul>
-            );
-          })}
+            <tbody>
+              {ejemplo.length
+                ? ejemplo.map((e, idx) => (
+                    <tr key={e.order}>
+                      <td>
+                        <div className={styles.reviewer_box}>
+                          <select
+                            id={idx}
+                            className={styles.check_input}
+                            onChange={(e) => {
+                              onSelectChange(e, e.target.value);
+                            }}
+                          >
+                            <option value={null}></option>
+                            {reviewers.map((a, id) => {
+                              return (
+                                <option key={id} value={a} id={id}>
+                                  {a}
+                                </option>
+                              );
+                            })}
+                          </select>{" "}
+                          <br />
+                          <span className={styles.reviewer_span}>
+                            {e.reviewer ? e.reviewer : null}
+                          </span>
+                        </div>
+                      </td>
+
+                      <td>{e.name}</td>
+                      <td>{e.email}</td>
+                      <td>{e.phone}</td>
+                      <td>{e.message}</td>
+                      {/* <td>{e.customer}</td> */}
+                    </tr>
+                  ))
+                : null}
+            </tbody>
+          </table>
+        </div>
+        <button
+          className={styles.assign_btn}
+          onClick={() => {
+            assignHandler();
+          }}
+        >
+          Assign
+        </button>
       </div>
     </div>
   );
