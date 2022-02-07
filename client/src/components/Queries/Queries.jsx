@@ -62,7 +62,7 @@ export default function Queries() {
         {ejemplo &&
           ejemplo.map((e, i) => {
             return (
-              <ul className={styles.ul_file}>
+              <ul key={i} className={styles.ul_file}>
                 <li className={styles.li_file_name}>
                   <input type="checkbox" className={styles.check_input} />
                   <span>{e.name}</span>
