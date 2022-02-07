@@ -42,23 +42,25 @@ export default function Categories (){
     };
 
     return (
+
         <div>
+
             {/* <h1 className={styles.title}>Categories</h1> */}
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
                 
                 <div className={styles.input}>
-                    <label>Category/Subcategory</label>
+                    <label>Category</label>
                     <input 
                         type="text" 
                         value={input.category}
                         name="category"
-                        placeholder="Enter category"
+                        placeholder="Enter new category"
                         onChange={(e) => {handleChange(e)}}
                     />
                 </div>
                 <div className={styles.input}>
                     <label>Subcategory</label>
-                    <input 
+                    <input className={styles.checkbox}
                         type="checkbox" 
                         value={input.subcategory}
                         name="subcategory"

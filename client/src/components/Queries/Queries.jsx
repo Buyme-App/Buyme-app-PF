@@ -50,7 +50,7 @@ export default function Queries() {
 
   return (
     <div className={styles.queries_box}>
-      <h1 className={styles.title}>Queries</h1>
+      {/* <h1 className={styles.title}>Queries</h1> */}
       <div className={styles.container}>
         <ul className={styles.ul_titles}>
           <li>Name</li>
