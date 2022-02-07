@@ -79,6 +79,7 @@ export default function Sales() {
         example.filter(
           (e) =>
             e.products.toUpperCase().includes(value.toUpperCase()) ||
+            e.order.toUpperCase().includes(value.toUpperCase()) ||
             e.customer.toUpperCase().includes(value.toUpperCase())
         )
       );
@@ -97,10 +98,9 @@ export default function Sales() {
           <div className={sStyle.input}>
             <input
               type="search"
-              placeholder="Search by customers or products..."
+              placeholder="Search by order#, customers or products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              onClick={() => searchHandler(search)}
             />
             <FaSistrix
               className={sStyle.icon}

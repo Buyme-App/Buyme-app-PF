@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState , useEffect } from 'react';
 import { getAllProducts, createProduct } from '../../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
@@ -38,8 +38,8 @@ function validate(input) {
     if (input.SKU.length > 0 && input.SKU < 0) {
       errors.sku = 'Positive numbers only, max 8 digits'
     }
-    if (input.SKU.length > 8) {
-      errors.sku = 'Max 8 digits'
+    if (input.SKU.length !== 8) {
+      errors.sku = 'SKU must contain 8 digits'
     }
     if (input.SKU % 1 !== 0 || input.SKU.includes('.')) {
         errors.sku = 'Integer numbers only'
@@ -93,7 +93,7 @@ function validate(input) {
     return errors;
 }
 
-export default function PokemonCreate(){
+export default function AdminNewProduct(){
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -160,7 +160,7 @@ export default function PokemonCreate(){
         e.preventDefault();
         // const errors = validate(input);
         // if (allPokemons.find((p) =>p.name.toLowerCase() === input.name.toLowerCase().trim())) {
-        if (allProdutcs.find(p =>p.name === input.name)) {
+        if (allProdutcs.find(p =>p.name.toLowerCase() === input.name.toLowerCase())) {
             alert('Name already exists! Please choose a different name.');
             // setInput({
             //     name: '',
@@ -203,8 +203,8 @@ export default function PokemonCreate(){
 
     return (
       <div className={styles.main}>
-        {/* <h1 className={styles.title}>Create New Product</h1> */}
-          <h3>Product Name *</h3>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <h3>Product Names *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
@@ -243,7 +243,7 @@ export default function PokemonCreate(){
                   value={input.model}
                   name= "model"
                   className={styles.input}
-                  placeholder="E.g.: Airpods"
+                  placeholder="E.g.: AS1234"
                   onChange={(e) => handleInputChange(e)}
                 />
                 <div className={styles.errors}>
@@ -260,7 +260,7 @@ export default function PokemonCreate(){
                   value={input.SKU}
                   name= "SKU"
                   className={styles.input}
-                  placeholder="E.g.: AJ123456"
+                  placeholder="E.g.: 12345678"
                   onChange={(e) => handleInputChange(e)}
                 />
                 <div className={styles.errors}>
@@ -382,7 +382,6 @@ export default function PokemonCreate(){
           </div>
          
          <h3>Category *</h3>
-        <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.inputs}>
             {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
             <select defaultValue="" name="SubCategories" className={styles.select}>
@@ -415,7 +414,7 @@ export default function PokemonCreate(){
           <div className={styles.uploader}>
             <Uploader />
           </div>
-          <button className={styles.create} type='submit' disabled={!input.name}>
+          <button className={styles.create} type='submit'>
             Create Product
           </button>
         </form>

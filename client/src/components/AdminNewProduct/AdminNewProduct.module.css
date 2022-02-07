@@ -23,7 +23,7 @@ h1 {
 }
 
 h3 {
-    margin-bottom: 10px;
+    margin: 0 0 0 3px;
     color:var(--color-principal-violet);
     font-weight: normal;
     font-size: 16px;
@@ -59,8 +59,8 @@ h1, h3 {
 .select,
 .textarea {
     padding: 0 10px;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
     width: 100%;
     height: 34px;
     color: #495057;
@@ -94,7 +94,7 @@ h1, h3 {
 
 .ckeditor {
     width: 580px;
-    margin-bottom: 40px;
+    margin: 10px 0 40px 0;
     filter: drop-shadow(2px 2px 1px #ddd);
 }
 
@@ -103,6 +103,12 @@ h1, h3 {
     text-align: left;
     background: none;
     color: black;
+}
+
+.uploader {
+    margin-top: 10px;
+    width: 580px;
+    background: #fff;
 }
 
 .checkbox {
@@ -117,11 +123,6 @@ h1, h3 {
     display: flex;
     justify-content: space-between;
     /* background-color: #000; */
-}
-
-.uploader {
-    width: 580px;
-    background: #fff;
 }
 
 .create {
