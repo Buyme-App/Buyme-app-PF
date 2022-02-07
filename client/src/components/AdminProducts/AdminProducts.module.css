@@ -25,11 +25,12 @@
     height: 200px;
     justify-content: center;
     align-items: center;
-  }
+      }
   /* contenedor del input y el icon */
   .input {
     width: 100%;
-    position: relative;
+    margin-top:-110px;
+    /* position: relative; */
   }
   .input input {
     border-radius: 8px;
@@ -40,12 +41,18 @@
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
   }
   .icon {
-    font-size: 28px;
+    /* font-size: 28px;
     position: absolute;
     right: 2%;
-    /* top: 12%; */
-  
-    height: 100%;
+    top: 20%; */
+    margin-left: -30px;
+    margin-right: 20px;
+    /* position:relative; */
+    align-content: center;  
+    height: 17px;
+    top: 8px;
+    cursor: pointer;
+    /* height: 18px; */
     cursor: pointer;
   }
   .icon:hover {
@@ -58,76 +65,90 @@
   .selects_box {
     width: 98%;
     display: flex;
-    justify-content: flex-end;
-    align-self: flex-end;
-    /* background-color: black; */
+    justify-content: center;
+    align-self: center;
     padding: 5px;
   }
+
   .selects_box select {
-    background-color: #3739b9;
-    /* colores parciales */
-    border-radius: 5px;
+    background-color: var(--color-principal-violet);
+    border-radius: 4px;
     font-family: Arial;
     color: #ffffff;
-    font-size: 16px;
-    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    padding: 13px;
+    height: 43px;
+    border-style: none;
+
+    margin-top: -75px;
   }
   
-  /* .selects_box select:hover {
-    background: #3cb0fd;
-    text-decoration: none;
-  } */
+  .selects_box select:hover{
+    background-color: var(--color-principal-violet-hover);
+  }
   
   .selects_box select option {
-    color: rgb(235, 203, 203);
+    color: rgb(255, 255, 255);
+    font-size: 14px;
   }
+
   /* ----Tables---------- */
   .table_container {
     width: 100%;
-    background-color: rgba(17, 17, 29, 0.219);
     display: flex;
     justify-content: center;
     padding: 8px;
+    margin-top: 25px;
   }
   .table_container table {
     width: 100%;
-    border: 2px solid rgba(136, 93, 241, 0.2);
+    margin-top: -53px;
   }
-  /* t header */
+
   .table_container table thead tr th {
-    background-color: rgb(60, 45, 192);
-    font-size: 19px;
+    background-color: var(--color-principal-violet);
+    font-size: 14px;
+    font-weight: normal;
     padding: 10px;
     color: #fff;
+    border-width: 0px;
+    border-radius: 3px;
   }
-  .table_container table thead {
-    background-color: yellow;
-  }
+  
   /* -----------t body-------- */
   .table_container table tbody tr td {
     padding: 18px;
-    background-color: rgb(236, 207, 207);
+    background-color: rgb(250, 250, 250);
+    font-size: 14px;
   }
+
   .notMach {
     background-color: black;
-  
     width: 100%;
     text-align: center;
   }
+
   .refresh {
-    background-color: rgb(60, 45, 192);
-    display: flex;
-    border-radius: 5px;
-    border: 1px solid #124d77;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 12px;
-    padding: 8px 15px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #154682;
-    margin-right: 30px;
+     background-color: var(--color-principal-violet);
+     border-radius: 4px;
+     border: 1px solid #124d77;
+     display: inline-block;
+     cursor: pointer;
+     color: #ffffff;
+     font-family: Arial;
+     font-size: 14px;
+     padding: 13px;
+     height: 43px;
+     text-decoration: none;
+     text-shadow: 0px 1px 0px #154682;
+     margin: 0 15px;
+     border-style: none;
+     margin-top: -75px;
+  }
+  
+  .refresh:hover{
+    background-color: var(--color-principal-violet-hover);
   }
   
   .refresh:active {

@@ -43,7 +43,7 @@ export default function PassRecovery() {
           />{" "}
           {errors && <small>{errors.email}</small>}
           <p>
-          We sent you an email to change your password !
+          We will send you an email to change your password !
         </p>
         </div>
 

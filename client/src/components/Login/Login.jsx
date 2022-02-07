@@ -3,18 +3,29 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Login.module.css";
-// import validator from "../functions/validator";
+import { errorModal, loading, login } from "../../redux/actions";
+import Loader from "../Loader/Loader";
+import Error from "./ErrorPopUp/Error";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const login = useSelector((state) => state.login);
+  const globalState = useSelector((state) => state);
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = React.useState({
     email: "",
     password: "",
   });
+  const [notValidated, setNotValidated] = React.useState(true);
+
+  const setSession = (key, value) => {
+    sessionStorage.setItem(key, value);
+  };
+
+  const getSession = (value) => {
+    return sessionStorage;
+  };
 
   const loginValidate = (form) => {
     let error = {};
@@ -37,7 +48,7 @@ export default function Login() {
         error.password = "No se admiten espacios en blanco";
       else error.password = undefined;
     }
-    console.log("error validator", error);
+
     return error;
   };
 
@@ -52,7 +63,6 @@ export default function Login() {
     e.preventDefault();
 
     //si ambos campos están vacíos
-
     if (input.email === "" || input.password === "") {
       return setErrors(loginValidate(input));
     }
@@ -61,30 +71,31 @@ export default function Login() {
     const haveError = Object.values(errors).some((v) => v !== undefined);
 
     if (haveError === false) {
-      //dispatch(login(input));
-      setInput({
-        email: "",
-        password: "",
+      loading(dispatch, true);
+      const credential = login(dispatch, input.email, input.password);
+      credential.then((re) => {
+        re ? navigate("/admin/home") : errorModal(dispatch, true);
       });
-      alert("Ingresando...");
-
-      navigate("/admin/home");
-    } else alert("Corrija los errores de los campos");
+      // alert("Loading...");
+    } else alert("There are still errors in the fields");
   }
 
   function errorsHandler(e) {
-    console.log("errorH", e.target.name);
+    // console.log("errorH", e.target.name);
     let form = { [e.target.name]: input[e.target.name] };
     let fails = loginValidate(form);
     setErrors((prev) => ({ ...prev, ...fails }));
   }
-  console.log(errors);
-  // useEffect(() => {
-  //     dispatch(Login());
-  // }, []);
+
+  useEffect(() => {
+    login(dispatch);
+    loading(dispatch, false);
+  }, []);
 
   return (
     <div className={styles.gral}>
+      {/* ---------loader-------- */}
+      {globalState.loading && <Loader />}
       <div className={styles.form}>
         <h1 className={styles.title}>Log into your account</h1>
         <form
@@ -92,6 +103,10 @@ export default function Login() {
             handleSubmit(e);
           }}
         >
+          {/* --------error popup---------- */}
+          {globalState.error && (
+            <Error msg="An error occurred while validating the data" />
+          )}
           <div className={styles.input}>
             {/* <label c>Email</label> */}
             <input
@@ -104,7 +119,8 @@ export default function Login() {
                 handleChange(e);
               }}
               onBlur={(e) => errorsHandler(e)}
-            />
+            />{" "}
+            <br />
             {errors && <small>{errors.email}</small>}
           </div>
           <br />
@@ -120,9 +136,9 @@ export default function Login() {
                 handleChange(e);
               }}
               onBlur={(e) => errorsHandler(e)}
-            />
+            />{" "}
+            <br />
             {errors && <small>{errors.password}</small>}
-
             <div className={styles.restPassword}>
               <Link className={styles.link} to="/admin/restorePassword">
                 Forgot your password?

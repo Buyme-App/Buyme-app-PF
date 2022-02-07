@@ -5,47 +5,94 @@
 }
 
 .gral{
-  background-image: url(../../ca3788c34af440a7be6d415f80e48ed7.jpg);
-  /* background-repeat: no-repeat;
-  background-size: cover; */
-  padding: 60px;
-  height: 577px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-admin);
 }
 
 .form {
-  width: 450px;
-  padding: 70px;
-  border-radius: 2rem;
-  border-style: none;
-  color: gray;
-  font-size: 16px;
-  margin:auto;
-  /* box-shadow: 0 0 3px 3px rgba(216, 212, 212, 0.5); */
+  position: relative;
+  background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  width: 400px;
+  height: 500px;
+  /* display:flexbox; */
+  /* justify-content: center; */
+  border-radius: 20px;
+  /* padding: 20px; */
   -webkit-box-shadow: 0px 9px 13px -2px #000000;
   box-shadow: 0px 9px 13px -2px #000000;
-  background-image: url(../../0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
-  background-repeat: no-repeat;
   background-position-x: -185px;
   background-position-y: -50px;
-  font-weight: 700;
 }
 .form small {
-  color: black;
+  color: rgb(236, 228, 228);
+  width: 100%;
+  animation-name: error;
+  animation-duration: 3.1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name: error;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+@-moz-keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .title {
   color: white;
   margin-bottom: 50px;
   font-size: 23px;
-  margin-left: 5px;
+  /* margin-left: 5px;*/
+  margin-top: 27px;
+  /* padding: 10px ; */
+  padding-top: 60px;
+  /* padding-right: 30px; */
+  margin-right: 68px;
 }
 
 .form input {
-  width: 100%;
+  width: 330px;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
   color: gray;
-  border-style: none;
+  border-style: thin;
   /* border-color: red; */
 }
 
@@ -57,7 +104,7 @@
   width: 130px;
   height: 35px;
   background-color: var(--color-pink-buttons);
-  color:white;
+  color: white;
   /* margin: 10px; */
   /* padding: 8px 25px 8px 25px; */
 }
@@ -66,10 +113,10 @@
 } */
 
 .link {
-  font-size: 11px;
+  font-size: 13px;
   text-decoration: none;
   color: white;
-  margin-right: 98px;
+  margin-right: 135px;
   margin-top: 15px;
 }
 

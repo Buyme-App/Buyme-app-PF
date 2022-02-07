@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Aside from "../asideDashboard/asideDashboard";
 import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import Sales from "../Sales/Sales";
-import AdminNewProduct from "../AdminNewProduct/AdminNewProduct.jsx";
+import AdminNewProduct from "../AdminNewProduct/AdminNewProduct";
 import AdminProducts from "../AdminProducts/AdminProducts";
 import Queries from "../Queries/Queries";
 import Account from "../Account/Account";
-import style from "./adminHome.module.css";
 import Categories from "../Categories/Categories";
+import Customers from "../Customers/Customers";
+import style from "./adminHome.module.css";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function AdminHome() {
+  const navigate = useNavigate();
+  const globalState = useSelector((state) => state);
+
   const [panelActive, setPanelActive] = React.useState({
     home: true,
     sales: false,
@@ -20,19 +26,29 @@ export default function AdminHome() {
     queries: false,
     account: false,
   });
+
+  // Comentar para no loguearte
+
+  React.useEffect(() => {
+    !globalState.login && navigate("/admin");
+  }, [globalState]);
+
   return (
     <div className={style.main_box}>
-      <h1>Dashboard Home</h1> <br />
+
+      {/* <h1>Dashboard Home</h1> */}
+      <br />
+
       <div className={style.main_container}>
         <Aside setPanelActive={setPanelActive} panelActive={panelActive} />
         <section>
           {/* <span>renderizado de contenido</span> */}
           {panelActive.home && <AdminDashboard />}
           {panelActive.sales && <Sales />}
-          {panelActive.newProduct && <h1>new procduct component</h1>}
+          {panelActive.newProduct && <AdminNewProduct />}
           {panelActive.products && <AdminProducts />}
           {panelActive.categories && <Categories />}
-          {panelActive.customers && <h1>Customers section</h1>}
+          {panelActive.customers && <Customers />}
           {panelActive.queries && <Queries />}
           {panelActive.account && <Account />}
         </section>

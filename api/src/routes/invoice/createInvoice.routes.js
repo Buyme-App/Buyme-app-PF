@@ -6,11 +6,11 @@ const router = Router();
 // Ruta /createInvoice que envía los datos recibidos por body al controlador createInvoice
 // y responde con la data del producto creado o un error 500.
 router.post("/", async (req, res) => {
-  const { products, total } = req.body;
+  const { products } = req.body;
 
-  if (products && total) {
+  if (products) {
     try {
-      const create = await createInvoice(products, total);
+      const create = await createInvoice(products);
       res.json({ message: "Invoice created", data: create });
     } catch (error) {
       showErrors("post/createInvoice", error);

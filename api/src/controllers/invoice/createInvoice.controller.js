@@ -1,21 +1,21 @@
 const { Invoice, Product } = require("../../database/db");
 const showErrors = require("../../messageConsole");
 
-//funcion para la factura, debe recibir desde el front, un array con strings/nombres de productos y un total de facturacion
+//funcion para la factura, debe recibir desde el front, un array con un objeto por producto con su id y cantidad deseada
+// ej.: [{id:1, quantity:2},{id:2, quantity:3}]
 //busca los articulos en la DB y genera la factura con los datos de los mismos.
 //se usa para los productos JSON.stringify(), se recomienda para el front JSON.parse()
-async function createInvoice(products, total) {
+async function createInvoice(products) {
   try {
     //mapea y busca los productos en la DB
     const searchProducts = products.map(
-      async (productName) =>
-        await Product.findOne({ where: { name: productName } })
+      async (product) => await Product.findByPk(product.id)
     );
 
     //lo resuelve
     let resolve = await Promise.all(searchProducts);
 
-    //filtra los productos por id
+    //filtra los productos por la data del producto
     resolve = resolve.map((product) => ({
       id: product.id,
       name: product.name,
@@ -25,6 +25,22 @@ async function createInvoice(products, total) {
       description: product.description,
       SKU: product.SKU,
     }));
+
+    //añade la cantidad a los productos
+    resolve = resolve.map(
+      (product) => (
+        {
+          ...product,
+          quantity: products.find((e) => e.id === product.id).quantity,
+        }
+      )
+    );
+
+    //calcula el total
+    const total = resolve.reduce((total, product) => {
+      return total + product.price * product.quantity;
+    }, 0);
+    console.log(total);
     resolve = JSON.stringify(resolve);
     products = resolve;
 

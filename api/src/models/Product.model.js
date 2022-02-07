@@ -60,6 +60,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
   });
+
+  
 };
 
 // Update
