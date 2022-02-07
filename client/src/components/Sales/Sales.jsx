@@ -100,6 +100,7 @@ export default function Sales() {
               placeholder="Search by customers or products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onClick={() => searchHandler(search)}
             />
             <FaSistrix
               className={sStyle.icon}
@@ -121,8 +122,8 @@ export default function Sales() {
               id=""
               onChange={(e) => orderByDate(e.target.value)}
             >
-              <option value='Descendent'>Descendent by Order #</option>
-              <option value='Ascendent'>Ascendent by Order #</option>
+              <option value="Descendent">Descendent by Order #</option>
+              <option value="Ascendent">Ascendent by Order #</option>
             </select>
           </div>
         </div>

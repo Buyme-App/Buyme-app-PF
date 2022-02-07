@@ -4,60 +4,60 @@ import sStyle from "./AdminProducts.module.css";
 export default function AdminProducts() {
   let example = [
     {
-        order: "03/02/22",
-        name: "iPhone 11",
-        brand: "Apple",
-        price: "$1.200",
-        stock: "20",
+      order: "03/02/22",
+      name: "iPhone 11",
+      brand: "Apple",
+      price: "$1200",
+      stock: "20",
     },
     {
-        order: "02/02/22",
-        name: "iPhone 11 Plus",
-        brand: "Apple",
-        price: "$1.350",
-        stock: "5",
+      order: "02/02/22",
+      name: "iPhone 11 Plus",
+      brand: "Apple",
+      price: "$1350",
+      stock: "5",
     },
     {
-        order: "01/02/22",
-        name: "Airpods Pro",
-        brand: "Apple",
-        price: "$350",
-        stock: "7",
+      order: "01/02/22",
+      name: "Airpods Pro",
+      brand: "Apple",
+      price: "$350",
+      stock: "7",
     },
     {
-        order: "30/01/22",
-        name: "MacBook Pro",
-        brand: "Apple",
-        price: "$1.850",
-        stock: "2",
+      order: "30/01/22",
+      name: "MacBook Pro",
+      brand: "Apple",
+      price: "$1850",
+      stock: "2",
     },
     {
-        order: "29/01/22",
-        name: "All in One PC",
-        brand: "HP",
-        price: "$1.250",
-        stock: "4",
+      order: "29/01/22",
+      name: "All in One PC",
+      brand: "HP",
+      price: "$1250",
+      stock: "4",
     },
     {
-        order: "27/01/22",
-        name: "Apple TV",
-        brand: "Apple",
-        price: "$450",
-        stock: "7",
+      order: "27/01/22",
+      name: "Apple TV",
+      brand: "Apple",
+      price: "$450",
+      stock: "7",
     },
     {
-        order: "25/01/22",
-        name: "Google Chromecast",
-        brand: "Google",
-        price: "$250",
-        stock: "12",
+      order: "25/01/22",
+      name: "Google Chromecast",
+      brand: "Google",
+      price: "$250",
+      stock: "12",
     },
     {
-        order: "24/01/22",
-        name: "All in One PC",
-        brand: "Asus",
-        price: "$950",
-        stock: "3",
+      order: "24/01/22",
+      name: "All in One PC",
+      brand: "Asus",
+      price: "$950",
+      stock: "3",
     },
   ];
   const [render, setRender] = React.useState(example);
@@ -66,20 +66,21 @@ export default function AdminProducts() {
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
-        Number(b.order.substring(1, 10)) - Number(a.order.substring(1, 10))
+        Number(b.price.substring(1, 10)) - Number(a.price.substring(1, 10))
       );
     });
+
     if (value === "Descendent") {
       setRender((prev) => [...order]);
     } else setRender([...order.reverse()]);
   };
   const searchHandler = (value) => {
-    if (search.length) {
+    if (value.length) {
       setRender((prev) =>
         example.filter(
           (e) =>
-            e.products.toUpperCase().includes(value.toUpperCase()) ||
-            e.customer.toUpperCase().includes(value.toUpperCase())
+            e.name.toUpperCase().includes(value.toUpperCase()) ||
+            e.brand.toUpperCase().includes(value.toUpperCase())
         )
       );
     } else alert("Search field empty");
@@ -121,8 +122,8 @@ export default function AdminProducts() {
               id=""
               onChange={(e) => orderByDate(e.target.value)}
             >
-              <option>Ascendent</option>
-              <option>Descendent</option>
+              <option value="Ascendent">Ascendent</option>
+              <option value="Descendent">Descendent</option>
             </select>
           </div>
         </div>
@@ -136,7 +137,9 @@ export default function AdminProducts() {
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Customer</th>
-                <th><input type='checkbox'/></th>
+                <th>
+                  <input type="checkbox" />
+                </th>
               </tr>
             </thead>
 
@@ -149,7 +152,9 @@ export default function AdminProducts() {
                       <td>{e.brand}</td>
                       <td>{e.price}</td>
                       <td>{e.stock}</td>
-                      <td><input type='checkbox'/></td>
+                      <td>
+                        <input type="checkbox" />
+                      </td>
                     </tr>
                   ))
                 : null}
