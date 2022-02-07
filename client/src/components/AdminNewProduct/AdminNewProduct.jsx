@@ -204,38 +204,6 @@ export default function PokemonCreate(){
     return (
       <div className={styles.main}>
         {/* <h1 className={styles.title}>Create New Product</h1> */}
-        <h3>Category *</h3>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className={styles.inputs}>
-            {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
-            <select name="SubCategories" className={styles.select}>
-              <option value="" selected disabled>
-                Select Category
-              </option>
-              <option value="" disabled>
-                Mobile Phones
-              </option>
-              <option value="Mobile Phones"> • Mobile Phones</option>
-              <option value="Mobile Phones Accesories"> • Mobile Phones Accesories</option>
-              <option value="" disabled>
-                Computing
-              </option>
-              <option value="Laptop Computers"> • Laptop Computers</option>
-              <option value="Desktop Computers"> • Desktop Computers</option>
-              <option value="Monitors"> • Monitors</option>
-              <option value="Printers"> • Printers</option>
-              <option value="Computing Accesories"> • Computing Accesories</option>
-              <option value="" disabled>
-                Video Games
-              </option>
-              <option value="Consoles"> • Consoles</option>
-              <option value="Consoles Accesories"> • Consoles Accesories</option>
-            </select>
-            <div className={styles.errors}>
-              {errors.categorie && <span>{errors.categorie}</span>}
-            </div>
-          </div>
-  
           <h3>Product Name *</h3>
           <div className={styles.inputs}>
             <input
@@ -412,7 +380,39 @@ export default function PokemonCreate(){
           </div>
           </div>
           </div>
-  
+         
+         <h3>Category *</h3>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className={styles.inputs}>
+            {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
+            <select name="SubCategories" className={styles.select}>
+              <option value="" selected disabled>
+                Select Category
+              </option>
+              <option value="" disabled>
+                Mobile Phones
+              </option>
+              <option value="Mobile Phones"> • Mobile Phones</option>
+              <option value="Mobile Phones Accesories"> • Mobile Phones Accesories</option>
+              <option value="" disabled>
+                Computing
+              </option>
+              <option value="Laptop Computers"> • Laptop Computers</option>
+              <option value="Desktop Computers"> • Desktop Computers</option>
+              <option value="Monitors"> • Monitors</option>
+              <option value="Printers"> • Printers</option>
+              <option value="Computing Accesories"> • Computing Accesories</option>
+              <option value="" disabled>
+                Video Games
+              </option>
+              <option value="Consoles"> • Consoles</option>
+              <option value="Consoles Accesories"> • Consoles Accesories</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.categorie && <span>{errors.categorie}</span>}
+            </div>
+          </div>
+
           <h3>Description</h3>
           <div className={styles.ckeditor}>
             <Editor />
@@ -424,7 +424,7 @@ export default function PokemonCreate(){
             <Uploader />
           </div>
           <button className={styles.create} type='submit' disabled={!input.name}>
-            CREATE PRODUCT
+            Create Product
           </button>
         </form>
       </div>
