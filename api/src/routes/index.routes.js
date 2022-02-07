@@ -30,6 +30,7 @@ const routerCreateUser = require('./user/createUser.routes');
 const routerGetOneUser = require('./user/getOneUser.routes');
 const routerUpdateUser = require('./user/updateUser.routes');
 const routerDeleteUser = require('./user/deleteUser.routes');
+const getAllFeatured = require('./featured/getAllFeatured.routes');
 
 const hashPassword=require('./hash/hashPassword.route');
 const getAllInvoices = require("./invoice/getAllInvoices.routes");
@@ -70,6 +71,8 @@ const routes = (server) => {
     server.use("/getInvoiceDetail", getInvoiceDetail);
     server.use("/paginatedProducts", getInvoiceDetail);
     server.use('/categories', categories);
+
+    server.use('/featured', getAllFeatured);
 }
 
 module.exports = routes; // Update
