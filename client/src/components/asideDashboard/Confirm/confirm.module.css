@@ -17,13 +17,17 @@
   background-color: rgb(91, 27, 151);
   display: flex;
   flex-flow: wrap;
-  width: 300px;
-  padding: 40px 20px;
+  width: 400px;
+  padding: 90px 20px;
   border-radius: 8px;
+  -webkit-box-shadow: 0px 9px 13px -2px #949393;
+  box-shadow: 0px 9px 13px -2px #6d6d6d;
 }
 .confirm_box h3 {
   width: 100%;
   text-align: center;
+  color: white;
+  font-size: 18px;
 }
 
 .confirm_box ul {
@@ -33,15 +37,18 @@
   justify-content: space-around;
 }
 .confirm_box ul li {
-  background-color: white;
+  background-color: var(--color-pink-buttons);
   margin: 5px;
   border-radius: 5px;
   width: fit-content;
-  padding: 4px 5px;
+  padding: 15px 25px;
+  margin-top: 60px;
+  font-size: 14px;
+  color: white;
   cursor: pointer;
 }
 .confirm_box ul li:hover {
-  background-color: rgb(37, 32, 32);
+  background-color: rgb(194, 63, 176);
   color: #fff;
 }
 .confirm_box ul li:active {
