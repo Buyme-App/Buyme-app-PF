@@ -10,10 +10,10 @@ async function updateProduct(id, name, price, favorite,
                             paused,sales){
 
     // se parsean los parametros a int.
-    parseInt(price);
+    parseFloat(price);
     parseInt(favorite);
     parseInt(SKU);
-    parseInt(offerPrice);
+    parseFloat(offerPrice);
     parseInt(stock);
     parseInt(inventary);
 
