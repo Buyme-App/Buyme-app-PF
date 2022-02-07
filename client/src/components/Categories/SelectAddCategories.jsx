@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Categories.module.css';
+import styles from './AddCategories.module.css';
 
 export default function SelectCategories (props) {
 

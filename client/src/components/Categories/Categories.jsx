@@ -1,80 +1,25 @@
 import React from "react";
-import styles from './Categories.module.css';
 import { useState } from "react";
-import SelectCategories from "./SelectCategories";
+import styles from './Categories.module.css';
+import AddCategories from "./AddCategories";
 
-export default function Categories (){
+export default function Categories(){
 
-    const [checkSubcat, setCheckSubcat] = useState(false);
-
-    const [input, setInput] = React.useState({
-        category: "",
-        subcategory: ""
-    });
-
-    function handleChange(e) {
-        setInput({
-        ...input, //ademas de lo que tiene
-        [e.target.name]: e.target.value, //agregale lo que el usuario pone
-        });
-    };
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        // alert('user created successfully!');
-        setInput({
-            category: "",
-            subcategory: ""
-        });
-    };
-
-    function handleCheck(e){
-        if (e.target.checked) {
-            setInput({
-                ...input,
-                subcategory: e.target.value
-                
-            })
-            setCheckSubcat(true);
-        } else {
-            setCheckSubcat(false);
-        }
-    };
+    const [btnAddCat, setBtnAddCat] = useState(false);
 
     return (
-
         <div>
-
-            {/* <h1 className={styles.title}>Categories</h1> */}
-            <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
-                
-                <div className={styles.input}>
-                    <label>Category/Subcategory</label>
-                    <input 
-                        type="text" 
-                        value={input.category}
-                        name="category"
-                        placeholder="Enter new category"
-                        onChange={(e) => {handleChange(e)}}
-                    />
-                </div>
-                <div className={styles.input}>
-                    <label>is Subcategory</label>
-                    <input className={styles.checkbox}
-                        type="checkbox" 
-                        value={input.subcategory}
-                        name="subcategory"
-                        onClick={(e) => handleCheck(e)}
-                    />
-                </div>
-                <SelectCategories
-                    trigger={checkSubcat} 
-                    setTrigger={setCheckSubcat}>
-                </SelectCategories>
-                <button className={styles.btn} type="submit">
-                Submit
-                </button>
-            </form>
+            <button onClick={() => setBtnAddCat(true)} className={styles.addCat} type="submit">Add Categories/Subcategories</button>
+            <AddCategories
+                    trigger={btnAddCat} 
+                    setTrigger={setBtnAddCat}>
+            </AddCategories>
+                <div><button className={styles.btnCat} type="submit">Phones</button></div>
+                <div><button className={styles.btnCat} type="submit">Computers</button></div>
+                <div><button className={styles.btnCat} type="submit">Tablets</button></div>
+                <div><button className={styles.btnCat} type="submit">Accesories</button></div>
+                <div><button className={styles.btnCat} type="submit">Printers</button></div>
+                <div><button className={styles.btnCat} type="submit">TVs</button></div>
         </div>
     )
-}
+};
