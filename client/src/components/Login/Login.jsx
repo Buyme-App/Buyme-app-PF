@@ -19,6 +19,14 @@ export default function Login() {
   });
   const [notValidated, setNotValidated] = React.useState(true);
 
+  const setSession = (key, value) => {
+    sessionStorage.setItem(key, value);
+  };
+
+  const getSession = (value) => {
+    return sessionStorage;
+  };
+
   const loginValidate = (form) => {
     let error = {};
     const emailRegExp =
@@ -111,7 +119,8 @@ export default function Login() {
                 handleChange(e);
               }}
               onBlur={(e) => errorsHandler(e)}
-            />
+            />{" "}
+            <br />
             {errors && <small>{errors.email}</small>}
           </div>
           <br />
@@ -127,9 +136,9 @@ export default function Login() {
                 handleChange(e);
               }}
               onBlur={(e) => errorsHandler(e)}
-            />
+            />{" "}
+            <br />
             {errors && <small>{errors.password}</small>}
-
             <div className={styles.restPassword}>
               <Link className={styles.link} to="/admin/restorePassword">
                 Forgot your password?
