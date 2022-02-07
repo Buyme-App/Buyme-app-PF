@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSistrix, FaRedo } from "react-icons/fa";
 import sStyle from "./Customers.module.css";
-export default function Sales() {
+export default function Customers() {
   let example = [
     {
         order: "#053",
@@ -87,6 +87,7 @@ export default function Sales() {
         example.filter(
           (e) =>
             e.name.toUpperCase().includes(value.toUpperCase()) ||
+            e.order.toUpperCase().includes(value.toUpperCase()) ||
             e.email.toUpperCase().includes(value.toUpperCase())
         )
       );
@@ -105,7 +106,7 @@ export default function Sales() {
           <div className={sStyle.input}>
             <input
               type="search"
-              placeholder="Search customers by name or email..."
+              placeholder="Search by order#, customers name or email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />

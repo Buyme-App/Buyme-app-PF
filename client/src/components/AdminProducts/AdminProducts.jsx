@@ -1,6 +1,7 @@
 import React from "react";
-import { FaSistrix, FaRedo } from "react-icons/fa";
+import { FaSistrix, FaRedo, FaEdit } from "react-icons/fa";
 import sStyle from "./AdminProducts.module.css";
+
 export default function AdminProducts() {
   let example = [
     {
@@ -98,7 +99,7 @@ export default function AdminProducts() {
           <div className={sStyle.input}>
             <input
               type="search"
-              placeholder="Search by order, name or email..."
+              placeholder="Search by name or brand..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -122,9 +123,16 @@ export default function AdminProducts() {
               id=""
               onChange={(e) => orderByDate(e.target.value)}
             >
-              <option value="Ascendent">Ascendent</option>
-              <option value="Descendent">Descendent</option>
+              <option value="Ascendent">Ascendent by Price</option>
+              <option value="Descendent">Descendent by Price</option>
             </select>
+
+            <button className={sStyle.refresh}>
+              Activate
+            </button>
+            <button className={sStyle.refresh}>
+              Pause
+            </button>
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -133,13 +141,12 @@ export default function AdminProducts() {
             <thead>
               <tr>
                 <th>Date Added</th>
+                <th>Product Name</th>
                 <th>Brand</th>
                 <th>Price</th>
                 <th>Stock</th>
-                <th>Customer</th>
-                <th>
-                  <input type="checkbox" />
-                </th>
+                <th>Edit</th>
+                <th>A / P</th>
               </tr>
             </thead>
 
@@ -152,6 +159,9 @@ export default function AdminProducts() {
                       <td>{e.brand}</td>
                       <td>{e.price}</td>
                       <td>{e.stock}</td>
+                      <td>
+                        <FaEdit size={14}/>
+                      </td>
                       <td>
                         <input type="checkbox" />
                       </td>
