@@ -349,8 +349,8 @@ export default function PokemonCreate(){
           <div className={styles.inputs1}>
           <h3>Featured Product *</h3>
           <div className={styles.inputs2}>
-          <select name="featured" className={styles.select} onChange={(e) => handleInputChange(e)}>
-            <option value="" selected disabled>Select</option>
+          <select defaultValue="" name="featured" className={styles.select} onChange={(e) => handleInputChange(e)}>
+            <option value="" disabled>Select</option>
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
@@ -369,8 +369,8 @@ export default function PokemonCreate(){
           <div className={styles.inputs1}>
           <h3>Status *</h3>
           <div className={styles.inputs2}>
-          <select name="paused" className={styles.select} onChange={(e) => handleInputChange(e)}>
-            <option value="" selected disabled>Select</option>
+          <select defaultValue="" name="paused" className={styles.select} onChange={(e) => handleInputChange(e)}>
+            <option value="" disabled>Select</option>
             <option value="true">Inactive</option>
             <option value="false">Active</option>
           </select>
@@ -385,28 +385,20 @@ export default function PokemonCreate(){
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.inputs}>
             {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
-            <select name="SubCategories" className={styles.select}>
-              <option value="" selected disabled>
-                Select Category
-              </option>
-              <option value="" disabled>
-                Mobile Phones
-              </option>
-              <option value="Mobile Phones"> • Mobile Phones</option>
-              <option value="Mobile Phones Accesories"> • Mobile Phones Accesories</option>
-              <option value="" disabled>
-                Computing
-              </option>
-              <option value="Laptop Computers"> • Laptop Computers</option>
-              <option value="Desktop Computers"> • Desktop Computers</option>
-              <option value="Monitors"> • Monitors</option>
-              <option value="Printers"> • Printers</option>
-              <option value="Computing Accesories"> • Computing Accesories</option>
-              <option value="" disabled>
-                Video Games
-              </option>
-              <option value="Consoles"> • Consoles</option>
-              <option value="Consoles Accesories"> • Consoles Accesories</option>
+            <select defaultValue="" name="SubCategories" className={styles.select}>
+              <option value="" disabled>Select Category</option>
+              <option value="" disabled>Mobile Phones</option>
+              <option value="Mobile Phones">• Mobile Phones</option>
+              <option value="Mobile Phones Accesories">• Mobile Phones Accesories</option>
+              <option value="" disabled>Computing</option>
+              <option value="Laptop Computers">• Laptop Computers</option>
+              <option value="Desktop Computers">• Desktop Computers</option>
+              <option value="Monitors">• Monitors</option>
+              <option value="Printers">• Printers</option>
+              <option value="Computing Accesories">• Computing Accesories</option>
+              <option value="" disabled>Gaming</option>
+              <option value="Consoles">• Consoles</option>
+              <option value="Consoles Accesories">• Consoles Accesories</option>
             </select>
             <div className={styles.errors}>
               {errors.categorie && <span>{errors.categorie}</span>}
