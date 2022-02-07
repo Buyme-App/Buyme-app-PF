@@ -35,7 +35,8 @@ export default function AdminHome() {
 
   return (
     <div className={style.main_box}>
-      <h1>Dashboard Home</h1> <br />
+      {/* <h1>Dashboard Home</h1> */}
+      <br />
       <div className={style.main_container}>
         <Aside setPanelActive={setPanelActive} panelActive={panelActive} />
         <section>
