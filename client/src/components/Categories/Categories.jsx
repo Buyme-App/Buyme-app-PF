@@ -49,7 +49,7 @@ export default function Categories (){
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
                 
                 <div className={styles.input}>
-                    <label>Category</label>
+                    <label>Category/Subcategory</label>
                     <input 
                         type="text" 
                         value={input.category}
@@ -59,7 +59,7 @@ export default function Categories (){
                     />
                 </div>
                 <div className={styles.input}>
-                    <label>Subcategory</label>
+                    <label>is Subcategory</label>
                     <input className={styles.checkbox}
                         type="checkbox" 
                         value={input.subcategory}
