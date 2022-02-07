@@ -88,6 +88,9 @@ top:0px;
 .active {
     background-color: var(--color-principal-violet);
     color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 13px -2px #b1b1b1;
+    padding: 10px;
 }
 .btn2:hover {
     background-color: var(--color-light-violet);
