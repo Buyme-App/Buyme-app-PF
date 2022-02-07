@@ -54,7 +54,7 @@
     border-radius: 4px;
     font-family: Arial;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
     padding: 13px;
     height: 43px;
@@ -84,7 +84,8 @@
   
   .table_container table thead tr th {
     background-color: var(--color-principal-violet);
-    font-size: 17px;
+    font-size: 14px;
+    font-weight: normal;
     padding: 10px;
     color: #fff;
     border-width: 0px;
