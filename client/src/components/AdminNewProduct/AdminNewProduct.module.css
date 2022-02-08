@@ -7,15 +7,13 @@
 
 .main {
     margin: 0 auto;
-    /* padding: 40px; */
     width: 70vw;
     height: auto;
-    /* background: #eee; */
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-    /* filter: drop-shadow(0 0 5px #000); */
+    /* background: #eee; */
 }
 
 h1 {
@@ -36,7 +34,6 @@ h1, h3 {
 
 .inputs,
 .inputs2 {
-    position: relative;
     width: 580px;
     
 }
@@ -53,26 +50,24 @@ h1, h3 {
     flex-direction: column;
 }
 
+.inputs img {
+    margin-top: 20px;
+}
+
 .input,
-.inputshort1,
-.inputshort2,
 .select,
 .textarea {
     padding: 0 10px;
-    margin-bottom: 20px;
     margin-top: 10px;
     width: 100%;
     height: 34px;
     color: #495057;
     font-size: 14px;
-    /* transition: all 0.3s ease; */
-    /* outline: none; */
+    outline: none;
     border-style: none;
-    filter: drop-shadow(2px 2px 1px #ddd);
     background-color: rgb(243, 241, 241);
-
     border-radius: 4px;
-    /* border: 2px solid #cbeb40; */
+    box-shadow: 2px 2px 1px #ddd;
     /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
         7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
     /* background: #495057; */
@@ -86,16 +81,25 @@ h1, h3 {
 }
 
 .textarea {
-    padding-top: 5px;
+    padding: 0;
+    width: 580px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.textarea textarea {
+    padding: 10px;
     max-width: 580px;
-    max-height: 200px;
-    height: 200px;
+    min-width: 580px;
+    min-height: 150px;
+    border: none;
+    background-color: transparent;
 }
 
 .ckeditor {
     width: 580px;
     margin: 10px 0 40px 0;
-    filter: drop-shadow(2px 2px 1px #ddd);
+    box-shadow: 2px 2px 1px #ddd;
 }
 
 .ckeditor p {
@@ -154,20 +158,19 @@ h1, h3 {
     cursor: none;
 }
 
-.errors {
-    /* position: absolute; */
-    /* top: 40px; */
-    left: 0px;
+.errorsContainer {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    /* text-align: center; */
+    height: 40px;
+}
+
+.errors {
+    width: 100%;
+    height: 24px;
+    text-align: center;
     line-height: 24px;
     font-size: 12px;
     font-weight: bold;
     color: red;
     margin-bottom: 15px;
-    /* background-color: #fff; */
-    /* border: 1px solid red; */
-    border-radius: 10px;
+    /* background-color: #eee; */
 }
