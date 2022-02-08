@@ -5,7 +5,6 @@ const showErrors = require("../../messageConsole");
 //Recibe el id del pedido y un boolean para actualizar el estado.
 async function updateOrderSendedStatus(id, sended) {
   try {
-    console.log(sended);
     if (typeof sended === "boolean")
       updateItem = await Order.update(
         {
@@ -14,7 +13,6 @@ async function updateOrderSendedStatus(id, sended) {
         { where: { id: parseInt(id) } }
       );
     else return false;
-    console.log(sended);
     if (updateItem > 0) return `sended: ${sended}`;
     return false;
   } catch (error) {
@@ -22,5 +20,5 @@ async function updateOrderSendedStatus(id, sended) {
     return false;
   }
 }
-console.log(true);
+
 module.exports = updateOrderSendedStatus;
