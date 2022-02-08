@@ -98,6 +98,7 @@
     justify-content: center;
     padding: 8px;
     margin-top: 25px;
+    
   }
   .table_container table {
     width: 100%;
@@ -151,4 +152,21 @@
     position: relative;
     top: 1px;
   }
-  
+  .edit{
+    cursor: pointer;
+  }
+  .edit:hover{
+    transform: scale(1.4);
+  }
+  .update_container{
+    background-color: rgba(0, 0, 0, 0.582);
+    width:100%;
+    height: fit-content;
+    position: absolute
+    ; backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    padding: 20px 0px
+
+  }
