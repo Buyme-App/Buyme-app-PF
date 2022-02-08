@@ -13,7 +13,7 @@ router.put('/', async (req, res) => {
     
     const {id, name, password, email, role, token} = req.body;
 
-    if(id && name && password && email && role && token){
+    if(id && name && password && email && role){
 
         try {
             const update = await updateUser(id, name, password, email, role, token);
