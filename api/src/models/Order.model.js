@@ -9,10 +9,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
     },
-    idCustomer: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     adress: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,10 +18,6 @@ module.exports = (sequelize) => {
     },
     trackingNumber: {
       type: DataTypes.STRING,
-    },
-    idInvoice: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
     sended: {
       type: DataTypes.BOOLEAN,
