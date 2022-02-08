@@ -6,18 +6,11 @@ const router = Router();
 //Ruta /createOrder para llamar al controlador que crea una order en la base de datos,
 //para seguimiento del pedido una ves confirmada la compra.
 router.post("/", async (req, res) => {
-  const { idCustomer, adress, transportedBy, trackingNumber, idInvoice } =
-    req.body;
+  const { adress, transportedBy, trackingNumber } = req.body;
 
-  if (idCustomer && adress && transportedBy && trackingNumber && idInvoice) {
+  if (adress && transportedBy && trackingNumber) {
     try {
-      const create = await createOrder(
-        idCustomer,
-        adress,
-        transportedBy,
-        trackingNumber,
-        idInvoice
-      );
+      const create = await createOrder(adress, transportedBy, trackingNumber);
 
       if (create) return res.json({ message: "Order created", data: create });
       else {
@@ -29,7 +22,7 @@ router.post("/", async (req, res) => {
     }
   } else {
     return res.send(
-      "missing point: idCustomer, adress, transportedBy, trackingNumber, idInvoice are required"
+      "missing point:adress, transportedBy, trackingNumber are required"
     );
   }
 });

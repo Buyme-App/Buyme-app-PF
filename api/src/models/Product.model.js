@@ -18,12 +18,14 @@ module.exports = (sequelize) => {
     price: {
       type: DataTypes.DECIMAL(25, 2),
     },
-
     favorite: {
       type: DataTypes.INTEGER,
       defaultValue: 0, //Added
     },
-
+    image: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
     maker: {
       //fabricante
       type: DataTypes.STRING,
@@ -60,8 +62,6 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
   });
-
-  
 };
 
 // Update
