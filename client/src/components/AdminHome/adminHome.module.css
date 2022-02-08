@@ -5,6 +5,7 @@
   align-items: center;
   min-height: 100vh;
   padding: 25px 10px;
+  
   margin-top: 130px;
 
 }
@@ -16,6 +17,8 @@
   width: 96%;
   display: flex;
   padding: 10px 15px;
+  
+ 
 }
 .main_container section{
   display: flex;
@@ -25,4 +28,5 @@
   border-radius: inherit;
   margin-top: -110px;
   margin-left: 270px;
+  position: relative;
 }

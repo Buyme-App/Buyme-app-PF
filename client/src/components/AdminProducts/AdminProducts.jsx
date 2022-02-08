@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { FaSistrix, FaRedo, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
+import UpdateProduct from "../../UpdateProduct/UpdateProduct";
 import sStyle from "./AdminProducts.module.css";
 
 export default function AdminProducts() {
@@ -69,6 +70,8 @@ export default function AdminProducts() {
   const productsOfRedux = useSelector((state) => state.allProducts);
   const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
+  const [toEdit, setToEdit] = React.useState({});
+  const [activeUpdate, setActiveUpdate] = React.useState(false);
 
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
@@ -95,6 +98,12 @@ export default function AdminProducts() {
   const refreshHandler = () => {
     setRender(productsOfRedux);
   };
+  const editHandler = (product) => {
+    console.log("id recibido", product);
+    setActiveUpdate(true);
+    window.scrollTo(0, 0);
+    setToEdit(product);
+  };
 
   useEffect(() => {
     setRender(productsOfRedux);
@@ -104,7 +113,11 @@ export default function AdminProducts() {
     <div>
       <div className={sStyle.sales_container}>
         {/* <h1 className={sStyle.title}>Products</h1> */}
-
+        {activeUpdate && (
+          <div className={sStyle.update_container}>
+            <UpdateProduct setActiveUpdate={setActiveUpdate} toEdit={toEdit} />
+          </div>
+        )}
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
@@ -158,7 +171,7 @@ export default function AdminProducts() {
 
             <tbody>
               {render.length
-                ? render.map((e, id) => (
+                ? render.map((e, index) => (
                     <tr key={e.id}>
                       <td>{e.createdAt.substring(0, 10)}</td>
 
@@ -167,7 +180,11 @@ export default function AdminProducts() {
                       <td>{e.price}</td>
                       <td>{e.stock}</td>
                       <td>
-                        <FaEdit size={14} />
+                        <FaEdit
+                          size={14}
+                          className={sStyle.edit}
+                          onClick={() => editHandler(e)}
+                        />
                       </td>
                       <td>
                         <input type="checkbox" />
