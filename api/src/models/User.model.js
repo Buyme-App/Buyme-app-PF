@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         },
         token: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     });
 };
