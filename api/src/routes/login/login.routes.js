@@ -4,14 +4,20 @@ const { Router } = require("express");
 const router = Router();
 const showErrors = require("../../messageConsole");
 const loginController = require("../../controllers/login/login.routes.controller");
+const {createToken} = require('../../token/auth.token')
 
 router.post("/", async (req, res) => {
   try {
     const { userEmail, userPassword } = req.body;
 
     const adminData = await loginController(userEmail, userPassword);
-    if (adminData !== 200) return res.status(404).send("Wrong User's Data");
-    else return res.status(200).send("Access Granted");
+    if (adminData === 404 || adminData === false) return res.status(404).send("Wrong User's Data");
+   
+    const token = createToken(adminData);
+    // return res.status(200).json({token: token});
+    return res.status(200).json({login: true, token: token})
+    
+
   } catch (error) {
     showErrors("/login", error);
     res.status(404);

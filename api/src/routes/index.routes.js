@@ -1,4 +1,5 @@
 const express = require('express');
+const {verifyUser, roleAdmin, roleSuperv} = require('../middlewares/authJwt.authorization');
 
 const home = require('./home.routes'); //
 const login = require('./login/login.routes'); //
@@ -39,6 +40,29 @@ const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
 const getPaginatedProducts = require("./product/getPaginatedProducts.routes");
 const categories = require('./category/getCategoryAll.routes');
 
+
+// *****************************************Customer****************************
+
+
+
+const createOrder = require("./order/createOrder.routes");
+const getAllOrders = require("./order/getAllOrders.routes");
+const getOrderDetail = require("./order/getOrderDetail.routes");
+const updateOrderSendedStatus = require("./order/updateOrderSendedStatus.routes");
+const updateOrderDeliveredStatus = require("./order/updateOrderDeliveredStatus.routes");
+const updateOrderCancelledStatus = require("./order/updateOrderCancelledStatus.routes");
+
+const createCustomer=require('./customer/createCustomer.route');  //agregar
+const deleteCustomer=require('./customer/deleteCustomer.route');  
+const getCustomer= require('./customer/getCustomer.route'); 
+const modifyCustomer = require('./customer/modifyCustomer.route'); 
+const toggleFav = require('./customer/toggleCustomerFav.route'); 
+
+
+
+
+
+
 const routes = (server) => {
     server.use('/', home);
     server.use('/getAllUsers', routerGetAllUsers);
@@ -73,6 +97,27 @@ const routes = (server) => {
     server.use('/categories', categories);
 
     server.use('/featured', getAllFeatured);
+
+
+
+    // *****************************************Customer****************************
+
+
+    server.use("/createOrder", createOrder);
+    server.use("/getAllOrders", getAllOrders);
+    server.use("/getOrderDetail", getOrderDetail);
+    server.use("/updateOrderSendedStatus", updateOrderSendedStatus);
+    server.use("/updateOrderDeliveredStatus", updateOrderDeliveredStatus);
+    server.use("/updateOrderCancelledStatus", updateOrderCancelledStatus);
+
+
+    server.use('/createCustomer', createCustomer);   //Crear Cliente interno 
+    server.use('/deleteCustomer', deleteCustomer); //borra datos de clientes;
+    server.use('/getCustomer', getCustomer); //Toma Datos de clientes;
+    server.use('/modifyCustomer', modifyCustomer); //Modifica Datos de clientes;
+    server.use('/toggleFav', toggleFav); //Saca o agrega un prod al favorito del cliente
+
+
 }
 
 module.exports = routes; // Update
