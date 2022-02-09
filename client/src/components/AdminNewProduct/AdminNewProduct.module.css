@@ -1,3 +1,5 @@
+/* AdminNewProduct.module */
+
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +27,6 @@ h3 {
     color:var(--color-principal-violet);
     font-weight: normal;
     font-size: 16px;
-    
 }
 
 h1, h3 {
@@ -35,7 +36,7 @@ h1, h3 {
 .inputs,
 .inputs2 {
     width: 580px;
-    
+    /* background-color: #000; */
 }
 
 .inputs1 {
@@ -84,7 +85,7 @@ h1, h3 {
     padding: 0;
     width: 580px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .textarea textarea {
@@ -131,7 +132,7 @@ h1, h3 {
 
 .create {
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 260px;
     height: 50px;
     color: #fff;
@@ -163,6 +164,10 @@ h1, h3 {
     height: 40px;
 }
 
+.imgdata {
+    width: 100%;
+}
+
 .errors {
     width: 100%;
     height: 24px;
@@ -173,4 +178,10 @@ h1, h3 {
     color: red;
     margin-bottom: 15px;
     /* background-color: #eee; */
+}
+
+.hidden {
+    width: 100%;
+    height: 20px;
+    /* visibility: hidden; */
 }
