@@ -9,6 +9,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
     products: {
       type: DataTypes.JSON,
       allowNull: false,
