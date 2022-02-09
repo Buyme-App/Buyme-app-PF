@@ -14,10 +14,7 @@ export default function AddCategories (props){
         name: "",
         category: ""
     });
-    
-    // const allCategories = useSelector((state) => state.allCategories);
-    // const idCats = allCategories.map(el => el.id)
-    // console.log(idCats);
+ 
     function handleChange(e) {
         setInput({
         ...input, //ademas de lo que tiene
@@ -38,17 +35,13 @@ export default function AddCategories (props){
             name: "",
             category: ""
         });
+        dispatch(getAllCategories());
         props.setTrigger(false);
     };
 
     console.log(input);
     function handleCheck(e){
         if (e.target.checked) {
-            // setInput({
-            //     ...input,
-            //     id: e.target.value
-                
-            // })
             setCheckSubcat(true);
         } else {
             setCheckSubcat(false);

@@ -18,10 +18,12 @@ export default function Categories(){
 
     function handleDeleteCat(id){
        dispatch(deleteCategory(id));
+       dispatch(getAllCategories());
     };
 
     function handleDeleteSubcat(id){
         dispatch(deleteSubcategory(id));
+        dispatch(getAllCategories());
      };
 
     console.log(allCategories);
