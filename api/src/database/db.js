@@ -45,7 +45,7 @@ Order.belongsTo(Invoice);  //Clave externa definida en Order
 Invoice.hasOne(Order);     //Clave externa definida en Order
 
 Product.belongsTo(SubCategory, { through: "product_subCategory" });
-Product.belongsTo(Category, { through: "product_Category" });q
+Product.belongsTo(Category, { through: "product_Category" });
 SubCategory.belongsToMany(Product, { through: "product_subCategory" });
 
 module.exports = {
