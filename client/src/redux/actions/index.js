@@ -129,3 +129,17 @@ export function createSubcategory(payload){
       return json;
   }
 };
+
+export function deleteCategory(id){
+  return async function () {
+      let json = await axios.delete('http://localhost:3001/delCat/' + id);
+      return json;
+  }
+};
+
+export function deleteSubcategory(id){
+  return async function () {
+      let json = await axios.delete('http://localhost:3001/delSubCat/' + id);
+      return json;
+  }
+};

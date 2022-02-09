@@ -66,6 +66,14 @@ export default function rootReducer(state = initialState, action) {
       return {
           ...state
       };
+    case 'DELETE_CATEGORY':
+      return {
+          ...state
+      };
+    case 'DELETE_SUBCATEGORY':
+      return {
+          ...state
+      };
     default:
         return state;
   }
