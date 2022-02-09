@@ -7,6 +7,7 @@ import iconCus from "../../assets/IconoClientes.png";
 import iconNP from "../../assets/IconoCrearProducto.png";
 import iconQue from "../../assets/IconoConsultas.png";
 import iconSale from "../../assets/IconoVentas.png";
+import Logo from "../../assets/logosmartech2.png"
 
 import iconAcc from "../../assets/IconoAccount.png";
 import iconLog from "../../assets/IconoLogOut.png";
@@ -32,6 +33,9 @@ export default function Aside({ setPanelActive, panelActive }) {
     <div className={styles.box}>
       {activateConfirm && <Confirm setActivateConfirm={setActivateConfirm} />}
       <ul>
+        <li>
+          <img className={styles.logo} src={Logo} alt="img"/>
+        </li>
         <li>
           <button
             className={`${styles.btn} ${panelActive.home && styles.active}`}

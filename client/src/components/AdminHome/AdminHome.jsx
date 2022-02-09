@@ -31,10 +31,10 @@ export default function AdminHome() {
 
   // Comentar para no loguearte
 
-  React.useEffect(() => {
-    !globalState.login && navigate("/admin");
-    dispatch(getAllProducts());
-  }, []);
+  // React.useEffect(() => {
+  //   !globalState.login && navigate("/admin");
+  //   dispatch(getAllProducts());
+  // }, []);
 
   return (
     <div className={style.main_box}>
