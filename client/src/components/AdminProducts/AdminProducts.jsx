@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
 import UpdateProduct from "../../UpdateProduct/UpdateProduct";
 import sStyle from "./AdminProducts.module.css";
+import Error from "../Login/ErrorPopUp/Error";
 
 export default function AdminProducts() {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ export default function AdminProducts() {
   const [search, setSearch] = React.useState("");
   const [toEdit, setToEdit] = React.useState({});
   const [activeUpdate, setActiveUpdate] = React.useState(false);
-
+  const modal = useSelector((state) => state.error);
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
@@ -115,9 +116,14 @@ export default function AdminProducts() {
         {/* <h1 className={sStyle.title}>Products</h1> */}
         {activeUpdate && (
           <div className={sStyle.update_container}>
-            <UpdateProduct setActiveUpdate={setActiveUpdate} toEdit={toEdit} />
+            <UpdateProduct
+              setActiveUpdate={setActiveUpdate}
+              toEdit={toEdit}
+              setRender={setRender}
+            />
           </div>
         )}
+        {modal === true && <Error msg="Product updated succsesfully!" />}
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input

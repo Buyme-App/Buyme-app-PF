@@ -90,7 +90,7 @@ export default function Queries() {
             <tbody>
               {ejemplo.length
                 ? ejemplo.map((e, idx) => (
-                    <tr key={e.order}>
+                    <tr key={idx}>
                       <td>
                         <div className={styles.reviewer_box}>
                           <select
