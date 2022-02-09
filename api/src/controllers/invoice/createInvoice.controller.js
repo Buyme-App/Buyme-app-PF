@@ -5,7 +5,7 @@ const showErrors = require("../../messageConsole");
 // ej.: [{id:1, quantity:2},{id:2, quantity:3}]
 //busca los articulos en la DB y genera la factura con los datos de los mismos.
 //se usa para los productos JSON.stringify(), se recomienda para el front JSON.parse()
-async function createInvoice(products) {
+async function createInvoice(clientId, products) {                     //Agrego clientId a parametros 
   try {
     //mapea y busca los productos en la DB
     const searchProducts = products.map(
@@ -48,6 +48,8 @@ async function createInvoice(products) {
     const createInvoice = await Invoice.create({
       products,
       total,
+      date: new Date().toISOString(),          //Agrego date para la fecha de creacion de la factura  
+      clientId                                //Agrego client Id para que relaciones con la tabla clients
     });
     return createInvoice;
   } catch (error) {

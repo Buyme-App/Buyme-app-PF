@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const showErrors = require("../../messageConsole");
 const router = Router();
-const updateOrderDeliveredStatus = require("../../controllers/Order/updateOrderDeliveredStatus.controller");
+const updateOrderDeliveredStatus = require("../../controllers/order/updateOrderDeliveredStatus.controller");
 
 //Función para llamar al controlador que actualiza el estado de un pedido.
 //en cuanto a si se recibió o no.

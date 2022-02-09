@@ -24,13 +24,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, SubCategory, Product, Admin, User } = sequelize.models;
+const { Category, SubCategory, Product, Admin, User, Client, Invoice } = sequelize.models;
 
 // Aca vendrian las relaciones
 
 //asociacion de uno a muchos--> Category a SubCategory s
 Category.hasMany(SubCategory);     //clave externa definida en SubCategory
 SubCategory.belongsTo(Category);   //clave externa definida en SubCategory
+
+//asociacion de uno a muchos ----> Client a Invoice s
+Client.hasMany(Invoice);  //Clave externa definida en Invoice 
+Invoice.belongsTo(Client); //Clave externa definida en Invoice
 
 
 
