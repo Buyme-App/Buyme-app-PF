@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
    
     const token = createToken(adminData);
     // return res.status(200).json({token: token});
-    return res.status(200).json({login: true, token: token})
+    return res.status(200).json({login: true, data: token})
     
 
   } catch (error) {
