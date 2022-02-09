@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       defaultValue: 0, //Added
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     maker: {
