@@ -9,6 +9,7 @@ export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const POST_USERS = "POST_USERS";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -67,6 +68,17 @@ export function createProduct(payload) {
     return response;
   };
 }
+export const updateProduct = async (dispatch, product) => {
+  try {
+    let response = await axios.put("/updateProduct", product);
+    console.log("respuesta de update", response);
+    return dispatch({
+      type: UPDATE_PRODUCT,
+    });
+  } catch (err) {
+    console.log("error en updateProduct", err);
+  }
+};
 
 export function postUser(payload) {
   return async function () {

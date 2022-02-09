@@ -4,6 +4,7 @@ import {
   ERROR_MODAL,
   GET_ALL_USERS,
   POST_USERS,
+  UPDATE_PRODUCT,
 } from "../actions/index";
 
 const initialState = {
@@ -49,6 +50,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: [...state.allUsers, action.payload],
+      };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
       };
     default:
       return state;

@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./updateProduct.module.css";
 import Uploader from "../components/AdminNewProduct/Uploader";
-import Editor from "../components/AdminNewProduct/CKEditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { errorModal, getAllProducts, updateProduct } from "../redux/actions";
 
 function validate(input) {
   let errors = {};
@@ -68,10 +68,6 @@ function validate(input) {
     errors.featured = "Featured is required";
   }
 
-  if (!input.paused) {
-    errors.paused = "Status is required";
-  }
-
   if (input.stock.length > 0 && input.stock < 0) {
     errors.stock = "Positive numbers only";
   }
@@ -95,10 +91,10 @@ function validate(input) {
   return errors;
 }
 
-export default function UpdateProduct({ setActiveUpdate, toEdit }) {
+export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
   const dispatch = useDispatch();
   const allProductsRedux = useSelector((state) => state.allProducts);
-  // const allCategories = useSelector((state) => state.allcategories);
+
   const custom_config = {
     // extraPlugins: [ MyCustomUploadAdapterPlugin ],
     toolbar: {
@@ -131,6 +127,7 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: toEdit.name,
+    id: toEdit.id,
     maker: toEdit.maker,
     model: toEdit.model,
     SKU: toEdit.SKU,
@@ -143,8 +140,6 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
     status: toEdit.paused,
     subCategorie: toEdit.subCategorie,
   });
-  let description = CKEditor.contextType;
-  console.log("CKeditorrr", description);
   function handleInputChange(e) {
     setInput({
       ...input,
@@ -160,17 +155,14 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // const errors = validate(input);
-    // if (allPokemons.find((p) =>p.name.toLowerCase() === input.name.toLowerCase().trim())) {
+
     if (
       allProductsRedux.find(
         (p) => p.name.toLowerCase() === input.name.toLowerCase()
       )
     ) {
-      alert("Name already exists! Please choose a different name.");
-      // setInput({
-      //     name: '',
-      //   });
+      alert("Name already exists! Please choose a different name");
+
       setErrors(
         validate({
           ...input,
@@ -179,8 +171,11 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
       );
       // history('/home');
     } else if (!Object.keys(errors).length) {
-      //   dispatch(createProduct(input));
-      alert("Product created succssesfully!!");
+      updateProduct(dispatch, input);
+
+      errorModal(dispatch, true);
+
+      setActiveUpdate(false);
       setInput({
         name: "",
         maker: "",
@@ -195,6 +190,7 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
         paused: "",
         images: "",
       });
+
       //   history("/admin/home");
     } else {
       alert("Please review the form!");
@@ -210,11 +206,12 @@ export default function UpdateProduct({ setActiveUpdate, toEdit }) {
 
   return (
     <div className={styles.main}>
-      <form className={styles.uForm}>
+      <form className={styles.uForm} onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.close} onClick={() => setActiveUpdate(false)}>
           {" "}
           <span>X</span>
         </div>
+
         <h3>Product Names *</h3>
         <div className={styles.inputs}>
           <input
