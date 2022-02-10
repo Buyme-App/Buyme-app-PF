@@ -19,7 +19,7 @@ export default function Account (){
         dispatch(getAllUsers());
     },[dispatch]);
 
-    console.log(allUsers);
+    //console.log(allUsers);
     return (
         <div className={styles.page}>
             {/* <h2>My Account</h2> */}
