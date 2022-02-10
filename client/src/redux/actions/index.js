@@ -86,11 +86,16 @@ export const updateProduct = async (dispatch, product) => {
 
 export function postUser(payload) {
   return async function () {
-    let json = await axios.post("http://localhost:3001/createUser", payload, sendKey());
-    return {
-      type: POST_USERS,
-      payload: json.data,
-    };
+    try {
+      let json = await axios.post("http://localhost:3001/createUser", payload, sendKey());
+      alert('User created successfully!');
+      return {
+        type: POST_USERS,
+        payload: json.data,
+      };
+    } catch (err){
+      console.log('Error creando usuario', err)
+    }    
   };
 }
 
