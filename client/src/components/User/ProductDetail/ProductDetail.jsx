@@ -36,6 +36,8 @@ export default function ProductDetail(props){
       <div>
         <Header />
         <div className={styles.main}>
+        {product.length > 0 ?
+          <div className={styles.detail}>
           <div className={styles.card}>
             <div className={styles.images}>
               <div className={styles.thumbs}>
@@ -48,10 +50,10 @@ export default function ProductDetail(props){
               </div>
             </div>
             <div className={styles.info}>
-                <div className={styles.name}>{product[1].name}</div>
+                <div className={styles.name}>{product[0].name}</div>
                 <div>
-                  <div className={styles.price}>$ {product[1].price}
-                    <span className={styles.favourite}>{product[1].favorite}</span>
+                  <div className={styles.price}>$ {product[0].price}
+                    <span className={styles.favourite}>{product[0].favorite}</span>
                   </div>
                 </div>
                 <div>
@@ -61,7 +63,7 @@ export default function ProductDetail(props){
                   </div>
                   <div className={styles.stock}>
                     <div className={styles.title}>Stock</div>
-                    <div className={styles.data}>{product[1].stock}</div>
+                    <div className={styles.data}>{product[0].stock}</div>
                   </div>
               </div>
               <button className={styles.addtocart} type='submit' >ADD TO CART</button>
@@ -70,27 +72,37 @@ export default function ProductDetail(props){
           <div className={styles.specs}>
             <div className={styles.description}>
               <div className={styles.title}>Description</div>
-              <span>{product[1].description}</span>
-              {/* <div className={styles.text}></div> */}
+              <span>{product[0].description}</span>
             </div>
             <div className={styles.productinfo}>
               <div className={styles.title}>Product Information</div>
               <div className={styles.data}>
                 <div className={styles.each}>
-                  <span>Brand:</span>{product[1].maker}
+                  <div className={styles.title}>Brand:</div>
+                  <div className={styles.info}>{product[0].maker}</div>
                 </div>
                 <div className={styles.each}>
-                  <span>Model:</span>{product[1].model}
+                  <div className={styles.title}>Model:</div>
+                  <div className={styles.info}>{product[0].model}</div>
                 </div>
                 <div className={styles.each}>
-                  <span>Category:</span>{product[1].subcategory}
+                  <div className={styles.title}>Category:</div>
+                  <div className={styles.info}>{product[0].subcategory}</div>
                 </div>
                 <div className={styles.each}>
-                  <span>SKU:</span>{product[1].SKU}
+                  <div className={styles.title}>SKU:</div>
+                  <div className={styles.info}>{product[0].SKU}</div>
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </div> :
+          product === 404?
+          // <NotFound /> :
+          <h1>Not Found</h1> :
+          // <Loading2 />
+          <h1>Loading</h1>
+          }
         </div>
         <Footer />
       </div>
