@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styles from './AddUser.module.css';
 import validator from "../../functions/validator";
 import { postUser } from "../../../redux/actions";
 
 export default function AddUser (props){
-    // const navigate = useNavigate();
+    //const navigate = useNavigate();
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
 
@@ -29,7 +29,7 @@ export default function AddUser (props){
         e.preventDefault();
         // console.log(input);
         dispatch(postUser(input));
-        alert('User created successfully!');
+        // alert('User created successfully!');
         setInput({
             name: "",
             role: "",
@@ -76,15 +76,24 @@ export default function AddUser (props){
                     />
                     
                 </div>
-                <div className={styles.input}>
+                <div className={styles.input} placeholder="Enter role"
+                        onChange={(e) => {handleChange(e)}}>
                     <label>Role:</label>
+                    <select name="role" id="role">
+                        <option value="Administrator">Administrator</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Client">Client</option>
+                        <option value="Seller">Seller</option>
+                    </select>
+
+                    {/* <label>Role:</label>
                     <input 
                         type="text" 
                         value={input.role}
                         name="role"
                         placeholder="Enter role"
                         onChange={(e) => {handleChange(e)}}
-                    />
+                    /> */}
                     
                 </div>
                 <div className={styles.input}>
