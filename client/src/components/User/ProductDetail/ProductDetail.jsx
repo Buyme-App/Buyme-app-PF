@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+// import { Link, useParams } from 'react-router-dom';
 import { getAllProducts } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductDetail.module.css';
@@ -17,6 +17,7 @@ import image4 from '../../../assets/macbookpro4.jpg';
 export default function ProductDetail(props){
     const dispatch = useDispatch()
     const product = useSelector(state => state.allProducts)
+    // const product = useSelector((state) => state.detail);
 
     useEffect(() => {
         dispatch(getAllProducts());
@@ -30,8 +31,6 @@ export default function ProductDetail(props){
     //     dispatch(getDetail(id));
     //     return () => dispatch(clearDetail()); // LIMPIO EL ESTADO DEL DETAIL
     // },[dispatch, id])
-
-    // const myPokemon = useSelector((state) => state.detail);
 
     return (
       <div>
@@ -80,9 +79,15 @@ export default function ProductDetail(props){
                 <div className={styles.each}>
                   <span>Brand:</span>{product[1].maker}
                 </div>
-                <div className={styles.each}>asdads</div>
-                <div className={styles.each}>asdads</div>
-                <div className={styles.each}>asdads</div>
+                <div className={styles.each}>
+                  <span>Model:</span>{product[1].model}
+                </div>
+                <div className={styles.each}>
+                  <span>Category:</span>{product[1].subcategory}
+                </div>
+                <div className={styles.each}>
+                  <span>SKU:</span>{product[1].SKU}
+                </div>
               </div>
             </div>
           </div>
