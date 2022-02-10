@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 //del producto y devuelve el o los registros que matcheen
 async function getProductDetail(idProduct, nameProduct) {
   try {
-    if (idProduct) {
+    if (idProduct > 0) {
       const result = await Product.findAll({
         where: { id: idProduct },
         include: [
@@ -22,7 +22,7 @@ async function getProductDetail(idProduct, nameProduct) {
       });
       if (result.length > 0) return result;
       else return 404;
-    } else if (nameProduct) {
+    } else if (nameProduct !== undefined) {
       const result = await Product.findAll({
         where: {
           name: {
@@ -42,8 +42,7 @@ async function getProductDetail(idProduct, nameProduct) {
       });
       if (result.length > 0) return result;
       else return 404;
-    }
-    return 400;
+    } else return 400;
   } catch (e) {
     showErrors("getProductDetail", e);
     return 404;
