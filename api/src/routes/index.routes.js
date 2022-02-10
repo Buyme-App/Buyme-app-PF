@@ -65,7 +65,7 @@ const toggleFav = require('./customer/toggleCustomerFav.route');
 
 const routes = (server) => {
     server.use('/', home);
-    server.use('/getAllUsers', [verifyUser, roleSuperv], routerGetAllUsers);
+    server.use('/getAllUsers', [ verifyUser, roleSuperv], routerGetAllUsers);
     server.use('/login', login);
     server.use('/productDetail',[verifyUser, roleSuperv], routerGetProductDetail );
     server.use('/createProduct',[verifyUser, roleSuperv], routerCreatePro);
