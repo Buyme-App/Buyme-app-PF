@@ -1,4 +1,7 @@
 import axios from "axios";
+// middlewares validacion token
+
+import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
 
 // export const ACTION = "ACTION";
 // estos son ejemplos
@@ -23,6 +26,7 @@ export const login = async (dispatch, email, password) => {
       type: LOGIN,
       payload: true,
     });
+    const roleUser = verifyTokenRole(credential) // Retona el rol del usuario administrativo
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -50,7 +54,7 @@ export const errorModal = (dispatch, payload) => {
 
 export function getAllProducts() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/getAllProducts");
+    var json = await axios.get("http://localhost:3001/getAllProducts", sendKey());
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: json.data,
@@ -62,7 +66,7 @@ export function createProduct(payload) {
   return async function (dispatch) {
     var response = await axios.post(
       "http://localhost:3001/createProduct",
-      payload
+      payload, sendKey()
     );
     // console.log(response);
     return response;
@@ -83,7 +87,7 @@ export const updateProduct = async (dispatch, product) => {
 export function postUser(payload) {
   return async function () {
     try {
-      let json = await axios.post("http://localhost:3001/createUser", payload);
+      let json = await axios.post("http://localhost:3001/createUser", payload, sendKey());
       alert('User created successfully!');
       return {
         type: POST_USERS,
@@ -97,7 +101,7 @@ export function postUser(payload) {
 
 export function getAllUsers(payload) {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getAllUsers");
+    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
     return dispatch({
       type: GET_ALL_USERS,
       payload: json.data,

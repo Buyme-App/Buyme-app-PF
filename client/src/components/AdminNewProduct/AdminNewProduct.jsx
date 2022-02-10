@@ -1,3 +1,5 @@
+// AdminNewProduct.jsx
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState , useEffect } from 'react';
@@ -443,8 +445,7 @@ export default function AdminNewProduct(){
           <div className={styles.textarea}>
             <textarea
             value={input.description}
-            name=''
-            disabled
+            name='description'
             onChange={(e) => handleInputChange(e)}>
             </textarea>
           </div>
@@ -455,17 +456,26 @@ export default function AdminNewProduct(){
           <div className={styles.inputs}>
             <input
               type='file'
+              accept='.jpg, .jpeg, .png, .gif, .pdf'
               className={styles.input}
               onChange={(e) => {uploadImage(e)}}
             />
-            <input
-              type='text'
-              value={baseImage}
-              name= 'description'
-              className={styles.input}
-              onChange={(e) => handleInputChange(e)}
-            />
-            <img src={baseImage} width="200px" />
+            <div className={styles.imgdata}>
+              {/* <input
+                type='text'
+                value={baseImage}
+                name= 'image'
+                className={styles.input}
+                onBlur={(e) => handleInputChange(e)}
+              /> */}
+              <textarea
+                value={baseImage}
+                name='image'
+                className={styles.hidden}
+                onChange={(e) => handleInputChange(e)}>
+              </textarea>
+            </div>
+            <img src={baseImage} width="150px" />
           </div>
           {/* <div className={styles.uploader}>
             <Uploader />

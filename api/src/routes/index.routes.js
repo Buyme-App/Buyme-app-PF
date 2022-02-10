@@ -1,4 +1,5 @@
 const express = require('express');
+const {verifyUser, roleAdmin, roleSuperv} = require('../middlewares/authJwt.authorization');
 
 const home = require('./home.routes'); //
 const login = require('./login/login.routes'); //
@@ -39,40 +40,84 @@ const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
 const getPaginatedProducts = require("./product/getPaginatedProducts.routes");
 const categories = require('./category/getCategoryAll.routes');
 
+
+// *****************************************Customer****************************
+
+
+
+const createOrder = require("./order/createOrder.routes");
+const getAllOrders = require("./order/getAllOrders.routes");
+const getOrderDetail = require("./order/getOrderDetail.routes");
+const updateOrderSendedStatus = require("./order/updateOrderSendedStatus.routes");
+const updateOrderDeliveredStatus = require("./order/updateOrderDeliveredStatus.routes");
+const updateOrderCancelledStatus = require("./order/updateOrderCancelledStatus.routes");
+
+const createCustomer=require('./customer/createCustomer.route');  //agregar
+const deleteCustomer=require('./customer/deleteCustomer.route');  
+const getCustomer= require('./customer/getCustomer.route'); 
+const modifyCustomer = require('./customer/modifyCustomer.route'); 
+const toggleFav = require('./customer/toggleCustomerFav.route'); 
+
+
+
+
+
+
 const routes = (server) => {
     server.use('/', home);
-    server.use('/getAllUsers', routerGetAllUsers);
+    server.use('/getAllUsers', [verifyUser, roleSuperv], routerGetAllUsers);
     server.use('/login', login);
-    server.use('/productDetail', routerGetProductDetail );
-    server.use('/createProduct', routerCreatePro);
-    server.use('/updateProduct', routerUpdatePro);
-    server.use('/deleteProduct', routerDeletePro);
-    server.use('/getAllProducts',routerGetProducts);
+    server.use('/productDetail',[verifyUser, roleSuperv], routerGetProductDetail );
+    server.use('/createProduct',[verifyUser, roleSuperv], routerCreatePro);
+    server.use('/updateProduct',[verifyUser, roleSuperv], routerUpdatePro);
+    server.use('/deleteProduct',[verifyUser, roleSuperv], routerDeletePro);
+    server.use('/getAllProducts',[verifyUser, roleSuperv], routerGetProducts);
 
-    server.use('/createInvoice',createInvoice);
+    server.use('/createInvoice',[verifyUser, roleAdmin], createInvoice);
 
-    server.use('/createCat', postCreateCategory);   //ok
-    server.use('/getCat', getCategory);  //ok
-    server.use('/delCat', deleteCategory); //ok
-    server.use('/modCat', modifyCategory); //ok
+    server.use('/createCat',[verifyUser, roleSuperv], postCreateCategory);   //ok
+    server.use('/getCat',[verifyUser, roleSuperv], getCategory);  //ok
+    server.use('/delCat',[verifyUser, roleSuperv], deleteCategory); //ok
+    server.use('/modCat',[verifyUser, roleSuperv], modifyCategory); //ok
 
-    server.use('/createSubCat', postCreateSubCategory ); //ok
-    server.use('/getSubCat', getSubcategory); //ok
-    server.use('/delSubCat', deleteSubCategory); //ok
-    server.use('/modSubCat', modifySubCategory); //ok
+    server.use('/createSubCat',[verifyUser, roleSuperv], postCreateSubCategory ); //ok
+    server.use('/getSubCat',[verifyUser, roleSuperv], getSubcategory); //ok
+    server.use('/delSubCat',[verifyUser, roleSuperv], deleteSubCategory); //ok
+    server.use('/modSubCat',[verifyUser, roleSuperv], modifySubCategory); //ok
 
     server.use('/createUser', routerCreateUser);
-    server.use('/getUser', routerGetOneUser);
-    server.use('/updateUser', routerUpdateUser);
-    server.use('/deleteUser', routerDeleteUser);
+    server.use('/getUser',[verifyUser, roleAdmin], routerGetOneUser);
+    server.use('/updateUser',[verifyUser, roleAdmin], routerUpdateUser);
+    server.use('/deleteUser',[verifyUser, roleAdmin], routerDeleteUser);
 
     server.use('/hash', hashPassword);
-    server.use("/getAllInvoices", getAllInvoices);
-    server.use("/getInvoiceDetail", getInvoiceDetail);
-    server.use("/paginatedProducts", getInvoiceDetail);
-    server.use('/categories', categories);
+    server.use("/getAllInvoices",[verifyUser, roleAdmin], getAllInvoices);
+    server.use("/getInvoiceDetail",[verifyUser, roleAdmin], getInvoiceDetail);
+    server.use("/paginatedProducts",[verifyUser, roleAdmin], getInvoiceDetail);
+    server.use('/categories',[verifyUser, roleSuperv], categories);
 
-    server.use('/featured', getAllFeatured);
+    server.use('/featured',[verifyUser, roleAdmin], getAllFeatured);
+
+
+
+    // *****************************************Customer****************************
+
+
+    server.use("/createOrder", createOrder);
+    server.use("/getAllOrders", getAllOrders);
+    server.use("/getOrderDetail", getOrderDetail);
+    server.use("/updateOrderSendedStatus", updateOrderSendedStatus);
+    server.use("/updateOrderDeliveredStatus", updateOrderDeliveredStatus);
+    server.use("/updateOrderCancelledStatus", updateOrderCancelledStatus);
+
+
+    server.use('/createCustomer', createCustomer);   //Crear Cliente interno 
+    server.use('/deleteCustomer', deleteCustomer); //borra datos de clientes;
+    server.use('/getCustomer', getCustomer); //Toma Datos de clientes;
+    server.use('/modifyCustomer', modifyCustomer); //Modifica Datos de clientes;
+    server.use('/toggleFav', toggleFav); //Saca o agrega un prod al favorito del cliente
+
+
 }
 
 module.exports = routes; // Update
