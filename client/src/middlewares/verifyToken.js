@@ -15,8 +15,9 @@ export function verifyTokenRole(param){
 
 
 // envia el header con el toquen 
+
 export function sendKey(){
-    
+    // header que se envia al backend
     const headers = { headers: {
         'Content-Type': 'application/json',
         'Authorization': `${token}`
