@@ -87,6 +87,7 @@ export const updateProduct = async (dispatch, product) => {
 export function postUser(payload) {
   return async function () {
     try {
+      // console.log('CREate', payload)
       let json = await axios.post("http://localhost:3001/createUser", payload, sendKey());
       alert('User created successfully!');
       return {
@@ -102,6 +103,7 @@ export function postUser(payload) {
 export function getAllUsers(payload) {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    // console.log('>>>>>>>>>>>>>',json)
     return dispatch({
       type: GET_ALL_USERS,
       payload: json.data,
