@@ -2,13 +2,14 @@ import React from "react";
 import styles from './AddCategories.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import SelectCategories from "./SelectAddCategories";
 import { createCategory, createSubcategory, getAllCategories } from "../../redux/actions";
 
 export default function AddCategories (props){
 
     const dispatch = useDispatch();
-    const [checkSubcat, setCheckSubcat] = useState(false);
+    const [disableSelect, setDisableSelect] = useState(true);
+    const categories = useSelector((state) => state.allCategories);
+    const nameCategories = categories.map(el => el.name);
 
     const [input, setInput] = useState({
         name: "",
@@ -24,7 +25,16 @@ export default function AddCategories (props){
     
     function handleSubmit(e) {
         e.preventDefault();
-        if (e.target.checked) {
+        if (input.name.length === 0) return props.setTrigger(false); //para que no cree una categoria vacia
+        if (nameCategories.includes(input.name)) {
+            alert('Category already exist');
+            props.setTrigger(false);
+            return setInput({
+                name: "",
+                category: ""
+            });
+        } // para que no cree una categoria existente
+        if (input.category) {
             dispatch(createSubcategory(input));
             alert('Subcategory created successfully!');
         } else {
@@ -42,9 +52,9 @@ export default function AddCategories (props){
     console.log(input);
     function handleCheck(e){
         if (e.target.checked) {
-            setCheckSubcat(true);
+            setDisableSelect(false);
         } else {
-            setCheckSubcat(false);
+            setDisableSelect(true);
         }
     };
 
@@ -83,22 +93,15 @@ export default function AddCategories (props){
                         onClick={(e) => handleCheck(e)}
                     />
                 </div>
-                <SelectCategories
-                    trigger={checkSubcat} 
-                    setTrigger={setCheckSubcat}
-                    name='category'
-                    value={input.category}
-                    onChange={(e) => {handleSelect(e)}}
-                    >
-                </SelectCategories>
-                {/* <select className={styles.select} onChange={(e) => {handleSelect(e)}}>
-                {allCategories?.map(el => {
+            
+                <select className={styles.select} disabled={disableSelect} onChange={(e) => {handleSelect(e)}}>
+                {categories?.map(el => {
                     return(
                         <option value={el.id} key={el.id}>{el.name}</option>
                     )
                 })
                 }
-            </select> */}
+                </select>
                 <button className={styles.btn} type="submit">
                     Submit
                 </button>
