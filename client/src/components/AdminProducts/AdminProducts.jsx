@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { FaSistrix, FaRedo, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
-import UpdateProduct from "../../UpdateProduct/UpdateProduct";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import sStyle from "./AdminProducts.module.css";
-import Error from "../Login/ErrorPopUp/Error";
+import { updateProduct } from "../../redux/actions";
 
 export default function AdminProducts() {
-  const dispatch = useDispatch();
-
   // let example = [
   //   {
   //     order: "03/02/22",
@@ -72,8 +70,10 @@ export default function AdminProducts() {
   const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [toEdit, setToEdit] = React.useState({});
+
   const [activeUpdate, setActiveUpdate] = React.useState(false);
-  const modal = useSelector((state) => state.error);
+  const dispatch = useDispatch();
+
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
@@ -97,18 +97,48 @@ export default function AdminProducts() {
     } else alert("Search field empty");
   };
   const refreshHandler = () => {
+    console.log("se ejecuto refresh", productsOfRedux);
     setRender(productsOfRedux);
   };
   const editHandler = (product) => {
-    console.log("id recibido", product);
     setActiveUpdate(true);
     window.scrollTo(0, 0);
     setToEdit(product);
   };
-
-  useEffect(() => {
-    setRender(productsOfRedux);
+  React.useEffect(() => {
+    dispatch(getAllProducts);
+    refreshHandler();
   }, []);
+
+  //Activate product handler
+
+  const activateHandler = (product) => {
+    let opositePause = product.paused === false ? "Paused" : "Enabled"; //pause en true == producto pausado
+
+    if (
+      window.confirm("This product state will be change to " + opositePause)
+    ) {
+      let formToChangeStatus = {
+        name: product.name,
+        id: product.id,
+        maker: product.maker,
+        model: product.model,
+        SKU: product.SKU,
+        price: product.price,
+        offerPrice: product.offerPrice,
+        stock: product.stock,
+        inventary: product.inventary,
+        description: product.description,
+        featured: product.featured,
+        status: !product.paused,
+        subCategorie: product.subCategorie,
+      };
+      console.log("formToChangeStatus", formToChangeStatus);
+      updateProduct(dispatch, formToChangeStatus);
+      alert("Product has been " + opositePause + " successfully");
+    }
+  };
+
   //jj
   return (
     <div>
@@ -117,13 +147,14 @@ export default function AdminProducts() {
         {activeUpdate && (
           <div className={sStyle.update_container}>
             <UpdateProduct
+              refreshHandler={refreshHandler}
               setActiveUpdate={setActiveUpdate}
               toEdit={toEdit}
-              setRender={setRender}
+              render={render}
             />
           </div>
         )}
-        {modal === true && <Error msg="Product updated succsesfully!" />}
+
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
@@ -155,9 +186,9 @@ export default function AdminProducts() {
               <option value="Ascendent">Ascendent by Price</option>
               <option value="Descendent">Descendent by Price</option>
             </select>
-
+            {/* 
             <button className={sStyle.refresh}>Activate</button>
-            <button className={sStyle.refresh}>Pause</button>
+            <button className={sStyle.refresh}>Pause</button> */}
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -193,7 +224,13 @@ export default function AdminProducts() {
                         />
                       </td>
                       <td>
-                        <input type="checkbox" />
+                        <input
+                          className={sStyle.activate_btn}
+                          name={e.name}
+                          type="button"
+                          value={e.paused === false ? "Enabled" : "Paused"}
+                          onClick={() => activateHandler(e)}
+                        />
                       </td>
                     </tr>
                   ))

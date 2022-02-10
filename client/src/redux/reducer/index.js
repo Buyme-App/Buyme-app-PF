@@ -5,6 +5,8 @@ import {
   GET_ALL_USERS,
   POST_USERS,
   UPDATE_PRODUCT,
+  GET_ALL_PRODUCTS,
+  POST_NEW_PRODUCT,
 } from "../actions/index";
 
 const initialState = {
@@ -32,12 +34,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
-    case "GET_ALL_PRODUCTS":
+    case GET_ALL_PRODUCTS:
       return {
         ...state,
         allProducts: action.payload,
       };
-    case "POST_NEW_PRODUCT":
+    case POST_NEW_PRODUCT:
       return {
         ...state,
       };
