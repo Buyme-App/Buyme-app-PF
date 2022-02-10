@@ -12,6 +12,8 @@ function createToken(userData){
     const userID = userData.id;
     const userRole = userData.role;
 
+    // id user role user
+
     const token = jwt.sign({id: userID, role: userRole}, KEYWORD, {
         expiresIn: 86400
     });
