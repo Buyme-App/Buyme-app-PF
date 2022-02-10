@@ -16,7 +16,7 @@ function createToken(userData){
         expiresIn: 86400
     });
 
-    const data = {toke: token, role: userRole}
+    const data = {token: token, role: userRole}
     return data;
 };
 
