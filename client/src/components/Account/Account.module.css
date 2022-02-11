@@ -27,9 +27,9 @@
 }
 
 .table {
-    display: inline;
+    /* display: inline;
     justify-content: center; 
-    align-items: center;
+    align-items: center; */
 }
 
 .chart {
@@ -39,16 +39,17 @@
     border-width: .1rem;
     background-color: var(--color-principal-violet);
     color:white;
-    width: 50rem;
+    width: 100%;
     padding: 1.5%;
-    padding-left: 8.5%;
     display: flex;
+    justify-content: space-between;
     margin-left: 11%;
     margin-bottom: -.2%;
     font-size: 14px;
     font-weight: normal;
-    /* padding: 10px 100px; */
+    padding: 10px 100px; 
 }
+
 
 .details {
     border-style: solid;
