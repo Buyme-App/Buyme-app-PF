@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getProductDetail, clearDetail } from '../../../redux/actions';
+import { getProductDetail, clearProductDetail } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductDetail.module.css';
 import Header from '../Header/Header';
@@ -22,7 +22,7 @@ export default function ProductDetail(props){
 
     useEffect(() => {
         dispatch(getProductDetail(idProduct));
-        return () => dispatch(clearDetail()); // LIMPIO EL ESTADO DEL DETAIL
+        return () => dispatch(clearProductDetail()); // LIMPIO EL ESTADO DEL DETAIL
     },[dispatch, idProduct])
 
     return (

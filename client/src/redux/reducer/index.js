@@ -8,6 +8,8 @@ import {
   GET_SUBCATEGORIE_BY_ID,
   UPDATE_PRODUCT,
   GET_ALL_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  CLEAR_PRODUCT_DETAIL,
   POST_NEW_PRODUCT,
 } from "../actions/index";
 
@@ -17,6 +19,7 @@ const initialState = {
   allCategories: [],
   subcategories: [],
   allProducts: [],
+  detail: [],
   login: null,
   loading: false,
   error: false,
@@ -44,6 +47,23 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+      case GET_PRODUCT_DETAIL:
+        if(!action.payload){
+            return {
+                ...state,
+                detail: [404]
+            }
+        } else {
+            return {
+                ...state,
+                detail: action.payload
+            }
+        };
+    case CLEAR_PRODUCT_DETAIL:
+        return {
+            ...state,
+            detail: {},
+        };
     case POST_NEW_PRODUCT:
       return {
         ...state,

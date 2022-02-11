@@ -11,12 +11,14 @@ export const LOGIN = "LOGIN";
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
+export const CLEAR_PRODUCT_DETAIL = "CLEAR_PRODUCT_DETAIL";
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const POST_USERS = 'POST_USERS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_SUBCATEGORIE_BY_ID = 'GET_SUBCATEGORIE_BY_ID';
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -68,6 +70,30 @@ export function getAllProducts(){
             payload: json.data
         })
     }
+}
+
+export function getProductDetail(idProduct){
+  return async function (dispatch){
+      try{
+          var json = await axios.get('http://localhost:3001/productDetail/detail' + idProduct, sendKey());
+          return dispatch ({
+              type: GET_PRODUCT_DETAIL,
+              payload: json.data
+          }) 
+      }catch(error){
+          return dispatch ({
+              type: GET_PRODUCT_DETAIL,
+              payload: null
+          })
+          // console.log(error)
+      }
+  }
+}
+
+export function clearProductDetail() {
+  return {
+    type: CLEAR_PRODUCT_DETAIL,
+  }
 }
 
 export function createProduct(payload) {
