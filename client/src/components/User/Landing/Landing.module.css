@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body{
+  background-color: rgb(243, 243, 243);
+}
+
 .landing {
     /* display: flex;
     align-items: center;
@@ -28,18 +32,13 @@
     font-size: 22px;
   }
 
-  .main{
-    /* background-color: rgb(247, 245, 245); */
-    /* display: flex; */
-    /* justify-content: center; */
-  }
-
   .content {
     position: absolute;
     left: 10%;
     top: 10%;
     width: 400px;
   }
+
   
   .enter {
     min-width: 130px;
@@ -63,18 +62,6 @@
   .enter:hover {
       color: #fff;
       background-color: #6c757d;
-  }
-  
-  .grid{
-    display: grid;
-    padding: 0px 220px;
-    -ms-grid-column-align: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
-    margin-left: 70px;
-    /* height: -500px; */
-    
-    /* grid-gap: 2px; */
   }
 
   .btnName{

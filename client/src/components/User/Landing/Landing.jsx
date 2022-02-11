@@ -6,6 +6,8 @@ import { getAllProducts } from '../../../redux/actions';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Cards from '../Cards/Cards';
+import Slider from '../Slider/Main Banner/Slider';
+import FeaturedProducts from '../Slider/Featured Products/FeaturedProducts'
 import styles from './Landing.module.css';
 import image1 from '../../../assets/compu4.jpg';
 import imgdft from '../../../assets/imgdft.png';
@@ -25,17 +27,13 @@ export default function Landing(){
     return (
         <div className={styles.main}>
             <Header />
-             <h2>Featured Products</h2>
-          <div className={styles.grid}>
-               {
-                 featuredProducts?.map(c => {
-                   return(
-                     <Link className={styles.btnName} to= {'/detail/' + c.id}  key={c.id}>
-                      <Cards className={styles.grid} image={c.image? c.imag : imgdft } name={c.name} price={c.price}/>
-                       </Link>
-                      );             
-                    })}
-          </div>
+            <div className={styles.slider}>
+            <Slider/>
+            </div>
+            <div>
+                <h2>Featured Products</h2>
+                  <FeaturedProducts/>
+            </div>
             <Footer />
         </div>
     )
