@@ -1,4 +1,5 @@
 import axios from "axios";
+
 // middlewares validacion token
 
 import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
@@ -13,20 +14,25 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const POST_USERS = "POST_USERS";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
 
 export const login = async (dispatch, email, password) => {
   try {
-    let credential = await axios.post("/login", {
-      userEmail: email,
-      userPassword: password,
-    });
+    let credential = await axios.post(
+      "/login",
+      {
+        userEmail: email,
+        userPassword: password,
+      },
+      sendKey()
+    );
     console.log("credentials from action", credential);
 
     dispatch({
       type: LOGIN,
       payload: true,
     });
-    const roleUser = verifyTokenRole(credential) // Retona el rol del usuario administrativo
+    const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -53,8 +59,9 @@ export const errorModal = (dispatch, payload) => {
 };
 
 export function getAllProducts() {
+  console.log("se ejecutó getallProducts");
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/getAllProducts", sendKey());
+    var json = await axios.get("http://localhost:3001/getAllProducts");
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: json.data,
@@ -66,16 +73,19 @@ export function createProduct(payload) {
   return async function (dispatch) {
     var response = await axios.post(
       "http://localhost:3001/createProduct",
-      payload, sendKey()
+      payload,
+      sendKey()
     );
     // console.log(response);
     return response;
   };
 }
 export const updateProduct = async (dispatch, product) => {
+  console.log("recibido,", product);
   try {
     let response = await axios.put("/updateProduct", product);
     console.log("respuesta de update", response);
+    await dispatch(getAllProducts());
     return dispatch({
       type: UPDATE_PRODUCT,
     });
@@ -94,9 +104,9 @@ export function postUser(payload) {
         type: POST_USERS,
         payload: json.data,
       };
-    } catch (err){
-      console.log('Error creando usuario', err)
-    }    
+    } catch (err) {
+      console.log("Error creando usuario", err);
+    }
   };
 }
 
