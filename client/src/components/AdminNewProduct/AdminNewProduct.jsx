@@ -6,7 +6,7 @@ import { useState , useEffect } from 'react';
 import { getAllProducts, createProduct } from '../../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
-// import Uploader from "./Uploader";
+import Uploader from "./Uploader";
 // import Editor from "./CKEditor";
 
 function validate(input) {
@@ -450,7 +450,7 @@ export default function AdminNewProduct(){
             <textarea
             value={input.descriptionn}
             name='description'
-            placeholder='sarasa'
+            placeholder='Insert the product description here'
             onChange={(e) => handleInputChange(e)}>
             </textarea>
           </div>
@@ -461,7 +461,8 @@ export default function AdminNewProduct(){
           <div className={styles.inputs}>
             <input
               type='file'
-              accept='.jpg, .jpeg, .png, .gif, .pdf'
+              multiple
+              accept='.jpg, .jpeg, .png, .gif'
               className={styles.input}
               onChange={(e) => {uploadImage(e)}}
             />
@@ -476,9 +477,9 @@ export default function AdminNewProduct(){
             </div>
             <img src={baseImage} width="150px" />
           </div>
-          {/* <div className={styles.uploader}>
+          <div className={styles.uploader}>
             <Uploader />
-          </div> */}
+          </div>
           <button
           className={styles.create}
           type='submit'
