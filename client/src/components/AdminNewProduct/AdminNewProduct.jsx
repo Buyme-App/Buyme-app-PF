@@ -6,7 +6,7 @@ import { useState , useEffect } from 'react';
 import { getAllProducts, createProduct } from '../../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
-import Uploader from "./Uploader";
+// import Uploader from "./Uploader";
 // import Editor from "./CKEditor";
 
 function validate(input) {
@@ -477,9 +477,9 @@ export default function AdminNewProduct(){
             </div>
             <img src={baseImage} width="150px" />
           </div>
-          <div className={styles.uploader}>
+          {/* <div className={styles.uploader}>
             <Uploader />
-          </div>
+          </div> */}
           <button
           className={styles.create}
           type='submit'
