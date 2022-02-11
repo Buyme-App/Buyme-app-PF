@@ -108,12 +108,17 @@ export default function AdminProducts() {
     dispatch(getAllProducts);
     refreshHandler();
   }, []);
+  React.useEffect(() => {
+    console.log("se actualiza products");
+    dispatch(getAllProducts);
+    refreshHandler();
+  });
 
   //Activate product handler
 
   const activateHandler = (product) => {
     //no está pausado?, entonces pasará a estar pausado(true)
-    let opositePause = product.paused === false ? "Paused" : "Enabled"; //pause en true == producto pausado
+    let opositePause = product.paused === false ? "Disabled" : "Enabled"; //pause en true == producto pausado
     let newStatus = product.paused ? false : true;
 
     if (
@@ -212,14 +217,23 @@ export default function AdminProducts() {
             <tbody>
               {render.length
                 ? render.map((e, index) => (
-                    <tr key={e.id}>
-                      <td>{e.createdAt.substring(0, 10)}</td>
-
-                      <td>{e.name}</td>
-                      <td>{e.maker}</td>
-                      <td>{e.price}</td>
-                      <td>{e.stock}</td>
-                      <td>
+                    <tr>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.createdAt.substring(0, 10)}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.name}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.maker}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.price}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.stock}
+                      </td>
+                      <td className={`${e.paused ? sStyle.disabled : null}`}>
                         <FaEdit
                           size={14}
                           className={sStyle.edit}
@@ -228,10 +242,12 @@ export default function AdminProducts() {
                       </td>
                       <td>
                         <input
-                          className={sStyle.activate_btn}
+                          className={`${
+                            e.paused ? sStyle.disabled_btn : sStyle.activate_btn
+                          }`}
                           name={e.name}
                           type="button"
-                          value={e.paused}
+                          value={e.paused ? "Disabled" : "Enabled"}
                           onClick={() => {
                             activateHandler(e);
                           }}
