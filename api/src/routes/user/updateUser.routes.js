@@ -11,12 +11,12 @@ const router = Router();
 router.put('/', async (req, res) => {
 
     
-    const {id, name, password, email, role, token} = req.body;
+    const {id, name, password, email, role, status, token} = req.body;
 
     if(id && name && password && email && role){
 
         try {
-            const update = await updateUser(id, name, password, email, role, token);
+            const update = await updateUser(id, name, password, email, role, status, token);
 
             if(update) return res.json({message:'Updated user', data: update});
             else{

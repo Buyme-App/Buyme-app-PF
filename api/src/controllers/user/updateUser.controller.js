@@ -7,7 +7,7 @@ const {encrypt} = require('../handleBcrypts/handleBcrypts')
 // retorna true si se actualizo el usuario de lo contrario retorna false.
 // se le aplilca un hash a la contraseña para guardarla cifrada.
 
-async function updateUser(id, name, password, email, role, token){
+async function updateUser(id, name, password, email, role, status, token){
 
     try {
         
@@ -18,6 +18,7 @@ async function updateUser(id, name, password, email, role, token){
             password,
             email,
             role,
+            status,
             token
         },
         {where: {id : parseInt(id)}}
