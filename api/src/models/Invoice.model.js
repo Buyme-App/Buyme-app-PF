@@ -21,5 +21,18 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    clientId: {
+      type: DataTypes.INTEGER,           //Se agrega como clave para acceder a Modelo Client
+      allowNull: false,
+    },
+    payApproved: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+    readyToDeliver: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
   });
 };
