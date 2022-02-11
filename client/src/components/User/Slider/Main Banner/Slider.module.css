@@ -1,0 +1,87 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
+/* 
+body{
+    background: rgb(245, 245, 245);
+
+} */
+
+/* .main{
+    max-width: 100%;
+    margin:0px auto;
+    overflow: hidden;
+} */
+
+.ContenedorPrincipal{
+    position: relative;
+}
+
+.ContenedorSlideShow{
+    display:flex;
+    flex-wrap: nowrap;
+    /* overflow: hidden;  */
+}
+
+.Slide{
+    min-width: 100%;
+    overflow: hidden;
+    transition: .3s ease all;
+    z-index: 10;
+    /* max-height: 350px; */
+    position: relative;
+}
+
+.Slide img{
+    width: 100%;
+    vertical-align: top;
+}
+
+.controles{
+    position: absolute;
+    top: 0;
+    z-index: 20;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.btnIzq{
+    background: none;
+    border-width: 0px;
+    pointer-events: all;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    position: absolute;
+    transition: .3s ease all;
+    left: 0;
+    height: 100%;
+}
+
+.btnDer{
+    background: none;
+    border-width: 0px;
+    pointer-events: all;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    position: absolute;
+    transition: .3s ease all;
+    right: 0;
+    height: 100%;
+}
+
+
+
+.btn1{
+    /* padding: 10px 60px; */   
+ color:blueviolet;
+ /* bottom: 0; */
+ position: absolute;
+ width: 100%;
+ padding: 10px 60px;
+}
