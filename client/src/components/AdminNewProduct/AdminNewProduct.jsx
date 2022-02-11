@@ -139,9 +139,12 @@ export default function AdminNewProduct(){
 
     const uploadImage = async (e) => {
       const file = e.target.files[0];
+      console.log(e.target.files);
       const base64 = await convertBase64(file);
       setBaseImage(base64);
-      console.log(base64);
+      setInput(prev => ({...prev, image:[...prev.image, base64]}))
+      console.log("ALE",input.image);
+      // image(base64);
     };
 
     const convertBase64 = (file) => {
@@ -195,6 +198,7 @@ export default function AdminNewProduct(){
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log("LUCAS", input)
         const errors = validate(input);
         if (allProdutcs.length && allProdutcs.find(p =>p.name.toLowerCase() === input.name.toLowerCase())) {
             alert('Name already exists! Please choose a different name.');
@@ -444,8 +448,9 @@ export default function AdminNewProduct(){
           <h3>Description</h3>
           <div className={styles.textarea}>
             <textarea
-            value={input.description}
+            value={input.descriptionn}
             name='description'
+            placeholder='sarasa'
             onChange={(e) => handleInputChange(e)}>
             </textarea>
           </div>
@@ -460,20 +465,14 @@ export default function AdminNewProduct(){
               className={styles.input}
               onChange={(e) => {uploadImage(e)}}
             />
-            <div className={styles.imgdata}>
-              {/* <input
+          <div className={styles.imgdata}>
+              <input
                 type='text'
-                value={baseImage}
+                value={input.image[0]}
                 name= 'image'
                 className={styles.input}
-                onBlur={(e) => handleInputChange(e)}
-              /> */}
-              <textarea
-                value={baseImage}
-                name='image'
-                className={styles.hidden}
-                onChange={(e) => handleInputChange(e)}>
-              </textarea>
+                onChange={(e) => uploadImage(e)}
+              />
             </div>
             <img src={baseImage} width="150px" />
           </div>
