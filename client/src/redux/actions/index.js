@@ -133,7 +133,7 @@ export function postUser(payload) {
   };
 }
 
-export function getAllUsers(payload) {
+export function getAllUsers() {
   return async function (dispatch) {
     let json = await axios.get('http://localhost:3001/getAllUsers', sendKey());
     // console.log('>>>>>>>>>>>>>',json)
@@ -196,6 +196,13 @@ export function deleteCategory(id){
 export function deleteSubcategory(id){
   return async function () {
       let json = await axios.delete('http://localhost:3001/delSubCat/' + id, sendKey());
+      return json;
+  }
+};
+
+export function deleteUser(id){
+  return async function () {
+      let json = await axios.delete('http://localhost:3001/deleteUser/' + id, sendKey());
       return json;
   }
 };
