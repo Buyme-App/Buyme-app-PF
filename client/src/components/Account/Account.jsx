@@ -16,8 +16,8 @@ export default function Account (){
     const [btnAddUser, setBtnAddUser] = useState(false);
 
     useEffect(() => {
-        dispatch(getAllUsers());
-    },[dispatch]);
+        dispatch(getAllUsers());// Estaba configurado como componentDidMunt no como update
+    }); // Para update no debe llevar los corchetes
 
     //console.log(allUsers);
     return (
