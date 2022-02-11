@@ -1,4 +1,5 @@
 import axios from "axios";
+
 // middlewares validacion token
 
 import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
@@ -9,24 +10,31 @@ import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
 export const LOGIN = "LOGIN";
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
-export const GET_ALL_USERS = "GET_ALL_USERS";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const POST_USERS = "POST_USERS";
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_ALL_USERS = 'GET_ALL_USERS';
+export const POST_USERS = 'POST_USERS';
+export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
+export const GET_SUBCATEGORIE_BY_ID = 'GET_SUBCATEGORIE_BY_ID';
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
 
 export const login = async (dispatch, email, password) => {
   try {
-    let credential = await axios.post("/login", {
-      userEmail: email,
-      userPassword: password,
-    });
+    let credential = await axios.post(
+      "/login",
+      {
+        userEmail: email,
+        userPassword: password,
+      },
+      sendKey()
+    );
     console.log("credentials from action", credential);
 
     dispatch({
       type: LOGIN,
       payload: true,
     });
-    const roleUser = verifyTokenRole(credential) // Retona el rol del usuario administrativo
+    const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -52,30 +60,33 @@ export const errorModal = (dispatch, payload) => {
   });
 };
 
-export function getAllProducts() {
-  return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/getAllProducts", sendKey());
-    return dispatch({
-      type: "GET_ALL_PRODUCTS",
-      payload: json.data,
-    });
-  };
+export function getAllProducts(){
+    return async function(dispatch){
+        var json= await axios.get('http://localhost:3001/getAllProducts');
+        return dispatch({
+            type: GET_ALL_PRODUCTS,
+            payload: json.data
+        })
+    }
 }
 
 export function createProduct(payload) {
   return async function (dispatch) {
     var response = await axios.post(
       "http://localhost:3001/createProduct",
-      payload, sendKey()
+      payload,
+      sendKey()
     );
     // console.log(response);
     return response;
   };
 }
 export const updateProduct = async (dispatch, product) => {
+  console.log("recibido,", product);
   try {
     let response = await axios.put("/updateProduct", product);
     console.log("respuesta de update", response);
+    await dispatch(getAllProducts());
     return dispatch({
       type: UPDATE_PRODUCT,
     });
@@ -94,9 +105,9 @@ export function postUser(payload) {
         type: POST_USERS,
         payload: json.data,
       };
-    } catch (err){
-      console.log('Error creando usuario', err)
-    }    
+    } catch (err) {
+      console.log("Error creando usuario", err);
+    }
   };
 }
 
@@ -106,7 +117,63 @@ export function getAllUsers(payload) {
     // console.log('>>>>>>>>>>>>>',json)
     return dispatch({
       type: GET_ALL_USERS,
-      payload: json.data,
-    });
-  };
-}
+      payload: json.data
+    })
+  }
+};
+
+export function getAllCategories(){
+  try {
+    return async function(dispatch){
+      let json = await axios.get('http://localhost:3001/categories');
+      return dispatch({
+        type: GET_ALL_CATEGORIES,
+        payload: json.data
+      })
+    }
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+export function getSubcategorieById(id){
+  try {
+    return async function(dispatch){
+      let json = await axios.get('http://localhost:3001/getSubcat/' + id);
+      return dispatch({
+        type: GET_SUBCATEGORIE_BY_ID,
+        payload: json.data
+      })
+    }
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+export function createCategory(payload){
+  return async function () {
+      let json = await axios.post('http://localhost:3001/createCat', payload);
+      return json;
+  }
+};
+
+export function createSubcategory(payload){
+  return async function () {
+      let json = await axios.post('http://localhost:3001/createSubCat', payload);
+      return json;
+  }
+};
+
+export function deleteCategory(id){
+  return async function () {
+      let json = await axios.delete('http://localhost:3001/delCat/' + id);
+      return json;
+  }
+};
+
+export function deleteSubcategory(id){
+  return async function () {
+      let json = await axios.delete('http://localhost:3001/delSubCat/' + id);
+      return json;
+  }
+};

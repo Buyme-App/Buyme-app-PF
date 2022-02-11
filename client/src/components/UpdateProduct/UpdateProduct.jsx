@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./updateProduct.module.css";
-import Uploader from "../components/AdminNewProduct/Uploader";
+import Uploader from "../AdminNewProduct/Uploader";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { errorModal, getAllProducts, updateProduct } from "../redux/actions";
+import { updateProduct } from "../../redux/actions";
 
 function validate(input) {
   let errors = {};
@@ -37,10 +37,10 @@ function validate(input) {
     errors.name = "Only letters, numbers, spaces and (-)";
   }
 
-  if (input.SKU.length > 0 && input.SKU < 0) {
+  if (input.SKU.toString().length > 0 && input.SKU < 0) {
     errors.sku = "Positive numbers only, max 8 digits";
   }
-  if (input.SKU.length !== 8) {
+  if (input.SKU.toString().length !== 8) {
     errors.sku = "SKU must contain 8 digits";
   }
   if (input.SKU % 1 !== 0) {
@@ -91,7 +91,11 @@ function validate(input) {
   return errors;
 }
 
-export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
+export default function UpdateProduct({
+  setActiveUpdate,
+  toEdit,
+  refreshHandler,
+}) {
   const dispatch = useDispatch();
   const allProductsRedux = useSelector((state) => state.allProducts);
 
@@ -140,6 +144,7 @@ export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
     status: toEdit.paused,
     subCategorie: toEdit.subCategorie,
   });
+  debugger;
   function handleInputChange(e) {
     setInput({
       ...input,
@@ -155,14 +160,15 @@ export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (
-      allProductsRedux.find(
-        (p) => p.name.toLowerCase() === input.name.toLowerCase()
-      )
-    ) {
+    //si existe otro producto con el mismo nombre dara true
+    let itExist =
+      allProductsRedux.filter(
+        (p) =>
+          p.name.toLowerCase() === input.name.toLowerCase() && input.id !== p.id
+      ).length > 0;
+    debugger;
+    if (itExist) {
       alert("Name already exists! Please choose a different name");
-
       setErrors(
         validate({
           ...input,
@@ -170,12 +176,12 @@ export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
         })
       );
       // history('/home');
-    } else if (!Object.keys(errors).length) {
+    } else if (
+      !Object.keys(errors).length &&
+      window.confirm("This product will be updated, are you sure?")
+    ) {
       updateProduct(dispatch, input);
-
-      errorModal(dispatch, true);
-
-      setActiveUpdate(false);
+      alert("Updated Succesfully!");
       setInput({
         name: "",
         maker: "",
@@ -190,7 +196,8 @@ export default function UpdateProduct({ setActiveUpdate, toEdit, setRender }) {
         paused: "",
         images: "",
       });
-
+      refreshHandler();
+      setActiveUpdate(false);
       //   history("/admin/home");
     } else {
       alert("Please review the form!");

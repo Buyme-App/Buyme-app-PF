@@ -4,11 +4,18 @@ import {
   ERROR_MODAL,
   GET_ALL_USERS,
   POST_USERS,
+  GET_ALL_CATEGORIES,
+  GET_SUBCATEGORIE_BY_ID,
   UPDATE_PRODUCT,
+  GET_ALL_PRODUCTS,
+  POST_NEW_PRODUCT,
 } from "../actions/index";
+
 
 const initialState = {
   allUsers: [],
+  allCategories: [],
+  subcategories: [],
   allProducts: [],
   login: null,
   loading: false,
@@ -32,12 +39,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
-    case "GET_ALL_PRODUCTS":
+    case GET_ALL_PRODUCTS:
       return {
         ...state,
         allProducts: action.payload,
       };
-    case "POST_NEW_PRODUCT":
+    case POST_NEW_PRODUCT:
       return {
         ...state,
       };
@@ -54,6 +61,32 @@ export default function rootReducer(state = initialState, action) {
     case UPDATE_PRODUCT:
       return {
         ...state,
+      };
+    case GET_ALL_CATEGORIES:
+      return {
+        ...state,
+        allCategories: action.payload
+      };
+    case GET_SUBCATEGORIE_BY_ID:
+      return {
+        ...state,
+        subcategories: action.payload
+      };
+    case 'POST_NEW_CATEGORY':
+      return {
+          ...state
+      };
+    case 'POST_NEW_SUBCATEGORY':
+      return {
+          ...state
+      };
+    case 'DELETE_CATEGORY':
+      return {
+          ...state
+      };
+    case 'DELETE_SUBCATEGORY':
+      return {
+          ...state
       };
     default:
       return state;

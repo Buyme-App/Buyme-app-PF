@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { FaSistrix, FaRedo, FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
-import UpdateProduct from "../../UpdateProduct/UpdateProduct";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import sStyle from "./AdminProducts.module.css";
-import Error from "../Login/ErrorPopUp/Error";
+import { updateProduct } from "../../redux/actions";
 
 export default function AdminProducts() {
-  const dispatch = useDispatch();
-
   // let example = [
   //   {
   //     order: "03/02/22",
@@ -72,8 +70,10 @@ export default function AdminProducts() {
   const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [toEdit, setToEdit] = React.useState({});
+
   const [activeUpdate, setActiveUpdate] = React.useState(false);
-  const modal = useSelector((state) => state.error);
+  const dispatch = useDispatch();
+
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
@@ -100,15 +100,53 @@ export default function AdminProducts() {
     setRender(productsOfRedux);
   };
   const editHandler = (product) => {
-    console.log("id recibido", product);
     setActiveUpdate(true);
     window.scrollTo(0, 0);
     setToEdit(product);
   };
-
-  useEffect(() => {
-    setRender(productsOfRedux);
+  React.useEffect(() => {
+    dispatch(getAllProducts);
+    refreshHandler();
   }, []);
+  React.useEffect(() => {
+    console.log("se actualiza products");
+    dispatch(getAllProducts);
+    refreshHandler();
+  });
+
+  //Activate product handler
+
+  const activateHandler = (product) => {
+    //no está pausado?, entonces pasará a estar pausado(true)
+    let opositePause = product.paused === false ? "Disabled" : "Enabled"; //pause en true == producto pausado
+    let newStatus = product.paused ? false : true;
+
+    if (
+      window.confirm(
+        `The product ${product.name} state will be change to ${opositePause}`
+      )
+    ) {
+      let formToChangeStatus = {
+        name: product.name,
+        id: product.id,
+        maker: product.maker,
+        model: product.model,
+        SKU: product.SKU,
+        price: product.price,
+        offerPrice: product.offerPrice,
+        stock: product.stock,
+        inventary: product.inventary,
+        description: product.description,
+        featured: product.featured,
+        paused: newStatus,
+        subCategorie: product.subCategorie,
+      };
+
+      updateProduct(dispatch, formToChangeStatus);
+      alert("Product has been " + opositePause + " successfully");
+    }
+  };
+
   //jj
   return (
     <div>
@@ -117,13 +155,14 @@ export default function AdminProducts() {
         {activeUpdate && (
           <div className={sStyle.update_container}>
             <UpdateProduct
+              refreshHandler={refreshHandler}
               setActiveUpdate={setActiveUpdate}
               toEdit={toEdit}
-              setRender={setRender}
+              render={render}
             />
           </div>
         )}
-        {modal === true && <Error msg="Product updated succsesfully!" />}
+
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
@@ -155,9 +194,9 @@ export default function AdminProducts() {
               <option value="Ascendent">Ascendent by Price</option>
               <option value="Descendent">Descendent by Price</option>
             </select>
-
+            {/* 
             <button className={sStyle.refresh}>Activate</button>
-            <button className={sStyle.refresh}>Pause</button>
+            <button className={sStyle.refresh}>Pause</button> */}
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -178,14 +217,23 @@ export default function AdminProducts() {
             <tbody>
               {render.length
                 ? render.map((e, index) => (
-                    <tr key={e.id}>
-                      <td>{e.createdAt.substring(0, 10)}</td>
-
-                      <td>{e.name}</td>
-                      <td>{e.maker}</td>
-                      <td>{e.price}</td>
-                      <td>{e.stock}</td>
-                      <td>
+                    <tr>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.createdAt.substring(0, 10)}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.name}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.maker}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.price}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.stock}
+                      </td>
+                      <td className={`${e.paused ? sStyle.disabled : null}`}>
                         <FaEdit
                           size={14}
                           className={sStyle.edit}
@@ -193,7 +241,17 @@ export default function AdminProducts() {
                         />
                       </td>
                       <td>
-                        <input type="checkbox" />
+                        <input
+                          className={`${
+                            e.paused ? sStyle.disabled_btn : sStyle.activate_btn
+                          }`}
+                          name={e.name}
+                          type="button"
+                          value={e.paused ? "Disabled" : "Enabled"}
+                          onClick={() => {
+                            activateHandler(e);
+                          }}
+                        />
                       </td>
                     </tr>
                   ))
