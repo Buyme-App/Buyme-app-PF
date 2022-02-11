@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
-// import { Link, useParams } from 'react-router-dom';
-import { getAllProducts } from '../../../redux/actions';
+import { Link, useParams } from 'react-router-dom';
+import { getProductDetail, clearDetail } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ProductDetail.module.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Featured from '../Featured/Featured';
 // import Loading2 from './Loading2';
 // import NotFound from './NotFound';
 import image1 from '../../../assets/macbookpro1.jpg';
@@ -15,22 +16,14 @@ import image4 from '../../../assets/macbookpro4.jpg';
 
 
 export default function ProductDetail(props){
+    const {idProduct} = useParams();
     const dispatch = useDispatch()
-    const product = useSelector(state => state.allProducts)
-    // const product = useSelector((state) => state.detail);
+    const product = useSelector(state => state.detail);
 
     useEffect(() => {
-        dispatch(getAllProducts());
-      },[dispatch])
-      
-    // console.log(props);
-    // const {id} = useParams();
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getDetail(id));
-    //     return () => dispatch(clearDetail()); // LIMPIO EL ESTADO DEL DETAIL
-    // },[dispatch, id])
+        dispatch(getProductDetail(idProduct));
+        return () => dispatch(clearDetail()); // LIMPIO EL ESTADO DEL DETAIL
+    },[dispatch, idProduct])
 
     return (
       <div>
@@ -103,6 +96,7 @@ export default function ProductDetail(props){
           // <Loading2 />
           <h1>Loading</h1>
           }
+          <Featured />
         </div>
         <Footer />
       </div>

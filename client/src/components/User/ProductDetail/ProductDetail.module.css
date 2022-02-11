@@ -19,15 +19,17 @@
 .specs {
   margin-bottom: 50px;
   width: 100%;
-  min-height: 400px;
   /* background: #eee; */
   display: flex;
   justify-content: space-between;
 }
 
+.card {
+  min-height: 400px;
+}
+
 .specs {
-  margin: 0;
-  /* background: #ddd; */
+  margin-bottom: 100px;
 }
 
 .images {
@@ -222,147 +224,4 @@ background-color: var(--color-hover-principal);
 
 .data .each:last-child {
   border: none;
-}
-
-
-
-
-
-
-.card .image {
-    margin: 0;
-    width: 700px;
-    /* -webkit-filter: drop-shadow(0 0 40px #fff);
-    filter: drop-shadow(0 0 40px #fff); */
-    -webkit-filter: drop-shadow(0 0 40px rgba(255,255,255,1));
-    filter: drop-shadow(0 0 40px rgba(255,255,255,1));
-}
-
-.card h3 {
-    display: flex;
-    margin: 20px auto;
-    width: 250px;
-    height: 30px;
-    padding: 5px;
-    display: block;
-    background: #000;
-    color: #fff;
-    border-radius: 20px;
-    opacity: 0.9;
-}
- 
-.stats {
-    margin: 0 auto;
-    padding: 30px;
-    width: 640px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px 60px;
-    justify-content: center;
-    align-items: baseline;
-    color: rgba(255, 255, 255, 0.952);
-    border-radius: 0 0 20px 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    /* background-color: #fff; */
-}
-
-.stat {
-    width: 270px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-}
-
-.stat span {
-    margin-top: 0px;
-    min-width: 120px;
-    height: 24px;
-    line-height: 24px;
-    color: #000;
-    font-weight: bold;
-    /* background-color: #666; */
-    border-radius: 12px 0 0 12px;
-    /* border: 1px solid #333; */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset;
-}
-
-.stat progress[value] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 150px;
-    height: 24px;
-    background-color: #eee;
-    border-radius: 0 12px 12px 0; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-}
-
-progress[value]::-webkit-progress-bar {
-    background-color: #eee;
-    border-radius: 0 12px 12px 0; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-}
-
-progress[value]::-webkit-progress-value {
-    background-image:
-         -webkit-linear-gradient(135deg, 
-                                 transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                                 rgba(0,0, 0, .1) 66%, transparent 66%),
-         -webkit-linear-gradient(top, 
-                                 rgba(255, 255, 255, .25), 
-                                 rgba(0, 0, 0, .25)),
-         -webkit-linear-gradient(left, #09c, #f44);
-  
-      border-radius: 0 12px 12px 0; 
-      background-size: 35px 20px, 100% 100%, 100% 100%;
-}
-
-progress[value]::-moz-progress-bar { 
-    background-image:
-      -moz-linear-gradient(
-        135deg,
-        transparent 33%, 
-        rgba(0, 0, 0, 0.1) 33%, 
-        rgba(0, 0, 0, 0.1) 66%, 
-        transparent 66% 
-      ),
-      -moz-linear-gradient(
-        top, 
-        rgba(255, 255, 255, 0.25), 
-        rgba(0, 0, 0, 0.25)
-      ),
-      -moz-linear-gradient(
-        left, 
-        #09c, 
-        #f44
-      );
-  
-    border-radius: 0 12px 12px 0;
-    background-size: 35px 20px, 100% 100%, 100% 100%; 
-  }
-
-.back {
-    margin: 20px 0;
-    width: 140px;
-    height: 35px;
-    color: #495057;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    border-radius: 25px;
-    /* border: 2px solid #cbeb40; */
-    /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
-    /* background: #495057; */
-    background: #fff;
-    /* opacity: 0.5; */
-}
-
-.back:hover {
-  color: #fff;
-  background-color: #6c757d;
 }
