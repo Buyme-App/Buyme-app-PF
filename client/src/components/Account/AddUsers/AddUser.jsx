@@ -1,13 +1,13 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import styles from './AddUser.module.css';
 import validator from "../../functions/validator";
 import { postUser } from "../../../redux/actions";
 
 export default function AddUser (props){
-    // const navigate = useNavigate();
+    //const navigate = useNavigate();
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
 
@@ -28,19 +28,23 @@ export default function AddUser (props){
     function handleSubmit(e) {
         e.preventDefault();
         // console.log(input);
-        dispatch(postUser(input));
-        alert('User created successfully!');
+        // alert('User created successfully!');
         setInput({
             name: "",
             role: "",
             email: "",
             password: "",
         });
-        //si ambos campos están vacíos
-        if (Object.values(input).every((e) => e === ""))
-        return setErrors(validator(input));
+        //si los campos están vacíos
+        if (Object.values(input).every((e) => e === "")) {
+            alert("Corrija los errores de los campos", input)
+            return
+        }
+
+        dispatch(postUser(input));
+        //return setErrors(validator(input));
         //si las props de error poseen algun valor, haveError será true
-        const haveError = Object.values(errors).some((v) => v !== undefined);
+        //const haveError = Object.values(errors).some((v) => v !== undefined);
 
         // if (haveError === false) {
         // //dispatch(login(input));
@@ -60,7 +64,7 @@ export default function AddUser (props){
     return (props.trigger) ? (
         <div className={styles.popup}>
             {props.children}
-            <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
+            <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}  defaultValue={input.role}>
                 <div className={styles.divTitle}>
                     <h1 className={styles.title}>Add New User</h1>
                     <button className={styles.close} onClick={() => props.setTrigger(false)}>x</button>
@@ -76,16 +80,17 @@ export default function AddUser (props){
                     />
                     
                 </div>
-                <div className={styles.input}>
+                <div className={styles.input}
+                        onChange={(e) => {handleChange(e)}}>
                     <label>Role:</label>
-                    <input 
-                        type="text" 
-                        value={input.role}
-                        name="role"
-                        placeholder="Enter role"
-                        onChange={(e) => {handleChange(e)}}
-                    />
-                    
+                    <select name="role" id="role">
+                        <option value="">Select one</option>    
+                        <option value="Administrador">Administrador</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Client">Client</option>
+                        <option value="Seller">Seller</option>
+                    </select>
+
                 </div>
                 <div className={styles.input}>
                     <label>Email:</label>

@@ -161,6 +161,7 @@
   }
   .edit:hover{
     transform: scale(1.4);
+    cursor: pointer;
   }
   .update_container{
     background-color: rgba(0, 0, 0, 0.582);
@@ -174,3 +175,25 @@
     padding: 20px 0px
 
   }
+  .disabled{
+color: rgb(185, 164, 164);
+pointer-events: none;
+  }
+  .activate_btn{
+padding:7px;
+border: none;
+border-radius: 3px;
+background-color: green
+;
+cursor: pointer;
+font-weight: bold;
+color: white
+  }
+.disabled_btn{
+padding:3px;
+background-color: rgb(223, 48, 48);
+color: #fff;
+border: none;
+border-radius: 3px;
+
+}
