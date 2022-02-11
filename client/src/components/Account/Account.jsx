@@ -42,33 +42,38 @@ export default function Account (){
             </AddUser>
             <h2>Users</h2>
             <div><table className={styles.table}>
-                    <tr className={styles.chart}>
-                        <td >ID</td>
-                        <td style={{'paddingLeft': '16%'}}>Name</td>
-                        <td style={{'paddingLeft': '24%'}}>Email</td>
-                    </tr>
-                   
-                    {
-                allUsers.length?
-                allUsers.map(el => {
-                    return (
-                        <tr key={el.id} className={styles.details}>
-                            <td>{el.id}</td>
-                            <td>{el.name}</td>
-                            <td>{el.email}</td>
-                            <td>{el.role}</td>
-                            <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
+                    <thead>
+                        <tr className={styles.chart}>
+                            <th style={{'margin-left': '-8%'}} >ID</th>
+                            <th style={{'margin-left': '-8%'}}>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th></th>
                         </tr>
-                    )
-                }) : (<tr className={styles.details}>
-                        <td>1</td>
-                        <td>Juan Topo</td>
-                        <td>juani@gmail.com</td>
-                        <td>administrador</td>
-                        <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
-                     </tr>
-                )
-            }
+                    </thead>
+                    <tbody>
+                    {
+                        allUsers.length?
+                        allUsers.map(el => {
+                            return (
+                                <tr key={el.id} className={styles.details}>
+                                    <td>{el.id}</td>
+                                    <td>{el.name}</td>
+                                    <td>{el.email}</td>
+                                    <td>{el.role}</td>
+                                    <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
+                                </tr>
+                            )
+                        }) : (<tr className={styles.details}>
+                                <td>1</td>
+                                <td>Juan Topo</td>
+                                <td>juani@gmail.com</td>
+                                <td>administrador</td>
+                                <button className={styles.delete} type="submit">{MdOutlineDelete}x</button>
+                            </tr>
+                        )
+                    }
+                    </tbody>
                 </table>
             </div>
         </div>
