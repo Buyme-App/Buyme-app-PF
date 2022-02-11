@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 const main = async () => {
     try {
         
-        await conn.sync({ force: true })
+        await conn.sync({ force: false })
 
         server.listen(PORT, () => {
             userRoot(); //crear usuario adminRoot sino existe en la DB.
