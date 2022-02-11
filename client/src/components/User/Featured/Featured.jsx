@@ -24,7 +24,7 @@ export default function Featured(){
                {
                featuredProducts?.map(c => {
                    return(
-                   <Link className={styles.btnName} to= {'/productDetail/detail' + c.id}  key={c.id}>
+                   <Link className={styles.btnName} to= {'/product/detail' + c.id}  key={c.id}>
                        <Cards className={styles.grid} image={imgdft} name={c.name} price={c.price}/>
                     </Link>
                     );             
