@@ -97,7 +97,6 @@ export default function AdminProducts() {
     } else alert("Search field empty");
   };
   const refreshHandler = () => {
-    console.log("se ejecuto refresh", productsOfRedux);
     setRender(productsOfRedux);
   };
   const editHandler = (product) => {
@@ -113,10 +112,14 @@ export default function AdminProducts() {
   //Activate product handler
 
   const activateHandler = (product) => {
+    //no está pausado?, entonces pasará a estar pausado(true)
     let opositePause = product.paused === false ? "Paused" : "Enabled"; //pause en true == producto pausado
+    let newStatus = product.paused ? false : true;
 
     if (
-      window.confirm("This product state will be change to " + opositePause)
+      window.confirm(
+        `The product ${product.name} state will be change to ${opositePause}`
+      )
     ) {
       let formToChangeStatus = {
         name: product.name,
@@ -130,10 +133,10 @@ export default function AdminProducts() {
         inventary: product.inventary,
         description: product.description,
         featured: product.featured,
-        status: !product.paused,
+        paused: newStatus,
         subCategorie: product.subCategorie,
       };
-      console.log("formToChangeStatus", formToChangeStatus);
+
       updateProduct(dispatch, formToChangeStatus);
       alert("Product has been " + opositePause + " successfully");
     }
@@ -228,8 +231,10 @@ export default function AdminProducts() {
                           className={sStyle.activate_btn}
                           name={e.name}
                           type="button"
-                          value={e.paused === false ? "Enabled" : "Paused"}
-                          onClick={() => activateHandler(e)}
+                          value={e.paused}
+                          onClick={() => {
+                            activateHandler(e);
+                          }}
                         />
                       </td>
                     </tr>

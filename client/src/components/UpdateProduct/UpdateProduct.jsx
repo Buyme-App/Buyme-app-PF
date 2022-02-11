@@ -144,6 +144,7 @@ export default function UpdateProduct({
     status: toEdit.paused,
     subCategorie: toEdit.subCategorie,
   });
+  debugger;
   function handleInputChange(e) {
     setInput({
       ...input,

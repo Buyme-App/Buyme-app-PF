@@ -12,7 +12,6 @@ export function verifyTokenRole(param) {
 // envia el header con el toquen
 
 export function sendKey() {
-  console.log("getallpff", token);
   // header que se envia al backend
   const headers = {
     headers: {
