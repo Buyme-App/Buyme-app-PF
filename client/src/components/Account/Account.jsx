@@ -16,10 +16,10 @@ export default function Account (){
     const [btnAddUser, setBtnAddUser] = useState(false);
 
     useEffect(() => {
-        dispatch(getAllUsers());
-    },[dispatch]);
+        dispatch(getAllUsers());// Estaba configurado como componentDidMunt no como update
+    }); // Para update no debe llevar los corchetes
 
-    console.log(allUsers);
+    //console.log(allUsers);
     return (
         <div className={styles.page}>
             {/* <h2>My Account</h2> */}
