@@ -41,9 +41,9 @@ export default function PassRecovery() {
             onChange={(e) => emailHandler(e.target.value)}
             onBlur={(e) => emailHandler(e.target.value)}
           />{" "}
-          {errors && <small>{errors.email}</small>}
+          {errors && <small className={styles.errors}>{errors.email}</small>}
           <p>
-          We will send you an email to change your password !
+          We will send you an email to change your password!
         </p>
         </div>
 

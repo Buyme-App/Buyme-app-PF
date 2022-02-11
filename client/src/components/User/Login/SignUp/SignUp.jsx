@@ -51,6 +51,21 @@ export default function SignUp() {
         error.password = "No se admiten espacios en blanco";
       else error.password = undefined;
     }
+    if (form.hasOwnProperty("name")) {
+      if (form.name.length < 1)
+        error.name = "Este campo es obligatorio";
+      else error.name = undefined;
+    }
+    if (form.hasOwnProperty("lastname")) {
+      if (form.lastname.length < 1)
+        error.lastname = "Este campo es obligatorio";
+      else error.lastname = undefined;
+    }
+    if (form.hasOwnProperty("birthdate")) {
+      if (form.birthdate.length < 1)
+        error.birthdate = "Este campo es obligatorio";
+      else error.birthdate = undefined;
+    }
 
     return error;
   };
@@ -124,6 +139,7 @@ export default function SignUp() {
               onBlur={(e) => errorsHandler(e)}
             />{" "}
             <br />
+            {errors && <small>{errors.name}</small>}
           </div>
           <br />
           <div className={styles.input}>
@@ -132,7 +148,7 @@ export default function SignUp() {
               className={styles.input}
               type="text"
               value={input.lastname}
-              name="lastame"
+              name="lastname"
               placeholder="Enter lastname"
               onChange={(e) => {
                 handleChange(e);
@@ -140,6 +156,7 @@ export default function SignUp() {
               onBlur={(e) => errorsHandler(e)}
             />{" "}
             <br />
+            {errors && <small>{errors.lastname}</small>}
           </div>
           <br />
           <div className={styles.input}>
@@ -156,6 +173,7 @@ export default function SignUp() {
               onBlur={(e) => errorsHandler(e)}
             />{" "}
             <br />
+            {errors && <small>{errors.birthdate}</small>}
           </div>
           <br />
           <div className={styles.input}>
