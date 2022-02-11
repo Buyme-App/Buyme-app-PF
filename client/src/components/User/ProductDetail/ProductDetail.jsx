@@ -34,12 +34,12 @@ export default function ProductDetail(props){
           <div className={styles.card}>
             <div className={styles.images}>
               <div className={styles.thumbs}>
-                <img src={image2} width='200px' alt=''/>
-                <img src={image3} width='200px' alt=''/>
-                <img src={image4} width='200px' alt=''/>
+                <img src={product[0].image[1]} width='200px' alt=''/>
+                <img src={product[0].image[2]} width='200px' alt=''/>
+                <img src={product[0].image[3]} width='200px' alt=''/>
               </div>
               <div className={styles.mainimg}>
-                <img src={image1} width='400px' alt=''/>
+                <img src={product[0].image[0]} width='400px' alt=''/>
               </div>
             </div>
             <div className={styles.info}>
