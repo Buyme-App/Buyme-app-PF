@@ -25,7 +25,7 @@ router.put('/', async (req, res) => {
         }
 
     }else{
-        return res.send('Status and id are required').status(500);
+        return res.send('Status and Id are required').status(500);
     }
 
 });
