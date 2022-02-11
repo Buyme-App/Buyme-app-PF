@@ -11,12 +11,13 @@ router.post('/', async (req, res) => {
 
     const {name, password, email, role, token} = req.body;
 
-    if(name && password && email && role && token){
+    if(name && password && email && role){
 
         try {
             const create = await createUser(name, password, email, role, token);
 
-            if(create) return res.json({message:'User created', data: create});
+            if(create && create !== 'exists') return res.json({message:'User created', data: create});
+            else if(create === 'exists') return res.send('This user email already exists');
             else{
                 return res.status(500).send('Error failed to create user');
             }

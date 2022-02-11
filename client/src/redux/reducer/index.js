@@ -1,16 +1,26 @@
-import { LOGIN, LOADING, ERROR_MODAL, GET_ALL_USERS, POST_USERS, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_SUBCATEGORIE_BY_ID } from "../actions";
+import {
+  LOGIN,
+  LOADING,
+  ERROR_MODAL,
+  GET_ALL_USERS,
+  POST_USERS,
+  GET_ALL_CATEGORIES,
+  GET_SUBCATEGORIE_BY_ID,
+  UPDATE_PRODUCT,
+  GET_ALL_PRODUCTS,
+  POST_NEW_PRODUCT,
+} from "../actions/index";
+
 
 const initialState = {
-  state: [],
   allUsers: [],
   allCategories: [],
   subcategories: [],
+  allProducts: [],
   login: null,
   loading: false,
   error: false,
 };
-
-
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -30,23 +40,27 @@ export default function rootReducer(state = initialState, action) {
         error: action.payload,
       };
     case GET_ALL_PRODUCTS:
-            return {
-                ...state,
-                allproducts: action.payload
-            };
-    case 'POST_NEW_PRODUCT':
-        return {
-            ...state
-        };
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    case POST_NEW_PRODUCT:
+      return {
+        ...state,
+      };
     case GET_ALL_USERS:
       return {
         ...state,
-        allUsers: action.payload
+        allUsers: action.payload,
       };
     case POST_USERS:
       return {
-          ...state,
-          allUsers: [...state.allUsers, action.payload]
+        ...state,
+        allUsers: [...state.allUsers, action.payload],
+      };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
       };
     case GET_ALL_CATEGORIES:
       return {
@@ -75,7 +89,6 @@ export default function rootReducer(state = initialState, action) {
           ...state
       };
     default:
-        return state;
+      return state;
   }
-
 }

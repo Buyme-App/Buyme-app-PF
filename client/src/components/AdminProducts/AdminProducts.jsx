@@ -1,68 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaSistrix, FaRedo, FaEdit } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/actions";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import sStyle from "./AdminProducts.module.css";
+import { updateProduct } from "../../redux/actions";
 
 export default function AdminProducts() {
-  let example = [
-    {
-      order: "03/02/22",
-      name: "iPhone 11",
-      brand: "Apple",
-      price: "$1200",
-      stock: "20",
-    },
-    {
-      order: "02/02/22",
-      name: "iPhone 11 Plus",
-      brand: "Apple",
-      price: "$1350",
-      stock: "5",
-    },
-    {
-      order: "01/02/22",
-      name: "Airpods Pro",
-      brand: "Apple",
-      price: "$350",
-      stock: "7",
-    },
-    {
-      order: "30/01/22",
-      name: "MacBook Pro",
-      brand: "Apple",
-      price: "$1850",
-      stock: "2",
-    },
-    {
-      order: "29/01/22",
-      name: "All in One PC",
-      brand: "HP",
-      price: "$1250",
-      stock: "4",
-    },
-    {
-      order: "27/01/22",
-      name: "Apple TV",
-      brand: "Apple",
-      price: "$450",
-      stock: "7",
-    },
-    {
-      order: "25/01/22",
-      name: "Google Chromecast",
-      brand: "Google",
-      price: "$250",
-      stock: "12",
-    },
-    {
-      order: "24/01/22",
-      name: "All in One PC",
-      brand: "Asus",
-      price: "$950",
-      stock: "3",
-    },
-  ];
-  const [render, setRender] = React.useState(example);
+  // let example = [
+  //   {
+  //     order: "03/02/22",
+  //     name: "iPhone 11",
+  //     brand: "Apple",
+  //     price: "$1200",
+  //     stock: "20",
+  //   },
+  //   {
+  //     order: "02/02/22",
+  //     name: "iPhone 11 Plus",
+  //     brand: "Apple",
+  //     price: "$1350",
+  //     stock: "5",
+  //   },
+  //   {
+  //     order: "01/02/22",
+  //     name: "Airpods Pro",
+  //     brand: "Apple",
+  //     price: "$350",
+  //     stock: "7",
+  //   },
+  //   {
+  //     order: "30/01/22",
+  //     name: "MacBook Pro",
+  //     brand: "Apple",
+  //     price: "$1850",
+  //     stock: "2",
+  //   },
+  //   {
+  //     order: "29/01/22",
+  //     name: "All in One PC",
+  //     brand: "HP",
+  //     price: "$1250",
+  //     stock: "4",
+  //   },
+  //   {
+  //     order: "27/01/22",
+  //     name: "Apple TV",
+  //     brand: "Apple",
+  //     price: "$450",
+  //     stock: "7",
+  //   },
+  //   {
+  //     order: "25/01/22",
+  //     name: "Google Chromecast",
+  //     brand: "Google",
+  //     price: "$250",
+  //     stock: "12",
+  //   },
+  //   {
+  //     order: "24/01/22",
+  //     name: "All in One PC",
+  //     brand: "Asus",
+  //     price: "$950",
+  //     stock: "3",
+  //   },
+  // ];
+
+  const productsOfRedux = useSelector((state) => state.allProducts);
+  const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
+  const [toEdit, setToEdit] = React.useState({});
+
+  const [activeUpdate, setActiveUpdate] = React.useState(false);
+  const dispatch = useDispatch();
 
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
@@ -78,7 +88,7 @@ export default function AdminProducts() {
   const searchHandler = (value) => {
     if (value.length) {
       setRender((prev) =>
-        example.filter(
+        productsOfRedux.filter(
           (e) =>
             e.name.toUpperCase().includes(value.toUpperCase()) ||
             e.brand.toUpperCase().includes(value.toUpperCase())
@@ -87,13 +97,71 @@ export default function AdminProducts() {
     } else alert("Search field empty");
   };
   const refreshHandler = () => {
-    setRender(example);
+    setRender(productsOfRedux);
   };
+  const editHandler = (product) => {
+    setActiveUpdate(true);
+    window.scrollTo(0, 0);
+    setToEdit(product);
+  };
+  React.useEffect(() => {
+    dispatch(getAllProducts);
+    refreshHandler();
+  }, []);
+  React.useEffect(() => {
+    console.log("se actualiza products");
+    dispatch(getAllProducts);
+    refreshHandler();
+  });
+
+  //Activate product handler
+
+  const activateHandler = (product) => {
+    //no está pausado?, entonces pasará a estar pausado(true)
+    let opositePause = product.paused === false ? "Disabled" : "Enabled"; //pause en true == producto pausado
+    let newStatus = product.paused ? false : true;
+
+    if (
+      window.confirm(
+        `The product ${product.name} state will be change to ${opositePause}`
+      )
+    ) {
+      let formToChangeStatus = {
+        name: product.name,
+        id: product.id,
+        maker: product.maker,
+        model: product.model,
+        SKU: product.SKU,
+        price: product.price,
+        offerPrice: product.offerPrice,
+        stock: product.stock,
+        inventary: product.inventary,
+        description: product.description,
+        featured: product.featured,
+        paused: newStatus,
+        subCategorie: product.subCategorie,
+      };
+
+      updateProduct(dispatch, formToChangeStatus);
+      alert("Product has been " + opositePause + " successfully");
+    }
+  };
+
   //jj
   return (
     <div>
       <div className={sStyle.sales_container}>
         {/* <h1 className={sStyle.title}>Products</h1> */}
+        {activeUpdate && (
+          <div className={sStyle.update_container}>
+            <UpdateProduct
+              refreshHandler={refreshHandler}
+              setActiveUpdate={setActiveUpdate}
+              toEdit={toEdit}
+              render={render}
+            />
+          </div>
+        )}
 
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
@@ -126,13 +194,9 @@ export default function AdminProducts() {
               <option value="Ascendent">Ascendent by Price</option>
               <option value="Descendent">Descendent by Price</option>
             </select>
-
-            <button className={sStyle.refresh}>
-              Activate
-            </button>
-            <button className={sStyle.refresh}>
-              Pause
-            </button>
+            {/* 
+            <button className={sStyle.refresh}>Activate</button>
+            <button className={sStyle.refresh}>Pause</button> */}
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -152,18 +216,42 @@ export default function AdminProducts() {
 
             <tbody>
               {render.length
-                ? render.map((e) => (
-                    <tr key={e.order}>
-                      <td>{e.order}</td>
-                      <td>{e.name}</td>
-                      <td>{e.brand}</td>
-                      <td>{e.price}</td>
-                      <td>{e.stock}</td>
-                      <td>
-                        <FaEdit size={14}/>
+                ? render.map((e, index) => (
+                    <tr>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.createdAt.substring(0, 10)}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.name}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.maker}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.price}
+                      </td>
+                      <td className={e.paused ? sStyle.disabled : null}>
+                        {e.stock}
+                      </td>
+                      <td className={`${e.paused ? sStyle.disabled : null}`}>
+                        <FaEdit
+                          size={14}
+                          className={sStyle.edit}
+                          onClick={() => editHandler(e)}
+                        />
                       </td>
                       <td>
-                        <input type="checkbox" />
+                        <input
+                          className={`${
+                            e.paused ? sStyle.disabled_btn : sStyle.activate_btn
+                          }`}
+                          name={e.name}
+                          type="button"
+                          value={e.paused ? "Disabled" : "Enabled"}
+                          onClick={() => {
+                            activateHandler(e);
+                          }}
+                        />
                       </td>
                     </tr>
                   ))

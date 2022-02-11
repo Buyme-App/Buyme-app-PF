@@ -29,6 +29,7 @@
   /* contenedor del input y el icon */
   .input {
     width: 100%;
+    margin-top:-110px;
     /* position: relative; */
   }
   .input input {
@@ -79,7 +80,8 @@
     padding: 13px;
     height: 43px;
     border-style: none;
-    margin: 0 15px;
+
+    margin-top: -75px;
   }
   
   .selects_box select:hover{
@@ -98,9 +100,11 @@
     justify-content: center;
     padding: 8px;
     margin-top: 25px;
+    
   }
   .table_container table {
     width: 100%;
+    margin-top: -53px;
   }
 
   .table_container table thead tr th {
@@ -141,6 +145,7 @@
      text-shadow: 0px 1px 0px #154682;
      margin: 0 15px;
      border-style: none;
+     margin-top: -75px;
   }
   
   .refresh:hover{
@@ -151,4 +156,44 @@
     position: relative;
     top: 1px;
   }
-  
+  .edit{
+    cursor: pointer;
+  }
+  .edit:hover{
+    transform: scale(1.4);
+    cursor: pointer;
+  }
+  .update_container{
+    background-color: rgba(0, 0, 0, 0.582);
+    width:100%;
+    height: fit-content;
+    position: absolute
+    ; backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    padding: 20px 0px
+
+  }
+  .disabled{
+color: rgb(185, 164, 164);
+pointer-events: none;
+  }
+  .activate_btn{
+padding:7px;
+border: none;
+border-radius: 3px;
+background-color: green
+;
+cursor: pointer;
+font-weight: bold;
+color: white
+  }
+.disabled_btn{
+padding:3px;
+background-color: rgb(223, 48, 48);
+color: #fff;
+border: none;
+border-radius: 3px;
+
+}

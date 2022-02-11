@@ -12,8 +12,9 @@ async function loginRoutesController(userEmail, userPassword) {
       if (result === null) return 404;
       else {
         let compareIqual = await bcrypt.compare(userPassword, result.password);
-        if (compareIqual) return 200;
-        else return 401;
+        
+        if (compareIqual) return result;
+        else return false;
       }
     } else return 401;
   } catch (e) {

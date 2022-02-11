@@ -1,11 +1,13 @@
+// AdminNewProduct.jsx
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState , useEffect } from 'react';
 import { getAllProducts, createProduct } from '../../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
-import Uploader from "./Uploader";
-import Editor from "./CKEditor";
+// import Uploader from "./Uploader";
+// import Editor from "./CKEditor";
 
 function validate(input) {
     let errors = {};
@@ -48,18 +50,31 @@ function validate(input) {
       errors.sku = 'SKU is required'
     }
 
+    const validNumber = /^[0-9.]*(?<!\.)$/;
     if (input.price.length > 0 && input.price < 0) {
         errors.price = 'Positive numbers only'
     }
     if (!input.price) {
       errors.price = 'Price is required'
     }
+    // if (input.price.includes(',')) {
+    //   errors.price = 'Only dot allowed for decimal numbers'
+    // }
+    if(input.price.length > 0 && !validNumber.test(input.price)) {
+      errors.price = 'Numbers and dot (.) only for decimals'
+    }
 
     if (input.offerPrice.length > 0 && input.offerPrice < 0) {
       errors.offerPrice = 'Positive numbers only'
     }
     if (!input.offerPrice) {
-      errors.offerPrice = 'Price is required'
+      errors.offerPrice = 'Reduced price is required'
+    }
+    // if (input.offerPrice.includes(',')) {
+    //   errors.offerPrice = 'Only dot allowed for decimal numbers'
+    // }
+    if(input.offerPrice.length > 0 && !validNumber.test(input.offerPrice)) {
+      errors.offerPrice = 'Numbers and dot (.) only for decimals'
     }
 
     if (!input.featured) {
@@ -87,7 +102,7 @@ function validate(input) {
       errors.inventary = 'Integer numbers only'
     }
     if (!input.inventary) {
-      errors.inventary = 'At least an Inventary of 0 is required'
+      errors.inventary = 'At least an Inventory of 0 is required'
     }
 
     return errors;
@@ -99,11 +114,9 @@ export default function AdminNewProduct(){
 
     useEffect(() => {
       dispatch(getAllProducts());
-      // dispatch(getCategories());
     },[dispatch])
 
-    const allProdutcs = useSelector((state) => state.allproducts);
-    // const allCategories = useSelector((state) => state.allcategories);
+    const allProdutcs = useSelector((state) => state.allProducts);
     
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
@@ -118,7 +131,31 @@ export default function AdminNewProduct(){
         description: '',
         featured: '',
         paused: '',
+        category: '',
+        image: [],
     })
+
+    const [baseImage, setBaseImage] = useState("");
+
+    const uploadImage = async (e) => {
+      const file = e.target.files[0];
+      const base64 = await convertBase64(file);
+      setBaseImage(base64);
+      console.log(base64);
+    };
+
+    const convertBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      });
+    };
 
     function handleInputChange(e){
         setInput({
@@ -131,16 +168,16 @@ export default function AdminNewProduct(){
         }))
     }
 
-    // function handleSelect(e){
-    //   setInput({
-    //       ...input,
-    //       [e.target.name]: e.target.value 
-    //   })
-    //   setErrors(validate({
-    //       ...input,
-    //       [e.target.name]: e.target.value
-    //   }))
-    // }
+    function handleSelectChange(e){
+      setInput({
+          ...input,
+          [e.target.name]: e.target.value 
+      })
+      setErrors(validate({
+          ...input,
+          [e.target.name]: e.target.value
+      }))
+    }
 
     // function handleSelect(e){
     //     if(input.type.includes(e.target.value)){
@@ -158,9 +195,8 @@ export default function AdminNewProduct(){
 
     function handleSubmit(e) {
         e.preventDefault();
-        // const errors = validate(input);
-        // if (allPokemons.find((p) =>p.name.toLowerCase() === input.name.toLowerCase().trim())) {
-        if (allProdutcs.find(p =>p.name.toLowerCase() === input.name.toLowerCase())) {
+        const errors = validate(input);
+        if (allProdutcs.length && allProdutcs.find(p =>p.name.toLowerCase() === input.name.toLowerCase())) {
             alert('Name already exists! Please choose a different name.');
             // setInput({
             //     name: '',
@@ -185,7 +221,7 @@ export default function AdminNewProduct(){
             featured: '',
             description: '',
             paused: '',
-            images: '',
+            image: [],
 
           });
           history('/admin/home');
@@ -203,8 +239,9 @@ export default function AdminNewProduct(){
 
     return (
       <div className={styles.main}>
+        {/* <h1 className={styles.title}>Create New Product</h1> */}
         <form onSubmit={(e) => handleSubmit(e)}>
-          <h3>Product Names *</h3>
+          <h3>Product Name *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
@@ -214,8 +251,8 @@ export default function AdminNewProduct(){
               placeholder="E.g.: Apple AirPods (2nd Generation)"
               onChange={(e) => handleInputChange(e)}
             />
-            <div className={styles.errors}>
-              {errors.name && <span>{errors.name}</span>}
+            <div className={styles.errorsContainer}>
+              {errors.name && <span className={styles.errors}>{errors.name}</span>}
             </div>
           </div>
   
@@ -229,8 +266,8 @@ export default function AdminNewProduct(){
               placeholder="E.g.: Apple"
               onChange={(e) => handleInputChange(e)}
             />
-            <div className={styles.errors}>
-              {errors.maker && <span>{errors.maker}</span>}
+            <div className={styles.errorsContainer}>
+              {errors.maker && <span className={styles.errors}>{errors.maker}</span>}
             </div>
           </div>
   
@@ -243,11 +280,11 @@ export default function AdminNewProduct(){
                   value={input.model}
                   name= "model"
                   className={styles.input}
-                  placeholder="E.g.: AS1234"
+                  placeholder="E.g.: Airpods"
                   onChange={(e) => handleInputChange(e)}
                 />
-                <div className={styles.errors}>
-                  {errors.model && <span>{errors.model}</span>}
+                <div className={styles.errorsContainer}>
+                  {errors.model && <span className={styles.errors}>{errors.model}</span>}
                 </div>
               </div>
             </div>
@@ -263,8 +300,8 @@ export default function AdminNewProduct(){
                   placeholder="E.g.: 12345678"
                   onChange={(e) => handleInputChange(e)}
                 />
-                <div className={styles.errors}>
-                  {errors.sku && <span>{errors.sku}</span>}
+                <div className={styles.errorsContainer}>
+                  {errors.sku && <span className={styles.errors}>{errors.sku}</span>}
                 </div>
               </div>
             </div>
@@ -282,8 +319,8 @@ export default function AdminNewProduct(){
                 placeholder="E.g.: 100"
                 onChange={(e) => handleInputChange(e)}
               />
-              <div className={styles.errors}>
-                {errors.price && <span>{errors.price}</span>}
+              <div className={styles.errorsContainer}>
+                {errors.price && <span className={styles.errors}>{errors.price}</span>}
               </div>
             </div>
             </div>
@@ -302,8 +339,8 @@ export default function AdminNewProduct(){
                 // disabled="disabled"
                 onChange={(e) => handleInputChange(e)}
               />
-              <div className={styles.errors}>
-                {errors.offerPrice && <span>{errors.offerPrice}</span>}
+              <div className={styles.errorsContainer}>
+                {errors.offerPrice && <span className={styles.errors}>{errors.offerPrice}</span>}
               </div>
               </div>
             </div>
@@ -321,8 +358,8 @@ export default function AdminNewProduct(){
               placeholder="E.g.: 100"
               onChange={(e) => handleInputChange(e)}
             />
-            <div className={styles.errors}>
-              {errors.stock && <span>{errors.stock}</span>}
+            <div className={styles.errorsContainer}>
+              {errors.stock && <span className={styles.errors}>{errors.stock}</span>}
             </div>
           </div>
           </div>
@@ -338,8 +375,8 @@ export default function AdminNewProduct(){
               placeholder="E.g.: 100"
               onChange={(e) => handleInputChange(e)}
             />
-            <div className={styles.errors}>
-              {errors.inventary && <span>{errors.inventary}</span>}
+            <div className={styles.errorsContainer}>
+              {errors.inventary && <span className={styles.errors}>{errors.inventary}</span>}
             </div>
           </div>
           </div>
@@ -349,13 +386,13 @@ export default function AdminNewProduct(){
           <div className={styles.inputs1}>
           <h3>Featured Product *</h3>
           <div className={styles.inputs2}>
-          <select defaultValue="" name="featured" className={styles.select} onChange={(e) => handleInputChange(e)}>
+          <select defaultValue="" name="featured" className={styles.select} onChange={(e) => handleSelectChange(e)}>
             <option value="" disabled>Select</option>
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
-          <div className={styles.errors}>
-            {errors.featured && <span>{errors.featured}</span>}
+          <div className={styles.errorsContainer}>
+            {errors.featured && <span className={styles.errors}>{errors.featured}</span>}
           </div>
           </div>
           </div>
@@ -369,13 +406,13 @@ export default function AdminNewProduct(){
           <div className={styles.inputs1}>
           <h3>Status *</h3>
           <div className={styles.inputs2}>
-          <select defaultValue="" name="paused" className={styles.select} onChange={(e) => handleInputChange(e)}>
+          <select defaultValue="" name="paused" className={styles.select} onChange={(e) => handleSelectChange(e)}>
             <option value="" disabled>Select</option>
             <option value="true">Inactive</option>
             <option value="false">Active</option>
           </select>
-          <div className={styles.errors}>
-            {errors.paused && <span>{errors.paused}</span>}
+          <div className={styles.errorsContainer}>
+            {errors.paused && <span className={styles.errors}>{errors.paused}</span>}
           </div>
           </div>
           </div>
@@ -399,22 +436,55 @@ export default function AdminNewProduct(){
               <option value="Consoles">• Consoles</option>
               <option value="Consoles Accesories">• Consoles Accesories</option>
             </select>
-            <div className={styles.errors}>
-              {errors.categorie && <span>{errors.categorie}</span>}
+            <div className={styles.errorsContainer}>
+              {errors.categorie && <span className={styles.errors}>{errors.categorie}</span>}
             </div>
           </div>
 
           <h3>Description</h3>
-          <div className={styles.ckeditor}>
+          <div className={styles.textarea}>
+            <textarea
+            value={input.description}
+            name='description'
+            onChange={(e) => handleInputChange(e)}>
+            </textarea>
+          </div>
+          {/* <div className={styles.ckeditor}>
             <Editor />
+          </div> */}
+          <h3>Upload your images <small>(jpg, png and gif formats)</small></h3>
+          <div className={styles.inputs}>
+            <input
+              type='file'
+              accept='.jpg, .jpeg, .png, .gif, .pdf'
+              className={styles.input}
+              onChange={(e) => {uploadImage(e)}}
+            />
+            <div className={styles.imgdata}>
+              {/* <input
+                type='text'
+                value={baseImage}
+                name= 'image'
+                className={styles.input}
+                onBlur={(e) => handleInputChange(e)}
+              /> */}
+              <textarea
+                value={baseImage}
+                name='image'
+                className={styles.hidden}
+                onChange={(e) => handleInputChange(e)}>
+              </textarea>
+            </div>
+            <img src={baseImage} width="150px" />
           </div>
-          <h3>
-            Upload your images <small>(jpg, png and gif formats)</small>
-          </h3>
-          <div className={styles.uploader}>
+          {/* <div className={styles.uploader}>
             <Uploader />
-          </div>
-          <button className={styles.create} type='submit'>
+          </div> */}
+          <button
+          className={styles.create}
+          type='submit'
+          disabled={!input.name}>
+          {/* disabled={!input.name || !input.maker || !input.model || !input.SKU || !input.price}> */}
             Create Product
           </button>
         </form>
