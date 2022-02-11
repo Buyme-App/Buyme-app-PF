@@ -26,12 +26,6 @@
     background-color: var(--color-principal-violet-hover);
 }
 
-.table {
-    /* display: inline;
-    justify-content: center; 
-    align-items: center; */
-}
-
 .chart {
     border-style: solid;
     border-color: grey;
