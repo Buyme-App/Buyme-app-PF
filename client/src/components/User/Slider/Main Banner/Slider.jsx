@@ -68,15 +68,15 @@ useEffect(() => {
       <div className={styles.ContenedorSlideShow} ref={slideshow}>
         
         <div className={styles.Slide}>
-          <img src={Banner1} alt="img" height="310px" width="1265px"/>
+          <img src={Banner1} alt="img" height="380px" width="1265px"/>
         </div>
 
         <div className={styles.Slide}>
-          <img src={Banner4} alt="img" height="310px" width="1265px"/>
+          <img src={Banner4} alt="img" height="380px" width="1265px"/>
         </div>
 
         <div className={styles.Slide}>
-          <img src={Banner3} alt="img" height="310px" width="1265px"/>
+          <img src={Banner3} alt="img" height="380px" width="1265px"/>
         </div>
 
         {/* <div className={styles.Slide}>

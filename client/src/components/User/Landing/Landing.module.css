@@ -63,3 +63,20 @@ body{
       color: #fff;
       background-color: #6c757d;
   }
+
+  .btnall{
+    margin-top: 60px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 180px;
+    height: 40px;
+    background-color: var(--color-pink-buttons);
+    color: white;
+    margin-bottom: 100px;
+    font-weight: bold;
+  }
+
+.btnall:hover{
+  background-color: var(--color-pinkHover-buttons);
+}
