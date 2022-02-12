@@ -63,3 +63,9 @@ body{
       color: #fff;
       background-color: #6c757d;
   }
+
+  .infobanner{
+    display: flex;
+    justify-content: center;
+    margin: 70px 0px;
+  }
