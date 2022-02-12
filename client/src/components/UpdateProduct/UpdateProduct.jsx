@@ -212,13 +212,17 @@ export default function UpdateProduct({
   // }
 
   return (
+    <div className={styles.gral}>
     <div className={styles.main}>
       <form className={styles.uForm} onSubmit={(e) => handleSubmit(e)}>
-        <div className={styles.close} onClick={() => setActiveUpdate(false)}>
+        
+        {/* <div className={styles.close} onClick={() => setActiveUpdate(false)}>
           {" "}
           <span>X</span>
-        </div>
-
+        </div> */}
+       <div className={styles.closediv}>        
+         <button className={styles.close} onClick={() => setActiveUpdate(false)}>x</button>
+         </div>
         <h3>Product Names *</h3>
         <div className={styles.inputs}>
           <input
@@ -457,6 +461,7 @@ export default function UpdateProduct({
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 }
