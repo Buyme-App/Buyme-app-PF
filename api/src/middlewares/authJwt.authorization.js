@@ -8,7 +8,7 @@ async function verifyUser(req, res, next){
     if(!token){
         return res.status(403).json({message: 'No token provided'});
     }
-
+    
     const verify = await verifyToken(token);
     
     if(!verify){

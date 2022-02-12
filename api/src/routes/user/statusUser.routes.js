@@ -5,9 +5,9 @@ const router = Router();
 
 // Ruta para eliminar un usuario, invoca al controlador deleteUser()
 //  se le retorna true si fue eliminado o false si no se eliminó.
-router.delete('/', async (req, res) => {
+router.put('/', async (req, res) => {
 
-    const {id, status} = req.params;
+    const {id, status} = req.body;
 
     if(id && status){
 
@@ -19,7 +19,7 @@ router.delete('/', async (req, res) => {
     
         } catch (error) {
             
-            showErrors('/deleteUser/:id', error);
+            showErrors('/statusUser/:id', error);
             return 500
         }
 
