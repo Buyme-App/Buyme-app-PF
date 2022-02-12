@@ -11,7 +11,7 @@ const routerGetProductDetail = require('./product/getProductDetail.routes'); //
 const routerGetAllUsers = require('./user/getAllUsers.routes'); //
 const routerCreatePro = require('./product/createProduct.routes'); //
 const routerUpdatePro = require('./product/updateProduct.routes'); //
-const routerDeletePro = require('./product/deleteProduct.routes'); //
+const routerStatusPro = require('./product/statusProduct.routes'); //
 const routerGetProducts = require ('./product/getAllProducts.routes.js'); //
 
 //Jose
@@ -30,7 +30,7 @@ const createInvoice = require('./invoice/createInvoice.routes') //
 const routerCreateUser = require('./user/createUser.routes');
 const routerGetOneUser = require('./user/getOneUser.routes');
 const routerUpdateUser = require('./user/updateUser.routes');
-const routerDeleteUser = require('./user/deleteUser.routes');
+const routerStatusUser = require('./user/statusUser.routes');
 const getAllFeatured = require('./featured/getAllFeatured.routes');
 
 const hashPassword=require('./hash/hashPassword.route');
@@ -70,7 +70,7 @@ const routes = (server) => {
     server.use('/productDetail',[verifyUser, roleSuperv], routerGetProductDetail );
     server.use('/createProduct',[verifyUser, roleSuperv], routerCreatePro);
     server.use('/updateProduct',[verifyUser, roleSuperv], routerUpdatePro);
-    server.use('/deleteProduct',[verifyUser, roleSuperv], routerDeletePro);
+    server.use('/statusProduct',[verifyUser, roleSuperv], routerStatusPro);
     server.use('/getAllProducts',[verifyUser, roleSuperv], routerGetProducts);
 
     server.use('/createInvoice',[verifyUser, roleAdmin], createInvoice);
@@ -88,7 +88,7 @@ const routes = (server) => {
     server.use('/createUser', routerCreateUser);
     server.use('/getUser',[verifyUser, roleAdmin], routerGetOneUser);
     server.use('/updateUser',[verifyUser, roleAdmin], routerUpdateUser);
-    server.use('/deleteUser',[verifyUser, roleAdmin], routerDeleteUser);
+    server.use('/statusUser',[verifyUser, roleAdmin], routerStatusUser);
 
     server.use('/hash', hashPassword);
     server.use("/getAllInvoices",[verifyUser, roleAdmin], getAllInvoices);
