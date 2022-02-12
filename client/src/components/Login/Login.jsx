@@ -6,6 +6,7 @@ import styles from "./Login.module.css";
 import { errorModal, loading, login } from "../../redux/actions";
 import Loader from "../Loader/Loader";
 import Error from "./ErrorPopUp/Error";
+import loginValidate from "./controllers/loginValidator";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,40 +18,6 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [notValidated, setNotValidated] = React.useState(true);
-
-  const setSession = (key, value) => {
-    sessionStorage.setItem(key, value);
-  };
-
-  const getSession = (value) => {
-    return sessionStorage;
-  };
-
-  const loginValidate = (form) => {
-    let error = {};
-    const emailRegExp =
-      /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-
-    if (form.hasOwnProperty("email")) {
-      if (form.email.length === 0) error.email = "Este campo es obligatorio";
-      else if (emailRegExp.test(form.email) === false) {
-        error.email = "Debe escribir un email válido";
-      } else {
-        //si cumple con todas las condiciones, seteo en blanco y no renderizará nada
-        error.email = undefined;
-      }
-    }
-    if (form.hasOwnProperty("password")) {
-      if (form.password.length < 1)
-        error.password = "Este campo es obligatorio";
-      else if (form.password.split("").some((e) => e === " "))
-        error.password = "No se admiten espacios en blanco";
-      else error.password = undefined;
-    }
-
-    return error;
-  };
 
   function handleChange(e) {
     setInput({
@@ -74,7 +41,9 @@ export default function Login() {
       loading(dispatch, true);
       const credential = login(dispatch, input.email, input.password);
       credential.then((re) => {
-        re ? navigate("/admin/home") : errorModal(dispatch, true);
+        re
+          ? (window.location.href = "/admin/home")
+          : errorModal(dispatch, true);
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
@@ -88,7 +57,11 @@ export default function Login() {
   }
 
   useEffect(() => {
-    login(dispatch);
+    login(dispatch).then((res) => {
+      res.data.login
+        ? navigate("/admin/home")
+        : console.log("data.login es false");
+    });
     loading(dispatch, false);
   }, []);
 

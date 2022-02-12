@@ -1,11 +1,9 @@
 // Aqui se guarda el token que envia el back en el login
-export let token = "";
+export let token = localStorage.token;
 
 // Separa el token y el rol del usuario
 export function verifyTokenRole(param) {
-  token = param.data.data.token;
   const role = param.data.data.role;
-
   return role;
 }
 
