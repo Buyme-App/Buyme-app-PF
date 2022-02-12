@@ -17,12 +17,13 @@ body{
 
 .ContenedorPrincipal{
     position: relative;
+    overflow: hidden; 
+
 }
 
 .ContenedorSlideShow{
     display:flex;
     flex-wrap: nowrap;
-    /* overflow: hidden;  */
 }
 
 .Slide{
