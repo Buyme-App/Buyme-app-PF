@@ -355,7 +355,7 @@ export default function UpdateProduct({
         <h3>Featured Product *</h3>
         <div className={styles.inputs}>
           <select
-            value={toEdit.featured}
+            value={input.featured}
             name="featured"
             className={styles.select}
             onChange={(e) => handleInputChange(e)}
