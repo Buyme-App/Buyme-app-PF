@@ -107,12 +107,8 @@ export default function AdminProducts() {
   React.useEffect(() => {
     dispatch(getAllProducts);
     refreshHandler();
-  }, []);
-  React.useEffect(() => {
-    console.log("se actualiza products");
-    dispatch(getAllProducts);
-    refreshHandler();
-  });
+  }, [productsOfRedux]);
+  
 
   //Activate product handler
 

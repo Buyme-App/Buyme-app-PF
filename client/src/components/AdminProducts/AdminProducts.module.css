@@ -79,14 +79,11 @@
   padding: 13px;
   height: 43px;
   border-style: none;
-
   margin-top: -75px;
 }
-
 .selects_box select:hover{
   background-color: var(--color-principal-violet-hover);
 }
-
 .selects_box select option {
   color: rgb(255, 255, 255);
   font-size: 14px;
@@ -105,7 +102,6 @@
   width: 100%;
   margin-top: -53px;
 }
-
 .table_container table thead tr th {
   background-color: var(--color-principal-violet);
   font-size: 14px;
@@ -122,35 +118,31 @@
   background-color: rgb(250, 250, 250);
   font-size: 14px;
 }
-
 .notMach {
   background-color: black;
   width: 100%;
   text-align: center;
 }
-
 .refresh {
-    background-color: var(--color-principal-violet);
-    border-radius: 4px;
-    border: 1px solid #124d77;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 14px;
-    padding: 13px;
-    height: 43px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #154682;
-    margin: 0 15px;
-    border-style: none;
-    margin-top: -75px;
+  background-color: var(--color-principal-violet);
+  border-radius: 4px;
+  border: 1px solid #124d77;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  padding: 13px;
+  height: 43px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
+  margin: 0 15px;
+  border-style: none;
+  margin-top: -75px;
 }
-
 .refresh:hover{
   background-color: var(--color-principal-violet-hover);
 }
-
 .refresh:active {
   position: relative;
   top: 1px;
