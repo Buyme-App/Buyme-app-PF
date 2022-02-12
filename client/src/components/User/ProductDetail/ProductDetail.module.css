@@ -55,11 +55,6 @@
   flex-direction: column;
 }
 
-/* .card .images .thumbs .thumb {
-  width: 100%;
-  background-color: #222;
-} */
-
 .thumbs img {
   width: 100%;
   border: 1px solid #ddd;

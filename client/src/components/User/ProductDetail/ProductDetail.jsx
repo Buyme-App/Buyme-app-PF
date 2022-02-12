@@ -7,12 +7,9 @@ import styles from './ProductDetail.module.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Featured from '../Featured/Featured';
+import imgdft from '../../../assets/imgdft.png';
 // import Loading2 from './Loading2';
 // import NotFound from './NotFound';
-import image1 from '../../../assets/macbookpro1.jpg';
-import image2 from '../../../assets/macbookpro2.jpg';
-import image3 from '../../../assets/macbookpro3.jpg';
-import image4 from '../../../assets/macbookpro4.jpg';
 
 
 export default function ProductDetail(props){
@@ -34,12 +31,12 @@ export default function ProductDetail(props){
           <div className={styles.card}>
             <div className={styles.images}>
               <div className={styles.thumbs}>
-                <img src={product[0].image[1]} width='200px' alt=''/>
-                <img src={product[0].image[2]} width='200px' alt=''/>
-                <img src={product[0].image[3]} width='200px' alt=''/>
+                <img src={product[0].image[1] ? product[0].image[1] : imgdft} width='200px' alt=''/>
+                <img src={product[0].image[2] ? product[0].image[2] : imgdft} width='200px' alt=''/>
+                <img src={product[0].image[3] ? product[0].image[3] : imgdft} width='200px' alt=''/>
               </div>
               <div className={styles.mainimg}>
-                <img src={product[0].image[0]} width='400px' alt=''/>
+                <img src={product[0].image[0] ? product[0].image[0] : imgdft} width='400px' alt=''/>
               </div>
             </div>
             <div className={styles.info}>
