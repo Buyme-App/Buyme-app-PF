@@ -106,7 +106,7 @@ export function createProduct(payload) {
 export const updateProduct = async (dispatch, product) => {
   console.log("recibido,", product);
   try {
-    let response = await axios.put("/updateProduct", product);
+    let response = await axios.put("/updateProduct", product, sendKey());
     console.log("respuesta de update", response);
     await dispatch(getAllProducts());
     return dispatch({
