@@ -1,0 +1,50 @@
+.bannerdiv{
+background-color: var(--color-bg-admin);
+height: 120px;
+width: 90%;
+border-radius: 5px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+padding: 20px;
+}
+
+.bannerdiv h3{
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 2px;
+}
+
+.bannerdiv h4{
+    color: black;
+    font-weight: normal;
+}
+
+.bannerdiv img{
+    margin-right: -60px;
+}
+
+.div1{
+    border-right-width:medium;
+    border-right-color: grey;
+    border-right-style: solid;
+    padding-right: 60px;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div2{
+    border-right-width:medium;
+    border-right-color: grey;
+    border-right-style: solid;
+    padding-right: 60px;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 90px;    ;
+}
