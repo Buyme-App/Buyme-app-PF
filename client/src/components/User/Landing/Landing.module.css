@@ -64,6 +64,7 @@ body{
       background-color: #6c757d;
   }
 
+
   .btnall{
     margin-top: 60px;
     border-style: none;
@@ -80,3 +81,4 @@ body{
 .btnall:hover{
   background-color: var(--color-pinkHover-buttons);
 }
+
