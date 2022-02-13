@@ -32,7 +32,9 @@ export default function AdminHome() {
   // Comentar para no loguearte
 
   React.useEffect(() => {
+    // login(dispatch);
     !globalState.login && navigate("/admin");
+
     dispatch(getAllProducts());
   }, []);
 

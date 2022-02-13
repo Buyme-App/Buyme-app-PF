@@ -2,6 +2,7 @@ export const saveToken = (token) => {
   token
     ? localStorage.setItem("token", token)
     : console.log("No se ha guardado el token porque esta infefinido");
+  debugger;
 };
 export const getToken = () => {
   return localStorage.getItem("token")
@@ -10,7 +11,7 @@ export const getToken = () => {
 };
 
 export const deleteToken = () => {
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("token").length) {
     localStorage.removeItem("token");
     console.log("Token eliminado");
   }

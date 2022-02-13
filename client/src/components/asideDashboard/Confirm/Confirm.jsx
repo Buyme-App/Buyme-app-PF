@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { deleteToken } from "../../Login/controllers/tokenFunctions";
 import style from "./confirm.module.css";
 
 export default function Confirm(props) {
-  const navigate = useNavigate();
   const cancelHandler = () => {
     props.setActivateConfirm((prev) => !prev);
   };
   const acceptHandler = () => {
+    deleteToken();
     window.location.replace("/admin");
     // navigate("/admin")
   };

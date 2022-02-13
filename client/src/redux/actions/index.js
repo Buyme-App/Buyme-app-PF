@@ -38,11 +38,12 @@ export const login = async (dispatch, email, password) => {
       sendKey()
     );
     console.log("credentials from action", credential);
-    saveToken(credential.data.data);
+    saveToken(credential.data.data.token);
     dispatch({
       type: LOGIN,
       payload: credential.data.login,
     });
+    debugger;
 
     const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
     return credential;

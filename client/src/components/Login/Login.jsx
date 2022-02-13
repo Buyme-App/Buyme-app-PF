@@ -57,11 +57,11 @@ export default function Login() {
   }
 
   useEffect(() => {
-    login(dispatch).then((res) => {
-      res.data.login
-        ? navigate("/admin/home")
-        : console.log("data.login es false");
-    });
+    login(dispatch)
+      .then((res) => {
+        res ? navigate("/admin/home") : console.log("data.login es false", res);
+      })
+      .catch((err) => console.log("Error en useEffect Login", err));
     loading(dispatch, false);
   }, []);
 
