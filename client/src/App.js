@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/product/detail:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
-          <Route exact path="/home" element={<LoginUser />} />
+          <Route exact path="/login" element={<LoginUser />} />
           <Route exact path="/home/restorePassword" element={<PasswordRecovery />} />
           <Route exact path="/home/signUp" element={<SignUp />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />

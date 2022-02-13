@@ -74,7 +74,7 @@ export default function LoginUser() {
       loading(dispatch, true);
       const credential = login(dispatch, input.email, input.password);
       credential.then((re) => {
-        re ? navigate("/admin/home") : errorModal(dispatch, true);
+        re ? navigate("/") : errorModal(dispatch, true);
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
