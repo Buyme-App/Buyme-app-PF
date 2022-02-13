@@ -93,7 +93,7 @@ export default function AdminProducts() {
           productsOfRedux.filter(
             (e) =>
               e.name.toUpperCase().includes(value.toUpperCase()) ||
-              e.brand.toUpperCase().includes(value.toUpperCase())
+              e.maker.toUpperCase().includes(value.toUpperCase())
           )
       );
     } else alert("Search field empty");
@@ -246,7 +246,7 @@ export default function AdminProducts() {
             <tbody>
               {render.length
                 ? render.map((e, index) => (
-                    <tr>
+                    <tr key={index}>
                       <td className={e.paused ? sStyle.disabled : null}>
                         {e.createdAt.substring(0, 10)}
                       </td>
