@@ -93,7 +93,7 @@ export default function AdminProducts() {
           productsOfRedux.filter(
             (e) =>
               e.name.toUpperCase().includes(value.toUpperCase()) ||
-              e.brand.toUpperCase().includes(value.toUpperCase())
+              e.maker.toUpperCase().includes(value.toUpperCase())
           )
       );
     } else alert("Search field empty");
