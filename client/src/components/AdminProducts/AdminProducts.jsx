@@ -146,7 +146,7 @@ export default function AdminProducts() {
 
   const activateFeaturedHandler = (product) => {
     //no está pausado?, entonces pasará a estar pausado(true)
-    let opositeFeatured = product.featured === true ? "Yes" : "No"; //pause en true == producto pausado
+    let opositeFeatured = product.featured === true ? "No" : "Yes"; //pause en true == producto pausado
     let newStatus = product.featured ? false : true;
 
     if (
@@ -178,7 +178,7 @@ export default function AdminProducts() {
   //jj
   return (
     <div>
-      <div className={sStyle.sales_container}>
+      <div className={sStyle.products_container}>
         {/* <h1 className={sStyle.title}>Products</h1> */}
         {activeUpdate && (
           <div className={sStyle.update_container}>
@@ -197,6 +197,7 @@ export default function AdminProducts() {
               type="search"
               placeholder="Search by name or brand..."
               value={search}
+              onKeyDown={(e) => e.key === "Enter" && searchHandler(search)}
               onChange={(e) => setSearch(e.target.value)}
             />
             <FaSistrix
@@ -204,9 +205,11 @@ export default function AdminProducts() {
               onClick={() => searchHandler(search)}
             />
           </div>
-          {!render.length ? (
-            <h1 className={sStyle.notMatch}>No matches found</h1>
-          ) : null}
+          <div>
+            {!render.length ? (
+              <h2 className={sStyle.notMatch}>No matches found</h2>
+            ) : null}
+          </div>
 
           {/* -----------selects-------------- */}
           <div className={sStyle.selects_box}>
