@@ -40,7 +40,7 @@
 
 .mainimg {
   width: 76%;
-  /* background-color: #fff; */
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
   display: flex;
@@ -55,16 +55,11 @@
   flex-direction: column;
 }
 
-/* .card .images .thumbs .thumb {
-  width: 100%;
-  background-color: #222;
-} */
-
 .thumbs img {
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #999;
+  background-color: #fff;
   margin-bottom: 20px;
   cursor: pointer;
 }

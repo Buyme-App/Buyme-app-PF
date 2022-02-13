@@ -13,7 +13,6 @@ export default function SliderProducts() {
 
   const next = () => {
        if(slideshow.current.children.length > 0){
-         console.log("siguiente")
          const firstElement = slideshow.current.children[0];
        
        slideshow.current.style.transition = '800ms ease-out all';
@@ -37,7 +36,6 @@ export default function SliderProducts() {
   }
 
   const back = () => {
-    console.log("anterior")
     if(slideshow.current.children.length > 0){
       const index = slideshow.current.children.length -1;
       const lastElement = slideshow.current.children[index];
@@ -70,15 +68,15 @@ useEffect(() => {
       <div className={styles.ContenedorSlideShow} ref={slideshow}>
         
         <div className={styles.Slide}>
-          <img src={Banner1} alt="img" height="310px" width="1265px"/>
+          <img src={Banner1} alt="img" height="380px" width="1265px"/>
         </div>
 
         <div className={styles.Slide}>
-          <img src={Banner4} alt="img" height="310px" width="1265px"/>
+          <img src={Banner4} alt="img" height="380px" width="1265px"/>
         </div>
 
         <div className={styles.Slide}>
-          <img src={Banner3} alt="img" height="310px" width="1265px"/>
+          <img src={Banner3} alt="img" height="380px" width="1265px"/>
         </div>
 
         {/* <div className={styles.Slide}>

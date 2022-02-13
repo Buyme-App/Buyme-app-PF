@@ -105,12 +105,11 @@
   height: 35px;
   background-color: var(--color-pink-buttons);
   color: white;
-  /* margin: 10px; */
-  /* padding: 8px 25px 8px 25px; */
 }
-/* .btn:hover {
-  background-color: var(--color-buttonsHover-pink);
-} */
+
+.btn:hover{
+  background-color: var(--color-pinkHover-buttons);
+}
 
 .link {
   font-size: 13px;

@@ -16,7 +16,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element = {<Landing/>}></Route>
-          {/* <Route exact path="/productDetail" element = {<ProductDetail/>}></Route> */}
           <Route exact path="/product/detail:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />

@@ -87,12 +87,14 @@ export default function AdminProducts() {
   };
   const searchHandler = (value) => {
     if (value.length) {
-      setRender((prev) =>
-        productsOfRedux.filter(
-          (e) =>
-            e.name.toUpperCase().includes(value.toUpperCase()) ||
-            e.brand.toUpperCase().includes(value.toUpperCase())
-        )
+      setRender(
+        (prev) =>
+          productsOfRedux &&
+          productsOfRedux.filter(
+            (e) =>
+              e.name.toUpperCase().includes(value.toUpperCase()) ||
+              e.brand.toUpperCase().includes(value.toUpperCase())
+          )
       );
     } else alert("Search field empty");
   };
@@ -107,18 +109,13 @@ export default function AdminProducts() {
   React.useEffect(() => {
     dispatch(getAllProducts);
     refreshHandler();
-  }, []);
-  React.useEffect(() => {
-    console.log("se actualiza products");
-    dispatch(getAllProducts);
-    refreshHandler();
-  });
+  }, [productsOfRedux]);
 
   //Activate product handler
 
-  const activateHandler = (product) => {
+  const activateStatusHandler = (product) => {
     //no está pausado?, entonces pasará a estar pausado(true)
-    let opositePause = product.paused === false ? "Disabled" : "Enabled"; //pause en true == producto pausado
+    let opositePause = product.paused === false ? "Paused" : "Active"; //pause en true == producto pausado
     let newStatus = product.paused ? false : true;
 
     if (
@@ -144,6 +141,37 @@ export default function AdminProducts() {
 
       updateProduct(dispatch, formToChangeStatus);
       alert("Product has been " + opositePause + " successfully");
+    }
+  };
+
+  const activateFeaturedHandler = (product) => {
+    //no está pausado?, entonces pasará a estar pausado(true)
+    let opositeFeatured = product.featured === true ? "Yes" : "No"; //pause en true == producto pausado
+    let newStatus = product.featured ? false : true;
+
+    if (
+      window.confirm(
+        `The product ${product.name} state will be change to ${opositeFeatured}`
+      )
+    ) {
+      let formToChangeStatus = {
+        name: product.name,
+        id: product.id,
+        maker: product.maker,
+        model: product.model,
+        SKU: product.SKU,
+        price: product.price,
+        offerPrice: product.offerPrice,
+        stock: product.stock,
+        inventary: product.inventary,
+        description: product.description,
+        featured: newStatus,
+        paused: product.paused,
+        subCategorie: product.subCategorie,
+      };
+
+      updateProduct(dispatch, formToChangeStatus);
+      alert("Product has been " + opositeFeatured + " successfully");
     }
   };
 
@@ -210,7 +238,8 @@ export default function AdminProducts() {
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Edit</th>
-                <th>A / P</th>
+                <th>Status</th>
+                <th>Featured</th>
               </tr>
             </thead>
 
@@ -247,9 +276,25 @@ export default function AdminProducts() {
                           }`}
                           name={e.name}
                           type="button"
-                          value={e.paused ? "Disabled" : "Enabled"}
+                          value={e.paused ? "Inactive" : "Active"}
                           onClick={() => {
-                            activateHandler(e);
+                            activateStatusHandler(e);
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          className={`${
+                            e.featured
+                              ? sStyle.activate_btn2
+                              : sStyle.disabled_btn2
+                          }`}
+                          name={e.name}
+                          type="button"
+                          disabled={e.paused === true}
+                          value={e.featured ? "Yes" : "No"}
+                          onClick={() => {
+                            activateFeaturedHandler(e);
                           }}
                         />
                       </td>

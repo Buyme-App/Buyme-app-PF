@@ -18,7 +18,7 @@ async function updateProduct(
   inventary,
   featured,
   paused,
-  sales
+ 
 ) {
   // se parsean los parametros a int.
   parseFloat(price);
@@ -28,31 +28,38 @@ async function updateProduct(
   parseInt(stock);
   parseInt(inventary);
 
-  try {
-    const updateItem = await Product.update(
-      {
-        name,
-        price,
-        favorite,
-        image,
-        maker,
-        model,
-        description,
-        SKU,
-        offerPrice,
-        stock,
-        inventary,
-        featured,
-        paused,
-        sales,
-      },
-      { where: { id: parseInt(id) } }
-    );
+  const statusProduct = await Product.findByPk(parseInt(id));
 
-    if (updateItem > 0) return true;
-    return false;
-  } catch (error) {
-    showErrors("updateProduct", error);
+  if(statusProduct.status){
+    try {
+      const updateItem = await Product.update(
+        {
+          name,
+          price,
+          favorite,
+          image,
+          maker,
+          model,
+          description,
+          SKU,
+          offerPrice,
+          stock,
+          inventary,
+          featured,
+          paused,
+          
+        },
+        { where: { id: parseInt(id) } }
+      );
+  
+      if (updateItem > 0) return true;
+      return false;
+    } catch (error) {
+      showErrors("updateProduct", error);
+      return false;
+    }
+
+  }else{
     return false;
   }
 }

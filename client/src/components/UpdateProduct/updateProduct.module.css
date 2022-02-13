@@ -1,47 +1,59 @@
 
-.close{
+.main{
+    right: 0px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.closediv{
     display: flex;
     justify-content: flex-end;
 }
-.close span{
-    background-color: rgb(44, 39, 39);
-    padding: 10px;
-    border-radius: 50%
-    ;
-    width: 40px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-}
-.close span:hover{
-color: #333;
-background-color: rgb(235, 207, 207);
-}
 
-.close span:active{
-    position:relative;
-    top: 1.5px
-}
+.close {
+    width: 23px;
+    height: 24px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-right: 15px;
+    /* margin-top: -5%;
+    margin-right: -5%; */
+    cursor: pointer;
+    background-color: rgba(231, 53, 53, 0.877);
+    color: white;
+    /* border-style: thin; */
+    border-width: thin;
+    border-color: grey;
+    font-size: 12px;
+  }
+  
+  .close:hover {
+    font-weight: 700;
+    background-color: rgba(221, 41, 41, 0.877);
+    color: rgb(221, 221, 221);
+  }
+
 .buttons_box{
 
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 8px 0px
-    ;width: 400px;
-margin: 0 auto;
+    padding: 8px 0px;
+    width: 400px;
+    margin: 0 auto;
 }
 .update{
     padding:14px;
 
     border: none;
-    background-color: chartreuse
-    ;
+    background-color: var(--color-pink-buttons);
+    font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
+    margin: 10px 0px;
 }
 .update:hover{
-    background-color: rgb(110, 190, 30)
+    background-color: #df4aa6;
 }
 
 .update:active{
@@ -52,21 +64,24 @@ margin: 0 auto;
     padding:14px;
 
     border: none;
-    background-color: rgb(224, 139, 127)
-    ;
+    background-color: rgba(207, 34, 34, 0.932);
+    font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
 }
 .cancel:hover{
-    background-color: rgb(214, 58, 38)
+    background-color: rgba(192, 25, 25, 0.877);
+    
 }
 
 
 
 .uForm{
-    background-color: white;
-    padding:10px
-;    border-radius: 15px;
+    background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+    /* padding:10px; */
+    border-radius: 15px;
+    
+    /* margin-right: 150px; */
 }
 .inputs{
     
@@ -79,11 +94,13 @@ margin: 0 auto;
     border: none
 }
 .uForm h3{
-font-weight: bold;
+    font-weight: bold;
     width: 100%;
     text-align: center;
      margin: 0 auto;
     padding: 5px;
+    color: white;
+
 
 }
 .reduced_price{
@@ -97,5 +114,11 @@ font-weight: bold;
 margin-right: 15px;
 }
 .description_box{
+margin: 10px 20px;
+}
+
+.uploader{
+margin: 10px 20px;
+background-color: white;
 
 }

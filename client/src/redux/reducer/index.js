@@ -8,17 +8,23 @@ import {
   GET_SUBCATEGORIE_BY_ID,
   UPDATE_PRODUCT,
   GET_ALL_PRODUCTS,
+  GET_PRODUCTS_BY_NAME,
   GET_PRODUCT_DETAIL,
   CLEAR_PRODUCT_DETAIL,
   POST_NEW_PRODUCT,
+  POST_NEW_CATEGORY,
+  POST_NEW_SUBCATEGORY,
+  DELETE_CATEGORY,
+  DELETE_SUBCATEGORY,
+  DELETE_USER
 } from "../actions/index";
-
 
 const initialState = {
   allUsers: [],
   allCategories: [],
   subcategories: [],
   allProducts: [],
+  products: [],
   detail: [],
   login: null,
   loading: false,
@@ -47,23 +53,35 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
-      case GET_PRODUCT_DETAIL:
-        if(!action.payload){
-            return {
-                ...state,
-                detail: [404]
-            }
-        } else {
-            return {
-                ...state,
-                detail: action.payload
-            }
-        };
-    case CLEAR_PRODUCT_DETAIL:
+    case GET_PRODUCTS_BY_NAME:
+      if (!action.payload) {
         return {
-            ...state,
-            detail: {},
+          ...state,
+          products: [404],
         };
+      } else {
+        return {
+          ...state,
+          products: action.payload,
+        };
+      }
+    case GET_PRODUCT_DETAIL:
+      if (!action.payload) {
+        return {
+          ...state,
+          detail: [404],
+        };
+      } else {
+        return {
+          ...state,
+          detail: action.payload,
+        };
+      }
+    case CLEAR_PRODUCT_DETAIL:
+      return {
+        ...state,
+        detail: {},
+      };
     case POST_NEW_PRODUCT:
       return {
         ...state,
@@ -85,28 +103,32 @@ export default function rootReducer(state = initialState, action) {
     case GET_ALL_CATEGORIES:
       return {
         ...state,
-        allCategories: action.payload
+        allCategories: action.payload,
       };
     case GET_SUBCATEGORIE_BY_ID:
       return {
         ...state,
-        subcategories: action.payload
+        subcategories: action.payload,
       };
-    case 'POST_NEW_CATEGORY':
+    case POST_NEW_CATEGORY:
       return {
-          ...state
+        ...state,
       };
-    case 'POST_NEW_SUBCATEGORY':
+    case POST_NEW_SUBCATEGORY:
       return {
-          ...state
+        ...state,
       };
-    case 'DELETE_CATEGORY':
+    case DELETE_CATEGORY:
       return {
-          ...state
+        ...state,
       };
-    case 'DELETE_SUBCATEGORY':
+    case DELETE_SUBCATEGORY:
       return {
-          ...state
+        ...state,
+      };
+    case DELETE_USER:
+      return {
+        ...state,
       };
     default:
       return state;
