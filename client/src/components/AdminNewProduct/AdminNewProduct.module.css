@@ -172,3 +172,10 @@ h1, h3 {
     height: 20px;
     /* visibility: hidden; */
 }
+.off {
+transform: scale(0.96);
+    pointer-events: none;
+    border: none;
+    background-color: rgb(243, 231, 231);
+        
+}

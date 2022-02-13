@@ -2,7 +2,6 @@ export const saveToken = (token) => {
   token
     ? localStorage.setItem("token", token)
     : console.log("No se ha guardado el token porque esta infefinido");
-  debugger;
 };
 export const getToken = () => {
   return localStorage.getItem("token")

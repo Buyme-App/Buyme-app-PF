@@ -43,7 +43,6 @@ export const login = async (dispatch, email, password) => {
       type: LOGIN,
       payload: credential.data.login,
     });
-    debugger;
 
     const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
     return credential;
