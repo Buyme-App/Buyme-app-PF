@@ -65,9 +65,7 @@ function validate(input) {
   if (input.offerPrice.length > 0 && input.offerPrice < 0) {
     errors.offerPrice = "Positive numbers only";
   }
-  if (!input.offerPrice) {
-    errors.offerPrice = "Reduced price is required";
-  }
+
   // if (input.offerPrice.includes(',')) {
   //   errors.offerPrice = 'Only dot allowed for decimal numbers'
   // }
@@ -109,6 +107,8 @@ function validate(input) {
 export default function AdminNewProduct() {
   const dispatch = useDispatch();
   const history = useNavigate();
+  const [offer, setOffer] = useState(false);
+  console.log(offer);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -199,7 +199,6 @@ export default function AdminNewProduct() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("LUCAS", input);
     const errors = validate(input);
     if (
       allProdutcs.length &&
@@ -347,14 +346,20 @@ export default function AdminNewProduct() {
           <div className={styles.inputs1}>
             <h3>
               Reduced Price
-              <input id="isoffer" type="checkbox" className={styles.checkbox} />
+              <input
+                id="isoffer"
+                type="checkbox"
+                defaultChecked={offer}
+                className={`${styles.checkbox}`}
+                onClick={(e) => setOffer(e.target.checked)}
+              />
             </h3>
             <div className={styles.inputs2}>
               <input
                 type="text"
                 value={input.offerPrice}
                 name="offerPrice"
-                className={styles.input}
+                className={`${styles.input} ${!offer ? styles.off : null}`}
                 placeholder="E.g.: 100"
                 // disabled="disabled"
                 onChange={(e) => handleInputChange(e)}
@@ -528,7 +533,6 @@ export default function AdminNewProduct() {
               onChange={(e) => uploadImage(e)}
             />
           </div>
-          <img src={baseImage} width="150px" />
         </div>
         {/* <div className={styles.uploader}>
             <Uploader />
