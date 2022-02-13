@@ -6,6 +6,7 @@ import { getAllProducts } from '../../../redux/actions';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Cards from '../Cards/Cards';
+import InformativeBanner from '../Informative Banner/InformativeBanner';
 import Slider from '../Slider/Main Banner/Slider';
 import FeaturedProducts from '../Slider/Featured Products/FeaturedProducts'
 import styles from './Landing.module.css';
@@ -29,6 +30,9 @@ export default function Landing(){
             <Header />
             <div className={styles.slider}>
             <Slider/>
+            </div>
+            <div className={styles.infobanner}>
+                <InformativeBanner/>
             </div>
             <div>
                 <h2>Featured Products</h2>
