@@ -246,7 +246,7 @@ export default function AdminProducts() {
             <tbody>
               {render.length
                 ? render.map((e, index) => (
-                    <tr>
+                    <tr key={index}>
                       <td className={e.paused ? sStyle.disabled : null}>
                         {e.createdAt.substring(0, 10)}
                       </td>

@@ -62,14 +62,22 @@ function validate(input) {
     errors.price = "Numbers and dot (.) only for decimals";
   }
 
-  if (input.offerPrice.length > 0 && input.offerPrice < 0) {
+  if (
+    input.offerPrice !== null &&
+    input.offerPrice.length > 0 &&
+    input.offerPrice < 0
+  ) {
     errors.offerPrice = "Positive numbers only";
   }
 
   // if (input.offerPrice.includes(',')) {
   //   errors.offerPrice = 'Only dot allowed for decimal numbers'
   // }
-  if (input.offerPrice.length > 0 && !validNumber.test(input.offerPrice)) {
+  if (
+    input.offerPrice !== null &&
+    input.offerPrice.length > 0 &&
+    !validNumber.test(input.offerPrice)
+  ) {
     errors.offerPrice = "Numbers and dot (.) only for decimals";
   }
 
@@ -104,11 +112,10 @@ function validate(input) {
   return errors;
 }
 
-export default function AdminNewProduct() {
+export default function AdminNewProduct({ setPanelActive }) {
   const dispatch = useDispatch();
   const history = useNavigate();
   const [offer, setOffer] = useState(false);
-  console.log(offer);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -137,11 +144,9 @@ export default function AdminNewProduct() {
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
-    console.log(e.target.files);
     const base64 = await convertBase64(file);
     setBaseImage(base64);
     setInput((prev) => ({ ...prev, image: [...prev.image, base64] }));
-    console.log("ALE", input.image);
   };
 
   const convertBase64 = (file) => {
@@ -216,6 +221,8 @@ export default function AdminNewProduct() {
       );
       // history('/home');
     } else if (!Object.keys(errors).length) {
+      //set to null to not have errors
+      if (!input.offerPrice.length) input.offerPrice = null;
       dispatch(createProduct(input));
       alert("Product created succssesfully!!");
       setInput({
@@ -232,7 +239,18 @@ export default function AdminNewProduct() {
         paused: "",
         image: [],
       });
-      history("/admin/home");
+      dispatch(getAllProducts());
+
+      setPanelActive({
+        home: false,
+        sales: false,
+        newProduct: false,
+        products: true,
+        categories: false,
+        customers: false,
+        queries: false,
+        account: false,
+      });
     } else {
       alert("Please review the form!");
     }
