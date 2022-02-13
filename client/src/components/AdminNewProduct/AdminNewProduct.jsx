@@ -349,7 +349,7 @@ export default function AdminNewProduct() {
               <input
                 id="isoffer"
                 type="checkbox"
-                defaultChecked={true}
+                defaultChecked={offer}
                 className={`${styles.checkbox}`}
                 onClick={(e) => setOffer(e.target.checked)}
               />
