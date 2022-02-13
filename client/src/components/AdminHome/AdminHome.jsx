@@ -11,7 +11,7 @@ import Customers from "../Customers/Customers";
 import style from "./adminHome.module.css";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions";
+import { getAllProducts, login } from "../../redux/actions";
 
 export default function AdminHome() {
   const navigate = useNavigate();
@@ -32,7 +32,9 @@ export default function AdminHome() {
   // Comentar para no loguearte
 
   React.useEffect(() => {
+    // login(dispatch);
     !globalState.login && navigate("/admin");
+
     dispatch(getAllProducts());
   }, []);
 

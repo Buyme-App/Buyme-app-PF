@@ -87,12 +87,14 @@ export default function AdminProducts() {
   };
   const searchHandler = (value) => {
     if (value.length) {
-      setRender((prev) =>
-        productsOfRedux.filter(
-          (e) =>
-            e.name.toUpperCase().includes(value.toUpperCase()) ||
-            e.brand.toUpperCase().includes(value.toUpperCase())
-        )
+      setRender(
+        (prev) =>
+          productsOfRedux &&
+          productsOfRedux.filter(
+            (e) =>
+              e.name.toUpperCase().includes(value.toUpperCase()) ||
+              e.brand.toUpperCase().includes(value.toUpperCase())
+          )
       );
     } else alert("Search field empty");
   };
@@ -108,7 +110,6 @@ export default function AdminProducts() {
     dispatch(getAllProducts);
     refreshHandler();
   }, [productsOfRedux]);
-  
 
   //Activate product handler
 
@@ -284,7 +285,9 @@ export default function AdminProducts() {
                       <td>
                         <input
                           className={`${
-                            e.featured ? sStyle.activate_btn2 : sStyle.disabled_btn2
+                            e.featured
+                              ? sStyle.activate_btn2
+                              : sStyle.disabled_btn2
                           }`}
                           name={e.name}
                           type="button"
