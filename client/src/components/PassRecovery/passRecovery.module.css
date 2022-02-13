@@ -70,3 +70,7 @@ h1{
   background-color: var(--color-pink-buttons);
   color:white;
 }
+
+.button-div input:hover{
+  background-color: var(--color-pinkHover-buttons);
+}
