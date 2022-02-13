@@ -7,7 +7,7 @@ const bcrypt = require("../handleBcrypts/handleBcrypts"); // Fixed
 
 async function loginRoutesController(userEmail, userPassword) {
   try {
-    if (userEmail) {
+    if (userEmail !== undefined) {
       const result = await User.findOne({ where: { email: userEmail } });
       if (result === null) return 404;
       else {
