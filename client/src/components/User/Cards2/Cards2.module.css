@@ -1,0 +1,65 @@
+.Card {
+  margin-right: 30px;
+  border-radius: 6px;
+  height: 360px;
+  width: 240px;
+  text-decoration: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #fff;
+}
+
+.Card:hover {
+  border: 1px solid #ddd;
+}
+
+.name {
+  margin: 0 20px 0 20px;
+  height: 50px;
+  color: #000;
+  text-decoration: none;
+  padding-top: 14px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  border-top: 2px dotted #ddd;
+}
+
+.price,
+.currentregprice,
+.currentofferprice {
+  color: #000;
+  text-decoration: none;
+  padding-top: 15px;
+  font-size: 16px;
+}
+
+.currentregprice {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.currentofferprice {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.crossed {
+  color: #000;
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.bothprices {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.image {
+  padding: 5px 5px 0 5px;
+  /* border-bottom: 1px solid #ddd; */
+}

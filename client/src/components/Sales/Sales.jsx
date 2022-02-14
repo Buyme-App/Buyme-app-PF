@@ -87,6 +87,7 @@ export default function Sales() {
   };
   const refreshHandler = () => {
     setRender(example);
+    setSearch("");
   };
   //jj
   return (
@@ -101,15 +102,13 @@ export default function Sales() {
               placeholder="Search by order#, customers or products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && searchHandler(search)}
             />
             <FaSistrix
               className={sStyle.icon}
               onClick={() => searchHandler(search)}
             />
           </div>
-          {!render.length ? (
-            <h1 className={sStyle.notMatch}>No matches found</h1>
-          ) : null}
 
           {/* -----------selects-------------- */}
           <div className={sStyle.selects_box}>
@@ -154,6 +153,9 @@ export default function Sales() {
                 : null}
             </tbody>
           </table>
+          <div className={sStyle.notMatch}>
+            {!render.length ? <h2>No matches found</h2> : null}
+          </div>
         </div>
       </div>
     </div>

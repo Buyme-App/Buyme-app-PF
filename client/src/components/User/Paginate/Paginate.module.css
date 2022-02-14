@@ -1,0 +1,64 @@
+.paginate {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.page {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    color: #000;
+    cursor: pointer;
+    background: #fff;
+    /* background: var(--color-principal-violet); */
+    opacity: 0.8;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.page:hover {
+    opacity: 1;
+}
+
+.page:disabled {
+    opacity: 1;
+    color: #fff;
+    background: var(--color-principal-violet);
+    border: 1px solid var(--color-principal-violet);
+    cursor: default;
+}
+
+.first, .last, .prev, .next {
+    margin: 0;
+    min-width: 50px;
+    height: 40px;
+    /* color: #495057; */
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 20px 4px 4px 20px;
+    background: #fff;
+    opacity: 0.7;
+}
+
+.prev, .next {
+    margin: 0;
+    border-radius: 4px;
+}
+
+.last {
+    margin: 0;
+    border-radius: 4px 20px 20px 4px;
+}
+
+.first:disabled,
+.last:disabled,
+.prev:disabled,
+.next:disabled {
+    cursor: default;
+}

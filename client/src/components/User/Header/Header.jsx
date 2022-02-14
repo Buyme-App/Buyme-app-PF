@@ -18,7 +18,7 @@ export default function Header(){
                 </div>
                 <SearchBar/>
                 <div className={styles.account}>
-                    <span>My Account</span>
+                    <Link to={'/login'}><span>My Account</span></Link>
                     <div className={styles.bag}>9</div>
                     
                 </div>

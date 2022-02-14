@@ -9,7 +9,12 @@
     display: flex;
     justify-content: flex-end;
 }
-
+.checkbox {
+    padding: 0;
+    margin-left: 10px;
+    width: 14px;
+    height: 14px;
+}
 .close {
     width: 23px;
     height: 24px;
