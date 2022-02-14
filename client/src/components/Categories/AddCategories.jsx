@@ -97,6 +97,7 @@ export default function AddCategories (props){
                 </div>
             
                 <select className={styles.select} disabled={disableSelect} onChange={(e) => {handleSelect(e)}}>
+                    <option value="categories">Categories:</option>
                 {categories?.map(el => {
                     return(
                         <option value={el.id} key={el.id}>{el.name}</option>
