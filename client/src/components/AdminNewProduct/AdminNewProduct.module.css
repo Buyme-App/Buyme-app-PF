@@ -138,7 +138,7 @@ h1, h3 {
 
 .create:hover {
   color: #fff;
-  background-color: rgb(216, 109, 202);
+  background-color: var(--color-pinkHover-buttons);
 }
 
 .create:disabled {

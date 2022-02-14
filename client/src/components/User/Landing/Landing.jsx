@@ -19,6 +19,13 @@ export default function Landing(){
             <div className={styles.slider}>
             <Slider/>
             </div>
+            <div className={styles.maintext}>
+                <h1>Welcome to Smartech!</h1>
+                <h2>In our online store you can find your favorite technological products
+                 without leaving your home. We ship worldwide and at the speed of light.
+                 With our personalized attention we will solve all your doubts and
+                 offer the security and tranquility that you deserve.</h2>
+            </div>
             <div className={styles.infobanner}>
                 <InformativeBanner/>
             </div>

@@ -457,7 +457,7 @@ export default function UpdateProduct({
             className={styles.cancel}
             onClick={() => setActiveUpdate(false)}
           >
-            Cancell
+            Cancel
           </button>
         </div>
       </form>
