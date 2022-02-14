@@ -27,6 +27,9 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
 export const DELETE_USER = "DELETE_USER";
 
+// Used in Account component
+export const UPDATE_USER = "UPDATE_USER"
+
 export const login = async (dispatch, email, password) => {
   try {
     let credential = await axios.post(
@@ -142,6 +145,7 @@ export function createProduct(payload) {
     return response;
   };
 }
+
 export const updateProduct = async (dispatch, product) => {
   console.log("recibido,", product);
   try {
@@ -153,6 +157,21 @@ export const updateProduct = async (dispatch, product) => {
     });
   } catch (err) {
     console.log("error en updateProduct", err);
+  }
+};
+
+export const updateUser = async (dispatch, user) => {
+  console.log("updateUser recibido:", user);
+  try {
+    let response = await axios.put("/updateUser", user, sendKey());
+    console.log("respuesta de update user", response);
+    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    return dispatch({
+      type: UPDATE_USER,
+      payload: json.data,
+    });
+  } catch (err) {
+    console.log("error en updateUser", err);
   }
 };
 

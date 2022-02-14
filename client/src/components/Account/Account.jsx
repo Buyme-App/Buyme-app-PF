@@ -18,8 +18,10 @@ export default function Account() {
   useEffect(() => {
     console.log("loop?");
     console.log("allUsers", allUsers);
-    dispatch(getAllUsers()); // Estaba configurado como componentDidMunt no como update
-  }, []); // Para update no debe llevar los corchetes
+    dispatch(getAllUsers())
+    // Estaba configurado como componentDidMunt no como update
+   
+  },[]); // Para update no debe llevar los corchetes
 
   //console.log(allUsers);
 
@@ -59,6 +61,7 @@ export default function Account() {
       <ChangeEmail
         trigger={btnChangeE}
         setTrigger={setBtnChangeE}
+        users = {allUsers}
       ></ChangeEmail>
       <AddUser trigger={btnAddUser} setTrigger={setBtnAddUser}></AddUser>
       <h2>Users</h2>

@@ -16,7 +16,8 @@ import {
   POST_NEW_SUBCATEGORY,
   DELETE_CATEGORY,
   DELETE_SUBCATEGORY,
-  DELETE_USER
+  DELETE_USER,
+  UPDATE_USER
 } from "../actions/index";
 
 const initialState = {
@@ -130,6 +131,11 @@ export default function rootReducer(state = initialState, action) {
     case DELETE_USER:
       return {
         ...state,
+      };
+      case UPDATE_USER:
+      return {
+        ...state,
+        allUsers: [...state.allUsers, action.payload],
       };
     default:
       return state;

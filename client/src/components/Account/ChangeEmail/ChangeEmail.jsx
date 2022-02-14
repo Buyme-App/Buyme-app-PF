@@ -1,15 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ChangeEmail.module.css";
-import { getAllUsers } from "../../../redux/actions";
+import { updateUser } from "../../../redux/actions";
+
+import MyInput from "../../basics/myInput";
 
 export default function ChangeEmail(props) {
-  // const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [input, setInput] = React.useState({
-    email: "",
+  const dispatch = useDispatch()
+  const [input, setInput] = useState({
+    id: 0,
+    name: "",
     password: "",
+    email: "",
+    role: "",
+    status: "",
     newEmail: "",
   });
 
@@ -22,50 +27,41 @@ export default function ChangeEmail(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // alert('user created successfully!');
+    let user= props.users.find(e=>e.email===input.email)
+    user.email = input.newEmail
+    console.log('submit', user)
+  
+
+    dispatch(updateUser(dispatch, user))
+
     setInput({
-      email: "",
+      id: 0,
+      name: "",
       password: "",
+      email: "",
+      role: "",
+      status: "",
       newEmail: "",
     });
-    // navigate('/admin/home/account');
+
+    props.setTrigger(false)
   }
-  //useEffect to update the render
-  React.useEffect(() => {
-    return () => dispatch(getAllUsers());
-  }, []);
 
   return props.trigger ? (
     <div className={styles.popup}>
       {props.children}
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-        className={styles.form}
-      >
+      <form onSubmit={(e) => handleSubmit(e)}
+        className={styles.form}>
         <div className={styles.divTitle}>
           <h1 className={styles.title}>Change Email</h1>
-          <button
-            className={styles.close}
-            onClick={() => props.setTrigger(false)}
-          >
+          <button className={styles.close}
+            onClick={() => props.setTrigger(false)}>
             x
           </button>
         </div>
 
-        <div className={styles.input}>
-          <label>Email:</label>
-          <input
-            type="text"
-            value={input.email}
-            name="email"
-            placeholder="Enter email"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </div>
+        <MyInput l='Email' t='text' v={input.email} n='email' p='Enter email' o={handleChange}/>
+
         <div className={styles.input}>
           <label>Password:</label>
           <input
@@ -73,9 +69,7 @@ export default function ChangeEmail(props) {
             value={input.password}
             name="password"
             placeholder="Enter password"
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className={styles.input}>
@@ -85,21 +79,13 @@ export default function ChangeEmail(props) {
             value={input.newEmail}
             name="newEmail"
             placeholder="Enter new email"
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
           />
         </div>
-        <button
-          onClick={() => props.setTrigger(false)}
-          className={styles.btn}
-          type="submit"
-        >
+        <button className={styles.btn} type="submit">
           Submit
         </button>
       </form>
     </div>
-  ) : (
-    ""
-  );
+  ) : ("");
 }
