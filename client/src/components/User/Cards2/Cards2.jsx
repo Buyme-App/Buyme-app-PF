@@ -16,12 +16,11 @@ export default function Cards({ name, price, offerPrice, image }) {
         <img src={noimage} alt="not found" width="195px" height={`170px`} />
       )}
       <h3 className={styles.name}>{name}</h3>
-      {/* <h5 className={styles.price}>$ {!offerPrice ? price : offerPrice}</h5> */}
       {!offerPrice ? (
         <div className={styles.currentregprice}>$ {price}</div>
       ) : (
         <div className={styles.bothprices}>
-          <span className={`${offerPrice ? styles.crossed : styles.price}`}>
+          <span className={styles.crossed}>
             $ {price}
           </span>
           <br />
