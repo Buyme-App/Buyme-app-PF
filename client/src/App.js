@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Landing from "./components/User/Landing/Landing";
+import Search from './components/User/Search/Search';
 import Catalogue from './components/User/Catalogue/Catalogue';
 import ProductDetail from "./components/User/ProductDetail/ProductDetail";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
@@ -17,7 +18,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element = {<Landing/>}></Route>
-          <Route path="/catalogue" element = {<Catalogue/>}></Route>
+          <Route path="/shop" element = {<Catalogue/>}></Route>
+          <Route path="/search" element = {<Search/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />

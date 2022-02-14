@@ -19,6 +19,8 @@ import {
   DELETE_USER,
   UPDATE_USER,
   GET_ALL_PRODUCTS_CLIENT,
+  GET_DETAIL_CLIENT,
+  GET_PRODUCTS_BY_NAME_CLIENTS,
 } from "../actions/index";
 
 const initialState = {
@@ -74,7 +76,31 @@ export default function rootReducer(state = initialState, action) {
           products: action.payload,
         };
       }
+    case GET_PRODUCTS_BY_NAME_CLIENTS:
+      if (!action.payload) {
+        return {
+          ...state,
+          products: [404],
+        };
+      } else {
+        return {
+          ...state,
+          products: action.payload,
+        };
+      }
     case GET_PRODUCT_DETAIL:
+      if (!action.payload) {
+        return {
+          ...state,
+          detail: [404],
+        };
+      } else {
+        return {
+          ...state,
+          detail: action.payload,
+        };
+      }
+    case GET_DETAIL_CLIENT:
       if (!action.payload) {
         return {
           ...state,
