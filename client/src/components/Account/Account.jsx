@@ -18,8 +18,10 @@ export default function Account() {
   useEffect(() => {
     console.log("loop?");
     console.log("allUsers", allUsers);
-    dispatch(getAllUsers()); // Estaba configurado como componentDidMunt no como update
-  }, []); // Para update no debe llevar los corchetes
+    dispatch(getAllUsers())
+    // Estaba configurado como componentDidMunt no como update
+   
+  },[]); // Para update no debe llevar los corchetes
 
   //console.log(allUsers);
 
