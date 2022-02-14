@@ -79,6 +79,7 @@
   width: 100%;
   /* background-color: rgba(17, 17, 29, 0.219); */
   display: flex;
+  flex-flow: wrap;
   justify-content: center;
   padding: 8px;
   
@@ -108,11 +109,11 @@
   font-size: 14px;
 }
 
-.notMach {
-  background-color: black;
-  width: 100%;
-  text-align: center;
-}
+.notMatch {
+  background-color: rgba(197, 192, 192, 0.521);
+    width: 99.5%;
+    text-align: center;
+  }
 
 .refresh {
   background-color: var(--color-principal-violet);

@@ -70,6 +70,7 @@ export default function AdminProducts() {
   const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [toEdit, setToEdit] = React.useState({});
+  const [renderSearched, setRenderSearched] = React.useState(false);
 
   const [activeUpdate, setActiveUpdate] = React.useState(false);
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ export default function AdminProducts() {
     } else setRender([...order.reverse()]);
   };
   const searchHandler = (value) => {
+    setRenderSearched(true);
     if (value.length) {
       setRender(
         (prev) =>
@@ -100,6 +102,7 @@ export default function AdminProducts() {
   };
   const refreshHandler = () => {
     setRender(productsOfRedux);
+    setRenderSearched(false);
   };
   const editHandler = (product) => {
     setActiveUpdate(true);
@@ -190,7 +193,7 @@ export default function AdminProducts() {
             />
           </div>
         )}
-
+        {/* ------------inputs box ------------*/}
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
@@ -204,11 +207,6 @@ export default function AdminProducts() {
               className={sStyle.icon}
               onClick={() => searchHandler(search)}
             />
-          </div>
-          <div>
-            {!render.length ? (
-              <h2 className={sStyle.notMatch}>No matches found</h2>
-            ) : null}
           </div>
 
           {/* -----------selects-------------- */}
@@ -225,9 +223,6 @@ export default function AdminProducts() {
               <option value="Ascendent">Ascendent by Price</option>
               <option value="Descendent">Descendent by Price</option>
             </select>
-            {/* 
-            <button className={sStyle.refresh}>Activate</button>
-            <button className={sStyle.refresh}>Pause</button> */}
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -306,6 +301,11 @@ export default function AdminProducts() {
                 : null}
             </tbody>
           </table>
+          <div className={sStyle.notMatch}>
+            {renderSearched && !render.length ? (
+              <h2>No matches found</h2>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>
