@@ -26,7 +26,7 @@ export default function Featured() {
           return (
             <Link
               className={styles.btnName}
-              to={"/product/detail" + c.id}
+              to={"/product/" + c.id}
               key={c.id}
             >
               <Cards
@@ -34,6 +34,7 @@ export default function Featured() {
                 image={c.image}
                 name={c.name}
                 price={c.price}
+                offerPrice={c.offerPrice}
               />
             </Link>
           );

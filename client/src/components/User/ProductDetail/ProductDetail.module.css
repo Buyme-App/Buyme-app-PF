@@ -1,7 +1,7 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .main {
@@ -89,12 +89,37 @@
   justify-content: space-around;
 }
 
-.info .price {
-  width: 100%;
+.price,
+.currentregprice,
+.currentofferprice {
+  color: #000;
+  font-size: 24px;
+}
+
+.currentregprice {
+  margin-top: 5px;
   font-size: 30px;
   font-weight: bold;
-  text-align: left;
-  /* background-color: #eee; */
+}
+
+.currentofferprice {
+  margin-top: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.crossed {
+  width: 100%;
+  color: #000;
+  font-size: 24px;
+  text-decoration: line-through;
+}
+
+.bothprices {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .info .favourite {
@@ -158,8 +183,8 @@
 }
 
 .addtocart:hover {
-color: #fff;
-background-color: var(--color-hover-principal);
+  color: #fff;
+  background-color: var(--color-hover-principal);
 }
 
 .description,
