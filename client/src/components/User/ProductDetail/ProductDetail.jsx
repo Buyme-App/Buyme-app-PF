@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductDetail, clearProductDetail } from "../../../redux/actions";
+import { getDetailClients, clearProductDetail } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
@@ -17,7 +17,7 @@ export default function ProductDetail(props) {
   const product = useSelector((state) => state.detail);
 
   useEffect(() => {
-    dispatch(getProductDetail(idProduct));
+    dispatch(getDetailClients(idProduct));
     return () => dispatch(clearProductDetail()); // LIMPIO EL ESTADO DEL DETAIL
   }, [dispatch, idProduct]);
 

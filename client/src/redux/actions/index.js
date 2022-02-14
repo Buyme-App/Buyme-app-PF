@@ -27,6 +27,9 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
 export const DELETE_USER = "DELETE_USER";
 export const GET_ALL_PRODUCTS_CLIENT = "GET_ALL_PRODUCTS_CLIENT";
+export const GET_DETAIL_CLIENT = "GET_DETAIL_CLIENT";
+export const GET_PRODUCTS_BY_NAME_CLIENTS = "GET_PRODUCTS_BY_NAME_CLIENTS";
+
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -121,6 +124,27 @@ export function getProductsByName(name) {
   };
 }
 
+export function getProductsByNameClients(name) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3001/getProDetailClient/detail0/?nameProduct=" + name,
+        sendKey()
+      );
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME_CLIENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME_CLIENTS,
+        payload: null,
+      });
+      // console.log(error)
+    }
+  };
+}
+
 export function getProductDetail(idProduct) {
   return async function (dispatch) {
     try {
@@ -135,6 +159,27 @@ export function getProductDetail(idProduct) {
     } catch (error) {
       return dispatch({
         type: GET_PRODUCT_DETAIL,
+        payload: null,
+      });
+      // console.log(error)
+    }
+  };
+}
+
+export function getDetailClients(idProduct) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3001/getProDetailClient/detail" + idProduct,
+        sendKey()
+      );
+      return dispatch({
+        type: GET_DETAIL_CLIENT,
+        payload: json.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_DETAIL_CLIENT,
         payload: null,
       });
       // console.log(error)

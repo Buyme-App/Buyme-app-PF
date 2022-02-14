@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProductsByName } from "../../../redux/actions";
+import { useNavigate } from 'react-router-dom';
+import { getProductsByNameClients } from "../../../redux/actions";
 import styles from "./SearchBar.module.css";
 import { BsSearch } from "react-icons/bs";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
+  const history = useNavigate();
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
@@ -19,7 +21,8 @@ export default function SearchBar() {
     if (!name) {
       return alert("Please enter a name to start the search");
     } else {
-      dispatch(getProductsByName(name));
+      dispatch(getProductsByNameClients(name));
+      history('/search');
       setName("");
     }
   }

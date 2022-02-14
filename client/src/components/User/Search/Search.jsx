@@ -10,9 +10,9 @@ import Cards2 from "../Cards2/Cards2";
 import Paginate from "../Paginate/Paginate";
 import Loading from "../Loading/Loading";
 import NotFound from "../NotFound/NotFound";
-import styles from "./Catalogue.module.css";
+import styles from "./Search.module.css";
 
-export default function Catalogue() {
+export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
@@ -47,7 +47,7 @@ export default function Catalogue() {
     <>
       <Header />
       <div className={styles.main}>
-        <div className={styles.featured}>
+        {/* <div className={styles.featured}>
           <div className={styles.title}>
             <span>Don't miss our featured products!</span>
           </div>
@@ -78,7 +78,7 @@ export default function Catalogue() {
               })
             }
           </div>
-        </div>
+        </div> */}
         {/* <div>
           <Paginate
             productsPerPage={productsPerPage}

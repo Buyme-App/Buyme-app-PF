@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { getAllProducts } from "../../../redux/actions";
+import { getProductsClient } from "../../../redux/actions";
 import Cards from "../Cards/Cards";
 import styles from "./Featured.module.css";
 import noimage from "../../../assets/imgdft.png";
@@ -15,7 +15,7 @@ export default function Featured() {
   );
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getProductsClient());
   }, [dispatch]);
 
   return (
