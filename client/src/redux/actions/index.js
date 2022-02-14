@@ -26,6 +26,8 @@ export const POST_NEW_SUBCATEGORY = "POST_NEW_SUBCATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
 export const DELETE_USER = "DELETE_USER";
+export const GET_CUSTOMER = "GET_CUSTOMER";
+export const POST_CUSTOMER = "POST_CUSTOMER";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER"
@@ -283,6 +285,27 @@ export function deleteUser(id) {
   return async function () {
     let json = await axios.delete(
       "http://localhost:3001/deleteUser/" + id,
+      sendKey()
+    );
+    return json;
+  };
+}
+
+export function getCustomer() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/getCustomer", sendKey());
+    return dispatch({
+      type: GET_CUSTOMER,
+      payload: json.data,
+    });
+  };
+};
+
+export function createCustomer(payload) {
+  return async function () {
+    let json = await axios.post(
+      "http://localhost:3001/createCustomer",
+      payload,
       sendKey()
     );
     return json;
