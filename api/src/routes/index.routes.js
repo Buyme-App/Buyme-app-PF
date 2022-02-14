@@ -117,6 +117,10 @@ const routes = (server) => {
     server.use('/modifyCustomer', modifyCustomer); //Modifica Datos de clientes;
     server.use('/toggleFav', toggleFav); //Saca o agrega un prod al favorito del cliente
 
+    // ---------Rutas getAllProducts y productDetail para el cliente sin restricciones de seguridad.
+    server.use('/getProductsClient', routerGetProducts);
+    server.use('/getProDetailClient', routerGetProductDetail);
+
 
 }
 
