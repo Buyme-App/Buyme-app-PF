@@ -61,6 +61,7 @@ export default function Account() {
       <ChangeEmail
         trigger={btnChangeE}
         setTrigger={setBtnChangeE}
+        users = {allUsers}
       ></ChangeEmail>
       <AddUser trigger={btnAddUser} setTrigger={setBtnAddUser}></AddUser>
       <h2>Users</h2>

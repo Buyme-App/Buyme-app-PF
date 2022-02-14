@@ -1,15 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ChangeEmail.module.css";
-import { getAllUsers, updateUser } from "../../../redux/actions";
+import { updateUser } from "../../../redux/actions";
 
 import MyInput from "../../basics/myInput";
 
 export default function ChangeEmail(props) {
   const dispatch = useDispatch()
-  const [input, setInput] = React.useState({
-    email: "",
+  const [input, setInput] = useState({
+    id: 0,
+    name: "",
     password: "",
+    email: "",
+    role: "",
+    status: "",
     newEmail: "",
   });
 
@@ -21,14 +26,21 @@ export default function ChangeEmail(props) {
   }
 
   function handleSubmit(e) {
-    console.log('submit')
     e.preventDefault();
+    let user= props.users.find(e=>e.email===input.email)
+    user.email = input.newEmail
+    console.log('submit', user)
+  
 
-    dispatch(updateUser(dispatch, input))
+    dispatch(updateUser(dispatch, user))
 
     setInput({
-      email: "",
+      id: 0,
+      name: "",
       password: "",
+      email: "",
+      role: "",
+      status: "",
       newEmail: "",
     });
 
@@ -48,17 +60,7 @@ export default function ChangeEmail(props) {
           </button>
         </div>
 
-        <MyInput l='Email' t='text' v={input.email} n='email' p='Enter email' o= {handleChange}/>
-
-        {/* <div className={styles.input}>
-          <label>Email:</label>
-          <input type="text"
-            value={input.email}
-            name="email"
-            placeholder="Enter email"
-            onChange={(e) => handleChange(e)}
-          />
-        </div> */}
+        <MyInput l='Email' t='text' v={input.email} n='email' p='Enter email' o={handleChange}/>
 
         <div className={styles.input}>
           <label>Password:</label>

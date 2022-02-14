@@ -12,7 +12,7 @@ export default function AddUser(props) {
   //const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-  const [input, setInput] = React.useState({
+  const [input, setInput] = useState({
     name: "",
     role: "",
     email: "",
