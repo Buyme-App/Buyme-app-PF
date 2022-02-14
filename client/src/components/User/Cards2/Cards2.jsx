@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Cards.module.css";
+import styles from "./Cards2.module.css";
 import noimage from "../../../assets/imgdft.png";
 
 export default function Cards({ name, price, offerPrice, image }) {
@@ -10,13 +10,13 @@ export default function Cards({ name, price, offerPrice, image }) {
           src={`${image[0]}`}
           alt={`${name}`}
           className={styles.image}
-          width={`200px`}
-          height={`200px`}
+          width={`230px`}
         />
       ) : (
-        <img src={noimage} alt="not found" width="200px" height={`200px`} />
+        <img src={noimage} alt="not found" width="195px" height={`170px`} />
       )}
       <h3 className={styles.name}>{name}</h3>
+      {/* <h5 className={styles.price}>$ {!offerPrice ? price : offerPrice}</h5> */}
       {!offerPrice ? (
         <div className={styles.currentregprice}>$ {price}</div>
       ) : (
