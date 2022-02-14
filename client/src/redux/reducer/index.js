@@ -17,7 +17,8 @@ import {
   DELETE_CATEGORY,
   DELETE_SUBCATEGORY,
   DELETE_USER,
-  UPDATE_USER
+  UPDATE_USER,
+  GET_ALL_PRODUCTS_CLIENT,
 } from "../actions/index";
 
 const initialState = {
@@ -50,6 +51,12 @@ export default function rootReducer(state = initialState, action) {
         error: action.payload,
       };
     case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        allProducts: action.payload,
+        products: action.payload,
+      };
+    case GET_ALL_PRODUCTS_CLIENT:
       return {
         ...state,
         allProducts: action.payload,
@@ -132,7 +139,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-      case UPDATE_USER:
+    case UPDATE_USER:
       return {
         ...state,
         allUsers: [...state.allUsers, action.payload],

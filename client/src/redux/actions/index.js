@@ -26,9 +26,10 @@ export const POST_NEW_SUBCATEGORY = "POST_NEW_SUBCATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
 export const DELETE_USER = "DELETE_USER";
+export const GET_ALL_PRODUCTS_CLIENT = "GET_ALL_PRODUCTS_CLIENT";
 
 // Used in Account component
-export const UPDATE_USER = "UPDATE_USER"
+export const UPDATE_USER = "UPDATE_USER";
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -81,6 +82,19 @@ export function getAllProducts() {
     );
     return dispatch({
       type: GET_ALL_PRODUCTS,
+      payload: json.data,
+    });
+  };
+}
+//getAll for client
+export function getProductsClient() {
+  return async function (dispatch) {
+    var json = await axios.get(
+      "http://localhost:3001/getProductsClient",
+      sendKey()
+    );
+    return dispatch({
+      type: GET_ALL_PRODUCTS_CLIENT,
       payload: json.data,
     });
   };
