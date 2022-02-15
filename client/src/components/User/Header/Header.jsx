@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState} from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import NavBar from '../NavBar/NavBar';
 import logo from '../../../assets/logo.png';
+import DropdownMyAccount from '../MyAccount/Dropdown';
+
 
 
 export default function Header(){
+
     return (
         <div className={styles.header}>
             <div className={styles.top}>
@@ -18,7 +21,8 @@ export default function Header(){
                 </div>
                 <SearchBar/>
                 <div className={styles.account}>
-                    <Link to={'/login'}><span>My Account</span></Link>
+                    <DropdownMyAccount></DropdownMyAccount>
+                    {/* <Link to={'/login'}><span>My Account</span></Link> */}
                     <div className={styles.bag}>9</div>
                     
                 </div>

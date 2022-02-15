@@ -17,9 +17,7 @@ export default function SignUp() {
     firstName:"",
     lastName:"",
     email:"",
-    password:"",
-    phone:"",
-    address:""
+    password:""
   });
   const [notValidated, setNotValidated] = React.useState(true);
 
@@ -62,16 +60,6 @@ export default function SignUp() {
         error.lastName = "Este campo es obligatorio";
       else error.lastName = undefined;
     }
-    if (form.hasOwnProperty("phone")) {
-      if (form.phone.length < 1)
-        error.phone = "Este campo es obligatorio";
-      else error.phone = undefined;
-    }
-    if (form.hasOwnProperty("address")) {
-      if (form.address.length < 1)
-        error.address = "Este campo es obligatorio";
-      else error.address = undefined;
-    }
 
     return error;
   };
@@ -110,8 +98,6 @@ export default function SignUp() {
       lastName:"",
       email:"",
       password:"",
-      phone:"",
-      address:""
     })
   }
 
@@ -205,45 +191,9 @@ export default function SignUp() {
             <br />
             {errors && <small>{errors.password}</small>}
           </div>
-          <div className={styles.input}>
-            <input
-              className={styles.input}
-              type="tel"
-              value={input.phone}
-              name="phone"
-              placeholder="Enter phone number"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              onBlur={(e) => errorsHandler(e)}
-            />{" "}
-            <br />
-            {errors && <small>{errors.phone}</small>}
-          </div>
-          <div className={styles.input}>
-            <input
-              className={styles.input}
-              type="text"
-              value={input.address}
-              name="address"
-              placeholder="Enter address"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              onBlur={(e) => errorsHandler(e)}
-            />{" "}
-            <br />
-            {errors && <small>{errors.address}</small>}
-          </div>
-          <div className={styles.btns}>
-            <button className={styles.btn} type="submit">
-              Login
-            </button>
-            <span className={styles.or}>or</span>
-            <button className={styles.btnGoogle} type="submit">
-              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
-            </button>
-          </div>
+          <button className={styles.btn} type="submit">
+            Sign up
+          </button>
         </form>
       </div>
     </div>

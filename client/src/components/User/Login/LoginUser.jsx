@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./LoginUser.module.css";
-import { errorModal, loading, login } from "../../../redux/actions";
+import { errorModal, getCustomer, loading, login } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
-import { FcGoogle } from 'react-icons';
 
 export default function LoginUser() {
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ export default function LoginUser() {
       [e.target.name]: e.target.value, //agregale lo que el usuario pone
     });
   }
-
+  console.log(input)
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -79,6 +78,12 @@ export default function LoginUser() {
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
+
+    dispatch(getCustomer(input.email));
+    setInput({
+      email:'',
+      password:'',
+    })
   }
 
   function errorsHandler(e) {
