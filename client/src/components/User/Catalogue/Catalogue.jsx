@@ -81,15 +81,6 @@ export default function Catalogue() {
             )}
           </div>
         </div>
-        {/* <div>
-          <Paginate
-            productsPerPage={productsPerPage}
-            allProducts={allProducts.length}
-            page={page}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        </div> */}
         <div className={styles.productsbottom}>
           <div className={styles.sidebar}>
             <h2>(Sidebar for filters)</h2>

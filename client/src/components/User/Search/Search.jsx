@@ -15,11 +15,7 @@ import styles from "./Search.module.css";
 export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
-
-  useEffect(() => {
-    dispatch(getProductsClient());
-  }, [dispatch]);
+  // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
 
   const [currentPage, setCurrentPage] = useState(1); // ESTADO LOCAL ARRANCA EN PAGINA 1
   // // eslint-disable-next-line no-unused-vars
@@ -47,47 +43,6 @@ export default function Search() {
     <>
       <Header />
       <div className={styles.main}>
-        {/* <div className={styles.featured}>
-          <div className={styles.title}>
-            <span>Don't miss our featured products!</span>
-          </div>
-          <div className={styles.productstop}>
-            {
-              !featuredProducts.length ?
-              <Loading /> :
-              featuredProducts[0] === 404 ?
-              <NotFound /> :
-              featuredProducts?.map((p) => {
-                return (
-                  <>
-                    <Link
-                      className={styles.btnName}
-                      to={"/product/" + p.id}
-                      key={p.id}
-                    >
-                      <Cards2
-                        className={styles.grid}
-                        image={p.image}
-                        name={p.name}
-                        price={p.price}
-                        offerPrice={p.offerPrice}
-                      />
-                    </Link>
-                  </>
-                );
-              })
-            }
-          </div>
-        </div> */}
-        {/* <div>
-          <Paginate
-            productsPerPage={productsPerPage}
-            allProducts={allProducts.length}
-            page={page}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        </div> */}
         <div className={styles.productsbottom}>
           <div className={styles.sidebar}>
             <h2>(Sidebar for filters)</h2>
