@@ -21,6 +21,7 @@ import {
   GET_ALL_PRODUCTS_CLIENT,
   GET_DETAIL_CLIENT,
   GET_PRODUCTS_BY_NAME_CLIENTS,
+  ADD_TO_CART,
 } from "../actions/index";
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
   login: null,
   loading: false,
   error: false,
+  cart: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -169,6 +171,38 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allUsers: [...state.allUsers, action.payload],
+      };
+    case ADD_TO_CART:
+      let { product, amount } = action.payload;
+
+      let cartUpdated;
+      //si ya existe
+      if (state.cart.some((e) => e.id === product.id)) {
+        cartUpdated = state.cart.map((e) => {
+          if (e.id === product.id) {
+            //cada vez que se haga add to cart al mismo producto, la cantidad aumentará
+            e.amount++;
+            e.price = e.price * amount;
+            return e;
+          } else return e;
+        });
+      } else {
+        cartUpdated = [
+          ...state.cart,
+          {
+            img: product.image,
+            name: product.name,
+            id: product.id,
+            price: product.price,
+            amount: 1,
+          },
+        ];
+      }
+      localStorage.setItem("cart", JSON.stringify(cartUpdated));
+
+      return {
+        ...state,
+        cart: cartUpdated,
       };
     default:
       return state;

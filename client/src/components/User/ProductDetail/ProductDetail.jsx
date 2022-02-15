@@ -1,7 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getDetailClients, clearProductDetail } from "../../../redux/actions";
+import {
+  getDetailClients,
+  clearProductDetail,
+  addToCart,
+} from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
@@ -14,7 +18,13 @@ import imgdft from "../../../assets/imgdft.png";
 export default function ProductDetail(props) {
   const { idProduct } = useParams();
   const dispatch = useDispatch();
+  //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
+
+  const addHandler = (product) => {
+    dispatch(addToCart(product[0], 1));
+    console.log("se agregó " + product[0].name + " al carrito");
+  };
 
   useEffect(() => {
     dispatch(getDetailClients(idProduct));
@@ -61,14 +71,12 @@ export default function ProductDetail(props) {
                     <span className={styles.favourite}>{product[0].favorite}</span>
                   </div> */}
                   {!product[0].offerPrice ? (
-                    <div className={styles.currentregprice}>$ {product[0].price}</div>
+                    <div className={styles.currentregprice}>
+                      $ {product[0].price}
+                    </div>
                   ) : (
                     <div className={styles.bothprices}>
-                      <div
-                        className={styles.crossed}
-                      >
-                        $ {product[0].price}
-                      </div>
+                      <div className={styles.crossed}>$ {product[0].price}</div>
                       <div className={styles.currentofferprice}>
                         $ {product[0].offerPrice}
                       </div>
@@ -87,7 +95,11 @@ export default function ProductDetail(props) {
                     <div className={styles.data}>{product[0].stock}</div>
                   </div>
                 </div>
-                <button className={styles.addtocart} type="submit">
+                <button
+                  className={styles.addtocart}
+                  type="submit"
+                  onClick={(e) => addHandler(product)}
+                >
                   ADD TO CART
                 </button>
               </div>

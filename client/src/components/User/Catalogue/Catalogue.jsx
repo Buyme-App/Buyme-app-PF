@@ -15,7 +15,9 @@ import styles from "./Catalogue.module.css";
 export default function Catalogue() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
+  const featuredProducts = useSelector((state) =>
+    state.allProducts.filter((p) => p.featured === true)
+  );
 
   useEffect(() => {
     dispatch(getProductsClient());
@@ -37,10 +39,10 @@ export default function Catalogue() {
     setCurrentPage(pageNumber);
   };
 
-  function handleClickLoadAll(e){
-      e.preventDefault(); // CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VULVEN A CARGARSE SI TENEMOS USEEFFECT
-      dispatch(getProductsClient());
-      setCurrentPage(1);
+  function handleClickLoadAll(e) {
+    e.preventDefault(); // CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VULVEN A CARGARSE SI TENEMOS USEEFFECT
+    dispatch(getProductsClient());
+    setCurrentPage(1);
   }
 
   return (
@@ -52,11 +54,11 @@ export default function Catalogue() {
             <span>Don't miss our featured products!</span>
           </div>
           <div className={styles.productstop}>
-            {
-              !featuredProducts.length ?
-              <Loading /> :
-              featuredProducts[0] === 404 ?
-              <NotFound /> :
+            {!featuredProducts.length ? (
+              <Loading />
+            ) : featuredProducts[0] === 404 ? (
+              <NotFound />
+            ) : (
               featuredProducts?.map((p) => {
                 return (
                   <>
@@ -76,7 +78,7 @@ export default function Catalogue() {
                   </>
                 );
               })
-            }
+            )}
           </div>
         </div>
         {/* <div>
@@ -91,17 +93,22 @@ export default function Catalogue() {
         <div className={styles.productsbottom}>
           <div className={styles.sidebar}>
             <h2>(Sidebar for filters)</h2>
-            <button className={styles.loadproducts} onClick={(e) => {handleClickLoadAll(e)}}>
-                    Load All Products
-                </button>
+            <button
+              className={styles.loadproducts}
+              onClick={(e) => {
+                handleClickLoadAll(e);
+              }}
+            >
+              Load All Products
+            </button>
           </div>
           <div className={styles.detail}>
             <div className={styles.grid}>
-              {
-                !currentProducts.length ?
-                <Loading /> :
-                currentProducts[0] === 404 ?
-                <NotFound /> :
+              {!currentProducts.length ? (
+                <Loading />
+              ) : currentProducts[0] === 404 ? (
+                <NotFound />
+              ) : (
                 currentProducts?.map((p) => {
                   return (
                     <>
@@ -121,16 +128,16 @@ export default function Catalogue() {
                     </>
                   );
                 })
-              }
+              )}
             </div>
             <div>
-            <Paginate
+              <Paginate
                 productsPerPage={productsPerPage}
                 allProducts={allProducts.length}
                 page={page}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-            />
+              />
             </div>
           </div>
         </div>
