@@ -15,11 +15,7 @@ import styles from "./Search.module.css";
 export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
-  const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
-
-  useEffect(() => {
-    dispatch(getProductsClient());
-  }, [dispatch]);
+  // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
 
   const [currentPage, setCurrentPage] = useState(1); // ESTADO LOCAL ARRANCA EN PAGINA 1
   // // eslint-disable-next-line no-unused-vars
