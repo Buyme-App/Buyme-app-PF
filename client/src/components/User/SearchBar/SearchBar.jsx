@@ -33,7 +33,7 @@ export default function SearchBar() {
         type="text"
         value={name}
         className={styles.input}
-        placeholder="Search by product name or part of it..."
+        placeholder="Search by product name..."
         onChange={(e) => handleInputChange(e)}
       />
       <button
