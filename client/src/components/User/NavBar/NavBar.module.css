@@ -15,7 +15,7 @@
     /* justify-content: space-between; */
 }
 
-.nav div {
+.nav .link {
     margin-right: 60px;
     height: 20px;
     line-height: 20px;
