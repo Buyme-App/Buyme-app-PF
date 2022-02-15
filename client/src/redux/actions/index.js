@@ -29,7 +29,8 @@ export const DELETE_USER = "DELETE_USER";
 export const GET_ALL_PRODUCTS_CLIENT = "GET_ALL_PRODUCTS_CLIENT";
 export const GET_DETAIL_CLIENT = "GET_DETAIL_CLIENT";
 export const GET_PRODUCTS_BY_NAME_CLIENTS = "GET_PRODUCTS_BY_NAME_CLIENTS";
-
+//cart
+export const ADD_TO_CART = "ADD_TO_CART";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -345,5 +346,12 @@ export function deleteUser(id) {
       sendKey()
     );
     return json;
+  };
+}
+//Cart
+export function addToCart(product, amount) {
+  return {
+    type: ADD_TO_CART,
+    payload: { product, amount },
   };
 }

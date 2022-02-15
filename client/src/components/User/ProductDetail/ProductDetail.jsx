@@ -1,7 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getDetailClients, clearProductDetail } from "../../../redux/actions";
+import {
+  getDetailClients,
+  clearProductDetail,
+  addToCart,
+} from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
@@ -15,7 +19,13 @@ import imgdft from "../../../assets/imgdft.png";
 export default function ProductDetail(props) {
   const { idProduct } = useParams();
   const dispatch = useDispatch();
+  //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
+
+  const addHandler = (product) => {
+    dispatch(addToCart(product[0], 1));
+    console.log("se agregó " + product[0].name + " al carrito");
+  };
 
   function validate(input) {
     let errors = {};
@@ -27,6 +37,7 @@ export default function ProductDetail(props) {
     else errors.quantity = undefined;
     return errors;
   }
+
 
   useEffect(() => {
     dispatch(getDetailClients(idProduct));
@@ -138,8 +149,8 @@ export default function ProductDetail(props) {
                 </div>
                 <button
                   className={styles.addtocart}
-                  disabled={!input.quantity}
                   type="submit"
+                  onClick={(e) => addHandler(product)}
                 >
                   ADD TO CART
                 </button>

@@ -10,6 +10,7 @@ import styles from "./Landing.module.css";
 import SecondBanner from "../Second Banner/SecondBanner";
 import { useDispatch } from "react-redux";
 import { getProductsClient } from "../../../redux/actions";
+import Cart from "../Cart/Cart";
 
 export default function Landing() {
   const dispatch = useDispatch();

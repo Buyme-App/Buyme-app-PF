@@ -20,9 +20,7 @@ export default function Cards({ name, price, offerPrice, image }) {
         <div className={styles.currentregprice}>$ {price}</div>
       ) : (
         <div className={styles.bothprices}>
-          <span className={styles.crossed}>
-            $ {price}
-          </span>
+          <span className={styles.crossed}>$ {price}</span>
           <br />
           <span className={styles.currentofferprice}>$ {offerPrice}</span>
         </div>

@@ -1,0 +1,11 @@
+.item{
+    background-color: rgb(99, 99, 218);
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.item img{
+    width: 60px;
+}

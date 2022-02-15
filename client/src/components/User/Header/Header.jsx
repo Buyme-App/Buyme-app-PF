@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import NavBar from "../NavBar/NavBar";
 import logo from "../../../assets/logo.png";
+import Cart from "../Cart/Cart";
+
 
 export default function Header() {
   return (
     <div className={styles.header}>
+      <Cart />
       <div className={styles.top}>Free shipping on orders over $6.000!</div>
       <div className={styles.content}>
         <div className={styles.logo}>
