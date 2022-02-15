@@ -7,6 +7,9 @@ import Search from './components/User/Search/Search';
 import About from './components/User/About/About';
 import Contact from './components/User/Contact/Contact';
 import FAQ from './components/User/FAQ/FAQ';
+import Terms from './components/User/Terms/Terms';
+import Sustainability from './components/User/Sustainability/Sustainability';
+import Careers from './components/User/Careers/Careers';
 import Catalogue from './components/User/Catalogue/Catalogue';
 import ProductDetail from "./components/User/ProductDetail/ProductDetail";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
@@ -26,6 +29,9 @@ function App() {
           <Route path="/about" element = {<About/>}></Route>
           <Route path="/contact" element = {<Contact/>}></Route>
           <Route path="/faq" element = {<FAQ/>}></Route>
+          <Route path="/terms" element = {<Terms/>}></Route>
+          <Route path="/sustainability" element = {<Sustainability/>}></Route>
+          <Route path="/careers" element = {<Careers/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
