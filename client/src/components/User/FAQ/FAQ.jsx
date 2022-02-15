@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import styles from "./FAQ.module.css";
 
-export default function About() {
+export default function FAQ() {
   return (
     <div>
       <Header />
