@@ -11,6 +11,7 @@ export default function FeaturedProducts(){
     const dispatch = useDispatch()
     const products = useSelector(state => state.allProducts)
     const featuredProducts = products.filter( el => el.featured === true)
+    console.log(featuredProducts)
 
     useEffect(() => {
         dispatch(getAllProducts())
@@ -21,11 +22,12 @@ export default function FeaturedProducts(){
          {
           featuredProducts?.map(c => {
              return( 
-               <Link className={styles.btnName} to= {'/detail/' + c.id}  key={c.id}>
-                 <Cards className={styles.grid} image={c.image? c.imag : imgdft} name={c.name} price={c.price}/>
+               <Link className={styles.btnName} to= {'/product/' + c.id}  key={c.id}>
+                 <Cards className={styles.grid} image={c.image? c.image : imgdft} name={c.name} price={c.price}/>
                     </Link>
                );             
              })} 
+             
              </div>
 
 )

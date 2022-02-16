@@ -25,12 +25,16 @@ export const POST_NEW_CATEGORY = "POST_NEW_CATEGORY";
 export const POST_NEW_SUBCATEGORY = "POST_NEW_SUBCATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
-export const DELETE_USER = "DELETE_USER";
+export const DELETE_USER = "DELETE_USER";t
 export const GET_CUSTOMER = "GET_CUSTOMER";
 export const POST_CUSTOMER = "POST_CUSTOMER";
+export const GET_ALL_PRODUCTS_CLIENT = "GET_ALL_PRODUCTS_CLIENT";
+export const GET_DETAIL_CLIENT = "GET_DETAIL_CLIENT";
+export const GET_PRODUCTS_BY_NAME_CLIENTS = "GET_PRODUCTS_BY_NAME_CLIENTS";
+export const ADD_TO_CART = "ADD_TO_CART";
 
 // Used in Account component
-export const UPDATE_USER = "UPDATE_USER"
+export const UPDATE_USER = "UPDATE_USER";
 
 export const login = async (dispatch, email, password) => {
   try {
@@ -87,6 +91,19 @@ export function getAllProducts() {
     });
   };
 }
+//getAll for client
+export function getProductsClient() {
+  return async function (dispatch) {
+    var json = await axios.get(
+      "http://localhost:3001/getProductsClient",
+      sendKey()
+    );
+    return dispatch({
+      type: GET_ALL_PRODUCTS_CLIENT,
+      payload: json.data,
+    });
+  };
+}
 
 export function getProductsByName(name) {
   return async function (dispatch) {
@@ -109,6 +126,27 @@ export function getProductsByName(name) {
   };
 }
 
+export function getProductsByNameClients(name) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3001/getProDetailClient/detail0/?nameProduct=" + name,
+        sendKey()
+      );
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME_CLIENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME_CLIENTS,
+        payload: null,
+      });
+      // console.log(error)
+    }
+  };
+}
+
 export function getProductDetail(idProduct) {
   return async function (dispatch) {
     try {
@@ -123,6 +161,27 @@ export function getProductDetail(idProduct) {
     } catch (error) {
       return dispatch({
         type: GET_PRODUCT_DETAIL,
+        payload: null,
+      });
+      // console.log(error)
+    }
+  };
+}
+
+export function getDetailClients(idProduct) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3001/getProDetailClient/detail" + idProduct,
+        sendKey()
+      );
+      return dispatch({
+        type: GET_DETAIL_CLIENT,
+        payload: json.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_DETAIL_CLIENT,
         payload: null,
       });
       // console.log(error)
@@ -309,5 +368,13 @@ export function createCustomer(payload) {
       sendKey()
     );
     return json;
+  };
+}
+
+//Cart
+export function addToCart(product, amount) {
+  return {
+    type: ADD_TO_CART,
+    payload: { product, amount },
   };
 }

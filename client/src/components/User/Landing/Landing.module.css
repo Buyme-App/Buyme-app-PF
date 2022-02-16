@@ -105,5 +105,10 @@ body{
   padding: 0px 19%;
   color:#555555;
   line-height: 1.9em;
+}
 
+.fp{
+/* display: flex; */
+text-align:center;
+margin-right: 40px;
 }

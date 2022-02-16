@@ -129,6 +129,7 @@
 
 .quantity,
 .stock {
+  position: relative;
   width: 50%;
   display: flex;
   flex-wrap: wrap;
@@ -141,6 +142,23 @@
 
 .stock {
   padding-right: 15%;
+}
+
+.errors {
+  position: absolute;
+  top: 82px;
+  left: 75px;
+  max-width: 150px;
+  height: 24px;
+  line-height: 24px;
+  /* padding: 0 5px; */
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
+  /* background-color: #fff; */
+  background: transparent;
+  text-align: center;
+  /* border: 1px solid red; */
 }
 
 .title {
@@ -185,6 +203,17 @@
 .addtocart:hover {
   color: #fff;
   background-color: var(--color-hover-principal);
+}
+
+.stockalert {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+  color: #fff;
+  font-weight: bold;
 }
 
 .description,

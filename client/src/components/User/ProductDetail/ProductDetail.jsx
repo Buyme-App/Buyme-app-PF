@@ -1,7 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductDetail, clearProductDetail } from "../../../redux/actions";
+import {
+  getDetailClients,
+  clearProductDetail,
+  addToCart,
+} from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
@@ -11,15 +15,52 @@ import imgdft from "../../../assets/imgdft.png";
 // import Loading2 from './Loading2';
 // import NotFound from './NotFound';
 
+
 export default function ProductDetail(props) {
   const { idProduct } = useParams();
   const dispatch = useDispatch();
+  //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
 
+  const addHandler = (product) => {
+    dispatch(addToCart(product[0], 1));
+    console.log("se agregó " + product[0].name + " al carrito");
+  };
+
+  function validate(input) {
+    let errors = {};
+    if (input.quantity > product[0].stock) 
+      errors.quantity = "Stock exceded!";
+    else 
+    if (input.quantity < 1)
+      errors.quantity = "Select at least 1 item";
+    else errors.quantity = undefined;
+    return errors;
+  }
+
+
   useEffect(() => {
-    dispatch(getProductDetail(idProduct));
+    dispatch(getDetailClients(idProduct));
     return () => dispatch(clearProductDetail()); // LIMPIO EL ESTADO DEL DETAIL
   }, [dispatch, idProduct]);
+
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({
+    stock: "",
+  });
+
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
 
   return (
     <div>
@@ -61,14 +102,12 @@ export default function ProductDetail(props) {
                     <span className={styles.favourite}>{product[0].favorite}</span>
                   </div> */}
                   {!product[0].offerPrice ? (
-                    <div className={styles.currentregprice}>$ {product[0].price}</div>
+                    <div className={styles.currentregprice}>
+                      $ {product[0].price}
+                    </div>
                   ) : (
                     <div className={styles.bothprices}>
-                      <div
-                        className={styles.crossed}
-                      >
-                        $ {product[0].price}
-                      </div>
+                      <div className={styles.crossed}>$ {product[0].price}</div>
                       <div className={styles.currentofferprice}>
                         $ {product[0].offerPrice}
                       </div>
@@ -79,7 +118,28 @@ export default function ProductDetail(props) {
                   <div className={styles.quantity}>
                     <div className={styles.title}>Quantity</div>
                     <div className={styles.data}>
-                      <input type="number" name="quantity"></input>
+                      {/* <input type="number" name="quantity"></input> */}
+                      {/* <input
+                        type= "text"
+                        value={input.quantity}
+                        name= "quantity"
+                        pattern="[0-9]*"
+                        onChange={(e) => handleChange(e)}
+                        /> */}
+                      <input
+                        type="text"
+                        name="quantity"
+                        maxLength={2}
+                        onChange={(e) => handleChange(e)}
+                        onKeyPress={(e) => {
+                          if (!/[0-9]/.test(e.key)) {
+                            e.preventDefault();
+                          }
+                        }}
+                      />
+                    </div>
+                    <div className={styles.errors}>
+                      {errors.quantity && <span>{errors.quantity}</span>}
                     </div>
                   </div>
                   <div className={styles.stock}>
@@ -87,9 +147,18 @@ export default function ProductDetail(props) {
                     <div className={styles.data}>{product[0].stock}</div>
                   </div>
                 </div>
-                <button className={styles.addtocart} type="submit">
+                <button
+                  className={styles.addtocart}
+                  type="submit"
+                  onClick={(e) => addHandler(product)}
+                >
                   ADD TO CART
                 </button>
+                {
+                  product[0].stock < product[0].inventary ?
+                  <div className={styles.stockalert}>There are only {product[0].stock} products left. Hurry!</div> :
+                  null
+                }
               </div>
             </div>
             <div className={styles.specs}>
