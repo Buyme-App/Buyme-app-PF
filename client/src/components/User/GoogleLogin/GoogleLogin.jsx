@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { createCustomer } from '../../../redux/actions';
+import styles from '../Login/LoginUser.module.css';
 
 // Id del usuario en la google console developers.
 const clientId = "532893426828-r97cch5c0jid27g5ub373cu4n8kdo3qb.apps.googleusercontent.com";
@@ -49,7 +50,13 @@ export function LoginGoogle(userData) {
                 // Componente del button login que da paso a la ventana de inicio de sesion.
                 <GoogleLogin
                     clientId={clientId}
-                    buttonText="Sign In with Google"
+                    //buttonText="Sign In with Google"
+                    render={renderProps => (
+                        <button className={styles.btnGoogle} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                            <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>
+                            Login with Google
+                        </button>
+                      )}
                     onSuccess={onLoginSuccess}
                     onFailure={onLoginFailure}
                     cookiePolicy={'single_host_origin'}

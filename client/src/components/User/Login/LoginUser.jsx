@@ -6,6 +6,8 @@ import styles from "./LoginUser.module.css";
 import { errorModal, getCustomer, loading, login } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
+import GoogleLogin from "react-google-login";
+import { LoginGoogle } from "../GoogleLogin/GoogleLogin";
 
 export default function LoginUser(props) {
   const dispatch = useDispatch();
@@ -157,9 +159,7 @@ export default function LoginUser(props) {
               Login
             </button>
             <span className={styles.or}>or</span>
-            <button onSubmit={(userData) => props.handleLoginWithGoogle(userData)} className={styles.btnGoogle} >
-              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
-            </button>
+              <LoginGoogle/>
           </div>
           <div className={styles.signUp}>
               <Link className={styles.link} to="/home/SignUp">
