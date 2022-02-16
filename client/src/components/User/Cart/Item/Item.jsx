@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import itemS from "./item.module.css";
 
-export default function Item({ img, name, price, amount }) {
+export default function Item({ img, name, price, amount,addToCart, delFromCart,id }) {
+  const totalAmount = price * amount
   const [amountState, setAmount] = React.useState(0);
   useEffect(() => {
     setAmount(amount);
@@ -11,11 +12,12 @@ export default function Item({ img, name, price, amount }) {
     <div className={itemS.item}>
       <img src={img} alt="producto" />
       <h4>{name}</h4>
-      <span>${price * amount}</span>
+      <span>{totalAmount}</span>
       <div>
-        <span>-</span>
-        <span>{amountState}</span>
-        <span>+</span>
+        <button onClick={() => delFromCart(id)}>-</button>
+        <span>x{amountState}</span>
+        <button onClick={() => addToCart(id)}>+</button>
+        <button onClick={() => delFromCart(id,true)}>x</button>
       </div>
     </div>
   );

@@ -24,6 +24,10 @@ import {
   GET_DETAIL_CLIENT,
   GET_PRODUCTS_BY_NAME_CLIENTS,
   ADD_TO_CART,
+  REMOVE_ONE_FROM_CART,
+  ADD_ONE_TO_CART,
+  REMOVE_ALL_FROM_CART,
+  CLEAR_CART
 } from "../actions/index";
 
 const initialState = {
@@ -216,6 +220,38 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cart: cartUpdated,
       };
+
+    case CLEAR_CART:
+      return{
+        ...state,
+        cart:[]
+      }
+
+    case REMOVE_ONE_FROM_CART:
+        let itemToDelete = state.cart.find(item => item.id === action.payload);
+        return itemToDelete.amount > 1 ? {
+          ...state,
+          cart: state.cart.map(item => item.id === action.payload?{...item, amount: item.amount - 1}
+            : item
+            )
+        } : 
+        {
+          ...state,
+          cart: state.cart.filter(item => item.id !== action.payload)
+        };
+    case ADD_ONE_TO_CART:
+      // state.cart.find(item => item.id === action.payload);
+      return {
+        ...state,
+        cart: state.cart.map(item => item.id === action.payload?{...item, amount: item.amount + 1} : item)
+      }
+    
+  case REMOVE_ALL_FROM_CART:
+    return {
+      ...state,
+      cart: state.cart.filter(item => item.id !== action.payload)
+     };
+
     default:
       return state;
   }
