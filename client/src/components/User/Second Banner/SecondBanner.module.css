@@ -1,7 +1,9 @@
+
 .main{
     position: relative;
     margin-bottom: 150px;
-    max-width: 1265px;
+    width: 100%;
+    /* max-width: 1265px; */
     max-height: 290px;
 }
 
@@ -15,8 +17,9 @@
     background-color: var(--color-pink-buttons);
     color: white;
     font-weight: bold;
-    bottom: 40px;
-    left: 483px;
+    /* bottom: 40px;
+    left: 565px; */
+    
 }
 
 .btn:hover {
