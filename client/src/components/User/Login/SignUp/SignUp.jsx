@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
-import { errorModal, loading, login } from "../../../../redux/actions";
+import { createCustomer, errorModal, loading, login } from "../../../../redux/actions";
 import Loader from "../../../Loader/Loader";
 import Error from "../../../Login/ErrorPopUp/Error";
 
@@ -14,11 +14,10 @@ export default function SignUp() {
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = React.useState({
-    name:'',
-    lastname:'',
-    birthdate:'',
-    email:'',
-    password:'',
+    firstName:"",
+    lastName:"",
+    email:"",
+    password:""
   });
   const [notValidated, setNotValidated] = React.useState(true);
 
@@ -51,20 +50,15 @@ export default function SignUp() {
         error.password = "No se admiten espacios en blanco";
       else error.password = undefined;
     }
-    if (form.hasOwnProperty("name")) {
-      if (form.name.length < 1)
-        error.name = "Este campo es obligatorio";
-      else error.name = undefined;
+    if (form.hasOwnProperty("firstName")) {
+      if (form.firstName.length < 1)
+        error.firstName = "Este campo es obligatorio";
+      else error.firstName = undefined;
     }
-    if (form.hasOwnProperty("lastname")) {
-      if (form.lastname.length < 1)
-        error.lastname = "Este campo es obligatorio";
-      else error.lastname = undefined;
-    }
-    if (form.hasOwnProperty("birthdate")) {
-      if (form.birthdate.length < 1)
-        error.birthdate = "Este campo es obligatorio";
-      else error.birthdate = undefined;
+    if (form.hasOwnProperty("lastName")) {
+      if (form.lastName.length < 1)
+        error.lastName = "Este campo es obligatorio";
+      else error.lastName = undefined;
     }
 
     return error;
@@ -92,10 +86,19 @@ export default function SignUp() {
       loading(dispatch, true);
       const credential = login(dispatch, input.email, input.password);
       credential.then((re) => {
-        re ? navigate("/admin/home") : errorModal(dispatch, true);
+        re ? navigate("/") : errorModal(dispatch, true);
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
+
+    dispatch(createCustomer(input));
+    alert('Sign up was successfully!');
+    setInput({
+      firstName:"",
+      lastName:"",
+      email:"",
+      password:"",
+    })
   }
 
   function errorsHandler(e) {
@@ -126,12 +129,11 @@ export default function SignUp() {
             <Error msg="An error occurred while validating the data" />
           )}
           <div className={styles.input}>
-            <label className={styles.label}>Name</label>
             <input
               className={styles.input}
               type="text"
-              value={input.name}
-              name="name"
+              value={input.firstName}
+              name="firstName"
               placeholder="Enter name"
               onChange={(e) => {
                 handleChange(e);
@@ -139,16 +141,15 @@ export default function SignUp() {
               onBlur={(e) => errorsHandler(e)}
             />{" "}
             <br />
-            {errors && <small>{errors.name}</small>}
+            {errors && <small>{errors.firstName}</small>}
           </div>
           <br />
           <div className={styles.input}>
-          <label className={styles.label}>Lastname</label>
             <input
               className={styles.input}
               type="text"
-              value={input.lastname}
-              name="lastname"
+              value={input.lastName}
+              name="lastName"
               placeholder="Enter lastname"
               onChange={(e) => {
                 handleChange(e);
@@ -156,31 +157,13 @@ export default function SignUp() {
               onBlur={(e) => errorsHandler(e)}
             />{" "}
             <br />
-            {errors && <small>{errors.lastname}</small>}
+            {errors && <small>{errors.lastName}</small>}
           </div>
           <br />
           <div className={styles.input}>
-          <label className={styles.label}>Birthdate</label>
             <input
               className={styles.input}
-              type="date"
-              value={input.birthdate}
-              name="birthdate"
-              placeholder="Enter birthdate"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              onBlur={(e) => errorsHandler(e)}
-            />{" "}
-            <br />
-            {errors && <small>{errors.birthdate}</small>}
-          </div>
-          <br />
-          <div className={styles.input}>
-          <label className={styles.label}>Email</label>
-            <input
-              className={styles.input}
-              type="text"
+              type="email"
               value={input.email}
               name="email"
               placeholder="Enter email address"
@@ -193,8 +176,7 @@ export default function SignUp() {
             {errors && <small>{errors.email}</small>}
           </div>
           <br />
-          <div>
-          <label className={styles.label}>Password</label>
+          <div className={styles.input}>
             <input
               className={styles.input}
               type="password"
@@ -209,15 +191,9 @@ export default function SignUp() {
             <br />
             {errors && <small>{errors.password}</small>}
           </div>
-          <div className={styles.btns}>
-            <button className={styles.btn} type="submit">
-              Login
-            </button>
-            <span className={styles.or}>or</span>
-            <button className={styles.btnGoogle} type="submit">
-              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
-            </button>
-          </div>
+          <button className={styles.btn} type="submit">
+            Sign up
+          </button>
         </form>
       </div>
     </div>
