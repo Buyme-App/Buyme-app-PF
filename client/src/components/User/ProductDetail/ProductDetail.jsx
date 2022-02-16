@@ -154,6 +154,11 @@ export default function ProductDetail(props) {
                 >
                   ADD TO CART
                 </button>
+                {
+                  product[0].stock < product[0].inventary ?
+                  <div className={styles.stockalert}>There are only {product[0].stock} products left. Hurry!</div> :
+                  null
+                }
               </div>
             </div>
             <div className={styles.specs}>
