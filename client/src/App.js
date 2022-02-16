@@ -17,6 +17,7 @@ import AdminHome from "./components/AdminHome/AdminHome";
 import LoginUser from "./components/User/Login/LoginUser";
 import PasswordRecovery from './components/User/Login/PasswordRecovery/PasswordRecovery';
 import SignUp from "./components/User/Login/SignUp/SignUp";
+import FP from "./components/User/Slider/Sliderex/FP";
 
 function App() {
   return (
