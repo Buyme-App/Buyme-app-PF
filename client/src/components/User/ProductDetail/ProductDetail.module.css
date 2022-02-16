@@ -205,6 +205,17 @@
   background-color: var(--color-hover-principal);
 }
 
+.stockalert {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+  color: #fff;
+  font-weight: bold;
+}
+
 .description,
 .productinfo {
   width: 56%;
