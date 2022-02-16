@@ -1,0 +1,186 @@
+.main {
+  width: 100vw;
+  padding: 3% 6%;
+  margin-bottom: 50px;
+  /* background-color: #eee; */
+}
+
+.featured {
+  margin-bottom: 50px;
+  min-height: 200px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.title {
+  margin: 12px 0 10px 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.title span {
+  padding: 10px 15px;
+  /* height: 30px; */
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: left;
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    var(--color-principal-violet-hover),
+    var(--color-hover-principal)
+  );
+  border-radius: 0 0 6px 6px;
+}
+
+.productstop {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.productsbottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  padding: 10px;
+  width: 25%;
+  text-align: left;
+}
+
+.sidebar h2 {
+  margin: 0 0 20px 0;
+  padding: 0;
+  text-align: left;
+}
+
+.detail {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.grid {
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.loadproducts {
+  margin: 0 auto;
+  width: 80%;
+  height: 50px;
+  color: var(--color-principal-violet);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.loadproducts:hover {
+  color: #fff;
+  background-color: var(--color-hover-principal);
+  border-color: var(--color-hover-principal);
+}
+
+.searchbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.filters {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.create,
+.load,
+.orderby,
+.type,
+.origin {
+  width: 260px;
+  height: 50px;
+  color: #495057;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 25px;
+  /* border: 2px solid #cbeb40; */
+  /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
+  /* background: #495057; */
+  background: #fff;
+  /* opacity: 0.5; */
+}
+
+.create:hover,
+.load:hover,
+.orderby:hover,
+.type:hover,
+.origin:hover {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.load,
+.orderby,
+.type,
+.origin {
+  height: 35px;
+  border: none;
+  border-radius: 17px;
+}
+.load {
+  width: 180px;
+}
+
+.orderby {
+  width: auto;
+}
+
+.type {
+  width: auto;
+}
+.origin {
+  width: auto;
+}
+
+.noResult {
+  /* display: flex;
+    justify-content: Center;
+    flex-direction: column; */
+
+  position: relative;
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: auto;
+  height: 100vh;
+}

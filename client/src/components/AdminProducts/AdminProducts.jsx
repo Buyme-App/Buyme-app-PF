@@ -70,6 +70,7 @@ export default function AdminProducts() {
   const [render, setRender] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [toEdit, setToEdit] = React.useState({});
+  const [renderSearched, setRenderSearched] = React.useState(false);
 
   const [activeUpdate, setActiveUpdate] = React.useState(false);
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ export default function AdminProducts() {
     } else setRender([...order.reverse()]);
   };
   const searchHandler = (value) => {
+    setRenderSearched(true);
     if (value.length) {
       setRender(
         (prev) =>
@@ -100,6 +102,7 @@ export default function AdminProducts() {
   };
   const refreshHandler = () => {
     setRender(productsOfRedux);
+    setRenderSearched(false);
   };
   const editHandler = (product) => {
     setActiveUpdate(true);
@@ -146,7 +149,7 @@ export default function AdminProducts() {
 
   const activateFeaturedHandler = (product) => {
     //no está pausado?, entonces pasará a estar pausado(true)
-    let opositeFeatured = product.featured === true ? "Yes" : "No"; //pause en true == producto pausado
+    let opositeFeatured = product.featured === true ? "No" : "Yes"; //pause en true == producto pausado
     let newStatus = product.featured ? false : true;
 
     if (
@@ -178,7 +181,7 @@ export default function AdminProducts() {
   //jj
   return (
     <div>
-      <div className={sStyle.sales_container}>
+      <div className={sStyle.products_container}>
         {/* <h1 className={sStyle.title}>Products</h1> */}
         {activeUpdate && (
           <div className={sStyle.update_container}>
@@ -190,13 +193,14 @@ export default function AdminProducts() {
             />
           </div>
         )}
-
+        {/* ------------inputs box ------------*/}
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
               type="search"
               placeholder="Search by name or brand..."
               value={search}
+              onKeyDown={(e) => e.key === "Enter" && searchHandler(search)}
               onChange={(e) => setSearch(e.target.value)}
             />
             <FaSistrix
@@ -204,9 +208,6 @@ export default function AdminProducts() {
               onClick={() => searchHandler(search)}
             />
           </div>
-          {!render.length ? (
-            <h1 className={sStyle.notMatch}>No matches found</h1>
-          ) : null}
 
           {/* -----------selects-------------- */}
           <div className={sStyle.selects_box}>
@@ -222,9 +223,6 @@ export default function AdminProducts() {
               <option value="Ascendent">Ascendent by Price</option>
               <option value="Descendent">Descendent by Price</option>
             </select>
-            {/* 
-            <button className={sStyle.refresh}>Activate</button>
-            <button className={sStyle.refresh}>Pause</button> */}
           </div>
         </div>
         {/* ---------Tables--------- */}
@@ -303,6 +301,11 @@ export default function AdminProducts() {
                 : null}
             </tbody>
           </table>
+          <div className={sStyle.notMatch}>
+            {renderSearched && !render.length ? (
+              <h2>No matches found</h2>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,12 @@
     display: flex;
     justify-content: flex-end;
 }
-
+.checkbox {
+    padding: 0;
+    margin-left: 10px;
+    width: 14px;
+    height: 14px;
+}
 .close {
     width: 23px;
     height: 24px;
@@ -50,10 +55,11 @@
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
-    margin: 10px 0px;
+    margin: 20px 0px;
+    
 }
 .update:hover{
-    background-color: #df4aa6;
+    background-color: var(--color-pinkHover-buttons);
 }
 
 .update:active{
@@ -61,16 +67,21 @@
     top:2.3px
 }
 .cancel{
+    /* padding:12px; */
     padding:14px;
+    width: 85px;
 
     border: none;
-    background-color: rgba(207, 34, 34, 0.932);
+    /* background-color: rgba(207, 34, 34, 0.932); */
+    background-color: var(--color-bg-admin);
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
+    margin: 20px 0px;
 }
 .cancel:hover{
-    background-color: rgba(192, 25, 25, 0.877);
+    background-color: rgba(230, 66, 66, 0.877);
+    color: white;
     
 }
 
@@ -104,8 +115,6 @@
 
 }
 .reduced_price{
-
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,10 +124,11 @@ margin-right: 15px;
 }
 .description_box{
 margin: 10px 20px;
+margin-bottom: 20px;
 }
 
 .uploader{
-margin: 10px 20px;
+margin: 20px 20px;
 background-color: white;
 
 }

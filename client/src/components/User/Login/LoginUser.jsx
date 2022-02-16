@@ -6,6 +6,7 @@ import styles from "./LoginUser.module.css";
 import { errorModal, loading, login } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
+import { FcGoogle } from 'react-icons';
 
 export default function LoginUser() {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ export default function LoginUser() {
       loading(dispatch, true);
       const credential = login(dispatch, input.email, input.password);
       credential.then((re) => {
-        re ? navigate("/admin/home") : errorModal(dispatch, true);
+        re ? navigate("/") : errorModal(dispatch, true);
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
@@ -145,9 +146,15 @@ export default function LoginUser() {
               </Link>
             </div>
           </div>
-          <button className={styles.btn} type="submit">
-            Login
-          </button>
+          <div className={styles.btns}>
+            <button className={styles.btn} type="submit">
+              Login
+            </button>
+            <span className={styles.or}>or</span>
+            <button className={styles.btnGoogle} type="submit">
+              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
+            </button>
+          </div>
           <div className={styles.signUp}>
               <Link className={styles.link} to="/home/SignUp">
                 Don't have an account? Sign up

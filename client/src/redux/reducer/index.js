@@ -16,7 +16,12 @@ import {
   POST_NEW_SUBCATEGORY,
   DELETE_CATEGORY,
   DELETE_SUBCATEGORY,
-  DELETE_USER
+  DELETE_USER,
+  UPDATE_USER,
+  GET_ALL_PRODUCTS_CLIENT,
+  GET_DETAIL_CLIENT,
+  GET_PRODUCTS_BY_NAME_CLIENTS,
+  ADD_TO_CART,
 } from "../actions/index";
 
 const initialState = {
@@ -29,6 +34,7 @@ const initialState = {
   login: null,
   loading: false,
   error: false,
+  cart: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -52,6 +58,13 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: action.payload,
+        products: action.payload,
+      };
+    case GET_ALL_PRODUCTS_CLIENT:
+      return {
+        ...state,
+        allProducts: action.payload,
+        products: action.payload,
       };
     case GET_PRODUCTS_BY_NAME:
       if (!action.payload) {
@@ -65,7 +78,31 @@ export default function rootReducer(state = initialState, action) {
           products: action.payload,
         };
       }
+    case GET_PRODUCTS_BY_NAME_CLIENTS:
+      if (!action.payload) {
+        return {
+          ...state,
+          products: [404],
+        };
+      } else {
+        return {
+          ...state,
+          products: action.payload,
+        };
+      }
     case GET_PRODUCT_DETAIL:
+      if (!action.payload) {
+        return {
+          ...state,
+          detail: [404],
+        };
+      } else {
+        return {
+          ...state,
+          detail: action.payload,
+        };
+      }
+    case GET_DETAIL_CLIENT:
       if (!action.payload) {
         return {
           ...state,
@@ -129,6 +166,43 @@ export default function rootReducer(state = initialState, action) {
     case DELETE_USER:
       return {
         ...state,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        allUsers: [...state.allUsers, action.payload],
+      };
+    case ADD_TO_CART:
+      let { product, amount } = action.payload;
+
+      let cartUpdated;
+      //si ya existe
+      if (state.cart.some((e) => e.id === product.id)) {
+        cartUpdated = state.cart.map((e) => {
+          if (e.id === product.id) {
+            //cada vez que se haga add to cart al mismo producto, la cantidad aumentará
+            e.amount++;
+            e.price = e.price * amount;
+            return e;
+          } else return e;
+        });
+      } else {
+        cartUpdated = [
+          ...state.cart,
+          {
+            img: product.image,
+            name: product.name,
+            id: product.id,
+            price: product.price,
+            amount: 1,
+          },
+        ];
+      }
+      localStorage.setItem("cart", JSON.stringify(cartUpdated));
+
+      return {
+        ...state,
+        cart: cartUpdated,
       };
     default:
       return state;

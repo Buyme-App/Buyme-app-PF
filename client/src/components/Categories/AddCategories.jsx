@@ -74,7 +74,9 @@ export default function AddCategories (props){
         <div className={styles.popup}>
             {props.children}
             <form onSubmit={(e) => {handleSubmit(e)}} className={styles.form}>
+                <div className={styles.btndiv}>
                 <button onClick={() => {props.setTrigger(false)}} className={styles.close} type="submit">x</button>
+                </div>
                 <div className={styles.input}>
                     <label>Category/Subcategory</label>
                     <input 
@@ -95,6 +97,7 @@ export default function AddCategories (props){
                 </div>
             
                 <select className={styles.select} disabled={disableSelect} onChange={(e) => {handleSelect(e)}}>
+                    <option value="categories">Categories:</option>
                 {categories?.map(el => {
                     return(
                         <option value={el.id} key={el.id}>{el.name}</option>

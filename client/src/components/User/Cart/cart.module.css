@@ -1,0 +1,21 @@
+.main_box{
+    width: 30%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 99px;
+    left: 63%;
+    padding: 3%;
+    background-color: rgba(190, 146, 146, 0.952);
+    color: white;
+    z-index: 99;
+    border-radius: 8px 0px 8px 8px;
+
+}
+.main_box div {
+    width: 100%;
+
+    text-align: center;
+}
+

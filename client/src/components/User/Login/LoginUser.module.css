@@ -95,21 +95,55 @@
     border-style: thin;
     /* border-color: red; */
   }
+
+  .btns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   
   .btn {
     margin-top: 40px;
     border-style: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 130px;
+    width: 100px;
     height: 35px;
     background-color: var(--color-pink-buttons);
     color: white;
-    /* margin: 10px; */
-    /* padding: 8px 25px 8px 25px; */
   }
   .btn:hover {
     font-weight: 700;
+  }
+
+  .btnGoogle {
+    margin-top: 40px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 170px;
+    height: 35px;
+    background-color: var(--color-pink-buttons);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btnGoogle:hover {
+    font-weight: 700;
+  }
+
+  .google {
+    width: 1.5rem;
+    margin-right: 10px;
+  }
+
+  .or {
+    color: white;
+    margin-top: 50px;
+    margin-left: -50px;
+    margin-right: -50px;
   }
   
   .link {

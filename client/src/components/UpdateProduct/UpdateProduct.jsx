@@ -144,7 +144,7 @@ export default function UpdateProduct({
     status: toEdit.paused,
     subCategorie: toEdit.subCategorie,
   });
-  debugger;
+
   function handleInputChange(e) {
     setInput({
       ...input,
@@ -166,7 +166,7 @@ export default function UpdateProduct({
         (p) =>
           p.name.toLowerCase() === input.name.toLowerCase() && input.id !== p.id
       ).length > 0;
-    debugger;
+
     if (itExist) {
       alert("Name already exists! Please choose a different name");
       setErrors(
@@ -213,255 +213,262 @@ export default function UpdateProduct({
 
   return (
     <div className={styles.gral}>
-    <div className={styles.main}>
-      <form className={styles.uForm} onSubmit={(e) => handleSubmit(e)}>
-        
-        {/* <div className={styles.close} onClick={() => setActiveUpdate(false)}>
+      <div className={styles.main}>
+        <form className={styles.uForm} onSubmit={(e) => handleSubmit(e)}>
+          {/* <div className={styles.close} onClick={() => setActiveUpdate(false)}>
           {" "}
           <span>X</span>
         </div> */}
-       <div className={styles.closediv}>        
-         <button className={styles.close} onClick={() => setActiveUpdate(false)}>x</button>
-         </div>
-        <h3>Product Names *</h3>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            value={input.name}
-            name="name"
-            className={styles.input}
-            placeholder="E.g.: Apple AirPods (2nd Generation)"
-            onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.name && <span>{errors.name}</span>}
+          <div className={styles.closediv}>
+            <button
+              className={styles.close}
+              onClick={() => setActiveUpdate(false)}
+            >
+              x
+            </button>
           </div>
-        </div>
-
-        <h3>Brand *</h3>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            value={input.maker}
-            name="maker"
-            className={styles.input}
-            placeholder="E.g.: Apple"
-            onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.maker && <span>{errors.maker}</span>}
-          </div>
-        </div>
-
-        <div className={styles.row}>
-          <h3>Model *</h3>
+          <h3>Product Names *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
-              value={input.model}
-              name="model"
+              value={input.name}
+              name="name"
               className={styles.input}
-              placeholder="E.g.: AS1234"
+              placeholder="E.g.: Apple AirPods (2nd Generation)"
               onChange={(e) => handleInputChange(e)}
             />
             <div className={styles.errors}>
-              {errors.model && <span>{errors.model}</span>}
+              {errors.name && <span>{errors.name}</span>}
             </div>
           </div>
 
-          <h3>SKU *</h3>
+          <h3>Brand *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
-              value={input.SKU}
-              name="SKU"
+              value={input.maker}
+              name="maker"
               className={styles.input}
-              placeholder="E.g.: 12345678"
+              placeholder="E.g.: Apple"
               onChange={(e) => handleInputChange(e)}
             />
             <div className={styles.errors}>
-              {errors.sku && <span>{errors.sku}</span>}
+              {errors.maker && <span>{errors.maker}</span>}
             </div>
           </div>
-        </div>
 
-        <div className={styles.row}>
-          <h3>Price *</h3>
+          <div className={styles.row}>
+            <h3>Model *</h3>
+            <div className={styles.inputs}>
+              <input
+                type="text"
+                value={input.model}
+                name="model"
+                className={styles.input}
+                placeholder="E.g.: AS1234"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errors}>
+                {errors.model && <span>{errors.model}</span>}
+              </div>
+            </div>
+
+            <h3>SKU *</h3>
+            <div className={styles.inputs}>
+              <input
+                type="text"
+                value={input.SKU}
+                name="SKU"
+                className={styles.input}
+                placeholder="E.g.: 12345678"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errors}>
+                {errors.sku && <span>{errors.sku}</span>}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.row}>
+            <h3>Price *</h3>
+            <div className={styles.inputs}>
+              <input
+                type="text"
+                value={input.price}
+                name="price"
+                className={styles.input}
+                placeholder="E.g.: 100"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errors}>
+                {errors.price && <span>{errors.price}</span>}
+              </div>
+            </div>
+            {/* ------------Reduced Price---------------- */}
+            <div className={styles.inputs1}>
+              <h3 className={styles.reduced_price}>
+                <span> Reduced Price</span>
+              </h3>
+              <div className={styles.inputs}>
+                <input
+                  type="text"
+                  value={input.offerPrice}
+                  name="offerPrice"
+                  className={styles.input}
+                  placeholder="E.g.: 100"
+                  // disabled="disabled"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className={styles.errors}>
+                  {errors.offerPrice && <span>{errors.offerPrice}</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Stock *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
-              value={input.price}
-              name="price"
+              value={input.stock}
+              name="stock"
               className={styles.input}
               placeholder="E.g.: 100"
               onChange={(e) => handleInputChange(e)}
             />
             <div className={styles.errors}>
-              {errors.price && <span>{errors.price}</span>}
+              {errors.stock && <span>{errors.stock}</span>}
             </div>
           </div>
-          {/* ------------Reduced Price---------------- */}
-          <div className={styles.inputs1}>
-            <h3 className={styles.reduced_price}>
-              <span> Reduced Price</span>
-              <input id="isoffer" type="checkbox" className={styles.checkbox} />
-            </h3>
-            <div className={styles.inputs}>
-              <input
-                type="text"
-                value={input.offerPrice}
-                name="offerPrice"
-                className={styles.input}
-                placeholder="E.g.: 100"
-                // disabled="disabled"
-                onChange={(e) => handleInputChange(e)}
-              />
-              <div className={styles.errors}>
-                {errors.offerPrice && <span>{errors.offerPrice}</span>}
-              </div>
+
+          <h3>Inventory *</h3>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.inventary}
+              name="inventary"
+              placeholder="E.g.: 100"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <div className={styles.errors}>
+              {errors.inventary && <span>{errors.inventary}</span>}
             </div>
           </div>
-        </div>
 
-        <h3>Stock *</h3>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            value={input.stock}
-            name="stock"
-            className={styles.input}
-            placeholder="E.g.: 100"
-            onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.stock && <span>{errors.stock}</span>}
+          <h3>Featured Product *</h3>
+          <div className={styles.inputs}>
+            <select
+              value={input.featured}
+              name="featured"
+              className={styles.select}
+              onChange={(e) => handleInputChange(e)}
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.featured && <span>{errors.featured}</span>}
+            </div>
           </div>
-        </div>
-
-        <h3>Inventory *</h3>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            value={input.inventary}
-            name="inventary"
-            placeholder="E.g.: 100"
-            onChange={(e) => handleInputChange(e)}
-          />
-          <div className={styles.errors}>
-            {errors.inventary && <span>{errors.inventary}</span>}
-          </div>
-        </div>
-
-        <h3>Featured Product *</h3>
-        <div className={styles.inputs}>
-          <select
-            value={input.featured}
-            name="featured"
-            className={styles.select}
-            onChange={(e) => handleInputChange(e)}
-          >
-            <option value="" disabled>
-              Select
-            </option>
-            <option value="false">No</option>
-            <option value="true">Yes</option>
-          </select>
-          <div className={styles.errors}>
-            {errors.featured && <span>{errors.featured}</span>}
-          </div>
-        </div>
-        {/* <select value="false" name="Featured" className={styles.select}>
+          {/* <select value="false" name="Featured" className={styles.select}>
             {featured.map((e) => (
             <option value={e.value}>{e.label}</option>
             ))}
           </select> */}
-        {/* ------------------status----------------- */}
-        <h3>Status *</h3>
-        <div className={styles.inputs}>
-          <select
-            defaultValue={input.status}
-            name="paused"
-            className={styles.select}
-            onChange={(e) => handleInputChange(e)}
-          >
-            <option value="" disabled>
-              Select
-            </option>
-            <option value="true">Inactive</option>
-            <option value="false">Active</option>
-          </select>
-          <div className={styles.errors}>
-            {errors.paused && <span>{errors.paused}</span>}
+          {/* ------------------status----------------- */}
+          <h3>Status *</h3>
+          <div className={styles.inputs}>
+            <select
+              defaultValue={input.status}
+              name="paused"
+              className={styles.select}
+              onChange={(e) => handleInputChange(e)}
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              <option value="true">Inactive</option>
+              <option value="false">Active</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.paused && <span>{errors.paused}</span>}
+            </div>
           </div>
-        </div>
-        {/* -------------------Category------------------------- */}
-        <h3>Category *</h3>
-        <div className={styles.inputs}>
-          {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
-          <select
-            value={input.categorie}
-            name="SubCategories"
-            className={styles.select}
-          >
-            <option value="" disabled>
-              Select Category
-            </option>
-            <option value="" disabled>
-              Mobile Phones
-            </option>
-            <option value="Mobile Phones">• Mobile Phones</option>
-            <option value="Mobile Phones Accesories">
-              • Mobile Phones Accesories
-            </option>
-            <option value="" disabled>
-              Computing
-            </option>
-            <option value="Laptop Computers">• Laptop Computers</option>
-            <option value="Desktop Computers">• Desktop Computers</option>
-            <option value="Monitors">• Monitors</option>
-            <option value="Printers">• Printers</option>
-            <option value="Computing Accesories">• Computing Accesories</option>
-            <option value="" disabled>
-              Gaming
-            </option>
-            <option value="Consoles">• Consoles</option>
-            <option value="Consoles Accesories">• Consoles Accesories</option>
-          </select>
-          <div className={styles.errors}>
-            {errors.categorie && <span>{errors.categorie}</span>}
+          {/* -------------------Category------------------------- */}
+          <h3>Category *</h3>
+          <div className={styles.inputs}>
+            {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
+            <select
+              value={input.categorie}
+              name="SubCategories"
+              className={styles.select}
+            >
+              <option value="" disabled>
+                Select Category
+              </option>
+              <option value="" disabled>
+                Mobile Phones
+              </option>
+              <option value="Mobile Phones">• Mobile Phones</option>
+              <option value="Mobile Phones Accesories">
+                • Mobile Phones Accesories
+              </option>
+              <option value="" disabled>
+                Computing
+              </option>
+              <option value="Laptop Computers">• Laptop Computers</option>
+              <option value="Desktop Computers">• Desktop Computers</option>
+              <option value="Monitors">• Monitors</option>
+              <option value="Printers">• Printers</option>
+              <option value="Computing Accesories">
+                • Computing Accesories
+              </option>
+              <option value="" disabled>
+                Gaming
+              </option>
+              <option value="Consoles">• Consoles</option>
+              <option value="Consoles Accesories">• Consoles Accesories</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.categorie && <span>{errors.categorie}</span>}
+            </div>
           </div>
-        </div>
-        {/* ---------------Description---------------- */}
+          {/* ---------------Description---------------- */}
 
-        <h3>Description</h3>
-        <div className={styles.description_box}>
-          <CKEditor
-            data={toEdit.description}
-            editor={ClassicEditor}
-            config={custom_config}
-          />
-        </div>
-        <h3>
-          Upload your images <small>(jpg, png and gif formats)</small>
-        </h3>
-        <div className={styles.uploader}>
-          <Uploader />
-        </div>
-        {/* -----------buttons---------------- */}
-        <div className={styles.buttons_box}>
-          <button className={styles.update} type="submit">
-            Update Product
-          </button>
+          <h3>Description</h3>
+          <div className={styles.description_box}>
+            <CKEditor
+              data={toEdit.description}
+              editor={ClassicEditor}
+              config={custom_config}
+            />
+          </div>
+          <h3>
+            Upload your images <small>(jpg, png and gif formats)</small>
+          </h3>
+          <div className={styles.uploader}>
+            <Uploader />
+          </div>
+          {/* -----------buttons---------------- */}
+          <div className={styles.buttons_box}>
+            <button className={styles.update} type="submit">
+              Update Product
+            </button>
+
 
           <button
             className={styles.cancel}
             onClick={() => setActiveUpdate(false)}
           >
-            Cancell
+            Cancel
           </button>
         </div>
       </form>
     </div>
+
     </div>
   );
 }

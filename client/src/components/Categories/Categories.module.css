@@ -13,7 +13,7 @@
 }
 
 .addCat:hover {
-    background-color: var(--color-hover-principal);
+    background-color: var(--color-principal-violet-hover);
 }
 
 .btnCat {

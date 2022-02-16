@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
 import { errorModal, loading, login } from "../../../../redux/actions";
@@ -209,9 +209,15 @@ export default function SignUp() {
             <br />
             {errors && <small>{errors.password}</small>}
           </div>
-          <button className={styles.btn} type="submit">
-            Login
-          </button>
+          <div className={styles.btns}>
+            <button className={styles.btn} type="submit">
+              Login
+            </button>
+            <span className={styles.or}>or</span>
+            <button className={styles.btnGoogle} type="submit">
+              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
+            </button>
+          </div>
         </form>
       </div>
     </div>

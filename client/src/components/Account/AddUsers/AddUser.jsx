@@ -4,14 +4,15 @@ import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import styles from "./AddUser.module.css";
 import validator from "../../functions/validator";
-import { getAllUsers, postUser } from "../../../redux/actions";
+import { postUser } from "../../../redux/actions";
+
+import MyInput from "../../basics/myInput";
 
 export default function AddUser(props) {
   //const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-
-  const [input, setInput] = React.useState({
+  const [input, setInput] = useState({
     name: "",
     role: "",
     email: "",
@@ -27,8 +28,8 @@ export default function AddUser(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(input);
-    // alert('User created successfully!');
+    dispatch(postUser(input));
+    
     setInput({
       name: "",
       role: "",
@@ -41,7 +42,6 @@ export default function AddUser(props) {
       return;
     }
 
-    dispatch(postUser(input));
     props.setTrigger(false);
   }
 
@@ -50,18 +50,17 @@ export default function AddUser(props) {
     let fails = validator(form);
     setErrors((prev) => ({ ...prev, ...fails }));
   }
+
   //useEffect to update the render
-  React.useEffect(() => {
-    return () => dispatch(getAllUsers());
-  });
+  // React.useEffect(() => {
+  //   return () => dispatch(getAllUsers());
+  // },[]);
 
   return props.trigger ? (
     <div className={styles.popup}>
       {props.children}
       <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
+        onSubmit={(e) =>  handleSubmit(e)}
         className={styles.form}
         defaultValue={input.role}
       >
@@ -74,23 +73,11 @@ export default function AddUser(props) {
             x
           </button>
         </div>
-        <div className={styles.input}>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={input.name}
-            name="name"
-            placeholder="Enter name"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </div>
+        <MyInput l='Name' t='text' v={input.name} n='name' p='Enter name' o= {handleChange}/>
+               
         <div
           className={styles.input}
-          onChange={(e) => {
-            handleChange(e);
-          }}
+          onChange={e => handleChange(e)}
         >
           <label>Role:</label>
           <select name="role" id="role">
@@ -101,39 +88,15 @@ export default function AddUser(props) {
             <option value="Seller">Seller</option>
           </select>
         </div>
-        <div className={styles.input}>
-          <label>Email:</label>
-          <input
-            type="text"
-            value={input.email}
-            name="email"
-            placeholder="Enter email"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            onBlur={(e) => errorsHandler(e)}
-          />
-          {errors && <small>{errors.email}</small>}
-        </div>
-        <div className={styles.input}>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={input.password}
-            name="password"
-            placeholder="Enter password"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </div>
-
+        
+        <MyInput l='Email' t='text' v={input.email} n='email' p='Enter email' o= {handleChange} b={errorsHandler} />
+        
+        <MyInput l='Password' t='password' v={input.password} n='password' p='Enter password' o= {handleChange} />
+      
         <button className={styles.btn} type="submit">
           Submit
         </button>
       </form>
     </div>
-  ) : (
-    ""
-  );
+  ) : ("");
 }

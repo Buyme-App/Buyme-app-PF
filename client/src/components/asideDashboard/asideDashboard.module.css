@@ -98,7 +98,7 @@ padding: 13px;
 }
 
 .active:hover {
-    background-color: var(--color-hover-principal);
+    background-color: var(--color-principal-violet-hover);
 }
 .btn2:hover {
     background-color: var(--color-light-violet);
