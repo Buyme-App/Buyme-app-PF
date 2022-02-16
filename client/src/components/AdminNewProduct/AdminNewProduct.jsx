@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAllProducts, createProduct } from "../../redux/actions";
+import {
+  getAllProducts,
+  createProduct,
+  getAllCategories,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
 // import Uploader from "./Uploader";
@@ -81,14 +85,6 @@ function validate(input) {
     errors.offerPrice = "Numbers and dot (.) only for decimals";
   }
 
-  if (!input.featured) {
-    errors.featured = "Featured is required";
-  }
-
-  if (!input.paused) {
-    errors.paused = "Status is required";
-  }
-
   if (input.stock.length > 0 && input.stock < 0) {
     errors.stock = "Positive numbers only";
   }
@@ -109,6 +105,22 @@ function validate(input) {
     errors.inventary = "At least an Inventory of 0 is required";
   }
 
+  if (!input.featured) {
+    errors.featured = "Featured is required";
+  }
+
+  if (!input.paused) {
+    errors.paused = "Status is required";
+  }
+
+  if (!input.categoryId) {
+    errors.categoryId = "Category is required";
+  }
+
+  if (!input.subCategoryId) {
+    errors.subCategoryId = "Subcategory is required";
+  }
+
   return errors;
 }
 
@@ -119,9 +131,14 @@ export default function AdminNewProduct({ setPanelActive }) {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   const allProdutcs = useSelector((state) => state.allProducts);
+  const allCategories = useSelector((state) => state.allCategories);
+  const catsWithSubcats = allCategories.filter(
+    (el) => el.subCategories.length !== 0
+  );
 
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -136,7 +153,8 @@ export default function AdminNewProduct({ setPanelActive }) {
     description: "",
     featured: "",
     paused: "",
-    category: "",
+    categoryId: "",
+    subCategoryId: "",
     image: [],
   });
 
@@ -237,6 +255,8 @@ export default function AdminNewProduct({ setPanelActive }) {
         featured: "",
         description: "",
         paused: "",
+        categoryId: "",
+        subCategoryId: "",
         image: [],
       });
       dispatch(getAllProducts());
@@ -410,7 +430,6 @@ export default function AdminNewProduct({ setPanelActive }) {
               </div>
             </div>
           </div>
-
           <div className={styles.inputs1}>
             <h3>Inventory *</h3>
             <div className={styles.inputs2}>
@@ -479,44 +498,115 @@ export default function AdminNewProduct({ setPanelActive }) {
           </div>
         </div>
 
-        <h3>Category *</h3>
+        <div className={styles.row}>
+          <div className={styles.inputs1}>
+            <h3>Category *</h3>
+            <div className={styles.inputs2}>
+              <select
+                defaultValue=""
+                name="categoryId"
+                className={styles.select}
+                onChange={(e) => handleSelectChange(e)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                {catsWithSubcats?.map((el) => {
+                  return (
+                    <option value={el.id} key={el.id}>
+                      {el.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <div className={styles.errorsContainer}>
+                {errors.categoryId && (
+                  <span className={styles.errors}>{errors.categoryId}</span>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className={styles.inputs1}>
+            <h3>Subcategory *</h3>
+            <div className={styles.inputs2}>
+              <select
+                defaultValue=""
+                name="subCategoryId"
+                className={styles.select}
+                onChange={(e) => handleSelectChange(e)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                {allCategories?.map((el) => {
+                  return (
+                    <>
+                      <option value={el.id} key={el.id} disabled>
+                        {el.name}
+                      </option>
+                      {catsWithSubcats
+                        ?.filter((c) => c.subCategories === el.subCategories)
+                        .map((s) =>
+                          s.subCategories.map((el) => {
+                            return (
+                              <option value={el.id} key={el.id}>
+                                • {el.name}
+                              </option>
+                            );
+                          })
+                        )}
+                    </>
+                  );
+                })}
+              </select>
+              <div className={styles.errorsContainer}>
+                {errors.subCategoryId && (
+                  <span className={styles.errors}>{errors.subCategoryId}</span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <h3>Category *</h3>
         <div className={styles.inputs}>
-          {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
           <select
             defaultValue=""
-            name="SubCategories"
+            name="categoryId"
             className={styles.select}
+            onChange={(e) => handleSelectChange(e)}
           >
             <option value="" disabled>
-              Select Category
+              Select
             </option>
-            <option value="" disabled>
-              Mobile Phones
-            </option>
-            <option value="Mobile Phones">• Mobile Phones</option>
-            <option value="Mobile Phones Accesories">
-              • Mobile Phones Accesories
-            </option>
-            <option value="" disabled>
-              Computing
-            </option>
-            <option value="Laptop Computers">• Laptop Computers</option>
-            <option value="Desktop Computers">• Desktop Computers</option>
-            <option value="Monitors">• Monitors</option>
-            <option value="Printers">• Printers</option>
-            <option value="Computing Accesories">• Computing Accesories</option>
-            <option value="" disabled>
-              Gaming
-            </option>
-            <option value="Consoles">• Consoles</option>
-            <option value="Consoles Accesories">• Consoles Accesories</option>
+            {allCategories?.map((el) => {
+              //mostrame las categorias
+              return (
+                <>
+                  <option value={el.id} key={el.id} disabled>
+                    {el.name}
+                  </option>
+                  {catsWithSubcats
+                    ?.filter((c) => c.subCategories === el.subCategories)
+                    .map((s) =>
+                      s.subCategories.map((el) => {
+                        return (
+                          <option value={el.id} key={el.id}>
+                            • {el.name}
+                          </option>
+                        );
+                      })
+                    )}
+                </>
+              );
+            })}
           </select>
           <div className={styles.errorsContainer}>
             {errors.categorie && (
               <span className={styles.errors}>{errors.categorie}</span>
             )}
           </div>
-        </div>
+        </div> */}
 
         <h3>Description</h3>
         <div className={styles.textarea}>

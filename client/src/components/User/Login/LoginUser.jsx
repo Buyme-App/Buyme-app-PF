@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./LoginUser.module.css";
-import { errorModal, loading, login } from "../../../redux/actions";
+import { errorModal, getCustomer, loading, login } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
-import { FcGoogle } from 'react-icons';
+import GoogleLogin from "react-google-login";
+import { LoginGoogle } from "../GoogleLogin/GoogleLogin";
 
-export default function LoginUser() {
+export default function LoginUser(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const globalState = useSelector((state) => state);
@@ -59,6 +60,7 @@ export default function LoginUser() {
       [e.target.name]: e.target.value, //agregale lo que el usuario pone
     });
   }
+  console.log(input);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,6 +81,12 @@ export default function LoginUser() {
       });
       // alert("Loading...");
     } else alert("There are still errors in the fields");
+
+    dispatch(getCustomer(input.email));
+    setInput({
+      email:'',
+      password:'',
+    })
   }
 
   function errorsHandler(e) {
@@ -151,9 +159,7 @@ export default function LoginUser() {
               Login
             </button>
             <span className={styles.or}>or</span>
-            <button className={styles.btnGoogle} type="submit">
-              <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>Login with Google
-            </button>
+              <LoginGoogle/>
           </div>
           <div className={styles.signUp}>
               <Link className={styles.link} to="/home/SignUp">

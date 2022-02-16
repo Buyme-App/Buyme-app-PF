@@ -18,6 +18,8 @@ import {
   DELETE_SUBCATEGORY,
   DELETE_USER,
   UPDATE_USER,
+  GET_CUSTOMER,
+  POST_CUSTOMER
   GET_ALL_PRODUCTS_CLIENT,
   GET_DETAIL_CLIENT,
   GET_PRODUCTS_BY_NAME_CLIENTS,
@@ -31,6 +33,7 @@ const initialState = {
   allProducts: [],
   products: [],
   detail: [],
+  customer: [],
   login: null,
   loading: false,
   error: false,
@@ -172,6 +175,15 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allUsers: [...state.allUsers, action.payload],
       };
+    case GET_CUSTOMER:
+      return {
+        ...state,
+        customer: action.payload,
+      };
+    case POST_CUSTOMER:
+    return {
+      ...state,
+    };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
 

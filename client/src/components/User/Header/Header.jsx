@@ -1,11 +1,11 @@
-import React from "react";
-import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar";
-import NavBar from "../NavBar/NavBar";
-import logo from "../../../assets/logo.png";
+import React, { useState} from 'react';
+import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
+import NavBar from '../NavBar/NavBar';
+import logo from '../../../assets/logo.png';
+import DropdownMyAccount from '../MyAccount/Dropdown';
 import Cart from "../Cart/Cart";
-
 
 export default function Header() {
   return (
@@ -20,6 +20,7 @@ export default function Header() {
         </div>
         <SearchBar />
         <div className={styles.account}>
+          <DropdownMyAccount></DropdownMyAccount>
           <Link to={"/login"}>
             <span>My Account</span>
           </Link>

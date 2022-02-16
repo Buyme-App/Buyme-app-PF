@@ -25,11 +25,12 @@ export const POST_NEW_CATEGORY = "POST_NEW_CATEGORY";
 export const POST_NEW_SUBCATEGORY = "POST_NEW_SUBCATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_SUBCATEGORY = "DELETE_SUBCATEGORY";
-export const DELETE_USER = "DELETE_USER";
+export const DELETE_USER = "DELETE_USER";t
+export const GET_CUSTOMER = "GET_CUSTOMER";
+export const POST_CUSTOMER = "POST_CUSTOMER";
 export const GET_ALL_PRODUCTS_CLIENT = "GET_ALL_PRODUCTS_CLIENT";
 export const GET_DETAIL_CLIENT = "GET_DETAIL_CLIENT";
 export const GET_PRODUCTS_BY_NAME_CLIENTS = "GET_PRODUCTS_BY_NAME_CLIENTS";
-//cart
 export const ADD_TO_CART = "ADD_TO_CART";
 
 // Used in Account component
@@ -348,6 +349,28 @@ export function deleteUser(id) {
     return json;
   };
 }
+
+export function getCustomer() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/getCustomer", sendKey());
+    return dispatch({
+      type: GET_CUSTOMER,
+      payload: json.data,
+    });
+  };
+};
+
+export function createCustomer(payload) {
+  return async function () {
+    let json = await axios.post(
+      "http://localhost:3001/createCustomer",
+      payload,
+      sendKey()
+    );
+    return json;
+  };
+}
+
 //Cart
 export function addToCart(product, amount) {
   return {
