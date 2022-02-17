@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import s from "./cart.module.css";
 import Item from "./Item/Item";
+import {Link} from "react-router-dom";
 import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART} from "../../../redux/actions/index.js"
 
-export default function Cart() {
+export default function Cart(props) {
   const cartState = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -34,9 +35,13 @@ export default function Cart() {
     dispatch({type:CLEAR_CART})
   }
   
-  return (
+  return props.trigger ? (
     <div className={s.main_box}>
       <div className={s.cart_div}>
+        <div className={s.close} onClick={() => props.setTrigger(false)}>
+          <button>x</button>
+          </div>
+        <h1>Shopping Cart</h1>
         {!cartState.length ? (
           <h2>Your cart is empty</h2>
         ) : (
@@ -50,11 +55,18 @@ export default function Cart() {
               amount={item.amount}
               delFromCart={delFromCart}
               addToCart={addToCart}
-            />
+            /> 
           ))
         )}
-        <button onClick={clearCart}>Clear Cart</button>
+        {cartState.length? (
+        <button className={s.btn1}>BUY NOW</button>):
+        (  <Link to="/shop"><button className={s.btn1}>GO SHOPPING</button></Link>)}
+        <div>
+        <button className={s.btn2}onClick={clearCart}>Clear Cart</button>
+        </div>
+          
       </div>
     </div>
-  );
+        
+  ) : ("");
 }

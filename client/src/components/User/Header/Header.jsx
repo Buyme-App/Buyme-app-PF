@@ -8,9 +8,15 @@ import DropdownMyAccount from '../MyAccount/Dropdown';
 import Cart from "../Cart/Cart";
 
 export default function Header() {
+
+  const [btnChangeCart, setBtnChangeCart] = useState(false);
+
   return (
     <div className={styles.header}>
-      <Cart />
+      <Cart 
+      trigger={btnChangeCart}
+      setTrigger={setBtnChangeCart}
+      />
       <div className={styles.top}>Free shipping on orders over $6.000!</div>
       <div className={styles.content}>
         <div className={styles.logo}>
@@ -21,10 +27,11 @@ export default function Header() {
         <SearchBar />
         <div className={styles.account}>
           <DropdownMyAccount></DropdownMyAccount>
-          <Link to={"/login"}>
+          {/* <Link to={"/login"}>
             <span>My Account</span>
-          </Link>
-          <div className={styles.bag}>9</div>
+          </Link> */}
+          <div className={styles.bag}>
+            <button className={styles.bagbtn} onClick={() => setBtnChangeCart(true)}>9</button></div>
         </div>
       </div>
       <NavBar />
