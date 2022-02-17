@@ -1,27 +1,72 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import s from "./cart.module.css";
 import Item from "./Item/Item";
+import {Link} from "react-router-dom";
+import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART} from "../../../redux/actions/index.js"
 
-export default function Cart() {
+export default function Cart(props) {
   const cartState = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
-  return (
+  const addToCart = (id) => {
+       dispatch({
+         type: ADD_ONE_TO_CART,
+         payload: id
+       })
+      }
+    
+
+  const delFromCart = (id, all= false) => {
+   if(all){
+     dispatch({
+       type: REMOVE_ALL_FROM_CART,
+       payload: id
+     })
+   }else{
+    dispatch({
+      type: REMOVE_ONE_FROM_CART,
+      payload: id
+    })
+   }
+  }
+
+  const clearCart = () => {
+    dispatch({type:CLEAR_CART})
+  }
+  
+  return props.trigger ? (
     <div className={s.main_box}>
       <div className={s.cart_div}>
+        <div className={s.close} onClick={() => props.setTrigger(false)}>
+          <button>x</button>
+          </div>
+        <h1>Shopping Cart</h1>
         {!cartState.length ? (
           <h2>Your cart is empty</h2>
         ) : (
-          cartState.map((item) => (
+          cartState.map((item,index) => (
             <Item
+              key={index}
+              id={item.id}
               name={item.name}
               img={item.img}
               price={item.price}
               amount={item.amount}
-            />
+              delFromCart={delFromCart}
+              addToCart={addToCart}
+            /> 
           ))
         )}
+        {cartState.length? (
+        <button className={s.btn1}>BUY NOW</button>):
+        (  <Link to="/shop"><button className={s.btn1}>GO SHOPPING</button></Link>)}
+        <div>
+        <button className={s.btn2}onClick={clearCart}>Clear Cart</button>
+        </div>
+          
       </div>
     </div>
-  );
+        
+  ) : ("");
 }

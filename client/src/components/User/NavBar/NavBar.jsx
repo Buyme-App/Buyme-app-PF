@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
+import DropdownMyAccount from './Dropdown';
 
 export default function NavBar() {
   return (
@@ -8,9 +9,10 @@ export default function NavBar() {
       <Link className={styles.link} to="/">
         <div>Home</div>
       </Link>
-      <Link className={styles.link} to="/shop">
+      {/* <Link className={styles.link} to="/shop">
         <div>Shop</div>
-      </Link>
+      </Link> */}
+      <DropdownMyAccount></DropdownMyAccount>
       <Link className={styles.link} to="/about">
         <div>About Us</div>
       </Link>
