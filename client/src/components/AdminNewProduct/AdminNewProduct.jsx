@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   getAllProducts,
-  createProduct,
   getAllCategories,
+  createProduct,
 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminNewProduct.module.css";
@@ -431,7 +431,7 @@ export default function AdminNewProduct({ setPanelActive }) {
             </div>
           </div>
           <div className={styles.inputs1}>
-            <h3>Inventory *</h3>
+            <h3>Stock Alert *</h3>
             <div className={styles.inputs2}>
               <input
                 type="text"
@@ -611,7 +611,7 @@ export default function AdminNewProduct({ setPanelActive }) {
         <h3>Description</h3>
         <div className={styles.textarea}>
           <textarea
-            value={input.descriptionn}
+            value={input.description}
             name="description"
             placeholder="Insert the product description here"
             onChange={(e) => handleInputChange(e)}

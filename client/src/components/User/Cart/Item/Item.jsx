@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import itemS from "./item.module.css";
+import IconDelete from "../../../../assets/eliminar.png"
 
-export default function Item({ img, name, price, amount }) {
+export default function Item({ img, name, price, amount,addToCart, delFromCart,id }) {
+  const totalAmount = "$" + price * amount
   const [amountState, setAmount] = React.useState(0);
   useEffect(() => {
     setAmount(amount);
@@ -11,12 +13,13 @@ export default function Item({ img, name, price, amount }) {
     <div className={itemS.item}>
       <img src={img} alt="producto" />
       <h4>{name}</h4>
-      <span>${price * amount}</span>
+      <span>{totalAmount}</span>
       <div>
-        <span>-</span>
-        <span>{amountState}</span>
-        <span>+</span>
+        <button className={itemS.btn} onClick={() => delFromCart(id)}>-</button>
+        <span>x{amountState}</span>
+        <button className={itemS.btn} onClick={() => addToCart(id)}>+</button> 
       </div>
+        <btn className={itemS.close}onClick={() => delFromCart(id,true)}><img src={IconDelete} alt=""/></btn>
     </div>
   );
 }
