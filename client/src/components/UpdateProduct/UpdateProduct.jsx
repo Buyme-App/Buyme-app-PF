@@ -1,12 +1,10 @@
 import React from "react";
-
 import { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./updateProduct.module.css";
 import Uploader from "../AdminNewProduct/Uploader";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { updateProduct } from "../../redux/actions";
 
 function validate(input) {
@@ -142,7 +140,8 @@ export default function UpdateProduct({
     description: toEdit.description,
     featured: toEdit.featured,
     status: toEdit.paused,
-    subCategorie: toEdit.subCategorie,
+    // categoryId: toEdit.categoryId,
+    // subCategoryId: toEdit.subCategoryId,
   });
 
   function handleInputChange(e) {
@@ -194,6 +193,8 @@ export default function UpdateProduct({
         featured: "",
         description: "",
         paused: "",
+        categoryId: "",
+        subCategoryId: "",
         images: "",
       });
       refreshHandler();
@@ -341,7 +342,7 @@ export default function UpdateProduct({
             </div>
           </div>
 
-          <h3>Inventory *</h3>
+          <h3>Stock Alert *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
@@ -373,11 +374,6 @@ export default function UpdateProduct({
               {errors.featured && <span>{errors.featured}</span>}
             </div>
           </div>
-          {/* <select value="false" name="Featured" className={styles.select}>
-            {featured.map((e) => (
-            <option value={e.value}>{e.label}</option>
-            ))}
-          </select> */}
           {/* ------------------status----------------- */}
           <h3>Status *</h3>
           <div className={styles.inputs}>
@@ -397,12 +393,49 @@ export default function UpdateProduct({
               {errors.paused && <span>{errors.paused}</span>}
             </div>
           </div>
-          {/* -------------------Category------------------------- */}
+          {/* ------------------category----------------- */}
           <h3>Category *</h3>
           <div className={styles.inputs}>
-            {/* <select name="SubCategories" className={styles.select} onChange={(e) => handleSelectChange(e)}> */}
             <select
-              value={input.categorie}
+              defaultValue={input.categoryId}
+              name="categoryId"
+              className={styles.select}
+              onChange={(e) => handleInputChange(e)}
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              <option value="true">Inactive</option>
+              <option value="false">Active</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.categoryId && <span>{errors.categoryId}</span>}
+            </div>
+          </div>
+          {/* ------------------subcategory----------------- */}
+          <h3>Subcategory *</h3>
+          <div className={styles.inputs}>
+            <select
+              defaultValue={input.subCategoryId}
+              name="subCategoryId"
+              className={styles.select}
+              onChange={(e) => handleInputChange(e)}
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              <option value="true">Inactive</option>
+              <option value="false">Active</option>
+            </select>
+            <div className={styles.errors}>
+              {errors.subCategoryId && <span>{errors.subCategoryId}</span>}
+            </div>
+          </div>
+          {/* -------------------Category------------------------- */}
+          {/* <h3>Category *</h3>
+          <div className={styles.inputs}>
+            <select
+              value={input.category}
               name="SubCategories"
               className={styles.select}
             >
@@ -435,16 +468,21 @@ export default function UpdateProduct({
             <div className={styles.errors}>
               {errors.categorie && <span>{errors.categorie}</span>}
             </div>
-          </div>
-          {/* ---------------Description---------------- */}
+          </div> */}
 
+          {/* ---------------Description---------------- */}
           <h3>Description</h3>
           <div className={styles.description_box}>
-            <CKEditor
+            <textarea
+              value={input.description}
+              name="description"
+              onChange={(e) => handleInputChange(e)}
+            ></textarea>
+            {/* <CKEditor
               data={toEdit.description}
               editor={ClassicEditor}
               config={custom_config}
-            />
+            /> */}
           </div>
           <h3>
             Upload your images <small>(jpg, png and gif formats)</small>
@@ -457,8 +495,6 @@ export default function UpdateProduct({
             <button className={styles.update} type="submit">
               Update Product
             </button>
-
-
           <button
             className={styles.cancel}
             onClick={() => setActiveUpdate(false)}
