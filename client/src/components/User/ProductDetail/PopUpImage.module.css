@@ -1,0 +1,41 @@
+.box {
+    box-sizing: border-box;
+    box-shadow: 0rem 0 .5rem .5rem rgba(0, 0, 0, 0.2);
+    background-color: white;
+    backdrop-filter: blur(7px);
+    width: 550px;
+    height: 550px;
+    display: fix;
+    position: fixed;
+    top: 3rem;
+    left: 30%;
+    
+    display: grid;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.image {
+    margin-top: -2.5rem;
+}
+
+.close {
+    width: 23px;
+    height: 24px;
+    border-radius: 5px;
+    margin-top: 4%;
+    margin-left: 109%;
+    cursor: pointer;
+    background-color: rgba(231, 53, 53, 0.877);
+    color: white;
+    /* border-style: thin; */
+    border-width: thin;
+    border-color: grey;
+    font-size: 12px;
+  }
+  
+  .close:hover {
+    font-weight: 700;
+    background-color: rgba(221, 41, 41, 0.877);
+    color: rgb(221, 221, 221);
+  }

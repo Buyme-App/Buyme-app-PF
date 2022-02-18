@@ -12,6 +12,10 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Featured from "../Featured/Featured";
 import imgdft from "../../../assets/imgdft.png";
+import PopUpImage from "./PopUpImage";
+import PopUpImage1 from "./PopUpImage1";
+import PopUpImage2 from "./PopUpImage2";
+import PopUpImage3 from "./PopUpImage3";
 // import Loading2 from './Loading2';
 // import NotFound from './NotFound';
 
@@ -21,6 +25,10 @@ export default function ProductDetail(props) {
   const dispatch = useDispatch();
   //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
+  const [popUpImage, setPopUpImage] = useState(false);
+  const [popUpImage1, setPopUpImage1] = useState(false);
+  const [popUpImage2, setPopUpImage2] = useState(false);
+  const [popUpImage3, setPopUpImage3] = useState(false);
 
   const addHandler = (product) => {
     dispatch(addToCart(product[0], 1));
@@ -63,7 +71,7 @@ export default function ProductDetail(props) {
   }
 
   return (
-    <div>
+    <div className={styles.page}>
       <Header />
       <div className={styles.main}>
         {product.length > 0 ? (
@@ -74,24 +82,29 @@ export default function ProductDetail(props) {
                   <img
                     src={product[0].image[1] ? product[0].image[1] : imgdft}
                     width="200px"
-                    alt=""
+                    alt="img"
+                    onClick={() => setPopUpImage1(true)}
                   />
                   <img
                     src={product[0].image[2] ? product[0].image[2] : imgdft}
                     width="200px"
-                    alt=""
+                    alt="img"
+                    onClick={() => setPopUpImage2(true)}
                   />
                   <img
                     src={product[0].image[3] ? product[0].image[3] : imgdft}
                     width="200px"
-                    alt=""
+                    alt="img"
+                    onClick={() => setPopUpImage3(true)}
                   />
                 </div>
                 <div className={styles.mainimg}>
                   <img
                     src={product[0].image[0] ? product[0].image[0] : imgdft}
                     width="400px"
-                    alt=""
+                    height="400px"
+                    alt="img"
+                    onClick={() => setPopUpImage(true)}
                   />
                 </div>
               </div>
@@ -188,6 +201,22 @@ export default function ProductDetail(props) {
                 </div>
               </div>
             </div>
+            <PopUpImage
+              trigger={popUpImage}
+              setTrigger={setPopUpImage}
+            ></PopUpImage>
+            <PopUpImage1
+              trigger={popUpImage1}
+              setTrigger={setPopUpImage1}
+            ></PopUpImage1>
+            <PopUpImage2
+              trigger={popUpImage2}
+              setTrigger={setPopUpImage2}
+            ></PopUpImage2>
+            <PopUpImage3
+              trigger={popUpImage3}
+              setTrigger={setPopUpImage3}
+            ></PopUpImage3>
           </div>
         ) : product === 404 ? (
           // <NotFound /> :
