@@ -2,7 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsClient } from "../../../redux/actions";
+import {
+  getProductsClient,
+  getAllCategories,
+  setFilters,
+  filterByFeaturedBtn,
+  filterByDiscountedBtn,
+  filterByFeatured,
+  orderByPrice,
+  filterByDiscount,
+} from "../../../redux/actions";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Cards from "../Cards/Cards";
@@ -15,7 +24,28 @@ import styles from "./Search.module.css";
 export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  const categories = useSelector((state) => state.allCategories);
   // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
+
+  // const [filterByCategory, setFilterByCategory] = useState("All");
+  // const [sortingBy, setSortingBy] = useState("All");
+  // const [filterByFeatured, setFilterByFeatured] = useState();
+
+  useEffect(() => {
+    dispatch(getProductsClient());
+    dispatch(getAllCategories());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (!allProducts.length) {
+  //     dispatch(getProductsClient());
+  //   }
+  //   if (!categories.length) {
+  //     dispatch(getAllCategories());
+  //   }
+  //   ////  --->esto permite eliminar los warning de dependencias !
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch, categories.length]);
 
   const [currentPage, setCurrentPage] = useState(1); // ESTADO LOCAL ARRANCA EN PAGINA 1
   // // eslint-disable-next-line no-unused-vars
@@ -33,11 +63,79 @@ export default function Search() {
     setCurrentPage(pageNumber);
   };
 
-  function handleClickLoadAll(e){
-      e.preventDefault(); // CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VULVEN A CARGARSE SI TENEMOS USEEFFECT
-      dispatch(getProductsClient());
-      setCurrentPage(1);
+  function handleClickLoadAll(e) {
+    e.preventDefault();
+    dispatch(getProductsClient());
+    setCurrentPage(1);
   }
+
+  // function handleClickFeaturedBtn(e) {
+  //   dispatch(filterByFeaturedBtn());
+  //   setCurrentPage(1);
+  // }
+
+  // function handleClickDiscountedBtn(e) {
+  //   e.preventDefault();
+  //   dispatch(filterByDiscountedBtn());
+  //   setCurrentPage(1);
+  // }
+
+  // function handleFilterByCategory(e) {
+  //   dispatch(filterByCategory(e.target.value));
+  //   setCurrentPage(1);
+  // }
+
+  // function handleFilterByCategories(e) {
+  //   setFilterByCategories(e.target.value);
+  // }
+
+  function handleFeatured(e) {
+    dispatch(filterByFeatured(e.target.value));
+    setCurrentPage(1);
+  }
+
+  // function handlePrice(e) {
+  //   dispatch(orderByPrice(e.target.value));
+  //   setCurrentPage(1);
+  // }
+
+  function handlePrice(e) {
+    dispatch(orderByPrice(e.target.value));
+    setCurrentPage(1);
+    setOrder(`Ordered by ${e.target.value}`);
+  }
+
+  function handleDiscount(e) {
+    dispatch(filterByDiscount(e.target.value));
+    setCurrentPage(1);
+  }
+
+  // function handleFeatured(e) {
+  //   setFilterByFeatured(e.target.value);
+  // }
+
+  // function handleSortBy(e) {
+  //   setSortingBy(e.target.value);
+  // }
+
+  // function handleClickApply() {
+  //   dispatch(setFilters({ sortingBy, filterByFeatured, filterByCategory }));
+  //   setCurrentPage(1);
+  // }
+
+  // function handleClickReset() {
+  //   dispatch(
+  //     setFilters({
+  //       filterByCategory: "All",
+  //       filterByFeatured: "All",
+  //       sortingBy: "All",
+  //     })
+  //   );
+  //   setSortingBy("All");
+  //   setFilterByFeatured("All");
+  //   filterByCategory("All");
+  //   setCurrentPage(1);
+  // }
 
   return (
     <>
@@ -45,18 +143,119 @@ export default function Search() {
       <div className={styles.main}>
         <div className={styles.productsbottom}>
           <div className={styles.sidebar}>
-            <h2>(Sidebar for filters)</h2>
-            <button className={styles.loadproducts} onClick={(e) => {handleClickLoadAll(e)}}>
-                    Load All Products
-                </button>
+            <h2>Refine your search</h2>
+            <button
+              className={styles.loadproducts}
+              onClick={(e) => {
+                handleClickLoadAll(e);
+              }}
+            >
+              Show All Products
+            </button>
+
+            <h4>Filter by category</h4>
+            <select
+              className={styles.filters}
+              // value={filterByCategory}
+              // onChange={(e) => {
+              //   handleFilterByCategory(e);
+              // }}
+            >
+              <option value="All">Select Category</option>
+              {categories
+                .sort((a, b) => {
+                  if (a.name < b.name) return -1;
+                  if (a.name > b.name) return 1;
+                  return 0;
+                })
+                .map((t) => (
+                  <option value={t.name} key={t.name}>
+                    {t.name}
+                  </option>
+                ))}
+            </select>
+            {/* <button
+              className={styles.loadproducts}
+              onClick={(e) => {
+                handleClickFeaturedBtn(e);
+              }}
+            >
+              Show Featured Products
+            </button> */}
+            {/* <button
+              className={styles.loadproducts}
+              onClick={(e) => {
+                handleClickDiscountedBtn(e);
+              }}
+            >
+              Show Discounted Products
+            </button> */}
+            {/* <select
+              className={styles.filters}
+              // value={filterByFeatured}
+              onChange={(e) => handleFeatured(e)}
+            >
+              <option value="All">All Products</option>
+              <option value="Featured">Featured</option>
+              <option value="NotFeatured">Not Featured</option>
+            </select> */}
+            <h4>Filter by featured products</h4>
+            <select
+              className={styles.filters}
+              onChange={(e) => handleFeatured(e)}
+            >
+              <option value="All">All Products</option>
+              <option value="Featured">Featured Products</option>
+              {/* <option value="NotFeatured">Not Featured</option> */}
+            </select>
+
+            <h4>Filter by discounted products</h4>
+            <select
+              className={styles.filters}
+              onChange={(e) => handleDiscount(e)}
+            >
+              <option value="All">All Products</option>
+              <option value="Discounted">Discounted Products</option>
+            </select>
+
+            <h4>Order by price</h4>
+            <select
+              className={styles.filters}
+              onChange={(e) => {
+                handlePrice(e);
+              }}
+              // value={sortingBy}
+            >
+              <option value="All">Select Order</option>
+              <option value="asc">Ascending</option>
+              <option value="des">Descending</option>
+            </select>
+            {/* <button
+              className={styles.loadproducts}
+              type="button"
+              onClick={(e) => {
+                handleClickApply(e);
+              }}
+            >
+              Apply
+            </button>
+            <button
+              className={styles.loadproducts}
+              type="button"
+              onClick={(e) => {
+                handleClickReset(e);
+              }}
+            >
+              Reset
+            </button> */}
           </div>
           <div className={styles.detail}>
             <div className={styles.grid}>
-              {
-                !currentProducts.length ?
-                <Loading /> :
-                currentProducts[0] === 404 ?
-                <NotFound /> :
+              {!currentProducts.length ? (
+                <Loading />
+              ) : currentProducts[0] === 404 ? (
+                <NotFound />
+              ) : (
                 currentProducts?.map((p) => {
                   return (
                     <>
@@ -76,16 +275,16 @@ export default function Search() {
                     </>
                   );
                 })
-              }
+              )}
             </div>
             <div>
-            <Paginate
+              <Paginate
                 productsPerPage={productsPerPage}
                 allProducts={allProducts.length}
                 page={page}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-            />
+              />
             </div>
           </div>
         </div>
