@@ -36,6 +36,15 @@ export const CLEAR_CART = "CLEAR_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const ADD_ONE_TO_CART = "ADD_ONE_TO_CART";
+export const SET_FILTERS = "SET_FILTERS";
+
+export const FILTER_BY_FEATURED_BTN = "FILTER_BY_FEATURED_BTN";
+export const FILTER_BY_DISCOUNTED_BTN = "FILTER_BY_DISCOUNTED_BTN";
+
+export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
+
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -381,4 +390,51 @@ export function addToCart(product, amount) {
     type: ADD_TO_CART,
     payload: { product, amount },
   };
+}
+
+export function setFilters(payload) {
+  return {
+    type: SET_FILTERS,
+    payload,
+  };
+}
+
+export function filterByFeaturedBtn(payload){
+    // console.log(payload)
+    return{
+        type: FILTER_BY_FEATURED_BTN,
+        payload
+    }
+}
+
+export function filterByDiscountedBtn(payload){
+  // console.log(payload)
+  return{
+      type: FILTER_BY_DISCOUNTED_BTN,
+      payload
+  }
+}
+
+export function filterByFeatured(payload){
+  // console.log(payload)
+  return{
+      type: FILTER_BY_FEATURED,
+      payload
+  }
+}
+
+export function orderByPrice(payload){
+  // console.log(payload)
+  return{
+      type: ORDER_BY_PRICE,
+      payload
+  }
+}
+
+export function filterByDiscount(payload){
+  // console.log(payload)
+  return{
+      type: FILTER_BY_DISCOUNT,
+      payload
+  }
 }

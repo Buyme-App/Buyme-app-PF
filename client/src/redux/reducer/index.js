@@ -27,7 +27,13 @@ import {
   REMOVE_ONE_FROM_CART,
   ADD_ONE_TO_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  SET_FILTERS,
+  FILTER_BY_FEATURED_BTN,
+  FILTER_BY_DISCOUNTED_BTN,
+  FILTER_BY_FEATURED,
+  ORDER_BY_PRICE,
+  FILTER_BY_DISCOUNT,
 } from "../actions/index";
 
 const initialState = {
@@ -36,6 +42,8 @@ const initialState = {
   subcategories: [],
   allProducts: [],
   products: [],
+  orderedproducts: [],
+  filteredByDiscount: [],
   detail: [],
   customer: [],
   login: null,
@@ -185,9 +193,9 @@ export default function rootReducer(state = initialState, action) {
         customer: action.payload,
       };
     case POST_CUSTOMER:
-    return {
-      ...state,
-    };
+      return {
+        ...state,
+      };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
 
@@ -222,35 +230,229 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case CLEAR_CART:
-      return{
+      return {
         ...state,
-        cart:[]
-      }
+        cart: [],
+      };
 
     case REMOVE_ONE_FROM_CART:
-        let itemToDelete = state.cart.find(item => item.id === action.payload);
-        return itemToDelete.amount > 1 ? {
-          ...state,
-          cart: state.cart.map(item => item.id === action.payload?{...item, amount: item.amount - 1}
-            : item
-            )
-        } : 
-        {
-          ...state,
-          cart: state.cart.filter(item => item.id !== action.payload)
-        };
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      return itemToDelete.amount > 1
+        ? {
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, amount: item.amount - 1 }
+                : item
+            ),
+          }
+        : {
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
     case ADD_ONE_TO_CART:
       // state.cart.find(item => item.id === action.payload);
       return {
         ...state,
-        cart: state.cart.map(item => item.id === action.payload?{...item, amount: item.amount + 1} : item)
+        cart: state.cart.map((item) =>
+          item.id === action.payload
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        ),
+      };
+
+    case REMOVE_ALL_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
+
+    // case SET_FILTERS:
+    //   const filteredByCategory = state.allProducts.filter(
+    //     (products) =>
+    //       products.category.includes(action.payload.filterByCategory) ||
+    //       action.payload.filterByCategory === "All"
+    //   );
+
+    //   let filteredByFeatured = filteredByCategory;
+    //   if (action.payload.filterByFeatured !== "All") {
+    //     if (action.payload.filterByFeatured === "true") {
+    //       filteredByFeatured = filteredByFeatured.filter(
+    //         (products) => products.featured
+    //       );
+    //     } else {
+    //       filteredByFeatured = filteredByFeatured.filter(
+    //         (products) => !products.featured
+    //       );
+    //     }
+    //   }
+    //   let sortedList = filteredByFeatured;
+
+    //   switch (action.payload.sortingBy) {
+    //     // case "asc":
+    //     //   sortedList = sortedList.sort((a, b) => {
+    //     //     if (a.name.toLowerCase().trim() < b.name.toLowerCase().trim())
+    //     //       return -1;
+    //     //     if (a.name.toLowerCase().trim() > b.name.toLowerCase().trim())
+    //     //       return 1;
+    //     //     return 0;
+    //     //   });
+    //     //   break;
+
+    //     // case "des":
+    //     //   sortedList = sortedList.sort((a, b) => {
+    //     //     if (a.name.toLowerCase().trim() < b.name.toLowerCase().trim())
+    //     //       return 1;
+    //     //     if (a.name.toLowerCase().trim() > b.name.toLowerCase().trim())
+    //     //       return -1;
+    //     //     return 0;
+    //     //   });
+    //     //   break;
+
+    //     case "high":
+    //       sortedList = sortedList.sort((a, b) => {
+    //         return b.price - a.price;
+    //       });
+    //       break;
+
+    //     case "low":
+    //       sortedList = sortedList.sort((a, b) => {
+    //         return a.price - b.price;
+    //       });
+    //       break;
+    //     default:
+    //       break;
+    //   }
+
+    //   return {
+    //     ...state,
+    //     pokemons: sortedList,
+    //   };
+
+    case FILTER_BY_FEATURED:
+      const allProductsA = state.allProducts;
+      const filteredByFeatured =
+        action.payload === "All"
+          ? allProductsA
+          : action.payload === "Featured"
+          ? allProductsA.filter((p) => p.featured === true)
+          : allProductsA.filter((p) => p.featured === false);
+      if (!filteredByFeatured.length) {
+        return {
+          ...state,
+          products: [404],
+        };
+      } else {
+        return {
+          ...state,
+          products: filteredByFeatured,
+        };
       }
-    
-  case REMOVE_ALL_FROM_CART:
-    return {
-      ...state,
-      cart: state.cart.filter(item => item.id !== action.payload)
-     };
+
+    case ORDER_BY_PRICE:
+      const allProductsB = state.allProducts;
+      const orderedproducts =
+        // action.payload === "asc"
+        //   ? allProductsB.sort((a, b) => {
+        //       if (a.name > b.name) {
+        //         return 1;
+        //       }
+        //       if (b.name > a.name) {
+        //         return -1;
+        //       }
+        //       return 0;
+        //     })
+        //   : action.payload === "desc"
+        //   ? allProductsB.sort((a, b) => {
+        //       if (a.name > b.name) {
+        //         return -1;
+        //       }
+        //       if (b.name > a.name) {
+        //         return 1;
+        //       }
+        //       return 0;
+        //     })
+        //   :
+        action.payload === "asc"
+          ? allProductsB.sort((a, b) => {
+              // if (a.price < b.price){
+              //     return -1;
+              // }
+              // if (b.price < a.price){
+              //     return 1;
+              // }
+              // return 0;
+              return a.price - b.price;
+            })
+          : action.payload === "desc"
+          ? allProductsB.sort((a, b) => {
+              // if (a.price > b.price){
+              //     return -1;
+              // }
+              // if (b.price > a.price){
+              //     return 1;
+              // }
+              // return 0;
+              return b.price - a.price;
+            })
+          : action.payload === "All"
+          ? allProductsB.sort((a, b) => {
+              // if (a.price < b.price){
+              //     return -1;
+              // }
+              // if (b.price < a.price){
+              //     return 1;
+              // }
+              // return 0;
+              return b.id - a.id;
+            })
+          : allProductsB.sort((a, b) => {
+              return a.id - b.id;
+            });
+      return {
+        ...state,
+        products: orderedproducts,
+      };
+
+    case FILTER_BY_DISCOUNT:
+      const allProductsC = state.allProducts;
+      const filteredByDiscount =
+        action.payload === "All"
+          ? allProductsC
+          // : action.payload === "Discounted"
+          // ? allProductsC.filter((p) => p.featured === true)
+          : allProductsC.filter((p) => p.offerPrice);
+      if (!filteredByDiscount.length) {
+        return {
+          ...state,
+          products: [404],
+        };
+      } else {
+        return {
+          ...state,
+          products: filteredByDiscount,
+        };
+      }
+
+    case FILTER_BY_FEATURED_BTN:
+      // const allProducts = state.products;
+      const filterByFeaturedBtn = state.products.filter(
+        (p) => p.featured === true
+      );
+      return {
+        ...state,
+        products: filterByFeaturedBtn,
+      };
+
+    case FILTER_BY_DISCOUNTED_BTN:
+      const allProducts2 = state.products;
+      const filterByDiscountedBtn = allProducts2.filter(
+        (p) => p.offerPrice !== null
+      );
+      return {
+        ...state,
+        products: filterByDiscountedBtn,
+      };
 
     default:
       return state;
