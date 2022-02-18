@@ -354,9 +354,9 @@ export function deleteUser(id) {
   };
 }
 
-export function getCustomer() {
+export function getCustomer(payload) {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getCustomer", sendKey());
+    let json = await axios.get("http://localhost:3001/getCustomer", payload, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,

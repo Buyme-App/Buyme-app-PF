@@ -6,28 +6,22 @@ import styles from "./LoginUser.module.css";
 import { errorModal, getCustomer, loading, login } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
-import GoogleLogin from "react-google-login";
 import { LoginGoogle } from "../GoogleLogin/GoogleLogin";
 
-export default function LoginUser(props) {
+export default function LoginUser() {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const globalState = useSelector((state) => state);
+  const customer = useSelector((state) => state.customer);
+  
   const [errors, setErrors] = useState({});
+  
 
   const [input, setInput] = React.useState({
     email: "",
     password: "",
   });
-  const [notValidated, setNotValidated] = React.useState(true);
-
-  const setSession = (key, value) => {
-    sessionStorage.setItem(key, value);
-  };
-
-  const getSession = (value) => {
-    return sessionStorage;
-  };
 
   const loginValidate = (form) => {
     let error = {};
@@ -64,29 +58,14 @@ export default function LoginUser(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    //si ambos campos están vacíos
-    if (input.email === "" || input.password === "") {
-      return setErrors(loginValidate(input));
-    }
-
-    //si las props de error poseen algun valor, haveError será true
-    const haveError = Object.values(errors).some((v) => v !== undefined);
-
-    if (haveError === false) {
-      loading(dispatch, true);
-      const credential = login(dispatch, input.email, input.password);
-      credential.then((re) => {
-        re ? navigate("/") : errorModal(dispatch, true);
-      });
-      // alert("Loading...");
-    } else alert("There are still errors in the fields");
-
-    dispatch(getCustomer(input.email));
+    dispatch(getCustomer({id:1}));
+    console.log("customer:",customer);
     setInput({
-      email:'',
-      password:'',
-    })
+      email: "",
+      password: ""
+    }) 
+    navigate("/myProfile");
+    
   }
 
   function errorsHandler(e) {
@@ -96,10 +75,19 @@ export default function LoginUser(props) {
     setErrors((prev) => ({ ...prev, ...fails }));
   }
 
-  useEffect(() => {
-    login(dispatch);
-    loading(dispatch, false);
-  }, []);
+  // if (typeof (Storage) !== undefined) {
+  //   console.log(Storage);
+  //   let currentCustomer = {
+  //     firstName: 'Laura',
+  //     lastName: 'Brener',
+  //     email: 'laubrener@gmail.com'
+  //   }
+  //   localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+  //   let cliente = JSON.parse(localStorage.getItem('cliente'));
+  //   console.log(cliente);
+  // } else {
+  //   alert('storage is not compatible');
+  // }
 
   return (
     <div className={styles.gral}>
@@ -149,7 +137,7 @@ export default function LoginUser(props) {
             <br />
             {errors && <small>{errors.password}</small>}
             <div className={styles.restPassword}>
-              <Link className={styles.link} to="/home/restorePassword">
+              <Link className={styles.link} to="/login/restorePassword">
                 Forgot your password?
               </Link>
             </div>
@@ -162,7 +150,7 @@ export default function LoginUser(props) {
               <LoginGoogle/>
           </div>
           <div className={styles.signUp}>
-              <Link className={styles.link} to="/home/SignUp">
+              <Link className={styles.link} to="/login/SignUp">
                 Don't have an account? Sign up
               </Link>
           </div>
