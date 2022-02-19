@@ -28,6 +28,7 @@ import {
   ADD_ONE_TO_CART,
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
+  FILL_CART,
   SET_FILTERS,
   FILTER_BY_FEATURED_BTN,
   FILTER_BY_DISCOUNTED_BTN,
@@ -230,11 +231,12 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case CLEAR_CART:
-      return {
-        ...state,
-        cart: [],
-      };
-
+        localStorage.setItem("cart", JSON.stringify(state.cart === []));
+      return{
+         ...state,
+         cart:[]
+       }
+ 
     case REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
       return itemToDelete.amount > 1
@@ -251,7 +253,6 @@ export default function rootReducer(state = initialState, action) {
             cart: state.cart.filter((item) => item.id !== action.payload),
           };
     case ADD_ONE_TO_CART:
-      // state.cart.find(item => item.id === action.payload);
       return {
         ...state,
         cart: state.cart.map((item) =>
@@ -266,6 +267,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
+
+    case FILL_CART:
+      const data1= JSON.parse(localStorage.getItem("cart"))
+        return{
+            ...state,
+            cart: data1
+      }
+
 
     // case SET_FILTERS:
     //   const filteredByCategory = state.allProducts.filter(
