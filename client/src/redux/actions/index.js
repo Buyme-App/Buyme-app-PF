@@ -44,7 +44,6 @@ export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 
-
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
 
@@ -93,10 +92,7 @@ export const errorModal = (dispatch, payload) => {
 
 export function getAllProducts() {
   return async function (dispatch) {
-    var json = await axios.get(
-      "http://localhost:3001/getAllProducts",
-      sendKey()
-    );
+    var json = await axios.get("/getAllProducts", sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: json.data,
@@ -106,10 +102,7 @@ export function getAllProducts() {
 //getAll for client
 export function getProductsClient() {
   return async function (dispatch) {
-    var json = await axios.get(
-      "http://localhost:3001/getProductsClient",
-      sendKey()
-    );
+    var json = await axios.get("/getProductsClient", sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS_CLIENT,
       payload: json.data,
@@ -121,7 +114,7 @@ export function getProductsByName(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/productDetail/detail0/?nameProduct=" + name,
+        "/productDetail/detail0/?nameProduct=" + name,
         sendKey()
       );
       return dispatch({
@@ -142,7 +135,7 @@ export function getProductsByNameClients(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/getProDetailClient/detail0/?nameProduct=" + name,
+        "/getProDetailClient/detail0/?nameProduct=" + name,
         sendKey()
       );
       return dispatch({
@@ -163,7 +156,7 @@ export function getProductDetail(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/productDetail/detail" + idProduct,
+        "/productDetail/detail" + idProduct,
         sendKey()
       );
       return dispatch({
@@ -184,7 +177,7 @@ export function getDetailClients(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/getProDetailClient/detail" + idProduct,
+        "/getProDetailClient/detail" + idProduct,
         sendKey()
       );
       return dispatch({
@@ -209,11 +202,7 @@ export function clearProductDetail() {
 
 export function createProduct(payload) {
   return async function (dispatch) {
-    var response = await axios.post(
-      "http://localhost:3001/createProduct",
-      payload,
-      sendKey()
-    );
+    var response = await axios.post("/createProduct", payload, sendKey());
     // console.log(response);
     return response;
   };
@@ -238,7 +227,7 @@ export const updateUser = async (dispatch, user) => {
   try {
     let response = await axios.put("/updateUser", user, sendKey());
     console.log("respuesta de update user", response);
-    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    let json = await axios.get("/getAllUsers", sendKey());
     return dispatch({
       type: UPDATE_USER,
       payload: json.data,
@@ -252,11 +241,7 @@ export function postUser(payload) {
   return async function () {
     try {
       // console.log('CREate', payload)
-      let json = await axios.post(
-        "http://localhost:3001/createUser",
-        payload,
-        sendKey()
-      );
+      let json = await axios.post("/createUser", payload, sendKey());
       alert("User created successfully!");
       return {
         type: POST_USERS,
@@ -270,7 +255,7 @@ export function postUser(payload) {
 
 export function getAllUsers() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    let json = await axios.get("/getAllUsers", sendKey());
     // console.log('>>>>>>>>>>>>>',json)
     return dispatch({
       type: GET_ALL_USERS,
@@ -282,7 +267,7 @@ export function getAllUsers() {
 export function getAllCategories() {
   try {
     return async function (dispatch) {
-      let json = await axios.get("http://localhost:3001/categories", sendKey());
+      let json = await axios.get("/categories", sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
@@ -296,10 +281,7 @@ export function getAllCategories() {
 export function getSubcategorieById(id) {
   try {
     return async function (dispatch) {
-      let json = await axios.get(
-        "http://localhost:3001/getSubcat/" + id,
-        sendKey()
-      );
+      let json = await axios.get("/getSubcat/" + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
@@ -312,73 +294,52 @@ export function getSubcategorieById(id) {
 
 export function createCategory(payload) {
   return async function () {
-    let json = await axios.post(
-      "http://localhost:3001/createCat",
-      payload,
-      sendKey()
-    );
+    let json = await axios.post("/createCat", payload, sendKey());
     return json;
   };
 }
 
 export function createSubcategory(payload) {
   return async function () {
-    let json = await axios.post(
-      "http://localhost:3001/createSubCat",
-      payload,
-      sendKey()
-    );
+    let json = await axios.post("/createSubCat", payload, sendKey());
     return json;
   };
 }
 
 export function deleteCategory(id) {
   return async function () {
-    let json = await axios.delete(
-      "http://localhost:3001/delCat/" + id,
-      sendKey()
-    );
+    let json = await axios.delete("/delCat/" + id, sendKey());
     return json;
   };
 }
 
 export function deleteSubcategory(id) {
   return async function () {
-    let json = await axios.delete(
-      "http://localhost:3001/delSubCat/" + id,
-      sendKey()
-    );
+    let json = await axios.delete("/delSubCat/" + id, sendKey());
     return json;
   };
 }
 
 export function deleteUser(id) {
   return async function () {
-    let json = await axios.delete(
-      "http://localhost:3001/deleteUser/" + id,
-      sendKey()
-    );
+    let json = await axios.delete("/deleteUser/" + id, sendKey());
     return json;
   };
 }
 
 export function getCustomer() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getCustomer", sendKey());
+    let json = await axios.get("/getCustomer", sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
     });
   };
-};
+}
 
 export function createCustomer(payload) {
   return async function () {
-    let json = await axios.post(
-      "http://localhost:3001/createCustomer",
-      payload,
-      sendKey()
-    );
+    let json = await axios.post("/createCustomer", payload, sendKey());
     return json;
   };
 }
@@ -398,42 +359,42 @@ export function setFilters(payload) {
   };
 }
 
-export function filterByFeaturedBtn(payload){
-    // console.log(payload)
-    return{
-        type: FILTER_BY_FEATURED_BTN,
-        payload
-    }
+export function filterByFeaturedBtn(payload) {
+  // console.log(payload)
+  return {
+    type: FILTER_BY_FEATURED_BTN,
+    payload,
+  };
 }
 
-export function filterByDiscountedBtn(payload){
+export function filterByDiscountedBtn(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_DISCOUNTED_BTN,
-      payload
-  }
+  return {
+    type: FILTER_BY_DISCOUNTED_BTN,
+    payload,
+  };
 }
 
-export function filterByFeatured(payload){
+export function filterByFeatured(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_FEATURED,
-      payload
-  }
+  return {
+    type: FILTER_BY_FEATURED,
+    payload,
+  };
 }
 
-export function orderByPrice(payload){
+export function orderByPrice(payload) {
   // console.log(payload)
-  return{
-      type: ORDER_BY_PRICE,
-      payload
-  }
+  return {
+    type: ORDER_BY_PRICE,
+    payload,
+  };
 }
 
-export function filterByDiscount(payload){
+export function filterByDiscount(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_DISCOUNT,
-      payload
-  }
+  return {
+    type: FILTER_BY_DISCOUNT,
+    payload,
+  };
 }
