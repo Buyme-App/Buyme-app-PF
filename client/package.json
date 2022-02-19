@@ -28,7 +28,8 @@
     "redux-thunk": "^2.4.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^8.0.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "dotenv-webpack": "^1.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
