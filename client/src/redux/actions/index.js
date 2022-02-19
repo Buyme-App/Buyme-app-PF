@@ -50,7 +50,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const login = async (dispatch, email, password) => {
   try {
     let credential = await axios.post(
-      "/login",
+      `${REACT_APP_API}/login`,
       {
         userEmail: email,
         userPassword: password,
@@ -92,7 +92,7 @@ export const errorModal = (dispatch, payload) => {
 
 export function getAllProducts() {
   return async function (dispatch) {
-    var json = await axios.get("/getAllProducts", sendKey());
+    var json = await axios.get(`${REACT_APP_API}/getAllProducts`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: json.data,
@@ -102,7 +102,7 @@ export function getAllProducts() {
 //getAll for client
 export function getProductsClient() {
   return async function (dispatch) {
-    var json = await axios.get("/getProductsClient", sendKey());
+    var json = await axios.get(`${REACT_APP_API}/getProductsClient`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS_CLIENT,
       payload: json.data,
@@ -114,7 +114,7 @@ export function getProductsByName(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "/productDetail/detail0/?nameProduct=" + name,
+        `${REACT_APP_API}/productDetail/detail0/?nameProduct=` + name,
         sendKey()
       );
       return dispatch({
@@ -135,7 +135,7 @@ export function getProductsByNameClients(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "/getProDetailClient/detail0/?nameProduct=" + name,
+        `${REACT_APP_API}/getProDetailClient/detail0/?nameProduct=` + name,
         sendKey()
       );
       return dispatch({
@@ -156,7 +156,7 @@ export function getProductDetail(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "/productDetail/detail" + idProduct,
+        `${REACT_APP_API}/productDetail/detail` + idProduct,
         sendKey()
       );
       return dispatch({
@@ -177,7 +177,7 @@ export function getDetailClients(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "/getProDetailClient/detail" + idProduct,
+        `${REACT_APP_API}/getProDetailClient/detail` + idProduct,
         sendKey()
       );
       return dispatch({
@@ -202,7 +202,11 @@ export function clearProductDetail() {
 
 export function createProduct(payload) {
   return async function (dispatch) {
-    var response = await axios.post("/createProduct", payload, sendKey());
+    var response = await axios.post(
+      `${REACT_APP_API}/createProduct`,
+      payload,
+      sendKey()
+    );
     // console.log(response);
     return response;
   };
@@ -211,7 +215,11 @@ export function createProduct(payload) {
 export const updateProduct = async (dispatch, product) => {
   console.log("recibido,", product);
   try {
-    let response = await axios.put("/updateProduct", product, sendKey());
+    let response = await axios.put(
+      `${REACT_APP_API}/updateProduct`,
+      product,
+      sendKey()
+    );
     console.log("respuesta de update", response);
     await dispatch(getAllProducts());
     return dispatch({
@@ -225,9 +233,13 @@ export const updateProduct = async (dispatch, product) => {
 export const updateUser = async (dispatch, user) => {
   console.log("updateUser recibido:", user);
   try {
-    let response = await axios.put("/updateUser", user, sendKey());
+    let response = await axios.put(
+      `${REACT_APP_API}/updateUser`,
+      user,
+      sendKey()
+    );
     console.log("respuesta de update user", response);
-    let json = await axios.get("/getAllUsers", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getAllUsers`, sendKey());
     return dispatch({
       type: UPDATE_USER,
       payload: json.data,
@@ -241,7 +253,11 @@ export function postUser(payload) {
   return async function () {
     try {
       // console.log('CREate', payload)
-      let json = await axios.post("/createUser", payload, sendKey());
+      let json = await axios.post(
+        `${REACT_APP_API}/createUser`,
+        payload,
+        sendKey()
+      );
       alert("User created successfully!");
       return {
         type: POST_USERS,
@@ -255,7 +271,7 @@ export function postUser(payload) {
 
 export function getAllUsers() {
   return async function (dispatch) {
-    let json = await axios.get("/getAllUsers", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getAllUsers`, sendKey());
     // console.log('>>>>>>>>>>>>>',json)
     return dispatch({
       type: GET_ALL_USERS,
@@ -267,7 +283,7 @@ export function getAllUsers() {
 export function getAllCategories() {
   try {
     return async function (dispatch) {
-      let json = await axios.get("/categories", sendKey());
+      let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
@@ -281,7 +297,7 @@ export function getAllCategories() {
 export function getSubcategorieById(id) {
   try {
     return async function (dispatch) {
-      let json = await axios.get("/getSubcat/" + id, sendKey());
+      let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
@@ -294,42 +310,56 @@ export function getSubcategorieById(id) {
 
 export function createCategory(payload) {
   return async function () {
-    let json = await axios.post("/createCat", payload, sendKey());
+    let json = await axios.post(
+      `${REACT_APP_API}/createCat`,
+      payload,
+      sendKey()
+    );
     return json;
   };
 }
 
 export function createSubcategory(payload) {
   return async function () {
-    let json = await axios.post("/createSubCat", payload, sendKey());
+    let json = await axios.post(
+      `${REACT_APP_API}/createSubCat`,
+      payload,
+      sendKey()
+    );
     return json;
   };
 }
 
 export function deleteCategory(id) {
   return async function () {
-    let json = await axios.delete("/delCat/" + id, sendKey());
+    let json = await axios.delete(`${REACT_APP_API}/delCat/` + id, sendKey());
     return json;
   };
 }
 
 export function deleteSubcategory(id) {
   return async function () {
-    let json = await axios.delete("/delSubCat/" + id, sendKey());
+    let json = await axios.delete(
+      `${REACT_APP_API}/delSubCat/` + id,
+      sendKey()
+    );
     return json;
   };
 }
 
 export function deleteUser(id) {
   return async function () {
-    let json = await axios.delete("/deleteUser/" + id, sendKey());
+    let json = await axios.delete(
+      `${REACT_APP_API}/deleteUser/` + id,
+      sendKey()
+    );
     return json;
   };
 }
 
 export function getCustomer() {
   return async function (dispatch) {
-    let json = await axios.get("/getCustomer", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
@@ -339,7 +369,11 @@ export function getCustomer() {
 
 export function createCustomer(payload) {
   return async function () {
-    let json = await axios.post("/createCustomer", payload, sendKey());
+    let json = await axios.post(
+      `${REACT_APP_API}/createCustomer`,
+      payload,
+      sendKey()
+    );
     return json;
   };
 }
