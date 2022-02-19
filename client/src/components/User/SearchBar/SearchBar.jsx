@@ -12,7 +12,7 @@ export default function SearchBar() {
   const [name, setName] = useState("");
 
   function handleInputChange(e) {
-    e.preventDefault();
+    // e.preventDefault();
     setName(e.target.value);
   }
 
@@ -33,7 +33,7 @@ export default function SearchBar() {
         type="text"
         value={name}
         className={styles.input}
-        placeholder="Search by product name..."
+        placeholder="Search by product name or part of it..."
         onChange={(e) => handleInputChange(e)}
       />
       <button

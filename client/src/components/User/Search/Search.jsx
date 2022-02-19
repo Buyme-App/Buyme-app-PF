@@ -29,12 +29,12 @@ export default function Search() {
 
   // const [filterByCategory, setFilterByCategory] = useState("All");
   // const [sortingBy, setSortingBy] = useState("All");
-  // const [filterByFeatured, setFilterByFeatured] = useState();
+  // const [filterByFeatured, setFilterByFeatured] = useState("All");
 
-  useEffect(() => {
-    dispatch(getProductsClient());
-    dispatch(getAllCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getProductsClient());
+  //   dispatch(getAllCategories());
+  // }, [dispatch]);
 
   // useEffect(() => {
   //   if (!allProducts.length) {
@@ -64,7 +64,7 @@ export default function Search() {
   };
 
   function handleClickLoadAll(e) {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(getProductsClient());
     setCurrentPage(1);
   }
