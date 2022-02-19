@@ -1,7 +1,7 @@
 const server = require("./src/server");
 require("dotenv").config();
 const colors = require("colors");
-const showErrors = require("../api/src/messageConsole");
+// const showErrors = require("../api/src/messageConsole");
 const { conn } = require("./src/database/db.js");
 const userRoot = require("./src/controllers/userRoot/userRoot.controller");
 
