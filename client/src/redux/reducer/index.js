@@ -27,8 +27,12 @@ import {
   REMOVE_ONE_FROM_CART,
   ADD_ONE_TO_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  FILL_CART
 } from "../actions/index";
+  
+  // const data= localStorage.getItem("cart")
+
 
 const initialState = {
   allUsers: [],
@@ -41,7 +45,8 @@ const initialState = {
   login: null,
   loading: false,
   error: false,
-  cart: [],
+  cart: []
+  // cart: [JSON.parse(data)],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -189,7 +194,7 @@ export default function rootReducer(state = initialState, action) {
       ...state,
     };
     case ADD_TO_CART:
-      let { product, amount } = action.payload;
+      let { product, amount} = action.payload;
 
       let cartUpdated;
       //si ya existe
@@ -211,18 +216,20 @@ export default function rootReducer(state = initialState, action) {
             id: product.id,
             price: product.price,
             amount: 1,
+            stock: product.stock
           },
         ];
       }
-      localStorage.setItem("cart", JSON.stringify(cartUpdated));
-
-      return {
+      // localStorage.setItem("cart", JSON.stringify(cartUpdated));
+          return {
         ...state,
-        cart: cartUpdated,
+        cart: cartUpdated
+        ,
       };
 
     case CLEAR_CART:
-      return{
+       localStorage.setItem("cart", JSON.stringify(state.cart === []));
+     return{
         ...state,
         cart:[]
       }
@@ -237,20 +244,39 @@ export default function rootReducer(state = initialState, action) {
         } : 
         {
           ...state,
-          cart: state.cart.filter(item => item.id !== action.payload)
+          cart: state.cart.filter(item => item.id !== action.payload),
         };
+       
+
     case ADD_ONE_TO_CART:
-      // state.cart.find(item => item.id === action.payload);
+      let itemToAdd = state.cart.find(item => item.id === action.payload);
+      if(itemToAdd.amount < itemToAdd.stock){
       return {
         ...state,
         cart: state.cart.map(item => item.id === action.payload?{...item, amount: item.amount + 1} : item)
       }
-    
+      }else{
+        return{
+        ...state      
+      }
+    }
+      
+     
+
   case REMOVE_ALL_FROM_CART:
     return {
       ...state,
       cart: state.cart.filter(item => item.id !== action.payload)
      };
+  
+  case FILL_CART:
+      const data1= JSON.parse(localStorage.getItem("cart"))
+
+      return{
+        ...state,
+        cart: data1
+        }
+
 
     default:
       return state;

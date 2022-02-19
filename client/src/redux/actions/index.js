@@ -36,6 +36,8 @@ export const CLEAR_CART = "CLEAR_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const ADD_ONE_TO_CART = "ADD_ONE_TO_CART";
+export const OPEN_CART= "OPEN_CART";
+export const FILL_CART = "FILL_CART";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";

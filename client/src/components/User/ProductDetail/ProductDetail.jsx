@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getDetailClients,
   clearProductDetail,
@@ -16,16 +16,20 @@ import imgdft from "../../../assets/imgdft.png";
 // import NotFound from './NotFound';
 
 
-export default function ProductDetail(props) {
+export default function ProductDetail() {
   const { idProduct } = useParams();
   const dispatch = useDispatch();
+
+
   //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
 
   const addHandler = (product) => {
-    dispatch(addToCart(product[0], 1));
+    dispatch(addToCart(product[0], 1, ));
     console.log("se agregó " + product[0].name + " al carrito");
   };
+
+
 
   function validate(input) {
     let errors = {};
@@ -130,6 +134,7 @@ export default function ProductDetail(props) {
                         type="text"
                         name="quantity"
                         maxLength={2}
+                        defaultValue={1}
                         onChange={(e) => handleChange(e)}
                         onKeyPress={(e) => {
                           if (!/[0-9]/.test(e.key)) {
@@ -151,6 +156,7 @@ export default function ProductDetail(props) {
                   className={styles.addtocart}
                   type="submit"
                   onClick={(e) => addHandler(product)}
+                  
                 >
                   ADD TO CART
                 </button>

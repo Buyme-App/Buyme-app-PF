@@ -38,6 +38,11 @@
 
 }
 
+.close{
+    background: none;
+    border-width: 0px;
+}
+
 .close img{
  height: 22px;
  width: 22px;
