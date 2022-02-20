@@ -55,7 +55,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const login = async (dispatch, email, password) => {
   try {
     let credential = await axios.post(
-      `${REACT_APP_API}/login`,
+      `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
       {
         userEmail: email,
         userPassword: password,
