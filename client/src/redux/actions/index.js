@@ -106,7 +106,7 @@ export function getAllProducts() {
     });
   };
 }
-//df
+//d
 //getAll for client
 export function getProductsClient() {
   return async function (dispatch) {

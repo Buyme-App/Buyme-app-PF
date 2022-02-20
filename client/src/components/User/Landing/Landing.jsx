@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { getProductsClient } from "../../../redux/actions";
 import Cart from "../Cart/Cart";
 
+//sdf
+
 export default function Landing() {
   const dispatch = useDispatch();
   React.useEffect(() => {
