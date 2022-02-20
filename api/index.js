@@ -11,15 +11,15 @@ if (port == null || port == "") {
 }
 
 // Start server
-var cors_proxy = require("cors-anywhere");
+// var cors_proxy = require("cors-anywhere");
 conn
   .sync({ force: false })
   .then(() => {
-    cors_proxy.createServer({
-      originWhitelist: [], // Allow all origins
-      requireHeader: ["origin", "x-requested-with"],
-      // removeHeaders: ["cookie", "cookie2"],
-    });
+    // cors_proxy.createServer({
+    //   originWhitelist: [], // Allow all origins
+    //   requireHeader: ["origin", "x-requested-with"],
+    //   // removeHeaders: ["cookie", "cookie2"],
+    // });
     server.listen(port, () => {
       userRoot(); //crear usuario adminRoot sino existe en la DB.
       console.log(
