@@ -16,7 +16,8 @@ conn
   .sync({ force: false })
   .then(() => {
     server.listen(port, () => {
-      console.log(`%s listening at ${port}`); // eslint-disable-line no-console
+     userRoot(); //crear usuario adminRoot sino existe en la DB.
+     console.log(colors.black.bgGreen(`==>> Server is running on PORT: ${port} `));
     });
   })
   .catch((e) => console.log(e));
