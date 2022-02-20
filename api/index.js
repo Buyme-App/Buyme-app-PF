@@ -13,11 +13,13 @@ if (port == null || port == "") {
 // Start server
 
 conn
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     server.listen(port, () => {
-     userRoot(); //crear usuario adminRoot sino existe en la DB.
-     console.log(colors.black.bgGreen(`==>> Server is running on PORT: ${port} `));
+      userRoot(); //crear usuario adminRoot sino existe en la DB.
+      console.log(
+        colors.black.bgGreen(`==>> Server is running on PORT: ${port} `)
+      );
     });
   })
   .catch((e) => console.log(e));
