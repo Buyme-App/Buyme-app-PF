@@ -23,6 +23,7 @@
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.15.0",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "cors-anywhere": "^0.4.4"
   }
 }
