@@ -81,6 +81,10 @@
   gap: 30px;
 }
 
+.paginate {
+  width: 93%;
+}
+
 .loadproducts,
 .filters {
   margin-bottom: 30px;

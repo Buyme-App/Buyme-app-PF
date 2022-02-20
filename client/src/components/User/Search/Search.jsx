@@ -24,6 +24,7 @@ import styles from "./Search.module.css";
 export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  // const allProducts = useSelector((state) => state.products.filter((p) => p.paused === false));
   const categories = useSelector((state) => state.allCategories);
   // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
 
@@ -250,15 +251,16 @@ export default function Search() {
             </button> */}
           </div>
           <div className={styles.detail}>
-            <div className={styles.grid}>
+            <div>
               {!currentProducts.length ? (
                 <Loading />
-              ) : currentProducts[0] === 404 ? (
+              ) : typeof currentProducts[0] === "string" ? (
+              // ) : currentProducts[0] === [] ? (
                 <NotFound />
               ) : (
-                currentProducts?.map((p) => {
-                  return (
-                    <>
+                <div className={styles.grid}>
+                {currentProducts.map((p) => 
+                   (
                       <Link
                         className={styles.btnName}
                         to={"/product/" + p.id}
@@ -272,12 +274,22 @@ export default function Search() {
                           offerPrice={p.offerPrice}
                         />
                       </Link>
-                    </>
-                  );
-                })
+                  )
+                )}
+                <div className={styles.paginate}>
+                <Paginate
+                  productsPerPage={productsPerPage}
+                  allProducts={allProducts.length}
+                  page={page}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              </div>
+                </div>
               )}
+              
             </div>
-            <div>
+            {/* <div>
               <Paginate
                 productsPerPage={productsPerPage}
                 allProducts={allProducts.length}
@@ -285,7 +297,7 @@ export default function Search() {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
