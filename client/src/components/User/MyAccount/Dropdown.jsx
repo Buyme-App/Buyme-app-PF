@@ -8,9 +8,10 @@ import { getCustomer } from '../../../redux/actions';
 
 export default function DropdownMyAccount(){
     
-    const [dropdown, setDropdown] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+    const [dropdown, setDropdown] = useState(false);
     const customer = useSelector((state) => state.customer);
 
     function handleDropdown(){
@@ -30,26 +31,23 @@ export default function DropdownMyAccount(){
                 {
                     dropdown ? 
                         <DropdownMenu className={styles.content}>
-                            {/* {
-                                customer? customer.map(el => {
-                                    return ( */}
+                            {
+                                customer.length? 
                                         <div>
-                                            <DropdownItem header className={styles.header}>Hi el.firstName!</DropdownItem>
+                                            <DropdownItem header className={styles.header}>Hi customer.firstName!</DropdownItem>
                                             <DropdownItem className={styles.divider} divider />
                                             <DropdownItem className={styles.item}>My Orders</DropdownItem>
                                             <Link to='/myProfile'><DropdownItem className={styles.item}>My Profile</DropdownItem></Link>
-                                            <DropdownItem className={styles.item}>Favorites</DropdownItem>
                                             <DropdownItem className={styles.item}>Log Out</DropdownItem>
-                                         {/* </div>
-                                    )
-                                }) : 
-                                <div>  */}
-                                    <DropdownItem header className={styles.header}>Welcome!</DropdownItem>
-                                    <DropdownItem className={styles.divider} divider />
-                                    <Link to='/login'><DropdownItem className={styles.item}>Sign In</DropdownItem></Link>
-                                    <Link to='/login/signUp'><DropdownItem className={styles.item}>Sign Up</DropdownItem></Link>
-                                </div>
-                             {/* } */}
+                                          </div>
+                                     : 
+                                        <div>
+                                            <DropdownItem header className={styles.header}>Welcome!</DropdownItem>
+                                            <DropdownItem className={styles.divider} divider />
+                                            <Link to='/login'><DropdownItem className={styles.item}>Sign In</DropdownItem></Link>
+                                            <Link to='/login/signUp'><DropdownItem className={styles.item}>Sign Up</DropdownItem></Link>
+                                        </div>
+                            } 
                         </DropdownMenu>
                     : ''
                 }
