@@ -9,7 +9,12 @@ const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
   : "http://localhost:3001";
 
-const headerProxy = { requireHeader: ["origin", "x-requested-with"] };
+const headerProxy = {
+  originWhitelist: [
+    `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
+  ],
+  requireHeader: ["origin", "x-requested-with"],
+};
 // export const ACTION = "ACTION";
 // estos son ejemplos
 
