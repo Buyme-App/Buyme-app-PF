@@ -5,6 +5,9 @@ import { saveToken } from "../../components/Login/controllers/tokenFunctions";
 
 import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
 
+const REACT_APP_API = process.env.REACT_APP_API
+  ? process.env.REACT_APP_API
+  : "http://localhost:3001";
 // export const ACTION = "ACTION";
 // estos son ejemplos
 
@@ -45,14 +48,13 @@ export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 
-
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
 
 export const login = async (dispatch, email, password) => {
   try {
     let credential = await axios.post(
-      "/login",
+      `${REACT_APP_API}/login`,
       {
         userEmail: email,
         userPassword: password,
@@ -97,10 +99,7 @@ export function getAllProducts() {
     dispatch({
       type: GET_PRODUCTS_INIT,
     });
-    var json = await axios.get(
-      "http://localhost:3001/getAllProducts",
-      sendKey()
-    );
+    var json = await axios.get(`${REACT_APP_API}/getAllProducts`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: json.data,
@@ -113,10 +112,7 @@ export function getProductsClient() {
     dispatch({
       type: GET_PRODUCTS_INIT,
     });
-    var json = await axios.get(
-      "http://localhost:3001/getProductsClient",
-      sendKey()
-    );
+    var json = await axios.get(`${REACT_APP_API}/getProductsClient`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS_CLIENT,
       payload: json.data,
@@ -131,7 +127,7 @@ export function getProductsByName(name) {
         type: GET_PRODUCTS_INIT,
       });
       var json = await axios.get(
-        "http://localhost:3001/productDetail/detail0/?nameProduct=" + name,
+        `${REACT_APP_API}/productDetail/detail0/?nameProduct=` + name,
         sendKey()
       );
       return dispatch({
@@ -155,7 +151,7 @@ export function getProductsByNameClients(name) {
         type: GET_PRODUCTS_INIT,
       });
       var json = await axios.get(
-        "http://localhost:3001/getProDetailClient/detail0/?nameProduct=" + name,
+        `${REACT_APP_API}/getProDetailClient/detail0/?nameProduct=` + name,
         sendKey()
       );
       return dispatch({
@@ -179,7 +175,7 @@ export function getProductDetail(idProduct) {
         type: GET_PRODUCTS_INIT,
       });
       var json = await axios.get(
-        "http://localhost:3001/productDetail/detail" + idProduct,
+        `${REACT_APP_API}/productDetail/detail` + idProduct,
         sendKey()
       );
       return dispatch({
@@ -200,7 +196,7 @@ export function getDetailClients(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/getProDetailClient/detail" + idProduct,
+        `${REACT_APP_API}/getProDetailClient/detail` + idProduct,
         sendKey()
       );
       return dispatch({
@@ -226,7 +222,7 @@ export function clearProductDetail() {
 export function createProduct(payload) {
   return async function (dispatch) {
     var response = await axios.post(
-      "http://localhost:3001/createProduct",
+      `${REACT_APP_API}/createProduct`,
       payload,
       sendKey()
     );
@@ -238,7 +234,11 @@ export function createProduct(payload) {
 export const updateProduct = async (dispatch, product) => {
   console.log("recibido,", product);
   try {
-    let response = await axios.put("/updateProduct", product, sendKey());
+    let response = await axios.put(
+      `${REACT_APP_API}/updateProduct`,
+      product,
+      sendKey()
+    );
     console.log("respuesta de update", response);
     await dispatch(getAllProducts());
     return dispatch({
@@ -252,9 +252,13 @@ export const updateProduct = async (dispatch, product) => {
 export const updateUser = async (dispatch, user) => {
   console.log("updateUser recibido:", user);
   try {
-    let response = await axios.put("/updateUser", user, sendKey());
+    let response = await axios.put(
+      `${REACT_APP_API}/updateUser`,
+      user,
+      sendKey()
+    );
     console.log("respuesta de update user", response);
-    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getAllUsers`, sendKey());
     return dispatch({
       type: UPDATE_USER,
       payload: json.data,
@@ -269,7 +273,7 @@ export function postUser(payload) {
     try {
       // console.log('CREate', payload)
       let json = await axios.post(
-        "http://localhost:3001/createUser",
+        `${REACT_APP_API}/createUser`,
         payload,
         sendKey()
       );
@@ -286,7 +290,7 @@ export function postUser(payload) {
 
 export function getAllUsers() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getAllUsers", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getAllUsers`, sendKey());
     // console.log('>>>>>>>>>>>>>',json)
     return dispatch({
       type: GET_ALL_USERS,
@@ -298,7 +302,7 @@ export function getAllUsers() {
 export function getAllCategories() {
   try {
     return async function (dispatch) {
-      let json = await axios.get("http://localhost:3001/categories", sendKey());
+      let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
@@ -312,10 +316,7 @@ export function getAllCategories() {
 export function getSubcategorieById(id) {
   try {
     return async function (dispatch) {
-      let json = await axios.get(
-        "http://localhost:3001/getSubcat/" + id,
-        sendKey()
-      );
+      let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
@@ -329,7 +330,7 @@ export function getSubcategorieById(id) {
 export function createCategory(payload) {
   return async function () {
     let json = await axios.post(
-      "http://localhost:3001/createCat",
+      `${REACT_APP_API}/createCat`,
       payload,
       sendKey()
     );
@@ -340,7 +341,7 @@ export function createCategory(payload) {
 export function createSubcategory(payload) {
   return async function () {
     let json = await axios.post(
-      "http://localhost:3001/createSubCat",
+      `${REACT_APP_API}/createSubCat`,
       payload,
       sendKey()
     );
@@ -350,10 +351,7 @@ export function createSubcategory(payload) {
 
 export function deleteCategory(id) {
   return async function () {
-    let json = await axios.delete(
-      "http://localhost:3001/delCat/" + id,
-      sendKey()
-    );
+    let json = await axios.delete(`${REACT_APP_API}/delCat/` + id, sendKey());
     return json;
   };
 }
@@ -361,7 +359,7 @@ export function deleteCategory(id) {
 export function deleteSubcategory(id) {
   return async function () {
     let json = await axios.delete(
-      "http://localhost:3001/delSubCat/" + id,
+      `${REACT_APP_API}/delSubCat/` + id,
       sendKey()
     );
     return json;
@@ -371,7 +369,7 @@ export function deleteSubcategory(id) {
 export function deleteUser(id) {
   return async function () {
     let json = await axios.delete(
-      "http://localhost:3001/deleteUser/" + id,
+      `${REACT_APP_API}/deleteUser/` + id,
       sendKey()
     );
     return json;
@@ -380,18 +378,18 @@ export function deleteUser(id) {
 
 export function getCustomer() {
   return async function (dispatch) {
-    let json = await axios.get("http://localhost:3001/getCustomer", sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
     });
   };
-};
+}
 
 export function createCustomer(payload) {
   return async function () {
     let json = await axios.post(
-      "http://localhost:3001/createCustomer",
+      `${REACT_APP_API}/createCustomer`,
       payload,
       sendKey()
     );
@@ -414,42 +412,42 @@ export function setFilters(payload) {
   };
 }
 
-export function filterByFeaturedBtn(payload){
-    // console.log(payload)
-    return{
-        type: FILTER_BY_FEATURED_BTN,
-        payload
-    }
+export function filterByFeaturedBtn(payload) {
+  // console.log(payload)
+  return {
+    type: FILTER_BY_FEATURED_BTN,
+    payload,
+  };
 }
 
-export function filterByDiscountedBtn(payload){
+export function filterByDiscountedBtn(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_DISCOUNTED_BTN,
-      payload
-  }
+  return {
+    type: FILTER_BY_DISCOUNTED_BTN,
+    payload,
+  };
 }
 
-export function filterByFeatured(payload){
+export function filterByFeatured(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_FEATURED,
-      payload
-  }
+  return {
+    type: FILTER_BY_FEATURED,
+    payload,
+  };
 }
 
-export function orderByPrice(payload){
+export function orderByPrice(payload) {
   // console.log(payload)
-  return{
-      type: ORDER_BY_PRICE,
-      payload
-  }
+  return {
+    type: ORDER_BY_PRICE,
+    payload,
+  };
 }
 
-export function filterByDiscount(payload){
+export function filterByDiscount(payload) {
   // console.log(payload)
-  return{
-      type: FILTER_BY_DISCOUNT,
-      payload
-  }
+  return {
+    type: FILTER_BY_DISCOUNT,
+    payload,
+  };
 }
