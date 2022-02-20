@@ -9,12 +9,12 @@ const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
   : "http://localhost:3001";
 
-const headerProxy = {
-  originWhitelist: [
-    `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
-  ],
-  requireHeader: ["origin", "x-requested-with"],
-};
+// const headerProxy = {
+//   originWhitelist: [
+//     `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
+//   ],
+//   requireHeader: ["origin", "x-requested-with"],
+// };
 // export const ACTION = "ACTION";
 // estos son ejemplos
 
@@ -60,11 +60,11 @@ export const UPDATE_USER = "UPDATE_USER";
 export const login = async (dispatch, email, password) => {
   try {
     let credential = await axios.post(
-      `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
+      `${REACT_APP_API}/login`,
       {
         userEmail: email,
         userPassword: password,
-        headerProxy,
+        // headerProxy,
       },
       sendKey()
     );
