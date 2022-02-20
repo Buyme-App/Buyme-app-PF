@@ -11,7 +11,7 @@ if (port == null || port == "") {
 }
 
 // Start server
-var cors_proxy = require("cors-anywhere");
+// var cors_proxy = require("cors-anywhere");
 conn
   .sync({ force: false })
   .then(() => {
