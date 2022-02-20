@@ -376,9 +376,9 @@ export function deleteUser(id) {
   };
 }
 
-export function getCustomer() {
+export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`, sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
