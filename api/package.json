@@ -14,15 +14,16 @@
     "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.12",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.15.0",
-    "colors": "^1.4.0"
+    "sequelize": "^6.15.0"
   }
 }
