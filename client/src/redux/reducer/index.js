@@ -7,6 +7,7 @@ import {
   GET_ALL_CATEGORIES,
   GET_SUBCATEGORIE_BY_ID,
   UPDATE_PRODUCT,
+  GET_PRODUCTS_INIT,
   GET_ALL_PRODUCTS,
   GET_PRODUCTS_BY_NAME,
   GET_PRODUCT_DETAIL,
@@ -52,7 +53,7 @@ const initialState = {
   error: false,
   cart: [],
 };
-
+//sdf
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
@@ -70,66 +71,117 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
+    case GET_PRODUCTS_INIT:
+      return {
+        ...state,
+        loading: true,
+      };
     case GET_ALL_PRODUCTS:
       return {
         ...state,
         allProducts: action.payload,
         products: action.payload,
+        loading: false,
       };
     case GET_ALL_PRODUCTS_CLIENT:
+        return {
+          ...state,
+          allProducts: action.payload,
+          products: action.payload,
+          loading: false,
+        };
+    // case GET_ALL_PRODUCTS_CLIENT:
+    //   const allProducts = state.products;
+    //   const activeProducts = allProducts.filter((p) => p.paused === false)
+    //   return {
+    //     ...state,
+    //     allProducts: activeProducts,
+    //     products: activeProducts,
+    //     loading: false,
+    //   };
+
+    // case FILTER_BY_FEATURED_BTN:
+    //   const allProductsD = state.products;
+    //   const filterByFeaturedBtn = allProductsD.filter(
+    //     (p) => p.featured === true
+    //   );
+    //   return {
+    //     ...state,
+    //     products: filterByFeaturedBtn,
+    //   };
+
+    case GET_PRODUCTS_BY_NAME:
       return {
         ...state,
-        allProducts: action.payload,
         products: action.payload,
+        loading: false,
       };
-    case GET_PRODUCTS_BY_NAME:
-      if (!action.payload) {
-        return {
-          ...state,
-          products: [404],
-        };
-      } else {
-        return {
-          ...state,
-          products: action.payload,
-        };
-      }
+    // case GET_PRODUCTS_BY_NAME:
+    //   if (!action.payload) {
+    //     return {
+    //       ...state,
+    //       products: [404],
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       products: action.payload,
+    //     };
+    //   }
     case GET_PRODUCTS_BY_NAME_CLIENTS:
-      if (!action.payload) {
-        return {
-          ...state,
-          products: [404],
-        };
-      } else {
-        return {
-          ...state,
-          products: action.payload,
-        };
-      }
+      return {
+        ...state,
+        products: action.payload,
+        loading: false,
+      };
+    // case GET_PRODUCTS_BY_NAME_CLIENTS:
+    //   if (!action.payload) {
+    //     return {
+    //       ...state,
+    //       products: [404],
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       products: action.payload,
+    //     };
+    //   }
     case GET_PRODUCT_DETAIL:
-      if (!action.payload) {
-        return {
-          ...state,
-          detail: [404],
-        };
-      } else {
-        return {
-          ...state,
-          detail: action.payload,
-        };
-      }
+      return {
+        ...state,
+        detail: action.payload,
+        loading: false,
+      };
+    // case GET_PRODUCT_DETAIL:
+    //   if (!action.payload) {
+    //     return {
+    //       ...state,
+    //       detail: [404],
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       detail: action.payload,
+    //     };
+    //   }
     case GET_DETAIL_CLIENT:
-      if (!action.payload) {
-        return {
-          ...state,
-          detail: [404],
-        };
-      } else {
-        return {
-          ...state,
-          detail: action.payload,
-        };
-      }
+      return {
+        ...state,
+        detail: action.payload,
+        loading: false,
+      };
+    // case GET_DETAIL_CLIENT:
+    //   if (!action.payload) {
+    //     return {
+    //       ...state,
+    //       detail: [404],
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       detail: action.payload,
+    //     };
+    //   }
     case CLEAR_PRODUCT_DETAIL:
       return {
         ...state,
@@ -444,8 +496,8 @@ export default function rootReducer(state = initialState, action) {
       }
 
     case FILTER_BY_FEATURED_BTN:
-      // const allProducts = state.products;
-      const filterByFeaturedBtn = state.products.filter(
+      const allProductsD = state.products;
+      const filterByFeaturedBtn = allProductsD.filter(
         (p) => p.featured === true
       );
       return {
@@ -454,8 +506,8 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case FILTER_BY_DISCOUNTED_BTN:
-      const allProducts2 = state.products;
-      const filterByDiscountedBtn = allProducts2.filter(
+      const allProductsE = state.products;
+      const filterByDiscountedBtn = allProductsE.filter(
         (p) => p.offerPrice !== null
       );
       return {
