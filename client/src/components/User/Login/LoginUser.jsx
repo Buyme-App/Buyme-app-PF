@@ -58,7 +58,8 @@ export default function LoginUser() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getCustomer({id:1}));
+    console.log('soy',e.target.value);
+    dispatch(getCustomer(input));
     console.log("customer:",customer);
     setInput({
       email: "",
@@ -96,9 +97,7 @@ export default function LoginUser() {
       <div className={styles.form}>
         <h1 className={styles.title}>Log into your account</h1>
         <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
+          onSubmit={(e) => {handleSubmit(e)}}
         >
           {/* --------error popup---------- */}
           {globalState.error && (

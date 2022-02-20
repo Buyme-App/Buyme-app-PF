@@ -180,10 +180,10 @@ export default function rootReducer(state = initialState, action) {
         allUsers: [...state.allUsers, action.payload],
       };
     case GET_CUSTOMER:
-      // let currentCustomer = state.customer;
-      // localStorage.setItem('cliente', JSON.stringify(currentCustomer));
-      // let cliente = JSON.parse(localStorage.getItem('cliente'));
-      // console.log(cliente);
+      let currentCustomer = state.customer;
+      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+      let client = JSON.parse(localStorage.getItem('cliente'));
+      console.log(client);
       
       return {
         ...state,
