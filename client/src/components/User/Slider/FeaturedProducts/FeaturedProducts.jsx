@@ -14,6 +14,8 @@ export default function FeaturedProducts(){
     const featuredProducts = products.filter( el => el.featured === true)
     console.log(featuredProducts)
 
+//sdf
+
     useEffect(() => {
         dispatch(getAllProducts())
       },[dispatch])
