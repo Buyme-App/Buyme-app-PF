@@ -53,7 +53,7 @@ const initialState = {
   error: false,
   cart: [],
 };
-//sdf
+//sd
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
