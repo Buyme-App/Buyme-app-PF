@@ -36,6 +36,9 @@ import {
   FILTER_BY_FEATURED,
   ORDER_BY_PRICE,
   FILTER_BY_DISCOUNT,
+  GET_ALL_INVOICES,
+  FILTER_BY_CATEGORY,
+  POST_LOGIN_CUSTOMER
 } from "../actions/index";
 
 const initialState = {
@@ -45,13 +48,13 @@ const initialState = {
   allProducts: [],
   products: [],
   orderedproducts: [],
-  filteredByDiscount: [],
   detail: [],
   customer: {},
   login: null,
   loading: false,
   error: false,
   cart: [],
+  allInvoices:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -240,18 +243,33 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allUsers: [...state.allUsers, action.payload],
       };
-    case GET_CUSTOMER:
+    // case GET_CUSTOMER:
+    //   let currentCustomer = state.customer;
+    //   localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+    //   let client = JSON.parse(localStorage.getItem('cliente'));
+    //   console.log(client);
+    //   return {
+    //     ...state,
+    //     customer: action.payload,
+    //   };
+    case POST_LOGIN_CUSTOMER:
       let currentCustomer = state.customer;
+      console.log(currentCustomer);
       localStorage.setItem('cliente', JSON.stringify(currentCustomer));
       let client = JSON.parse(localStorage.getItem('cliente'));
       console.log(client);
-      return {
+      return{
         ...state,
-        customer: action.payload,
-      };
+        customer: action.payload 
+      }
     case POST_CUSTOMER:
       return {
         ...state,
+      };
+    case GET_ALL_INVOICES:
+      return {
+        ...state,
+        allInvoices: action.payload
       };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
@@ -391,8 +409,49 @@ export default function rootReducer(state = initialState, action) {
 
     //   return {
     //     ...state,
-    //     pokemons: sortedList,
+    //     products: sortedList,
     //   };
+
+    // case FILTER_BY_CATEGORY:
+    //   const filteredByCategory = state.allProducts.filter(
+    //     (p) =>
+    //       p.allCategories.id === action.payload ||
+    //       action.payload === "All");
+    //       if(!filteredByCategory.length){
+    //         return {
+    //           ...state,
+    //           products: [404]
+    //           }
+    //       } else {
+    //           return {
+    //               ...state,
+    //               products: filteredByCategory
+    //           }
+    //       };
+      
+      // const allProductsF = state.allProducts;
+      case FILTER_BY_CATEGORY:
+      const agus = state.allProducts.map(p => {
+        return {
+          categoryId: p.categoryId
+        }
+      });
+      console.log("AGUSSSSSS", agus)
+      const filteredByCategory = action.payload === 'All' ? state.allProducts :
+      console.log("XXXXXXX", action.payload);
+      agus.filter((p) => p.categoryId === action.payload)
+      console.log("AAAAAAAAA", state.allProducts[0].categoryId)
+      // if(!filteredByCategory.length){
+      //     return {
+      //         ...state,
+      //         products: [404]
+      //     }
+      // } else {
+          return {
+              ...state,
+              products: filteredByCategory
+          }
+      
 
     case FILTER_BY_FEATURED:
       const allProductsA = state.allProducts;

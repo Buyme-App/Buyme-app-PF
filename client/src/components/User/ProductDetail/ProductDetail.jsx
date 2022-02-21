@@ -25,6 +25,8 @@ export default function ProductDetail(props) {
   const dispatch = useDispatch();
   //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
+  const categories = useSelector((state) => state.allCategories);
+  
   const [popUpImage, setPopUpImage] = useState(false);
   const [popUpImage1, setPopUpImage1] = useState(false);
   const [popUpImage2, setPopUpImage2] = useState(false);
@@ -192,8 +194,12 @@ export default function ProductDetail(props) {
                   </div>
                   <div className={styles.each}>
                     <div className={styles.title}>Category:</div>
-                    <div className={styles.info}>{product[0].subcategory}</div>
+                    <div className={styles.info}>{product[0].category.name}</div>
                   </div>
+                  {/* <div className={styles.each}>
+                    <div className={styles.title}>Subcategory:</div>
+                    <div className={styles.info}>{product[0].subCategory.name}</div>
+                  </div> */}
                   <div className={styles.each}>
                     <div className={styles.title}>SKU:</div>
                     <div className={styles.info}>{product[0].SKU}</div>

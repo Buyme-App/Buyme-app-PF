@@ -41,12 +41,14 @@ async function createInvoice(clientId, products) {                     //Agrego 
       return total + product.price * product.quantity;
     }, 0);
     console.log(total);
-    resolve = JSON.stringify(resolve);
+    // resolve = JSON.stringify(resolve);
     products = resolve;
 
     //crea la factura
     const createInvoice = await Invoice.create({
       products,
+      payApproved,
+      readyToDeliver,
       total,
       date: new Date().toISOString(),          //Agrego date para la fecha de creacion de la factura  
       clientId                                //Agrego client Id para que relaciones con la tabla clients

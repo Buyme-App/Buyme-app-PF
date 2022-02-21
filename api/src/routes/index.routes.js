@@ -1,5 +1,5 @@
 const express = require('express');
-const {verifyUser, roleAdmin, roleSuperv} = require('../middlewares/authJwt.authorization');
+const { verifyUser, roleAdmin, roleSuperv } = require('../middlewares/authJwt.authorization');
 
 const home = require('./home.routes'); //
 const login = require('./login/login.routes'); //
@@ -12,17 +12,19 @@ const routerGetAllUsers = require('./user/getAllUsers.routes'); //
 const routerCreatePro = require('./product/createProduct.routes'); //
 const routerUpdatePro = require('./product/updateProduct.routes'); //
 const routerStatusPro = require('./product/statusProduct.routes'); //
-const routerGetProducts = require ('./product/getAllProducts.routes.js'); //
+const routerGetProducts = require('./product/getAllProducts.routes.js'); //
 
 //Jose
-const postCreateCategory=require('./category/postCreateCategory.route'); //
-const getCategory=require('./category/getCategory.route'); //
-const deleteCategory=require('./category/deleteCategory.routes'); //
-const modifyCategory=require('./category/modifyCategory.routes'); //
-const postCreateSubCategory=require('./subcategory/postCreateSubCategory.route'); //
-const getSubcategory=require('./subcategory/getSubCategory.route'); //
-const deleteSubCategory=require('./subcategory/deleteSubCategory.routes'); //
-const modifySubCategory=require('./subcategory/modifySubCategory.routes'); //
+const postCreateCategory = require('./category/postCreateCategory.route'); //
+const getCategory = require('./category/getCategory.route'); //
+const deleteCategory = require('./category/deleteCategory.routes'); //
+const modifyCategory = require('./category/modifyCategory.routes'); //
+const postCreateSubCategory = require('./subcategory/postCreateSubCategory.route'); //
+const getSubcategory = require('./subcategory/getSubCategory.route'); //
+const deleteSubCategory = require('./subcategory/deleteSubCategory.routes'); //
+const modifySubCategory = require('./subcategory/modifySubCategory.routes'); //
+
+const getCatById = require('./category/getCatById.routes')
 
 //Nico
 const createInvoice = require('./invoice/createInvoice.routes') //
@@ -33,7 +35,7 @@ const routerUpdateUser = require('./user/updateUser.routes');
 const routerStatusUser = require('./user/statusUser.routes');
 const getAllFeatured = require('./featured/getAllFeatured.routes');
 
-const hashPassword=require('./hash/hashPassword.route');
+const hashPassword = require('./hash/hashPassword.route');
 const getAllInvoices = require("./invoice/getAllInvoices.routes");
 const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
 
@@ -52,11 +54,13 @@ const updateOrderSendedStatus = require("./order/updateOrderSendedStatus.routes"
 const updateOrderDeliveredStatus = require("./order/updateOrderDeliveredStatus.routes");
 const updateOrderCancelledStatus = require("./order/updateOrderCancelledStatus.routes");
 
-const createCustomer=require('./customer/createCustomer.route');  //agregar
-const deleteCustomer=require('./customer/deleteCustomer.route');  
-const getCustomer= require('./customer/getCustomer.route'); 
-const modifyCustomer = require('./customer/modifyCustomer.route'); 
-const toggleFav = require('./customer/toggleCustomerFav.route'); 
+const createCustomer = require('./customer/createCustomer.route');  //agregar
+const deleteCustomer = require('./customer/deleteCustomer.route');
+const getCustomer = require('./customer/getCustomer.route');
+const modifyCustomer = require('./customer/modifyCustomer.route');
+const toggleFav = require('./customer/toggleCustomerFav.route');
+
+const loginCostumer = require('../routes/loginCostumer/loginCostumer.routes');
 
 
 // ***************************Cart***********************************
@@ -71,15 +75,11 @@ const delCart = require('./cart/delCart.routes');
 const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
 const notificationOrder = require('./mercadopago/notificationOrder.route'); // agregar para recibir notificacion
 
-
-
-
-
-
 const routes = (server) => {
     server.use('/', home);
-    server.use('/getAllUsers', [ verifyUser, roleSuperv], routerGetAllUsers);
+    server.use('/getAllUsers', [verifyUser, roleSuperv], routerGetAllUsers);
     server.use('/login', login);
+
     server.use('/productDetail', routerGetProductDetail );
     server.use('/createProduct',[verifyUser, roleSuperv], routerCreatePro);
     server.use('/updateProduct',[verifyUser, roleSuperv], routerUpdatePro);
@@ -92,6 +92,7 @@ const routes = (server) => {
     server.use('/getCat', getCategory);  //ok
     server.use('/delCat',[verifyUser, roleSuperv], deleteCategory); //ok
     server.use('/modCat',[verifyUser, roleSuperv], modifyCategory); //ok
+    server.use('/getCatById', getCatById);
 
     server.use('/createSubCat',[verifyUser, roleSuperv], postCreateSubCategory ); //ok
     server.use('/getSubCat', getSubcategory); //ok
@@ -99,17 +100,19 @@ const routes = (server) => {
     server.use('/modSubCat',[verifyUser, roleSuperv], modifySubCategory); //ok
 
     server.use('/createUser', routerCreateUser);
-    server.use('/getUser',[verifyUser, roleAdmin], routerGetOneUser);
-    server.use('/updateUser',[verifyUser, roleAdmin], routerUpdateUser);
-    server.use('/statusUser',[verifyUser, roleAdmin], routerStatusUser);
+    server.use('/getUser', [verifyUser, roleAdmin], routerGetOneUser);
+    server.use('/updateUser', [verifyUser, roleAdmin], routerUpdateUser);
+    server.use('/statusUser', [verifyUser, roleAdmin], routerStatusUser);
 
     server.use('/hash', hashPassword);
+
     server.use("/getAllInvoices", getAllInvoices);
     server.use("/getInvoiceDetail", getInvoiceDetail);
     server.use("/paginatedProducts", getInvoiceDetail);
     server.use('/categories',[verifyUser, roleSuperv], categories);
 
-    server.use('/featured',[verifyUser, roleAdmin], getAllFeatured);
+
+    server.use('/featured', [verifyUser, roleAdmin], getAllFeatured);
 
 
 
@@ -142,8 +145,11 @@ const routes = (server) => {
     server.use('/getCart', getCart);
     server.use('/updateCart', updateCart);
     server.use('/logCart', logCart);
-    server.use('/addCart', addCart);
     server.use('/delCart', delCart);
+    server.use('/addCart', addCart);
+    server.use('/loginCostumer', loginCostumer);
+
+
 
 }
 
