@@ -305,31 +305,31 @@ export function getAllUsers() {
 }
 
 export function getAllCategories() {
-  try {
-    return async function (dispatch) {
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function getSubcategorieById(id) {
-  try {
-    return async function (dispatch) {
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function createCategory(payload) {
@@ -383,7 +383,7 @@ export function deleteUser(id) {
 
 export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`, email, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
