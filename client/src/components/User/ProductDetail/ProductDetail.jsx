@@ -26,7 +26,7 @@ export default function ProductDetail(props) {
   //el detail deberia obtenerse con un find para no usar product[0]
   const product = useSelector((state) => state.detail);
   const categories = useSelector((state) => state.allCategories);
-  
+
   const [popUpImage, setPopUpImage] = useState(false);
   const [popUpImage1, setPopUpImage1] = useState(false);
   const [popUpImage2, setPopUpImage2] = useState(false);
@@ -39,12 +39,12 @@ export default function ProductDetail(props) {
 
   function validate(input) {
     let errors = {};
-    if (input.quantity > product[0].stock) 
+    if (input.quantity > product[0].stock)
       errors.quantity = "Stock exceded!";
-    else 
-    if (input.quantity < 1)
-      errors.quantity = "Select at least 1 item";
-    else errors.quantity = undefined;
+    else
+      if (input.quantity < 1)
+        errors.quantity = "Select at least 1 item";
+      else errors.quantity = undefined;
     return errors;
   }
 
@@ -76,7 +76,7 @@ export default function ProductDetail(props) {
     <div className={styles.page}>
       <Header />
       <div className={styles.main}>
-        {product.length > 0 ? (
+        {product && product.length > 0 ? (
           <div className={styles.detail}>
             <div className={styles.card}>
               <div className={styles.images}>
@@ -121,13 +121,13 @@ export default function ProductDetail(props) {
                       $ {product[0].price}
                     </div>
                   ) : (
-                    <div className={styles.bothprices}>
-                      <div className={styles.crossed}>$ {product[0].price}</div>
-                      <div className={styles.currentofferprice}>
-                        $ {product[0].offerPrice}
+                      <div className={styles.bothprices}>
+                        <div className={styles.crossed}>$ {product[0].price}</div>
+                        <div className={styles.currentofferprice}>
+                          $ {product[0].offerPrice}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
                 <div>
                   <div className={styles.quantity}>
@@ -171,8 +171,8 @@ export default function ProductDetail(props) {
                 </button>
                 {
                   product[0].stock < product[0].inventary ?
-                  <div className={styles.stockalert}>There are only {product[0].stock} products left. Hurry!</div> :
-                  null
+                    <div className={styles.stockalert}>There are only {product[0].stock} products left. Hurry!</div> :
+                    null
                 }
               </div>
             </div>
@@ -228,9 +228,9 @@ export default function ProductDetail(props) {
           // <NotFound /> :
           <h1>Not Found</h1>
         ) : (
-          // <Loading2 />
-          <h1>Loading</h1>
-        )}
+              // <Loading2 />
+              <h1>Loading</h1>
+            )}
         <Featured />
       </div>
       <Footer />
