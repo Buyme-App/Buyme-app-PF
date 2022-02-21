@@ -142,8 +142,10 @@ const routes = (server) => {
     server.use('/getCart', getCart);
     server.use('/updateCart', updateCart);
     server.use('/logCart', logCart);
-    server.use('/addCart', addCart);
     server.use('/delCart', delCart);
+    server.use('/addCart', addCart);
+
+
 
 }
 
