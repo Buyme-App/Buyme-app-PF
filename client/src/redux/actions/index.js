@@ -49,6 +49,7 @@ export const FILTER_BY_DISCOUNTED_BTN = "FILTER_BY_DISCOUNTED_BTN";
 export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -435,6 +436,14 @@ export function filterByDiscountedBtn(payload) {
     type: FILTER_BY_DISCOUNTED_BTN,
     payload,
   };
+}
+
+export function filterByCategory(payload){
+  //console.log(payload)
+  return {
+      type: FILTER_BY_CATEGORY,
+      payload,
+  }
 }
 
 export function filterByFeatured(payload) {
