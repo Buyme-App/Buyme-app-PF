@@ -64,6 +64,8 @@ const toggleFav = require('./customer/toggleCustomerFav.route');
 const logCart = require('./cart/logCart.routes');
 const getCart = require('./cart/getCart.routes');
 const updateCart=require('./cart/updateCart.routes');
+const addCart = require('./cart/addCart.routes');
+const delCart = require('./cart/delCart.routes');
 
 // ****************************mp*************************************
 const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
@@ -140,7 +142,8 @@ const routes = (server) => {
     server.use('/getCart', getCart);
     server.use('/updateCart', updateCart);
     server.use('/logCart', logCart);
-
+    server.use('/addCart', addCart);
+    server.use('/delCart', delCart);
 
 }
 

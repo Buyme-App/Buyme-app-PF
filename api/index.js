@@ -13,7 +13,7 @@ if (port == null || port == "") {
 // Start server
 // var cors_proxy = require("cors-anywhere");
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     // cors_proxy.createServer({
     //   originWhitelist: [], // Allow all origins
