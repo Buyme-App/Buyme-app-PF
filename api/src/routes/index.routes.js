@@ -64,6 +64,7 @@ const toggleFav = require('./customer/toggleCustomerFav.route');
 const logCart = require('./cart/logCart.routes');
 const getCart = require('./cart/getCart.routes');
 const updateCart=require('./cart/updateCart.routes');
+const addCart = require('./cart/addCart.routes');
 const delCart = require('./cart/delCart.routes');
 
 // ****************************mp*************************************
@@ -142,6 +143,8 @@ const routes = (server) => {
     server.use('/updateCart', updateCart);
     server.use('/logCart', logCart);
     server.use('/delCart', delCart);
+    server.use('/addCart', addCart);
+
 
 
 }
