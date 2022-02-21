@@ -1,6 +1,6 @@
 import styles from "./FP.module.css";
-import Left from "../../../../assets/left-arrow.png";
-import Right from "../../../../assets/right-arrow.png";
+import Left from "../../../../assets/left-arrow1.png";
+import Right from "../../../../assets/right-arrow1.png";
 import imgdft from '../../../../assets/imgdft.png';
 import Cards from "../../Cards/Cards"
 import {useDispatch, useSelector} from "react-redux";
