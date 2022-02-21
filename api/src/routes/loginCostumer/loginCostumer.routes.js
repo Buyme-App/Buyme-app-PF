@@ -6,14 +6,14 @@ const loginCostumer = require('../../controllers/loginCostumer/loginCostumer.con
 
 
 router.post('/', async (req, res) => {
-    console.log('LOGINNNNNN<<<<<<  ', req.body)
+    // console.log('LOGINNNNNN<<<<<<  ', req.body)
 
     if(req.body){
 
         try {
 
             const result = await loginCostumer(req);
-            console.log('RUTACOSTUMER RESULT<<<<<<  ', result)
+            // console.log('RUTACOSTUMER RESULT<<<<<<  ', result)
             if(result !== null) return res.status(200).json({login: true, result});
             else return res.status(403).json({login: false})
         
