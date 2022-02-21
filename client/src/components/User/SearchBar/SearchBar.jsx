@@ -34,6 +34,7 @@ export default function SearchBar() {
         value={name}
         className={styles.input}
         placeholder="Search by product name or part of it..."
+        onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
         onChange={(e) => handleInputChange(e)}
       />
       <button
