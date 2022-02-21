@@ -477,3 +477,14 @@ export function filterByDiscount(payload) {
     payload,
   };
 }
+
+export function sendToMP(payload){
+  console.log(payload)
+  return async function () {
+    try {
+  // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
+    }catch(error){
+      console.log(error)
+    }
+  }
+}
