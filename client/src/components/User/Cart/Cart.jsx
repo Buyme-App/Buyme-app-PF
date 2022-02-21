@@ -3,16 +3,25 @@ import { useSelector, useDispatch} from "react-redux";
 import s from "./cart.module.css";
 import Item from "./Item/Item";
 import {Link} from "react-router-dom";
-import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART,FILL_CART} from "../../../redux/actions/index.js"
+import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART,FILL_CART, sendToMP} from "../../../redux/actions/index.js"
 
 export default function Cart(props) {
 
   const cartState = useSelector((state) => state.cart);
-  console.log('CART>>>>>>>>>>>>>>>>', cartState)
+   // {clientId:2, itemsHard:[{id:1, title:'celular', unit_price:12.00, quantity:2},
+    //  {id:1, title:'Laptop', unit_price:1200.00, quantity:1}]}
+    const itemsHard = cartState.map(el => {
+      return{
+        id: el.id,
+        title: el.name,
+        unit_price: el.price,
+        quantity: el.amount
+      }
+    })
+
+  // console.log('CART>>>>>>>>>>>>>>>>', cartState)
   const dispatch = useDispatch();
 
-  // const[changeState, setChangeState] = useState({})
-  //df
   
  
   useEffect(() => {
@@ -31,21 +40,13 @@ export default function Cart(props) {
    }
  }, [cartState])
 
-//  useEffect(() => {
-//   let data= localStorage.getItem("cart")
-//   if(data){
-//    setChangeState(JSON.parse(data))
-//   }
-// }, [cartState])
 
-  // const cartState = JSON.parse(result);
-
-  // if(cartState.length === 0){
-  //  dispatch({
-  //        type: FILL_CART,
-  //        payload:[]
-  //  })
-  // }
+  const handleCheckout = () => {
+   
+       dispatch(
+        sendToMP(itemsHard)
+       )
+  }
 
   const addToCart = (id) => {
        dispatch({
@@ -97,7 +98,7 @@ export default function Cart(props) {
           ))
         )}
         {cartState && cartState[0]?(
-        <button className={s.btn1}>BUY NOW</button>):
+        <button className={s.btn1} onClick={handleCheckout}>BUY NOW</button>):
         (  <Link to="/shop"><button className={s.btn1}>GO SHOPPING</button></Link>)}
         <div>
         <button className={s.btn2}onClick={clearCart}>Clear Cart</button>

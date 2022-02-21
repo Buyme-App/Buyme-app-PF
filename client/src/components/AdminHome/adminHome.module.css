@@ -4,19 +4,14 @@
   flex-wrap: wrap;
   align-items: center;
   min-height: 100vh;
-  padding: 25px 10px;
-  
+  padding: 25px 0;
   margin-top: 130px;
-
+  width: 80vw;
 }
 .main_container {
-  border-radius: 20px;
-  /* background: #e0e0e0; */
-  /* box-shadow: 36px 36px 69px #d0d0d0, -36px -36px 69px #f0f0f0; */
   min-height: 95vh;
-  width: 96%;
+  width: 100%;
   display: flex;
-  padding: 10px 15px;
   
  
 }
@@ -28,5 +23,4 @@
   border-radius: inherit;
   margin-top: -110px;
   margin-left: 270px;
-  /* position: relative; */
 }

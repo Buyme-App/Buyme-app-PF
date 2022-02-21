@@ -57,6 +57,8 @@ export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 export const GET_ALL_INVOICES = "GET_ALL_INVOICES";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -446,6 +448,14 @@ export function filterByDiscountedBtn(payload) {
   };
 }
 
+export function filterByCategory(payload){
+  //console.log(payload)
+  return {
+      type: FILTER_BY_CATEGORY,
+      payload,
+  }
+}
+
 export function filterByFeatured(payload) {
   // console.log(payload)
   return {
@@ -491,3 +501,15 @@ export function loginCostumer(payload) {
     return json;
   };
 };
+
+export function sendToMP(payload){
+  console.log(payload)
+  return async function () {
+    try {
+  // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
+    }catch(error){
+      console.log(error)
+    }
+  }
+}
+

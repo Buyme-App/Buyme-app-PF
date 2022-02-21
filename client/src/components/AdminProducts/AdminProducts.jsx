@@ -182,8 +182,7 @@ export default function AdminProducts() {
   //jj
   return (
     <div>
-      <div className={sStyle.products_container}>
-        {/* <h1 className={sStyle.title}>Products</h1> */}
+      <div className={sStyle.container}>
         {activeUpdate && (
           <div className={sStyle.update_container}>
             <UpdateProduct
