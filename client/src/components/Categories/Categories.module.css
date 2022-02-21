@@ -18,14 +18,13 @@
 
 .btnCat {
     padding: .1rem .1rem 1.5rem .1rem;
-    width: 20rem;
+    width: 25rem;
     border-radius: .25rem;
     border-style: solid;
     border-width: .1rem;
     border-color: gray;
     background-color: var(--color-light-violet);
     color: var(--color-principal-violet);
-    cursor: pointer;
     margin: .75rem;
 
 }
@@ -37,6 +36,7 @@
     background-color: transparent;
     color: red;
     display: flex;
+    cursor: pointer;
 }
 
 .delete:hover {
@@ -46,7 +46,7 @@
 
 .btnSub {
     padding: .1rem .1rem 1.5rem .1rem;
-    width: 20rem;
+    width: 25rem;
     border-radius: .25rem;
     border-style: solid;
     border-width: .1rem;

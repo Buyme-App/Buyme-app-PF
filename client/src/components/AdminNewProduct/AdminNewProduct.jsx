@@ -113,6 +113,10 @@ function validate(input) {
     errors.paused = "Status is required";
   }
 
+  if (!input.status) {
+    errors.status = "Slider Home is required";
+  }
+
   if (!input.categoryId) {
     errors.categoryId = "Category is required";
   }
@@ -153,6 +157,7 @@ export default function AdminNewProduct({ setPanelActive }) {
     description: "",
     featured: "",
     paused: "",
+    status: "",
     categoryId: "",
     subCategoryId: "",
     image: [],
@@ -255,6 +260,7 @@ export default function AdminNewProduct({ setPanelActive }) {
         featured: "",
         description: "",
         paused: "",
+        status: "",
         categoryId: "",
         subCategoryId: "",
         image: [],
@@ -285,7 +291,6 @@ export default function AdminNewProduct({ setPanelActive }) {
 
   return (
     <div className={styles.main}>
-      {/* <h1 className={styles.title}>Create New Product</h1> */}
       <form onSubmit={(e) => handleSubmit(e)}>
         <h3>Product Name *</h3>
         <div className={styles.inputs}>
@@ -304,7 +309,7 @@ export default function AdminNewProduct({ setPanelActive }) {
           </div>
         </div>
 
-        <h3>Brand *</h3>
+        {/* <h3>Brand *</h3>
         <div className={styles.inputs}>
           <input
             type="text"
@@ -319,9 +324,28 @@ export default function AdminNewProduct({ setPanelActive }) {
               <span className={styles.errors}>{errors.maker}</span>
             )}
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.row}>
+          <div className={styles.inputs1}>
+              <h3>Brand *</h3>
+              <div className={styles.inputs2}>
+                <input
+                  type="text"
+                  value={input.maker}
+                  name="maker"
+                  className={styles.input}
+                  placeholder="E.g.: Apple"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className={styles.errorsContainer}>
+                  {errors.maker && (
+                    <span className={styles.errors}>{errors.maker}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+
           <div className={styles.inputs1}>
             <h3>Model *</h3>
             <div className={styles.inputs2}>
@@ -409,9 +433,7 @@ export default function AdminNewProduct({ setPanelActive }) {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={styles.row}>
           <div className={styles.inputs1}>
             <h3>Stock *</h3>
             <div className={styles.inputs2}>
@@ -426,24 +448,6 @@ export default function AdminNewProduct({ setPanelActive }) {
               <div className={styles.errorsContainer}>
                 {errors.stock && (
                   <span className={styles.errors}>{errors.stock}</span>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className={styles.inputs1}>
-            <h3>Stock Alert *</h3>
-            <div className={styles.inputs2}>
-              <input
-                type="text"
-                value={input.inventary}
-                name="inventary"
-                className={styles.input}
-                placeholder="E.g.: 100"
-                onChange={(e) => handleInputChange(e)}
-              />
-              <div className={styles.errorsContainer}>
-                {errors.inventary && (
-                  <span className={styles.errors}>{errors.inventary}</span>
                 )}
               </div>
             </div>
@@ -496,6 +500,25 @@ export default function AdminNewProduct({ setPanelActive }) {
               </div>
             </div>
           </div>
+
+          <div className={styles.inputs1}>
+            <h3>Stock Alert *</h3>
+            <div className={styles.inputs2}>
+              <input
+                type="text"
+                value={input.inventary}
+                name="inventary"
+                className={styles.input}
+                placeholder="E.g.: 100"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div className={styles.errorsContainer}>
+                {errors.inventary && (
+                  <span className={styles.errors}>{errors.inventary}</span>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className={styles.row}>
@@ -526,6 +549,7 @@ export default function AdminNewProduct({ setPanelActive }) {
               </div>
             </div>
           </div>
+
           <div className={styles.inputs1}>
             <h3>Subcategory *</h3>
             <div className={styles.inputs2}>
@@ -562,6 +586,29 @@ export default function AdminNewProduct({ setPanelActive }) {
               <div className={styles.errorsContainer}>
                 {errors.subCategoryId && (
                   <span className={styles.errors}>{errors.subCategoryId}</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.inputs1}>
+            <h3>Slider Home *</h3>
+            <div className={styles.inputs2}>
+              <select
+                defaultValue=""
+                name="status"
+                className={styles.select}
+                onChange={(e) => handleSelectChange(e)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+              <div className={styles.errorsContainer}>
+                {errors.status && (
+                  <span className={styles.errors}>{errors.status}</span>
                 )}
               </div>
             </div>
