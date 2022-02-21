@@ -1,71 +1,67 @@
-import React from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { useDispatch } from 'react-redux';
-import { createCustomer } from '../../../redux/actions';
-import styles from '../Login/LoginUser.module.css';
+import React from "react";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { useDispatch } from "react-redux";
+import { createCustomer } from "../../../redux/actions";
+import styles from "../Login/LoginUser.module.css";
 
 // Id del usuario en la google console developers.
-const clientId = "532893426828-r97cch5c0jid27g5ub373cu4n8kdo3qb.apps.googleusercontent.com";
-
-
-
+const clientId =
+  "443144576490-k8m4imerk2v4jo8mof3qhddmdqdbp1pk.apps.googleusercontent.com";
 
 export function LoginGoogle(userData) {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  // Funcion onLoginSuccess que recibe los datos del login, los guarda en la variable y
+  const onLoginSuccess = async (res) => {
+    console.log("Success login with Google", res.profileObj);
 
-    // Funcion onLoginSuccess que recibe los datos del login, los guarda en la variable y
-    const onLoginSuccess = async (res) => {
+    //Variable donde se almacenan los datos que google retorna.
+    let data = res.profileObj;
 
-        console.log('Success login with Google', res.profileObj);
+    const { givenName, familyName, email, googleId } = await data;
 
-        //Variable donde se almacenan los datos que google retorna.
-        let  data = res.profileObj;
-
-        const {givenName, familyName, email, googleId} =  await data;
-
-        let obj = {
-            // Informacion a enviar al back.
-            firstName: givenName,
-            lastName: familyName,
-            email: email,
-            googleId: googleId
-        }
-
-        dispatch(createCustomer(obj));
+    let obj = {
+      // Informacion a enviar al back.
+      firstName: givenName,
+      lastName: familyName,
+      email: email,
+      googleId: googleId,
     };
 
-    // Funcion onLoginFailire que recibe el error si no se pudo hacer login con google.
-    const onLoginFailure = (res) => {
+    dispatch(createCustomer(obj));
+  };
 
-        console.log('Login Failed:', res);
+  // Funcion onLoginFailire que recibe el error si no se pudo hacer login con google.
+  const onLoginFailure = (res) => {
+    console.log("Login Failed:", res);
+  };
 
-    };
-        
-    
-    return (
-        <div>
-            
-            { 
-                // Componente del button login que da paso a la ventana de inicio de sesion.
-                <GoogleLogin
-                    clientId={clientId}
-                    //buttonText="Sign In with Google"
-                    render={renderProps => (
-                        <button className={styles.btnGoogle} onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                            <img className={styles.google} src="https://img.icons8.com/fluency/48/000000/google-logo.png" alt="logo Google"/>
-                            Login with Google
-                        </button>
-                      )}
-                    onSuccess={onLoginSuccess}
-                    onFailure={onLoginFailure}
-                    cookiePolicy={'single_host_origin'}
-                    
-                /> 
-                
-            }
-            
-        </div>
-    );
-};
-
+  return (
+    <div>
+      {
+        // Componente del button login que da paso a la ventana de inicio de sesion.
+        <GoogleLogin
+          clientId={clientId}
+          //buttonText="Sign In with Google"
+          render={(renderProps) => (
+            <button
+              className={styles.btnGoogle}
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              <img
+                className={styles.google}
+                src="https://img.icons8.com/fluency/48/000000/google-logo.png"
+                alt="logo Google"
+              />
+              Login with Google
+            </button>
+          )}
+          onSuccess={onLoginSuccess}
+          onFailure={onLoginFailure}
+          cookiePolicy={"single_host_origin"}
+        />
+      }
+    </div>
+  );
+}
