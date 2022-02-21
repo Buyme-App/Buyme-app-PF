@@ -8,6 +8,7 @@ import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART,
 export default function Cart(props) {
 
   const cartState = useSelector((state) => state.cart);
+  console.log('CART>>>>>>>>>>>>>>>>', cartState)
   const dispatch = useDispatch();
 
   // const[changeState, setChangeState] = useState({})
@@ -15,7 +16,7 @@ export default function Cart(props) {
   
  
   useEffect(() => {
-  if(cartState.length === 0){
+  if(!cartState){
      dispatch({type:FILL_CART})
   }
 }, [dispatch])
@@ -23,8 +24,10 @@ export default function Cart(props) {
 
 
  useEffect(() => {
-   if(cartState.length > 0){
+   if(!cartState){
    localStorage.setItem("cart", JSON.stringify(cartState))
+   }else{
+     console.log('Estoy en el If')
    }
  }, [cartState])
 
@@ -76,7 +79,7 @@ export default function Cart(props) {
           <button>x</button>
           </div>
         <h1>Shopping Cart</h1>
-        {!cartState.length ? (
+        {!cartState ? (
           <h2>Your cart is empty</h2>
         ) : (
           cartState.map((item,index) => (
@@ -93,7 +96,7 @@ export default function Cart(props) {
             /> 
           ))
         )}
-        {cartState.length?(
+        {!cartState?(
         <button className={s.btn1}>BUY NOW</button>):
         (  <Link to="/shop"><button className={s.btn1}>GO SHOPPING</button></Link>)}
         <div>
