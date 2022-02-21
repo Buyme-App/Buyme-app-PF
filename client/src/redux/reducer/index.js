@@ -47,7 +47,7 @@ const initialState = {
   orderedproducts: [],
   filteredByDiscount: [],
   detail: [],
-  customer: [],
+  customer: {},
   login: null,
   loading: false,
   error: false,
@@ -241,6 +241,10 @@ export default function rootReducer(state = initialState, action) {
         allUsers: [...state.allUsers, action.payload],
       };
     case GET_CUSTOMER:
+      let currentCustomer = state.customer;
+      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+      let client = JSON.parse(localStorage.getItem('cliente'));
+      console.log(client);
       return {
         ...state,
         customer: action.payload,

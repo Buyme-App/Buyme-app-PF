@@ -1,6 +1,6 @@
 import styles from "./FP.module.css";
-import Left from "../../../../assets/left-arrow.png";
-import Right from "../../../../assets/right-arrow.png";
+import Left from "../../../../assets/left-arrow1.png";
+import Right from "../../../../assets/right-arrow1.png";
 import imgdft from '../../../../assets/imgdft.png';
 import Cards from "../../Cards/Cards"
 import {useDispatch, useSelector} from "react-redux";
@@ -17,14 +17,13 @@ export default function FP(){
 
 const handleLeftClick = (e) => {
    e.preventDefault();
-   carousel.current.scrollLeft -=  carousel.current.offsetWidth;
-
+   carousel.current.scrollLeft -=   230;
 }
 
 const handleRightClick = (e) => {
    e.preventDefault();
-   carousel.current.scrollLeft +=  carousel.current.offsetWidth;
-
+   carousel.current.scrollLeft +=   230;
+   
 }
 
     useEffect(() => {
@@ -47,8 +46,8 @@ const handleRightClick = (e) => {
                </div>
              </div>
              <div className={styles.btn}>
-       <button onClick={handleLeftClick} className={styles.btnIzq}><img src={Left} alt="Scroll Left" height="70px"  width="70px"/></button>
-       <button onClick={handleRightClick} className={styles.btnDer}><img src={Right} alt="Scroll Right" height="70px"  width="70px" /></button>
+       <button onClick={handleLeftClick} className={styles.btnIzq}><img src={Left} alt="Scroll Left" height="35px"  width="35px"/></button>
+       <button onClick={handleRightClick} className={styles.btnDer}><img src={Right} alt="Scroll Right" height="35px"  width="35px" /></button>
 
              </div>
       
