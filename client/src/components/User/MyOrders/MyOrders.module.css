@@ -1,0 +1,49 @@
+.title {
+    color: black;
+    margin-right: 3.5rem;
+}
+
+.box{
+    padding: 20px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    /* background-color: gray; */
+    min-height: 100%;
+    min-width: 43rem;
+    display: grid;
+    flex-direction: column;
+    
+}
+
+.thead{
+    /* margin: 2rem; */
+    grid-template-rows: 1;
+    background-color: var(--color-violet);
+}
+
+.body {
+    grid-template-rows: 2;
+}
+
+.tr {
+    padding: 1rem 2rem 1rem 2rem;
+    font-weight: 700;
+    background-color: var(--color-light-violet);
+}
+
+.item {
+    padding: 1rem 2rem 1rem 2rem;
+    font-weight: 400;
+    background-color: var(--color-light-violet);
+}
+
+.total, .totalTh {
+    background-color: var(--color-violet);
+    padding: 1rem 2rem 1rem 2rem;
+
+}

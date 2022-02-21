@@ -10,6 +10,7 @@ import imgdft from '../../../../assets/imgdft.png';
 export default function FeaturedProducts(){
     const dispatch = useDispatch()
     const products = useSelector(state => state.allProducts)
+    console.log(products)
     const featuredProducts = products.filter( el => el.featured === true)
     console.log(featuredProducts)
 

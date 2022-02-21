@@ -9,7 +9,6 @@ router.post("/", async (req, res) => {
   const {
     name,
     price,
-    favorite,
     image,
     maker,
     model,
@@ -20,6 +19,10 @@ router.post("/", async (req, res) => {
     inventary,
     featured,
     paused,
+    categoryId,
+    subCategoryId,
+    status,
+    favorite
   } = req.body;
 
   if (name) {
@@ -37,7 +40,11 @@ router.post("/", async (req, res) => {
         stock,
         inventary,
         featured,
-        paused
+        paused,
+        categoryId,
+        subCategoryId,
+        status,
+        favorite
       );
 
       if (create) return res.json({ message: "Product created", data: create });

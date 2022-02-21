@@ -17,7 +17,10 @@ async function createProduct(
   inventary,
   featured,
   paused,
-  sales
+  categoryId,
+  subCategoryId,
+  status,
+  favorite
 ) {
   // Se pasan a int los parametros para ser ingresados en la base de datos.
   parseFloat(price);
@@ -41,6 +44,10 @@ async function createProduct(
       inventary,
       featured,
       paused,
+      categoryId,
+      subCategoryId,
+      status,
+      favorite
     });
     if (createProduct) return createProduct;
     else return false;

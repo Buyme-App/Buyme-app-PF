@@ -3,7 +3,9 @@ import { saveToken } from "../../components/Login/controllers/tokenFunctions";
 
 // middlewares validacion token
 
-import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+// comentado para evitar warnings
+// import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+import { sendKey } from "../../middlewares/verifyToken";
 
 const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
@@ -21,6 +23,7 @@ const REACT_APP_API = process.env.REACT_APP_API
 export const LOGIN = "LOGIN";
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
+export const GET_PRODUCTS_INIT = "GET_PRODUCTS_INIT";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
@@ -75,7 +78,9 @@ export const login = async (dispatch, email, password) => {
       payload: credential.data.login,
     });
 
-    const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
+    // comentado para quitar el warning
+    // const roleUser = verifyTokenRole(credential); // Retorna el rol del usuario administrativo
+
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -103,6 +108,9 @@ export const errorModal = (dispatch, payload) => {
 
 export function getAllProducts() {
   return async function (dispatch) {
+    dispatch({
+      type: GET_PRODUCTS_INIT,
+    });
     var json = await axios.get(`${REACT_APP_API}/getAllProducts`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS,
@@ -110,9 +118,13 @@ export function getAllProducts() {
     });
   };
 }
+//d
 //getAll for client
 export function getProductsClient() {
   return async function (dispatch) {
+    dispatch({
+      type: GET_PRODUCTS_INIT,
+    });
     var json = await axios.get(`${REACT_APP_API}/getProductsClient`, sendKey());
     return dispatch({
       type: GET_ALL_PRODUCTS_CLIENT,
@@ -124,6 +136,9 @@ export function getProductsClient() {
 export function getProductsByName(name) {
   return async function (dispatch) {
     try {
+      dispatch({
+        type: GET_PRODUCTS_INIT,
+      });
       var json = await axios.get(
         `${REACT_APP_API}/productDetail/detail0/?nameProduct=` + name,
         sendKey()
@@ -133,10 +148,10 @@ export function getProductsByName(name) {
         payload: json.data,
       });
     } catch (error) {
-      return dispatch({
-        type: GET_PRODUCTS_BY_NAME,
-        payload: null,
-      });
+      // return dispatch({
+      //   type: GET_PRODUCTS_BY_NAME,
+      //   payload: null,
+      // });
       // console.log(error)
     }
   };
@@ -145,6 +160,9 @@ export function getProductsByName(name) {
 export function getProductsByNameClients(name) {
   return async function (dispatch) {
     try {
+      dispatch({
+        type: GET_PRODUCTS_INIT,
+      });
       var json = await axios.get(
         `${REACT_APP_API}/getProDetailClient/detail0/?nameProduct=` + name,
         sendKey()
@@ -166,6 +184,9 @@ export function getProductsByNameClients(name) {
 export function getProductDetail(idProduct) {
   return async function (dispatch) {
     try {
+      dispatch({
+        type: GET_PRODUCTS_INIT,
+      });
       var json = await axios.get(
         `${REACT_APP_API}/productDetail/detail` + idProduct,
         sendKey()
@@ -175,10 +196,10 @@ export function getProductDetail(idProduct) {
         payload: json.data,
       });
     } catch (error) {
-      return dispatch({
-        type: GET_PRODUCT_DETAIL,
-        payload: null,
-      });
+      // return dispatch({
+      //   type: GET_PRODUCT_DETAIL,
+      //   payload: null,
+      // });
       // console.log(error)
     }
   };
@@ -292,31 +313,35 @@ export function getAllUsers() {
 }
 
 export function getAllCategories() {
-  try {
-    return async function (dispatch) {
+
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 export function getSubcategorieById(id) {
-  try {
-    return async function (dispatch) {
+
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 export function createCategory(payload) {
@@ -368,9 +393,9 @@ export function deleteUser(id) {
   };
 }
 
-export function getCustomer() {
+export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`, sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,

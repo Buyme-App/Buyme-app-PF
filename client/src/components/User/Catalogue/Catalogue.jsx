@@ -14,9 +14,9 @@ import styles from "./Catalogue.module.css";
 
 export default function Catalogue() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products.filter(p => p.paused === false));
   const featuredProducts = useSelector((state) =>
-    state.allProducts.filter((p) => p.featured === true)
+    state.allProducts.filter((p) => p.featured === true && p.paused === false)
   );
 
   useEffect(() => {
