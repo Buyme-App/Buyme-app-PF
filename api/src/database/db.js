@@ -50,9 +50,25 @@ Client.hasOne(Cart); //Clave externa definida en cart
 Cart.belongsTo(Client); //Clave externa definida en cart
 
 
-Product.belongsTo(SubCategory, { through: "product_subCategory" });
-Product.belongsTo(Category, { through: "product_Category" });
-SubCategory.belongsToMany(Product, { through: "product_subCategory" });
+
+// asociacion de uno a muchos
+SubCategory.hasMany(Product); // Clave externa definida en Product 
+Product.belongsTo(SubCategory); //Clave externa definida en Product 
+
+// asociacion de uno a muchos
+Category.hasMany(Product); // Clave externa definida en Product 
+Product.belongsTo(Category); //Clave externa definida en Product 
+
+
+
+
+
+
+// Product.belongsTo(SubCategory, { through: "product_subCategory" });
+// SubCategory.belongsToMany(Product, { through: "product_subCategory" });
+
+// Product.belongsTo(Category, { through: "product_Category" });
+// Category.belongsToMany(Product, { through: "product_Category" });
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
