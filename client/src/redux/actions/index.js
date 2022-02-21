@@ -58,6 +58,7 @@ export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 export const GET_ALL_INVOICES = "GET_ALL_INVOICES";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
 
 
 // Used in Account component
@@ -490,15 +491,18 @@ export function getAllInvoices() {
   };
 };
 
-export function loginCostumer(payload) {
+export function loginCustomer(payload) {
   console.log('ACTION<<<<<<<<<<<<<<<<<<', payload)
-  return async function () {
+  return async function (dispatch) {
     let json = await axios.post(
       `${REACT_APP_API}/loginCostumer`,
       payload
     );
     console.log('JSOn<<<<<<<<<<<<<<<<<<', json)
-    return json;
+    return dispatch({
+      type: POST_LOGIN_CUSTOMER,
+      payload: json.data,
+    });
   };
 };
 

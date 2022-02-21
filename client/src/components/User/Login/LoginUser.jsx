@@ -85,7 +85,6 @@ export default function LoginUser() {
   }
   localStorage.setItem('cliente', JSON.stringify(currentCustomer));
   let client = JSON.parse(localStorage.getItem('cliente'));
-  console.log(client);
 
 
   return (
