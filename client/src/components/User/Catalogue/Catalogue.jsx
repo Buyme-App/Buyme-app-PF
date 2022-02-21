@@ -25,7 +25,9 @@ export default function Catalogue() {
 
   const [currentPage, setCurrentPage] = useState(1); // ESTADO LOCAL ARRANCA EN PAGINA 1
   // // eslint-disable-next-line no-unused-vars
-  const [productsPerPage, setProductsPerPage] = useState(8); // ESTADO LOCAL CANTIDAD DE CARACTERES POR PAGINA
+
+  const productsPerPage = 8
+  // const [productsPerPage, setProductsPerPage] = useState(8); // ESTADO LOCAL CANTIDAD DE CARACTERES POR PAGINA
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = allProducts.slice(
@@ -40,7 +42,7 @@ export default function Catalogue() {
   };
 
   function handleClickLoadAll(e) {
-    e.preventDefault(); // CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VULVEN A CARGARSE SI TENEMOS USEEFFECT
+    e.preventDefault(); // CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VUELVEN A CARGARSE SI TENEMOS USEEFFECT
     dispatch(getProductsClient());
     setCurrentPage(1);
   }
@@ -59,26 +61,26 @@ export default function Catalogue() {
             ) : featuredProducts[0] === 404 ? (
               <NotFound />
             ) : (
-              featuredProducts?.map((p) => {
-                return (
-                  <>
-                    <Link
-                      className={styles.btnName}
-                      to={"/product/" + p.id}
-                      key={p.id}
-                    >
-                      <Cards2
-                        className={styles.grid}
-                        image={p.image}
-                        name={p.name}
-                        price={p.price}
-                        offerPrice={p.offerPrice}
-                      />
-                    </Link>
-                  </>
-                );
-              })
-            )}
+                  featuredProducts?.map((p) => {
+                    return (
+                      <>
+                        <Link
+                          className={styles.btnName}
+                          to={"/product/" + p.id}
+                          key={p.id}
+                        >
+                          <Cards2
+                            className={styles.grid}
+                            image={p.image}
+                            name={p.name}
+                            price={p.price}
+                            offerPrice={p.offerPrice}
+                          />
+                        </Link>
+                      </>
+                    );
+                  })
+                )}
           </div>
         </div>
         <div className={styles.productsbottom}>
@@ -95,31 +97,31 @@ export default function Catalogue() {
           </div>
           <div className={styles.detail}>
             <div className={styles.grid}>
-              {!currentProducts.length ? (
+              {currentProducts.length ? (
                 <Loading />
               ) : currentProducts[0] === 404 ? (
                 <NotFound />
               ) : (
-                currentProducts?.map((p) => {
-                  return (
-                    <>
-                      <Link
-                        className={styles.btnName}
-                        to={"/product/" + p.id}
-                        key={p.id}
-                      >
-                        <Cards
-                          className={styles.grid}
-                          image={p.image}
-                          name={p.name}
-                          price={p.price}
-                          offerPrice={p.offerPrice}
-                        />
-                      </Link>
-                    </>
-                  );
-                })
-              )}
+                    currentProducts?.map((p) => {
+                      return (
+                        <>
+                          <Link
+                            className={styles.btnName}
+                            to={"/product/" + p.id}
+                            key={p.id}
+                          >
+                            <Cards
+                              className={styles.grid}
+                              image={p.image}
+                              name={p.name}
+                              price={p.price}
+                              offerPrice={p.offerPrice}
+                            />
+                          </Link>
+                        </>
+                      );
+                    })
+                  )}
             </div>
             <div>
               <Paginate
