@@ -61,11 +61,11 @@ export default function Catalogue() {
             ) : (
                   featuredProducts?.map((p) => {
                     return (
+                      // para que no salga el warning de key prop en la ruta shop
                       <li key={p.id}>
                         <Link
                           className={styles.btnName}
                           to={"/product/" + p.id}
-                          key={p.id}
                         >
                           <Cards2
                             key={p.id}
@@ -103,11 +103,11 @@ export default function Catalogue() {
               ) : (
                     currentProducts?.map((p) => {
                       return (
+                        // para que no salga el warning de key prop en la ruta shop
                         <li key={p.id}>
                           <Link
                             className={styles.btnName}
                             to={"/product/" + p.id}
-                            key={p.id}
                           >
                             <Cards
                               key={p.id.toString()}
