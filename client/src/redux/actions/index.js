@@ -11,13 +11,6 @@ const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
   : "http://localhost:3001";
 
-// const headerProxy = {
-//   originWhitelist: [
-//     `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
-//   ],
-//   requireHeader: ["origin", "x-requested-with"],
-// };
-// export const ACTION = "ACTION";
 // estos son ejemplos
 
 export const LOGIN = "LOGIN";
@@ -59,7 +52,6 @@ export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 export const GET_ALL_INVOICES = "GET_ALL_INVOICES";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
-
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -317,7 +309,6 @@ export function getAllUsers() {
 }
 
 export function getAllCategories() {
-
   return async function (dispatch) {
     try {
       let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
@@ -329,11 +320,9 @@ export function getAllCategories() {
       console.log(error);
     }
   };
-
 }
 
 export function getSubcategorieById(id) {
-
   return async function (dispatch) {
     try {
       let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
@@ -345,7 +334,6 @@ export function getSubcategorieById(id) {
       console.log(error);
     }
   };
-
 }
 
 export function createCategory(payload) {
@@ -399,7 +387,11 @@ export function deleteUser(id) {
 
 export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
+    let json = await axios.get(
+      `${REACT_APP_API}/getCustomer`,
+      email,
+      sendKey()
+    );
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
@@ -449,12 +441,12 @@ export function filterByDiscountedBtn(payload) {
   };
 }
 
-export function filterByCategory(payload){
+export function filterByCategory(payload) {
   //console.log(payload)
   return {
-      type: FILTER_BY_CATEGORY,
-      payload,
-  }
+    type: FILTER_BY_CATEGORY,
+    payload,
+  };
 }
 
 export function filterByFeatured(payload) {
@@ -489,31 +481,27 @@ export function getAllInvoices() {
       payload: json.data,
     });
   };
-};
+}
 
 export function loginCustomer(payload) {
-  console.log('ACTION<<<<<<<<<<<<<<<<<<', payload)
+  console.log("ACTION<<<<<<<<<<<<<<<<<<", payload);
   return async function (dispatch) {
-    let json = await axios.post(
-      `${REACT_APP_API}/loginCostumer`,
-      payload
-    );
-    console.log('JSOn<<<<<<<<<<<<<<<<<<', json)
+    let json = await axios.post(`${REACT_APP_API}/loginCostumer`, payload);
+    console.log("JSOn<<<<<<<<<<<<<<<<<<", json);
     return dispatch({
       type: POST_LOGIN_CUSTOMER,
       payload: json.data,
     });
   };
-};
-
-export function sendToMP(payload){
-  console.log(payload)
-  return async function () {
-    try {
-  // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
-    }catch(error){
-      console.log(error)
-    }
-  }
 }
 
+export function sendToMP(payload) {
+  console.log(payload);
+  return async function () {
+    try {
+      // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
