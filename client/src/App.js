@@ -19,6 +19,7 @@ import PasswordRecovery from './components/User/Login/PasswordRecovery/PasswordR
 import SignUp from "./components/User/Login/SignUp/SignUp";
 import FP from "./components/User/Slider/Sliderex/FP";
 import MyProfile from "./components/User/MyProfile/MyProfile";
+import MyOrders from "./components/User/MyOrders/MyOrders";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/login/restorePassword" element={<PasswordRecovery />} />
           <Route exact path="/login/signUp" element={<SignUp />} />
           <Route exact path="/myProfile" element={<MyProfile />} />
+          <Route exact path="/myOrders" element={<MyOrders />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />
         </Routes>
       </div>
