@@ -4,8 +4,8 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 import InformativeBanner from "../Informative Banner/InformativeBanner";
-import Slider from "../Slider/Main Banner/Slider";
-import FeaturedProducts from "../Slider/FeaturedProducts/FeaturedProducts";
+import Slider from "../Slider/Slider";
+import FeaturedProducts from "../Slider/FeaturedProducts";
 import styles from "./Landing.module.css";
 import SecondBanner from "../Second Banner/SecondBanner";
 import { useDispatch } from "react-redux";

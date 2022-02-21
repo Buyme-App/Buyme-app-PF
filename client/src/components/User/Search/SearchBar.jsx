@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { getProductsByNameClients } from "../../../redux/actions";
-import styles from "./SearchBar.module.css";
+import styles from "../../../css/SearchBar.module.css";
 import { BsSearch } from "react-icons/bs";
 
 export default function SearchBar() {

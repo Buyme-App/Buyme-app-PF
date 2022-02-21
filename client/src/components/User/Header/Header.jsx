@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../Search/SearchBar';
 import NavBar from '../NavBar/NavBar';
 import logo from '../../../assets/logo.png';
 import DropdownMyAccount from '../MyAccount/Dropdown';

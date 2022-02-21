@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Account.module.css";
+import styles from "../../css/Account.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChangePassword from "./ChangePassword/ChangePassword";
@@ -20,8 +20,8 @@ export default function Account() {
     console.log("allUsers", allUsers);
     dispatch(getAllUsers())
     // Estaba configurado como componentDidMunt no como update
-   
-  },[]); // Para update no debe llevar los corchetes
+
+  }, []); // Para update no debe llevar los corchetes
 
   //console.log(allUsers);
 
@@ -61,7 +61,7 @@ export default function Account() {
       <ChangeEmail
         trigger={btnChangeE}
         setTrigger={setBtnChangeE}
-        users = {allUsers}
+        users={allUsers}
       ></ChangeEmail>
       <AddUser trigger={btnAddUser} setTrigger={setBtnAddUser}></AddUser>
       <h2>Users</h2>
