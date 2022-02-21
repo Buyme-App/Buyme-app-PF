@@ -21,7 +21,8 @@ router.post("/", async (req, res) => {
     paused,
     categoryId,
     subCategoryId,
-    status
+    status,
+    favorite
   } = req.body;
 
   if (name) {
@@ -42,7 +43,8 @@ router.post("/", async (req, res) => {
         paused,
         categoryId,
         subCategoryId,
-        status
+        status,
+        favorite
       );
 
       if (create) return res.json({ message: "Product created", data: create });
