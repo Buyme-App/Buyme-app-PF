@@ -18,7 +18,9 @@ async function updateProduct(
   inventary,
   featured,
   paused,
- 
+  status,
+  categoryId,
+  subCategoryId,
 ) {
   // se parsean los parametros a int.
   parseFloat(price);
@@ -47,7 +49,9 @@ async function updateProduct(
           inventary,
           featured,
           paused,
-          
+          status,
+          categoryId,
+          subCategoryId,
         },
         { where: { id: parseInt(id) } }
       );
