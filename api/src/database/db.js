@@ -36,10 +36,18 @@ SubCategory.belongsTo(Category);   //clave externa definida en SubCategory
 Client.hasMany(Invoice);  //Clave externa definida en Invoice 
 Invoice.belongsTo(Client); //Clave externa definida en Invoice
 
-
 //asociacion de uno a muchos  ---------> Client a Order
 Client.hasMany(Order);  //Clave externa definida en Order
 Order.belongsTo(Client); //Clave externa definida en Order
+
+//asociacion de uno a muchos  ---------> Category a Product
+Category.hasMany(Product);  //Clave externa definida en Product
+Product.belongsTo(Category); //Clave externa definida en Product
+
+//asociacion de uno a muchos  ---------> Category a Product
+SubCategory.hasMany(Product);  //Clave externa definida en Product
+Product.belongsTo(SubCategory); //Clave externa definida en Product
+
 
 //asociacion de uno a uno  ----------> Order a Invoice
 Order.belongsTo(Invoice);  //Clave externa definida en Order
@@ -49,10 +57,6 @@ Invoice.hasOne(Order);     //Clave externa definida en Order
 Client.hasOne(Cart); //Clave externa definida en cart
 Cart.belongsTo(Client); //Clave externa definida en cart
 
-
-Product.belongsTo(SubCategory, { through: "product_subCategory" });
-Product.belongsTo(Category, { through: "product_Category" });
-SubCategory.belongsToMany(Product, { through: "product_subCategory" });
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
