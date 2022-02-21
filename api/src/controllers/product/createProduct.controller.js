@@ -47,7 +47,6 @@ async function createProduct(
       categoryId,
       subCategoryId,
       status,
-      favorite
     });
     if (createProduct) return createProduct;
     else return false;
