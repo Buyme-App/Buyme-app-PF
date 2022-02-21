@@ -26,10 +26,10 @@ export default function MyOrders(){
                                 <tr className={styles.thead}>
                                     <th className={styles.th}>Order</th>
                                     <th className={styles.th}>date</th>
-                                    <th className={styles.th}>Price</th>
                                     <th className={styles.th}>Products</th>
                                     <th className={styles.th}>units</th>
-                                    <th className={styles.th}>Total</th>
+                                    <th className={styles.th}>Price</th>
+                                    <th className={styles.totalTh}>Total</th>
                                 </tr>
                             </thead>
 
@@ -37,10 +37,18 @@ export default function MyOrders(){
                                 <tr className={styles.body}>
                                     <td className={styles.item}>#55478</td>
                                     <td className={styles.item}>20/02/22</td>
-                                    <td className={styles.item}>$500000</td>
                                     <th className={styles.item}>MacBook Air</th>
                                     <th className={styles.item}>2</th>
-                                    <th className={styles.item}>$1000000</th>
+                                    <th className={styles.item}>$500000</th>
+                                    <td className={styles.total}></td>
+                                </tr>
+                                <tr>
+                                    <th className={styles.item}></th>
+                                    <th className={styles.item}></th>
+                                    <th className={styles.item}>Iphone 7</th>
+                                    <th className={styles.item}>1</th>
+                                    <th className={styles.item}>$80000</th>
+                                    <th className={styles.total}>$1080000</th>
                                 </tr>
                             </tbody>
                         </table>
