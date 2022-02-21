@@ -16,7 +16,7 @@ export default function Cart(props) {
   
  
   useEffect(() => {
-  if(!cartState){
+  if(cartState && !cartState[0]){
      dispatch({type:FILL_CART})
   }
 }, [dispatch])
@@ -24,7 +24,7 @@ export default function Cart(props) {
 
 
  useEffect(() => {
-   if(!cartState){
+   if(cartState && cartState !== []){
    localStorage.setItem("cart", JSON.stringify(cartState))
    }else{
      console.log('Estoy en el If')
@@ -79,7 +79,7 @@ export default function Cart(props) {
           <button>x</button>
           </div>
         <h1>Shopping Cart</h1>
-        {!cartState ? (
+        {cartState && !cartState[0] ? (
           <h2>Your cart is empty</h2>
         ) : (
           cartState.map((item,index) => (
@@ -96,7 +96,7 @@ export default function Cart(props) {
             /> 
           ))
         )}
-        {!cartState?(
+        {cartState && cartState[0]?(
         <button className={s.btn1}>BUY NOW</button>):
         (  <Link to="/shop"><button className={s.btn1}>GO SHOPPING</button></Link>)}
         <div>
