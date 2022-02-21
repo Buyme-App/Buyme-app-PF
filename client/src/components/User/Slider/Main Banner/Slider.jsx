@@ -78,17 +78,8 @@ useEffect(() => {
         <div className={styles.Slide}>
           <img src={Banner3} alt="img" height="380px" width="1265px"/>
         </div>
-
-        {/* <div className={styles.Slide}>
-          <img src={Banner2} alt="img" height="310px" width="1265px"/>
-        </div> */}
-       
-
-      {/* <Swiper navigation={true} modules={[Navigation]} className={styles.Swiper}>
-           <SwiperSlide><FeaturedProducts/></SwiperSlide> 
-             <SwiperSlide>Slide 3</SwiperSlide>
-         </Swiper> */}
          </div>
+         
       <div className={styles.controles}>
           <button className={styles.btnIzq} onClick={back}>
             <img src={FlechaIzquierda} alt="img" height="40px" width="40px"/>

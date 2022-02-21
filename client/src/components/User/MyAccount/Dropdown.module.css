@@ -36,7 +36,7 @@
     border-width: .1rem;
     border-color: transparent;
     
-    z-index: 3;
+    z-index: 100;
     
     
 }
@@ -49,4 +49,8 @@
     color: var(--color-principal-violet);
     cursor: pointer;
     background-color: var(--color-light-violet);
+}
+
+.item:hover {
+    background-color: var(--color-violet);
 }

@@ -18,6 +18,7 @@ import LoginUser from "./components/User/Login/LoginUser";
 import PasswordRecovery from './components/User/Login/PasswordRecovery/PasswordRecovery';
 import SignUp from "./components/User/Login/SignUp/SignUp";
 import FP from "./components/User/Slider/Sliderex/FP";
+import MyProfile from "./components/User/MyProfile/MyProfile";
 
 function App() {
   return (
@@ -33,12 +34,14 @@ function App() {
           <Route path="/terms" element = {<Terms/>}></Route>
           <Route path="/sustainability" element = {<Sustainability/>}></Route>
           <Route path="/careers" element = {<Careers/>}></Route>
+          <Route path="/fp" element = {<FP/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />
           <Route exact path="/login" element={<LoginUser />} />
-          <Route exact path="/home/restorePassword" element={<PasswordRecovery />} />
-          <Route exact path="/home/signUp" element={<SignUp />} />
+          <Route exact path="/login/restorePassword" element={<PasswordRecovery />} />
+          <Route exact path="/login/signUp" element={<SignUp />} />
+          <Route exact path="/myProfile" element={<MyProfile />} />
           <Route path="/admin/restorePassword" element={<PassRecovery />} />
         </Routes>
       </div>

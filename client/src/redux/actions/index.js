@@ -3,7 +3,9 @@ import { saveToken } from "../../components/Login/controllers/tokenFunctions";
 
 // middlewares validacion token
 
-import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+// comentado para evitar el 
+// import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+import { sendKey } from "../../middlewares/verifyToken";
 
 const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
@@ -68,7 +70,9 @@ export const login = async (dispatch, email, password) => {
       payload: credential.data.login,
     });
 
-    const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
+    // comentado para quitar el warning
+    // const roleUser = verifyTokenRole(credential); // Retorna el rol del usuario administrativo
+
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -106,6 +110,7 @@ export function getAllProducts() {
     });
   };
 }
+//d
 //getAll for client
 export function getProductsClient() {
   return async function (dispatch) {
@@ -376,9 +381,9 @@ export function deleteUser(id) {
   };
 }
 
-export function getCustomer() {
+export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`, sendKey());
+    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
