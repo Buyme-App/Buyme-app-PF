@@ -1,0 +1,41 @@
+.title {
+    color: black;
+    margin-right: 3.5rem;
+}
+
+.box{
+    padding: 20px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: var(--color-light-violet);
+    min-height: 100%;
+    width: 47rem;
+    display: grid;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.thead{
+    margin: 2rem;
+    grid-template-rows: 1;
+}
+
+.body {
+    grid-template-rows: 2;
+}
+
+.tr {
+    padding: 2rem;
+    font-weight: 700;
+}
+
+.item {
+    padding: 2rem;
+    font-weight: 400;
+}
+
