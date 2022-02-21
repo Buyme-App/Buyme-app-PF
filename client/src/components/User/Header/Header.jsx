@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
@@ -13,9 +13,9 @@ export default function Header() {
 
   return (
     <div className={styles.header}>
-      <Cart 
-      trigger={btnChangeCart}
-      setTrigger={setBtnChangeCart}
+      <Cart
+        trigger={btnChangeCart}
+        setTrigger={setBtnChangeCart}
       />
       <div className={styles.top}>Free shipping on orders over $6.000!</div>
       <div className={styles.content}>
