@@ -36,6 +36,7 @@ import {
   FILTER_BY_FEATURED,
   ORDER_BY_PRICE,
   FILTER_BY_DISCOUNT,
+  GET_ALL_INVOICES,
   FILTER_BY_CATEGORY,
 } from "../actions/index";
 
@@ -52,6 +53,7 @@ const initialState = {
   loading: false,
   error: false,
   cart: [],
+  allInvoices:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -252,6 +254,11 @@ export default function rootReducer(state = initialState, action) {
     case POST_CUSTOMER:
       return {
         ...state,
+      };
+    case GET_ALL_INVOICES:
+      return {
+        ...state,
+        allInvoices: action.payload
       };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
