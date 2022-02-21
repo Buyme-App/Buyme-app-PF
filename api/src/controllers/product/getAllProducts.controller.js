@@ -1,4 +1,4 @@
-const {Product} = require('../../database/db');
+const {Product, Category, subCategory} = require('../../database/db');
 const showErrors = require('../../messageConsole');
 
 // Función para obtener todos los productos registrados en la base de datos, 
@@ -7,7 +7,9 @@ async function getAllProducts() {
 
     try {
 
-        const products = await Product.findAll()
+        const products = await Product.findAll({
+            include: { model: Category, subCategory }
+        })
         if (products.length > 0) {
             return products;
         }else{

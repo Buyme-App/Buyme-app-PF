@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProductsClient,
   getAllCategories,
-  setFilters,
-  filterByFeaturedBtn,
-  filterByDiscountedBtn,
+  filterByCategory,
   filterByFeatured,
   orderByPrice,
   filterByDiscount,
@@ -15,7 +13,7 @@ import {
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Cards from "../Cards/Cards";
-import Cards2 from "../Cards2/Cards2";
+// import Cards2 from "../Cards2/Cards2";
 import Paginate from "../Paginate/Paginate";
 import Loading from "../Loading/Loading";
 import NotFound from "../NotFound/NotFound";
@@ -24,8 +22,10 @@ import styles from "./Search.module.css";
 export default function Search() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  console.log("ALLPRODUCTSSSSSS", allProducts)
   // const allProducts = useSelector((state) => state.products.filter((p) => p.paused === false));
   const categories = useSelector((state) => state.allCategories);
+  console.log("CATEGORIESSSSSS", categories);
   // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
 
   // const [filterByCategory, setFilterByCategory] = useState("All");
@@ -37,16 +37,16 @@ export default function Search() {
   //   dispatch(getAllCategories());
   // }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (!allProducts.length) {
-  //     dispatch(getProductsClient());
-  //   }
-  //   if (!categories.length) {
-  //     dispatch(getAllCategories());
-  //   }
-  //   ////  --->esto permite eliminar los warning de dependencias !
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, categories.length]);
+  useEffect(() => {
+    if (!allProducts.length) {
+      dispatch(getProductsClient());
+    }
+    if (!categories.length) {
+      dispatch(getAllCategories());
+    }
+    ////  --->esto permite eliminar los warning de dependencias !
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, categories.length]);
 
   const [currentPage, setCurrentPage] = useState(1); // ESTADO LOCAL ARRANCA EN PAGINA 1
   // // eslint-disable-next-line no-unused-vars
@@ -76,15 +76,15 @@ export default function Search() {
   // }
 
   // function handleClickDiscountedBtn(e) {
-  //   e.preventDefault();
   //   dispatch(filterByDiscountedBtn());
   //   setCurrentPage(1);
   // }
 
-  // function handleFilterByCategory(e) {
-  //   dispatch(filterByCategory(e.target.value));
-  //   setCurrentPage(1);
-  // }
+  function handleFilterByCategory(e) {
+    dispatch(filterByCategory(e.target.value));
+    console.log("SARASA", e.target.value);
+    setCurrentPage(1);
+  }
 
   // function handleFilterByCategories(e) {
   //   setFilterByCategories(e.target.value);
@@ -157,10 +157,9 @@ export default function Search() {
             <h4>Filter by category</h4>
             <select
               className={styles.filters}
-              // value={filterByCategory}
-              // onChange={(e) => {
-              //   handleFilterByCategory(e);
-              // }}
+              onChange={(e) => {
+                handleFilterByCategory(e);
+              }}
             >
               <option value="All">Select Category</option>
               {categories
@@ -170,7 +169,7 @@ export default function Search() {
                   return 0;
                 })
                 .map((t) => (
-                  <option value={t.name} key={t.name}>
+                  <option value="3" key={t.id}>
                     {t.name}
                   </option>
                 ))}
