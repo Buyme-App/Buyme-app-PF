@@ -60,6 +60,8 @@ const getCustomer = require('./customer/getCustomer.route');
 const modifyCustomer = require('./customer/modifyCustomer.route');
 const toggleFav = require('./customer/toggleCustomerFav.route');
 
+const loginCostumer = require('../routes/loginCostumer/loginCostumer.routes');
+
 
 // ***************************Cart***********************************
 
@@ -145,6 +147,7 @@ const routes = (server) => {
     server.use('/logCart', logCart);
     server.use('/delCart', delCart);
     server.use('/addCart', addCart);
+    server.use('/loginCostumer', loginCostumer);
 
 
 
