@@ -10,6 +10,13 @@ import { sendKey } from "../../middlewares/verifyToken";
 const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
   : "http://localhost:3001";
+
+// const headerProxy = {
+//   originWhitelist: [
+//     `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
+//   ],
+//   requireHeader: ["origin", "x-requested-with"],
+// };
 // export const ACTION = "ACTION";
 // estos son ejemplos
 
@@ -60,6 +67,7 @@ export const login = async (dispatch, email, password) => {
       {
         userEmail: email,
         userPassword: password,
+        // headerProxy,
       },
       sendKey()
     );

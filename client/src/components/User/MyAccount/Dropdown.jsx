@@ -36,7 +36,7 @@ export default function DropdownMyAccount(){
                                         <div>
                                             <DropdownItem header className={styles.header}>Hi customer.firstName!</DropdownItem>
                                             <DropdownItem className={styles.divider} divider />
-                                            <DropdownItem className={styles.item}>My Orders</DropdownItem>
+                                            <Link to='/myOrders'><DropdownItem className={styles.item}>My Orders</DropdownItem></Link>
                                             <Link to='/myProfile'><DropdownItem className={styles.item}>My Profile</DropdownItem></Link>
                                             <DropdownItem className={styles.item}>Log Out</DropdownItem>
                                           </div>

@@ -78,7 +78,8 @@ export default function AdminProducts() {
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
-        Number(b.price.substring(1, 10)) - Number(a.price.substring(1, 10))
+        // Number(b.price.substring(1, 10)) - Number(a.price.substring(1, 10))
+        Number(b.price) - Number(a.price)
       );
     });
 

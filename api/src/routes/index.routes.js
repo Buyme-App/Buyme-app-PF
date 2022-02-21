@@ -64,6 +64,8 @@ const toggleFav = require('./customer/toggleCustomerFav.route');
 const logCart = require('./cart/logCart.routes');
 const getCart = require('./cart/getCart.routes');
 const updateCart=require('./cart/updateCart.routes');
+const addCart = require('./cart/addCart.routes');
+const delCart = require('./cart/delCart.routes');
 
 // ****************************mp*************************************
 const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
@@ -78,21 +80,21 @@ const routes = (server) => {
     server.use('/', home);
     server.use('/getAllUsers', [ verifyUser, roleSuperv], routerGetAllUsers);
     server.use('/login', login);
-    server.use('/productDetail',[verifyUser, roleSuperv], routerGetProductDetail );
+    server.use('/productDetail', routerGetProductDetail );
     server.use('/createProduct',[verifyUser, roleSuperv], routerCreatePro);
     server.use('/updateProduct',[verifyUser, roleSuperv], routerUpdatePro);
     server.use('/statusProduct',[verifyUser, roleSuperv], routerStatusPro);
-    server.use('/getAllProducts',[verifyUser, roleSuperv], routerGetProducts);
+    server.use('/getAllProducts', routerGetProducts);
 
-    server.use('/createInvoice',[verifyUser, roleAdmin], createInvoice);
+    server.use('/createInvoice', createInvoice);
 
     server.use('/createCat',[verifyUser, roleSuperv], postCreateCategory);   //ok
-    server.use('/getCat',[verifyUser, roleSuperv], getCategory);  //ok
+    server.use('/getCat', getCategory);  //ok
     server.use('/delCat',[verifyUser, roleSuperv], deleteCategory); //ok
     server.use('/modCat',[verifyUser, roleSuperv], modifyCategory); //ok
 
     server.use('/createSubCat',[verifyUser, roleSuperv], postCreateSubCategory ); //ok
-    server.use('/getSubCat',[verifyUser, roleSuperv], getSubcategory); //ok
+    server.use('/getSubCat', getSubcategory); //ok
     server.use('/delSubCat',[verifyUser, roleSuperv], deleteSubCategory); //ok
     server.use('/modSubCat',[verifyUser, roleSuperv], modifySubCategory); //ok
 
@@ -102,9 +104,9 @@ const routes = (server) => {
     server.use('/statusUser',[verifyUser, roleAdmin], routerStatusUser);
 
     server.use('/hash', hashPassword);
-    server.use("/getAllInvoices",[verifyUser, roleAdmin], getAllInvoices);
-    server.use("/getInvoiceDetail",[verifyUser, roleAdmin], getInvoiceDetail);
-    server.use("/paginatedProducts",[verifyUser, roleAdmin], getInvoiceDetail);
+    server.use("/getAllInvoices", getAllInvoices);
+    server.use("/getInvoiceDetail", getInvoiceDetail);
+    server.use("/paginatedProducts", getInvoiceDetail);
     server.use('/categories',[verifyUser, roleSuperv], categories);
 
     server.use('/featured',[verifyUser, roleAdmin], getAllFeatured);
@@ -140,6 +142,9 @@ const routes = (server) => {
     server.use('/getCart', getCart);
     server.use('/updateCart', updateCart);
     server.use('/logCart', logCart);
+    server.use('/delCart', delCart);
+    server.use('/addCart', addCart);
+
 
 
 }
