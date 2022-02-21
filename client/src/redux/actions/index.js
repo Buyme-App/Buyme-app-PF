@@ -3,7 +3,8 @@ import { saveToken } from "../../components/Login/controllers/tokenFunctions";
 
 // middlewares validacion token
 
-import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+// import { verifyTokenRole, sendKey } from "../../middlewares/verifyToken";
+import { sendKey } from "../../middlewares/verifyToken";
 
 const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
@@ -68,7 +69,9 @@ export const login = async (dispatch, email, password) => {
       payload: credential.data.login,
     });
 
-    const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
+    // Comentado porque daba warning
+    // const roleUser = verifyTokenRole(credential); // Retona el rol del usuario administrativo
+
     return credential;
   } catch (error) {
     loading(dispatch, false);
@@ -301,31 +304,35 @@ export function getAllUsers() {
 }
 
 export function getAllCategories() {
-  try {
-    return async function (dispatch) {
+
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
       return dispatch({
         type: GET_ALL_CATEGORIES,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 export function getSubcategorieById(id) {
-  try {
-    return async function (dispatch) {
+
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
       return dispatch({
         type: GET_SUBCATEGORIE_BY_ID,
         payload: json.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 }
 
 export function createCategory(payload) {
