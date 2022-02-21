@@ -5,12 +5,11 @@ import Footer from "../Footer/Footer";
 
 import InformativeBanner from "../Informative Banner/InformativeBanner";
 import Slider from "../Slider/Main Banner/Slider";
-import FeaturedProducts from "../Slider/FeaturedProducts/FeaturedProducts";
+import FP from "../Slider/Sliderex/FP";
 import styles from "./Landing.module.css";
 import SecondBanner from "../Second Banner/SecondBanner";
 import { useDispatch } from "react-redux";
 import { getProductsClient } from "../../../redux/actions";
-import Cart from "../Cart/Cart";
 
 //sdf
 
@@ -42,7 +41,7 @@ export default function Landing() {
         <h2>Featured Products</h2>
         </div>
       <div>
-        <FeaturedProducts />
+        <FP />
       </div>
       <div>
         <Link className={styles.btnName} to="/shop/">

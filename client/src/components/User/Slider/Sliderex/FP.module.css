@@ -8,24 +8,30 @@
 body{
     width: 100%;
     min-height: 100vh;
-    background-color: white;
+    background-color: transparent;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 
 }
 
 .container{
-    width: 50;
-    max-width: 50vw;  
+    /* width: 69vw; */
+    /* max-width: 69vw;   */
     position: relative;
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
 
 }
 
 .cart{
-    margin: 10px 20px;
+    /* margin: 10px; */
+    margin-right: 36px;
 }
 
 .container .carousel{
@@ -33,6 +39,9 @@ body{
     overflow-x: auto;
     scroll-behavior: smooth;
     position: relative;
+    width: 49vw;
+    padding-left: 13px;
+
 
 }
 
@@ -53,24 +62,24 @@ body{
 .btnIzq{
     background: none;
     border: none;
-    position: absolute;
+    /* position: absolute; */
     /* top: 110px; */
-    display: flex;
-    justify-content: space-between; 
-    left: 0;
-    bottom: 0;
-    margin-right: 50px;
+    /* display: flex; */
+    /* justify-content: space-between;  */
+    /* left: 0; */
+    /* bottom: 0; */
+    /* margin-right: 50px; */
 }
 
 .btnDer{
     background: none;
     border: none;
-    position: absolute;
+    /* position: absolute; */
     /* top: 110px; */
-    display: flex;
-    justify-content: space-between; 
-    right: 0;
-    bottom: 0;
+    /* display: flex; */
+    /* justify-content: space-between;  */
+    /* right: 0;
+    bottom: 0; */
 
 }
 
@@ -80,9 +89,10 @@ body{
 } */
 
 .btn{
-    display: flex;
-    justify-content: space-between;
-    
+    /* display: flex; */
+    /* justify-content: space-between; */
+    margin-top: 15px;
+    justify-content: center;
     /* flex-direction: row; */
 }
 
