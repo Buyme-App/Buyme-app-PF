@@ -77,7 +77,7 @@ export default function SignUp() {
     dispatch(createCustomer(input));
     // dispatch(loginCustomer(input));
     alert('Sign up was successfully!');
-    navigate('/myProfile');
+    navigate('/');
     setInput({
       firstName:"",
       lastName:"",
