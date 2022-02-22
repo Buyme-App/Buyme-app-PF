@@ -507,10 +507,22 @@ export function loginCustomer(payload) {
 };
 
 export function sendToMP(payload){
-  console.log(payload)
+  console.log('>>>>>>>>>>>>>--------', payload);
   return async function () {
     try {
-  // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
+
+      
+    const data = { 
+      clientId: 1,
+      itemsHard: payload,
+      valor: 500
+    }   
+
+    
+
+    // let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+    let json = await axios.post(`${REACT_APP_API}/mp`,data);
+    console.log('---------json----------->>',json);
     }catch(error){
       console.log(error)
     }
