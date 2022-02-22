@@ -9,7 +9,15 @@ const cors = require("cors");
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
-server.use(cors({ origin: "*" }));
+server.use(
+  cors({
+    allowedHeaders: ["authorization", "Content-Type"], // you can change the headers
+    exposedHeaders: ["authorization"], // you can change the headers
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+  })
+);
 
 server.use((req, res, next) => {
   // res.header("Access-Control-Allow-Origin", "*");
