@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loginCustomer } from "../../../redux/actions";
 import styles from "../Login/LoginUser.module.css";
 
@@ -10,7 +11,7 @@ const clientId =
 
 export function LoginGoogle(userData) {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   // Funcion onLoginSuccess que recibe los datos del login, los guarda en la variable y
   const onLoginSuccess = async (res) => {
     console.log("Success login with Google", res.profileObj);
@@ -29,6 +30,7 @@ export function LoginGoogle(userData) {
     };
 
     dispatch(loginCustomer(obj));
+    navigate('/myProfile');
   };
 
   // Funcion onLoginFailire que recibe el error si no se pudo hacer login con google.
