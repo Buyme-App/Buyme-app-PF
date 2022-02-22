@@ -131,16 +131,8 @@ export default function ProductDetail(props) {
                 </div>
                 <div>
                   <div className={styles.quantity}>
-                    <div className={styles.title}>Quantity</div>
-                    <div className={styles.data}>
-                      {/* <input type="number" name="quantity"></input> */}
-                      {/* <input
-                        type= "text"
-                        value={input.quantity}
-                        name= "quantity"
-                        pattern="[0-9]*"
-                        onChange={(e) => handleChange(e)}
-                        /> */}
+                    <div className={styles.title}>Stock</div>
+                    {/* <div className={styles.data}>
                       <input
                         type="text"
                         name="quantity"
@@ -152,14 +144,14 @@ export default function ProductDetail(props) {
                           }
                         }}
                       />
-                    </div>
+                    </div> */}
                     <div className={styles.errors}>
                       {errors.quantity && <span>{errors.quantity}</span>}
                     </div>
                   </div>
                   <div className={styles.stock}>
-                    <div className={styles.title}>Stock</div>
-                    <div className={styles.data}>{product[0].stock}</div>
+                    <div className={styles.title}>{product[0].stock}</div>
+                    {/* <div className={styles.data}>{product[0].stock}</div> */}
                   </div>
                 </div>
                 <button
