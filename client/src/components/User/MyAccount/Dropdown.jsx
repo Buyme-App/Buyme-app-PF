@@ -4,7 +4,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCustomer } from '../../../redux/actions';
+import { LOG_OUT } from '../../../redux/actions';
 
 export default function DropdownMyAccount(){
     
@@ -21,9 +21,10 @@ export default function DropdownMyAccount(){
         setDropdown(!dropdown);
     };
 
-    // useEffect(() => {
-    //     dispatch(getCustomer(3));
-    // },[dispatch]);
+    function handleLogOut(){
+        dispatch({type: LOG_OUT});
+        navigate('/');
+    };
 
     return(
         <div className={styles.dropdown}>
@@ -35,13 +36,13 @@ export default function DropdownMyAccount(){
                     dropdown ? 
                         <DropdownMenu className={styles.content}>
                             {
-                                customer? 
+                                ctm? 
                                         <div>
                                             <DropdownItem header className={styles.header}>Hi {ctm.firstName}!</DropdownItem>
                                             <DropdownItem className={styles.divider} divider />
                                             <Link to='/myOrders'><DropdownItem className={styles.item}>My Orders</DropdownItem></Link>
                                             <Link to='/myProfile'><DropdownItem className={styles.item}>My Profile</DropdownItem></Link>
-                                            <DropdownItem className={styles.item}>Log Out</DropdownItem>
+                                            <DropdownItem onClick={(e) => {handleLogOut(e)}} className={styles.item}>Log Out</DropdownItem>
                                           </div>
                                      : 
                                         <div>

@@ -44,7 +44,7 @@ export default function MyOrders(){
                             </tr>
                         </thead>
                             {
-                                myOrders ? myOrders.map(el => {
+                                ctm ? myOrders.map(el => {
                                     return (
                                             <tbody key={el.id}>
                                                 <tr className={styles.body}>

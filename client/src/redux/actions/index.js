@@ -21,6 +21,7 @@ const REACT_APP_API = process.env.REACT_APP_API
 // estos son ejemplos
 
 export const LOGIN = "LOGIN";
+export const LOG_OUT = 'LOG_OUT';
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_PRODUCTS_INIT = "GET_PRODUCTS_INIT";

@@ -1,5 +1,6 @@
 import {
   LOGIN,
+  LOG_OUT,
   LOADING,
   ERROR_MODAL,
   GET_ALL_USERS,
@@ -258,6 +259,12 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state,
         customer: action.payload 
+      }
+    case LOG_OUT:
+      localStorage.setItem("cliente", JSON.stringify(state.customer === []));
+      return{
+         ...state,
+         customer:[]
       }
     case POST_CUSTOMER:
       return {

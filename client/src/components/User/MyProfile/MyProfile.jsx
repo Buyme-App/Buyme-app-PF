@@ -30,7 +30,7 @@ export default function MyProfile(){
             <div>
             <h1 className={styles.title}>My Profile</h1>
         {
-            customer ? //si un customer se loggeo
+            ctm ? //si un customer se loggeo
                 <div className={styles.container}>
                     <div className={styles.box}>
                         <span className={styles.key}>Name</span>
