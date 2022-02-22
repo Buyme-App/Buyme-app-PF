@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +13,7 @@ import styles from "./Dropdown.module.css";
 
 export default function DropdownMyAccount() {
   const dispatch = useDispatch();
+  const { categoryId } = useParams();
 
   useEffect(() => {
     dispatch(getAllCategories());
@@ -20,9 +21,22 @@ export default function DropdownMyAccount() {
 
   const [dropdown, setDropdown] = useState(false);
   const allCategories = useSelector((state) => state.allCategories);
+
+  // const sortedCategories = allCategories.sort((a, b) => {
+  //   if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+  //   if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+  //   return 0;
+  // });
+
   const catsWithSubcats = allCategories.filter(
     (el) => el.subCategories.length !== 0
   );
+
+  const sortedCategories = catsWithSubcats.sort((a, b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+    return 0;
+  });
 
   function handleDropdown() {
     setDropdown(!dropdown);
@@ -41,9 +55,9 @@ export default function DropdownMyAccount() {
         </DropdownToggle>
         {dropdown ? (
           <DropdownMenu left className={styles.content}>
-            {catsWithSubcats?.map((el) => {
+            {sortedCategories?.map((el) => {
               return (
-                <Link to={`/shop`}>
+                <Link to={"/category/" + el.id}>
                     <DropdownItem className={styles.item}>{el.name}</DropdownItem>
                 </Link>
               );
