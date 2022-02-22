@@ -1,5 +1,6 @@
 import {
   LOGIN,
+  LOG_OUT,
   LOADING,
   ERROR_MODAL,
   GET_ALL_USERS,
@@ -34,9 +35,14 @@ import {
   FILTER_BY_FEATURED_BTN,
   FILTER_BY_DISCOUNTED_BTN,
   FILTER_BY_FEATURED,
+  FILTER_BY_FEATURED_CAT,
   ORDER_BY_PRICE,
   FILTER_BY_DISCOUNT,
+  ORDER_BY_PRICE_CAT,
+  GET_ALL_INVOICES,
   FILTER_BY_CATEGORY,
+  GET_PRODUCTS_BY_CATEGORY,
+  POST_LOGIN_CUSTOMER
 } from "../actions/index";
 
 const initialState = {
@@ -52,6 +58,7 @@ const initialState = {
   loading: false,
   error: false,
   cart: [],
+  allInvoices:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -109,6 +116,13 @@ export default function rootReducer(state = initialState, action) {
     //     ...state,
     //     products: filterByFeaturedBtn,
     //   };
+
+    case GET_PRODUCTS_BY_CATEGORY:
+        return {
+          ...state,
+          products: action.payload,
+          loading: false,
+        };
 
     case GET_PRODUCTS_BY_NAME:
       return {
@@ -240,18 +254,36 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allUsers: [...state.allUsers, action.payload],
       };
-    case GET_CUSTOMER:
-      let currentCustomer = state.customer;
-      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
-      let client = JSON.parse(localStorage.getItem('cliente'));
-      console.log(client);
-      return {
+    // case GET_CUSTOMER:
+    //   let currentCustomer = state.customer;
+    //   localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+    //   let client = JSON.parse(localStorage.getItem('cliente'));
+    //   console.log(client);
+    //   return {
+    //     ...state,
+    //     customer: action.payload,
+    //   };
+    case POST_LOGIN_CUSTOMER:
+      localStorage.setItem('cliente', JSON.stringify(action.payload));
+      JSON.parse(localStorage.getItem('cliente'));
+      return{
         ...state,
-        customer: action.payload,
-      };
+        customer: action.payload 
+      }
+    case LOG_OUT:
+      localStorage.setItem("cliente", JSON.stringify(state.customer === []));
+      return{
+         ...state,
+         customer:[]
+      }
     case POST_CUSTOMER:
       return {
         ...state,
+      };
+    case GET_ALL_INVOICES:
+      return {
+        ...state,
+        allInvoices: action.payload
       };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
@@ -455,6 +487,26 @@ export default function rootReducer(state = initialState, action) {
         };
       }
 
+      case FILTER_BY_FEATURED_CAT:
+        const allProductsJ = state.products;
+        const filteredByFeaturedCat =
+          action.payload === "All"
+            ? allProductsJ
+            : action.payload === "Featured"
+            ? allProductsJ.filter((p) => p.featured === true)
+            : allProductsJ.filter((p) => p.featured === false);
+        if (!filteredByFeaturedCat.length) {
+          return {
+            ...state,
+            products: [404],
+          };
+        } else {
+          return {
+            ...state,
+            products: filteredByFeaturedCat,
+          };
+        }
+
     case ORDER_BY_PRICE:
       const allProductsB = state.allProducts;
       const orderedproducts =
@@ -519,6 +571,50 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         products: orderedproducts,
       };
+
+      case ORDER_BY_PRICE_CAT:
+        const allProductsK = state.products;
+        const orderedproductscat =
+          action.payload === "asc"
+            ? allProductsK.sort((a, b) => {
+                // if (a.price.substring(0, 10) < b.price.substring(0, 10)){
+                //     return 1;
+                // }
+                // if (b.price.substring(0, 10) < a.price.substring(0, 10)){
+                //     return -1;
+                // }
+                // return 0;
+                return a.price - b.price;
+              })
+            : action.payload === "desc"
+            ? allProductsK.sort((a, b) => {
+                // if (a.price.substring(0, 10) > b.price.substring(0, 10)){
+                //     return 1;
+                // }
+                // if (b.price.substring(0, 10) > a.price.substring(0, 10)){
+                //     return -1;
+                // }
+                // return 0;
+                return b.price - a.price;
+              })
+            : action.payload === "All"
+            ? allProductsK.sort((a, b) => {
+                // if (a.id < b.id){
+                //     return -1;
+                // }
+                // if (b.id < a.id){
+                //     return 1;
+                // }
+                // return 0;
+                return b.id - a.id;
+              })
+            : allProductsK.sort((a, b) => {
+                return a.id - b.id;
+              });
+        return {
+          ...state,
+          products: orderedproductscat,
+        };
 
     case FILTER_BY_DISCOUNT:
       const allProductsC = state.allProducts;

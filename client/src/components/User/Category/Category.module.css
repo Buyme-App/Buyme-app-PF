@@ -1,0 +1,138 @@
+.main {
+    width: 100vw;
+    padding: 3% 6%;
+    margin-bottom: 50px;
+    /* background-color: #eee; */
+  }
+  
+  .featured {
+    margin-bottom: 50px;
+    min-height: 200px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background: #fff;
+  }
+  
+  .title {
+    margin: 12px 0 10px 20px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .title span {
+    padding: 10px 15px;
+    /* height: 30px; */
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: left;
+    color: #fff;
+    background: linear-gradient(
+      to right,
+      var(--color-principal-violet-hover),
+      var(--color-hover-principal)
+    );
+    border-radius: 0 0 6px 6px;
+  }
+  
+  .productstop {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
+  }
+  
+  .productsbottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .sidebar {
+    padding: 10px;
+    width: 25%;
+    text-align: left;
+  }
+  
+  .sidebar h2 {
+    margin: 0 0 20px 0;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .detail {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .detail h1 {
+    margin: 5px 0 20px 0;
+    color: #000;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  
+  .grid {
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .paginate {
+    width: 93%;
+  }
+  
+  .loadproducts,
+  .filters {
+    margin-bottom: 30px;
+    width: 80%;
+    height: 50px;
+    color: var(--color-principal-violet);
+    /* color: #fff; */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: 1px solid var(--color-hover-principal);
+    border-radius: 6px;
+    background: #fff;
+    /* background: var(--color-principal-violet); */
+    text-align: center;
+  }
+  
+  .filters {
+    padding-left: 10px;
+  }
+  
+  .loadproducts:hover,
+  .filters:hover {
+    color: #fff;
+    /* color: var(--color-hover-principal); */
+    background: var(--color-hover-principal);
+    /* background: #fff; */
+    border-color: var(--color-hover-principal);
+  }
+  
+  .searchbar {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  h4 {
+    margin-bottom: 5px;
+    width: 80%;
+    text-align: center;
+    font-size: 14px;
+  }
+  

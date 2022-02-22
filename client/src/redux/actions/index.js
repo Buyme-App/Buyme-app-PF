@@ -11,16 +11,10 @@ const REACT_APP_API = process.env.REACT_APP_API
   ? process.env.REACT_APP_API
   : "http://localhost:3001";
 
-// const headerProxy = {
-//   originWhitelist: [
-//     `https://cors-proxy-buyme.herokuapp.com/https://buyme-pf.herokuapp.com/login`,
-//   ],
-//   requireHeader: ["origin", "x-requested-with"],
-// };
-// export const ACTION = "ACTION";
 // estos son ejemplos
 
 export const LOGIN = "LOGIN";
+export const LOG_OUT = 'LOG_OUT';
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_PRODUCTS_INIT = "GET_PRODUCTS_INIT";
@@ -55,8 +49,13 @@ export const FILTER_BY_FEATURED_BTN = "FILTER_BY_FEATURED_BTN";
 export const FILTER_BY_DISCOUNTED_BTN = "FILTER_BY_DISCOUNTED_BTN";
 export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const ORDER_BY_PRICE_CAT = "ORDER_BY_PRICE_CAT";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
+export const GET_ALL_INVOICES = "GET_ALL_INVOICES";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+export const FILTER_BY_FEATURED_CAT = "FILTER_BY_FEATURED_CAT";
+export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
+export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -206,6 +205,29 @@ export function getProductDetail(idProduct) {
   };
 }
 
+export function getProductsByCategory(categoryId) {
+  return async function (dispatch) {
+    try {
+      // dispatch({
+      //   type: GET_PRODUCTS_INIT,
+      // });
+      var json = await axios.get(
+        `${REACT_APP_API}/getcatbyid/` + categoryId
+      );
+      return dispatch({
+        type: GET_PRODUCTS_BY_CATEGORY,
+        payload: json.data,
+      });
+    } catch (error) {
+      // return dispatch({
+      //   type: GET_PRODUCT_DETAIL,
+      //   payload: null,
+      // });
+      // console.log(error)
+    }
+  };
+}
+
 export function getDetailClients(idProduct) {
   return async function (dispatch) {
     try {
@@ -314,7 +336,6 @@ export function getAllUsers() {
 }
 
 export function getAllCategories() {
-
   return async function (dispatch) {
     try {
       let json = await axios.get(`${REACT_APP_API}/categories`, sendKey());
@@ -326,11 +347,9 @@ export function getAllCategories() {
       console.log(error);
     }
   };
-
 }
 
 export function getSubcategorieById(id) {
-
   return async function (dispatch) {
     try {
       let json = await axios.get(`${REACT_APP_API}/getSubcat/` + id, sendKey());
@@ -342,7 +361,6 @@ export function getSubcategorieById(id) {
       console.log(error);
     }
   };
-
 }
 
 export function createCategory(payload) {
@@ -396,7 +414,11 @@ export function deleteUser(id) {
 
 export function getCustomer(email) {
   return async function (dispatch) {
-    let json = await axios.get(`${REACT_APP_API}/getCustomer`,email, sendKey());
+    let json = await axios.get(
+      `${REACT_APP_API}/getCustomer`,
+      email,
+      sendKey()
+    );
     return dispatch({
       type: GET_CUSTOMER,
       payload: json.data,
@@ -446,18 +468,26 @@ export function filterByDiscountedBtn(payload) {
   };
 }
 
-export function filterByCategory(payload){
+export function filterByCategory(payload) {
   //console.log(payload)
   return {
-      type: FILTER_BY_CATEGORY,
-      payload,
-  }
+    type: FILTER_BY_CATEGORY,
+    payload,
+  };
 }
 
 export function filterByFeatured(payload) {
   // console.log(payload)
   return {
     type: FILTER_BY_FEATURED,
+    payload,
+  };
+}
+
+export function filterByFeaturedCat(payload) {
+  // console.log(payload)
+  return {
+    type: FILTER_BY_FEATURED_CAT,
     payload,
   };
 }
@@ -470,6 +500,14 @@ export function orderByPrice(payload) {
   };
 }
 
+export function orderByPriceCat(payload) {
+  // console.log(payload)
+  return {
+    type: ORDER_BY_PRICE_CAT,
+    payload,
+  };
+}
+
 export function filterByDiscount(payload) {
   // console.log(payload)
   return {
@@ -478,13 +516,48 @@ export function filterByDiscount(payload) {
   };
 }
 
+export function getAllInvoices() {
+  return async function (dispatch) {
+    let json = await axios.get(`${REACT_APP_API}/getAllInvoices`, sendKey());
+    return dispatch({
+      type: GET_ALL_INVOICES,
+      payload: json.data,
+    });
+  };
+}
+
+export function loginCustomer(payload) {
+  console.log("ACTION<<<<<<<<<<<<<<<<<<", payload);
+  return async function (dispatch) {
+    let json = await axios.post(`${REACT_APP_API}/loginCostumer`, payload);
+    console.log("JSOn<<<<<<<<<<<<<<<<<<", json);
+    return dispatch({
+      type: POST_LOGIN_CUSTOMER,
+      payload: json.data,
+    });
+  };
+}
+
 export function sendToMP(payload){
-  console.log(payload)
-  return async function () {
-    try {
-  // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
-    }catch(error){
-      console.log(error)
+    console.log('>>>>>>>>>>>>>--------', payload);
+    return async function () {
+      try {
+  
+        
+      const data = { 
+        clientId: 1,
+        itemsHard: payload,
+        valor: 500
+      }   
+  
+      
+  
+      // let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+      let json = await axios.post(`${REACT_APP_API}/mp`,data);
+      console.log('---------json----------->>',json);
+      }catch(error){
+        console.log(error)
+      }
     }
   }
-}
+
