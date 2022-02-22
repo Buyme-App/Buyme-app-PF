@@ -12,7 +12,7 @@ if (port == null || port == "") {
 
 // Start server
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     server.listen(port, () => {
       userRoot(); //crear usuario adminRoot sino existe en la DB.
