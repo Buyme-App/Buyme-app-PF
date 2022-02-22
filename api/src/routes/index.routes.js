@@ -121,9 +121,6 @@ const routes = (server) => {
 
   server.use("/sendMail", sendMail);
   
-  //mp
-    server.use('/mp', mp); //agregar para mercado pago
-    server.use('/MPsuccess', MPsuccess); // Se agrega para el url de respuesta
 
   // *****************************************Customer****************************
 
@@ -143,10 +140,12 @@ const routes = (server) => {
   // ---------Rutas getAllProducts y productDetail para el cliente sin restricciones de seguridad.
   server.use("/getProductsClient", routerGetProducts);
   server.use("/getProDetailClient", routerGetProductDetail);
-
+  
   //mp
-  server.use("/mp", mp); //agregar para mercado pago
-  server.use("/notification", notificationOrder); // Se agrega para el url de respuesta
+  server.use('/mp', mp); //agregar para mercado pago
+  server.use('/MPsuccess', MPsuccess); // Se agrega para el url de respuesta
+
+ 
 
   //cart
   server.use("/getCart", getCart);
@@ -158,3 +157,4 @@ const routes = (server) => {
 };
 
 module.exports = routes; // Update
+
