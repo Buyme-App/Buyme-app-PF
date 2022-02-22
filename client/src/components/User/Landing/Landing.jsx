@@ -44,7 +44,7 @@ export default function Landing() {
         <FP />
       </div>
       <div>
-        <Link className={styles.btnName} to="/shop/">
+        <Link className={styles.btnName} to="/shop">
           <button className={styles.btnall}>View All Products</button>
         </Link>
       </div>
