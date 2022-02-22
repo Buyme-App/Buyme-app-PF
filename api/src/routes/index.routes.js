@@ -28,6 +28,9 @@ const getSubcategory = require("./subcategory/getSubCategory.route"); //
 const deleteSubCategory = require("./subcategory/deleteSubCategory.routes"); //
 const modifySubCategory = require("./subcategory/modifySubCategory.routes"); //
 
+const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
+const MPsuccess = require('./mercadopago/MPsuccess.route'); // agregar para recibir notificacion
+
 const getCatById = require("./category/getCatById.routes");
 
 //Nico
@@ -73,8 +76,10 @@ const addCart = require("./cart/addCart.routes");
 const delCart = require("./cart/delCart.routes");
 
 // ****************************mp*************************************
+
 const mp = require("./mercadopago/mpAccess.route"); //agregar para mercado pago
 const notificationOrder = require("./mercadopago/notificationOrder.route"); // agregar para recibir notificacion
+
 
 const routes = (server) => {
   server.use("/", home);
@@ -115,6 +120,10 @@ const routes = (server) => {
   server.use("/featured", [verifyUser, roleAdmin], getAllFeatured);
 
   server.use("/sendMail", sendMail);
+  
+  //mp
+    server.use('/mp', mp); //agregar para mercado pago
+    server.use('/MPsuccess', MPsuccess); // Se agrega para el url de respuesta
 
   // *****************************************Customer****************************
 
