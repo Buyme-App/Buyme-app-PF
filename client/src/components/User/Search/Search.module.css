@@ -72,6 +72,13 @@
   flex-direction: column;
 }
 
+.detail h1 {
+  margin: 5px 0 20px 0;
+  color: #000;
+  text-align: left;
+  justify-content: flex-start;
+}
+
 .grid {
   margin-bottom: 40px;
   width: 100%;
