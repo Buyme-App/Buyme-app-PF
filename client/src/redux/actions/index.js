@@ -48,9 +48,12 @@ export const FILTER_BY_FEATURED_BTN = "FILTER_BY_FEATURED_BTN";
 export const FILTER_BY_DISCOUNTED_BTN = "FILTER_BY_DISCOUNTED_BTN";
 export const FILTER_BY_FEATURED = "FILTER_BY_FEATURED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const ORDER_BY_PRICE_CAT = "ORDER_BY_PRICE_CAT";
 export const FILTER_BY_DISCOUNT = "FILTER_BY_DISCOUNT";
 export const GET_ALL_INVOICES = "GET_ALL_INVOICES";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+export const FILTER_BY_FEATURED_CAT = "FILTER_BY_FEATURED_CAT";
+export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
 
 // Used in Account component
@@ -189,6 +192,29 @@ export function getProductDetail(idProduct) {
       );
       return dispatch({
         type: GET_PRODUCT_DETAIL,
+        payload: json.data,
+      });
+    } catch (error) {
+      // return dispatch({
+      //   type: GET_PRODUCT_DETAIL,
+      //   payload: null,
+      // });
+      // console.log(error)
+    }
+  };
+}
+
+export function getProductsByCategory(categoryId) {
+  return async function (dispatch) {
+    try {
+      // dispatch({
+      //   type: GET_PRODUCTS_INIT,
+      // });
+      var json = await axios.get(
+        `${REACT_APP_API}/getcatbyid/` + categoryId
+      );
+      return dispatch({
+        type: GET_PRODUCTS_BY_CATEGORY,
         payload: json.data,
       });
     } catch (error) {
@@ -457,10 +483,26 @@ export function filterByFeatured(payload) {
   };
 }
 
+export function filterByFeaturedCat(payload) {
+  // console.log(payload)
+  return {
+    type: FILTER_BY_FEATURED_CAT,
+    payload,
+  };
+}
+
 export function orderByPrice(payload) {
   // console.log(payload)
   return {
     type: ORDER_BY_PRICE,
+    payload,
+  };
+}
+
+export function orderByPriceCat(payload) {
+  // console.log(payload)
+  return {
+    type: ORDER_BY_PRICE_CAT,
     payload,
   };
 }
@@ -495,13 +537,26 @@ export function loginCustomer(payload) {
   };
 }
 
-export function sendToMP(payload) {
-  console.log(payload);
-  return async function () {
-    try {
-      // let json = await axios.post(`${REACT_APP_API}/mp`,payload, sendKey());
-    } catch (error) {
-      console.log(error);
+export function sendToMP(payload){
+    console.log('>>>>>>>>>>>>>--------', payload);
+    return async function () {
+      try {
+  
+        
+      const data = { 
+        clientId: 1,
+        itemsHard: payload,
+        valor: 500
+      }   
+  
+      
+  
+      // let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+      let json = await axios.post(`${REACT_APP_API}/mp`,data);
+      console.log('---------json----------->>',json);
+      }catch(error){
+        console.log(error)
+      }
     }
-  };
-}
+  }
+

@@ -6,7 +6,7 @@ const createCustomerDB = require("../../controllers/customer/createCustomer.cont
 
 async function loginCostumer(req){
 
-    console.log('>>>>>CREATEGGGGGGGG', req.body)
+    // console.log('>>>>>CREATEGGGGGGGG', req.body)
     if(req.body.googleId){
 
         try {
@@ -15,9 +15,9 @@ async function loginCostumer(req){
                 
                 });
         
-                console.log('COSTUMERGOOO', client)
+                // console.log('COSTUMERGOOO', client)
                 if(client){
-                    console.log('LOGINGOOOO')
+                    // console.log('LOGINGOOOO')
                     return client;
         
                 }else{
@@ -33,7 +33,7 @@ async function loginCostumer(req){
                             where: {email: req.body.email}
                             
                         });
-                        console.log('$$$$$$$$', client)
+                        // console.log('$$$$$$$$', client)
                         return client
                     }
                     else return false;
@@ -53,9 +53,9 @@ async function loginCostumer(req){
                 
                 });
         
-                console.log('CostumerINt', client)
+                // console.log('CostumerINt', client)
                 if(client){
-                    console.log('LOGININTER')
+                    // console.log('LOGININTER')
                     return client
         
                 }else{
