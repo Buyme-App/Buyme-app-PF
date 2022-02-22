@@ -1,0 +1,101 @@
+
+.main img{
+    display: flex;
+    height: 45px;
+    width: 190px;
+    margin: auto;
+    margin-bottom: 80px;
+    margin-top: 40px;
+}
+
+.btnBack{
+    margin: 50px 100px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 155px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--color-pink-buttons);
+    color: white;
+}
+
+.btnBack:hover{
+    background-color: var(--color-pinkHover-buttons);
+}
+
+h2{
+    /* text-align: left; */
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+.input{
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    border-width: thin;
+    border-color: black;
+    /* margin-bottom: 20px; */
+    height:55px;
+    width: 600px;
+    color: black;
+    margin: 25px auto;
+    box-shadow: 0px 5px 11px 0px #c0c0c0;
+
+    /* justify-content: left; */
+    /* left:0; */
+}
+
+.input::placeholder{
+    /* margin-left: 20px; */
+    padding-left: 20px;
+}
+
+.btnCreate{
+    margin: 50px 100px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 155px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--color-pink-buttons);
+    color: white;
+}
+
+.btnCreate:hover{
+    background-color: var(--color-pinkHover-buttons);
+   }
+
+.types{
+        background-color: rgb(14, 13, 13);
+        outline-color: rgb(253, 231, 33);
+        color:rgb(253, 231, 33);
+        border-radius: 5px;
+        border-width: thin;
+        margin: 20px;
+        padding:8px;
+        font-family:monospace; 
+    }
+    
+    .types:hover{
+    box-shadow: 0 12px 16px rgba(243, 243, 243, 0.2);
+    }
+
+    .gral{
+    background-repeat: no-repeat; 
+    background-size: cover;
+    }
+
+    .hola{
+        background-color: tomato;
+    }
+
+    .create{
+    height: 100px;
+    width: 380px;    
+    margin-top: 50px;
+    }
