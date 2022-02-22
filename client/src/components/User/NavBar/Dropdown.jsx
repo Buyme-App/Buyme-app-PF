@@ -55,10 +55,13 @@ export default function DropdownMyAccount() {
         </DropdownToggle>
         {dropdown ? (
           <DropdownMenu left className={styles.content}>
+            <Link to="/shop">
+                    <DropdownItem className={styles.itemtop}>Shop All Categories</DropdownItem>
+                </Link>
             {sortedCategories?.map((el) => {
               return (
                 <Link to={"/category/" + el.id}>
-                    <DropdownItem className={styles.item}>{el.name}</DropdownItem>
+                    <DropdownItem className={styles.items}>{el.name}</DropdownItem>
                 </Link>
               );
             })}
