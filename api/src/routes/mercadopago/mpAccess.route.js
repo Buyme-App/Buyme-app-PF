@@ -69,5 +69,5 @@ console.log(clientId, itemsHard, valor);
 
 module.exports = router;
 
-
+//modificado
 

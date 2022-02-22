@@ -24,16 +24,4 @@ router.post("/", async (req, res) => {                  //post /MPsuccess
 });
 
 module.exports = router;
-
-
-
-
-
-// const valor = response.body.id;
-          
-          // createInvoiceDB(clientId, itemsHard, valor)
-          //   .then(function (response1) {})
-          //   .catch(function (error) {
-          //     console.log('createInvoiceDB', error);
-          //   });
-          // const url = response.body.init_point
+//modificado

@@ -7,9 +7,6 @@ const login = require('./login/login.routes'); //
 // Jose
 const routerGetProductDetail = require('./product/getProductDetail.routes'); //
 
-//email
-const mailOrder = require('./mail/mailOrder.routes'); //se envia las ordenes de compra
-
 // Victor
 const routerGetAllUsers = require('./user/getAllUsers.routes'); //
 const routerCreatePro = require('./product/createProduct.routes'); //
@@ -151,9 +148,6 @@ const routes = (server) => {
     server.use('/delCart', delCart);
     server.use('/addCart', addCart);
     server.use('/loginCostumer', loginCostumer);
-
-    //mail
-    server.use('/mailOrder', mailOrder);
 
 }
 
