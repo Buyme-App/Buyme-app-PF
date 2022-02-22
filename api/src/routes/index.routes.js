@@ -77,9 +77,6 @@ const delCart = require("./cart/delCart.routes");
 
 // ****************************mp*************************************
 
-const mp = require("./mercadopago/mpAccess.route"); //agregar para mercado pago
-const notificationOrder = require("./mercadopago/notificationOrder.route"); // agregar para recibir notificacion
-
 
 const routes = (server) => {
   server.use("/", home);
