@@ -253,11 +253,8 @@ export default function rootReducer(state = initialState, action) {
     //     customer: action.payload,
     //   };
     case POST_LOGIN_CUSTOMER:
-      let currentCustomer = state.customer;
-      console.log(currentCustomer);
-      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
-      let client = JSON.parse(localStorage.getItem('cliente'));
-      console.log(client);
+      localStorage.setItem('cliente', JSON.stringify(action.payload));
+      JSON.parse(localStorage.getItem('cliente'));
       return{
         ...state,
         customer: action.payload 
