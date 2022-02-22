@@ -7,6 +7,9 @@ const login = require('./login/login.routes'); //
 // Jose
 const routerGetProductDetail = require('./product/getProductDetail.routes'); //
 
+//email
+const mailOrder = require('./mail/mailOrder.routes'); //se envia las ordenes de compra
+
 // Victor
 const routerGetAllUsers = require('./user/getAllUsers.routes'); //
 const routerCreatePro = require('./product/createProduct.routes'); //
@@ -73,7 +76,7 @@ const delCart = require('./cart/delCart.routes');
 
 // ****************************mp*************************************
 const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
-const notificationOrder = require('./mercadopago/notificationOrder.route'); // agregar para recibir notificacion
+const MPsuccess = require('./mercadopago/MPsuccess.route'); // agregar para recibir notificacion
 
 const routes = (server) => {
     server.use('/', home);
@@ -139,7 +142,7 @@ const routes = (server) => {
 
     //mp
     server.use('/mp', mp); //agregar para mercado pago
-    server.use('/notification', notificationOrder); // Se agrega para el url de respuesta
+    server.use('/MPsuccess', MPsuccess); // Se agrega para el url de respuesta
 
     //cart
     server.use('/getCart', getCart);
@@ -149,7 +152,8 @@ const routes = (server) => {
     server.use('/addCart', addCart);
     server.use('/loginCostumer', loginCostumer);
 
-
+    //mail
+    server.use('/mailOrder', mailOrder);
 
 }
 
