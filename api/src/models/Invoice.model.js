@@ -11,14 +11,19 @@ module.exports = (sequelize) => {
     },
     products: {
       type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: false,
+      allowNull: true,
     },
     clientId: {
       type: DataTypes.INTEGER,           //Se agrega como clave para acceder a Modelo Client
       allowNull: false,
     },
-    Delivered: {
+    total: {
+      type: DataTypes.DECIMAL(25,2),           //Se agrega como clave para acceder a Modelo Client
+      allowNull: true,
+    },
+    delivered: {
       type: DataTypes.BOOLEAN,
+      allowNull: true,
       defaultValue: false,
     }
   });

@@ -4,7 +4,12 @@ const showErrors = require("../../messageConsole");
 const createInvoiceDB = require("../../controllers/mercadopago/createInvoiceMP.controller");
 
 router.post("/", async (req, res) => {                  //post /MPsuccess
-  try { 
+  try {
+    
+    console.log('llego a la ruta');
+    console.log(req.body);
+
+
     const {clientId, itemsHard, valor} = req.body;
 
     createInvoiceDB(clientId, itemsHard, valor)

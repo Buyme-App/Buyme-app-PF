@@ -20,6 +20,8 @@ import SignUp from "./components/User/Login/SignUp/SignUp";
 import FP from "./components/User/Slider/Sliderex/FP";
 import MyProfile from "./components/User/MyProfile/MyProfile";
 import MyOrders from "./components/User/MyOrders/MyOrders";
+import Success from "./components/Success/success";
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element = {<Landing/>}></Route>
+          <Route path="/success" element = {<Success/>}></Route>
           <Route path="/shop" element = {<Catalogue/>}></Route>
           <Route path="/search" element = {<Search/>}></Route>
           <Route path="/about" element = {<About/>}></Route>

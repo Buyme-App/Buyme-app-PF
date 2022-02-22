@@ -15,15 +15,15 @@ mercadopago.configure({
   access_token: 'APP_USR-795368609311295-020422-fae769e7be0de3e4c4c28f63f524af45-1068887150',
 });
 
-
-
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
-  
+ console.log('>>>>>>>>>>>>>>>>>>>>-------post mpaccess.route ', req.body); 
  let {clientId, itemsHard, valor} = req.body;
 
 //  let [id, title, unit_price, quantity] = itemsHard
  
+console.log(clientId, itemsHard, valor);
+
  if(!itemsHard || itemsHard !== undefined){
   console.log('mpAccess.route', itemsHard)
     let itemsMp = itemsHard.map(e => {
