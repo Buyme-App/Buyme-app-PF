@@ -6,13 +6,14 @@
 
 
 .main {
-    margin: 0 auto;
+    /* margin: 0 auto;
     width: 70vw;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 20px; */
+    min-height: 100vh;
 }
 
 h1 {
@@ -30,21 +31,19 @@ h1, h3 {
     text-align: left;
 }
 
-.inputs,
-.inputs2 {
-    width: 580px;
+.inputs {
+    width: 100%;
 }
 
-.inputs1 {
-    width: 260px;
+.inputs1,
+.inputs2 {
+    width: 30%;
     display: flex;
     flex-direction: column;
 }
 
 .inputs2 {
-    width: 260px;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 }
 
 .inputs img {
@@ -74,15 +73,15 @@ h1, h3 {
 
 .textarea {
     padding: 0;
-    width: 580px;
+    width: 100%;
     height: auto;
     margin-bottom: 40px;
 }
 
 .textarea textarea {
     padding: 10px;
-    max-width: 580px;
-    min-width: 580px;
+    max-width: 100%;
+    min-width: 100%;
     min-height: 150px;
     border: none;
     background-color: transparent;
@@ -115,7 +114,7 @@ h1, h3 {
 }
 
 .row {
-    width: 580px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }

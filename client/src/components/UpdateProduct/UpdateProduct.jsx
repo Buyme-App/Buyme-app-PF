@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./updateProduct.module.css";
-import Uploader from "../AdminNewProduct/Uploader";
+// import Uploader from "../AdminNewProduct/Uploader";
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { updateProduct } from "../../redux/actions";
@@ -62,9 +62,17 @@ function validate(input) {
     errors.offerPrice = "Price is required";
   }
 
-  if (!input.featured) {
-    errors.featured = "Featured is required";
-  }
+  // if (!input.featured) {
+  //   errors.featured = "Featured is required";
+  // }
+
+  // if (!input.paused) {
+  //   errors.paused = "Status is required";
+  // }
+
+  // if (!input.status) {
+  //   errors.status = "Slider Home is required";
+  // }
 
   if (input.stock.length > 0 && input.stock < 0) {
     errors.stock = "Positive numbers only";
@@ -96,36 +104,40 @@ export default function UpdateProduct({
 }) {
   const dispatch = useDispatch();
   const allProductsRedux = useSelector((state) => state.allProducts);
+  const allCategories = useSelector((state) => state.allCategories);
+  const catsWithSubcats = allCategories.filter(
+    (el) => el.subCategories.length !== 0
+  );
 
-  const custom_config = {
-    // extraPlugins: [ MyCustomUploadAdapterPlugin ],
-    toolbar: {
-      items: [
-        "heading",
-        "|",
-        "bold",
-        "italic",
-        "|",
-        "link",
-        "|",
-        "bulletedList",
-        "numberedList",
-        "|",
-        "blockQuote",
-        "|",
-        "insertTable",
-        "|",
-        "imageUpload",
-        "mediaEmbed",
-        "|",
-        "undo",
-        "redo",
-      ],
-    },
-    // table: {
-    //   contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
-    // }
-  };
+  // const custom_config = {
+  //   // extraPlugins: [ MyCustomUploadAdapterPlugin ],
+  //   toolbar: {
+  //     items: [
+  //       "heading",
+  //       "|",
+  //       "bold",
+  //       "italic",
+  //       "|",
+  //       "link",
+  //       "|",
+  //       "bulletedList",
+  //       "numberedList",
+  //       "|",
+  //       "blockQuote",
+  //       "|",
+  //       "insertTable",
+  //       "|",
+  //       "imageUpload",
+  //       "mediaEmbed",
+  //       "|",
+  //       "undo",
+  //       "redo",
+  //     ],
+  //   },
+  //   // table: {
+  //   //   contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
+  //   // }
+  // };
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: toEdit.name,
@@ -139,9 +151,10 @@ export default function UpdateProduct({
     inventary: toEdit.inventary,
     description: toEdit.description,
     featured: toEdit.featured,
-    status: toEdit.paused,
-    // categoryId: toEdit.categoryId,
-    // subCategoryId: toEdit.subCategoryId,
+    paused: toEdit.paused,
+    status: toEdit.status,
+    categoryId: toEdit.categoryId,
+    subCategoryId: toEdit.subCategoryId,
   });
 
   function handleInputChange(e) {
@@ -193,9 +206,10 @@ export default function UpdateProduct({
         featured: "",
         description: "",
         paused: "",
+        status: "",
         categoryId: "",
         subCategoryId: "",
-        images: "",
+        // images: "",
       });
       refreshHandler();
       setActiveUpdate(false);
@@ -216,10 +230,6 @@ export default function UpdateProduct({
     <div className={styles.gral}>
       <div className={styles.main}>
         <form className={styles.uForm} onSubmit={(e) => handleSubmit(e)}>
-          {/* <div className={styles.close} onClick={() => setActiveUpdate(false)}>
-          {" "}
-          <span>X</span>
-        </div> */}
           <div className={styles.closediv}>
             <button
               className={styles.close}
@@ -228,7 +238,7 @@ export default function UpdateProduct({
               x
             </button>
           </div>
-          <h3>Product Names *</h3>
+          <h3>Product Name *</h3>
           <div className={styles.inputs}>
             <input
               type="text"
@@ -308,7 +318,7 @@ export default function UpdateProduct({
             {/* ------------Reduced Price---------------- */}
             <div className={styles.inputs1}>
               <h3 className={styles.reduced_price}>
-                <span> Reduced Price</span>
+                <span>Reduced Price</span>
               </h3>
               <div className={styles.inputs}>
                 <input
@@ -378,7 +388,7 @@ export default function UpdateProduct({
           <h3>Status *</h3>
           <div className={styles.inputs}>
             <select
-              defaultValue={input.status}
+              defaultValue={input.paused}
               name="paused"
               className={styles.select}
               onChange={(e) => handleInputChange(e)}
@@ -393,21 +403,45 @@ export default function UpdateProduct({
               {errors.paused && <span>{errors.paused}</span>}
             </div>
           </div>
-          {/* ------------------category----------------- */}
-          <h3>Category *</h3>
+          {/* ------------------slider----------------- */}
+          <h3>Slider Home *</h3>
           <div className={styles.inputs}>
             <select
-              defaultValue={input.categoryId}
-              name="categoryId"
+              defaultValue={input.status}
+              name="status"
               className={styles.select}
               onChange={(e) => handleInputChange(e)}
             >
               <option value="" disabled>
                 Select
               </option>
-              <option value="true">Inactive</option>
-              <option value="false">Active</option>
+              <option value="false">No</option>
+              <option value="true">Yes</option>
             </select>
+            <div className={styles.errors}>
+              {errors.status && <span>{errors.status}</span>}
+            </div>
+          </div>
+          {/* ------------------category----------------- */}
+          <h3>Category *</h3>
+          <div className={styles.inputs}>
+            <select
+                defaultValue={input.categoryId}
+                name="categoryId"
+                className={styles.select}
+                onChange={(e) => handleInputChange(e)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                {catsWithSubcats?.map((el) => {
+                  return (
+                    <option value={el.id} key={el.id}>
+                      {el.name}
+                    </option>
+                  );
+                })}
+              </select>
             <div className={styles.errors}>
               {errors.categoryId && <span>{errors.categoryId}</span>}
             </div>
@@ -416,17 +450,36 @@ export default function UpdateProduct({
           <h3>Subcategory *</h3>
           <div className={styles.inputs}>
             <select
-              defaultValue={input.subCategoryId}
-              name="subCategoryId"
-              className={styles.select}
-              onChange={(e) => handleInputChange(e)}
-            >
-              <option value="" disabled>
-                Select
-              </option>
-              <option value="true">Inactive</option>
-              <option value="false">Active</option>
-            </select>
+                defaultValue={input.subCategoryId}
+                name="subCategoryId"
+                className={styles.select}
+                onChange={(e) => handleInputChange(e)}
+              >
+                <option value="" disabled>
+                  Select
+                </option>
+                {allCategories?.map((el) => {
+                  return (
+                    <>
+                      <option value={el.id} key={el.id} disabled>
+                        {el.name}
+                      </option>
+                      {catsWithSubcats
+                        ?.filter((c) => c.subCategories === el.subCategories)
+                        .map((s) =>
+                          s.subCategories.map((el) => {
+                            return (
+                              <option value={el.id} key={el.id}>
+                                • {el.name}
+                              </option>
+                            );
+                          })
+                        )}
+                    </>
+                  );
+                })}
+              </select>
+
             <div className={styles.errors}>
               {errors.subCategoryId && <span>{errors.subCategoryId}</span>}
             </div>
@@ -484,12 +537,12 @@ export default function UpdateProduct({
               config={custom_config}
             /> */}
           </div>
-          <h3>
+          {/* <h3>
             Upload your images <small>(jpg, png and gif formats)</small>
           </h3>
           <div className={styles.uploader}>
             <Uploader />
-          </div>
+          </div> */}
           {/* -----------buttons---------------- */}
           <div className={styles.buttons_box}>
             <button className={styles.update} type="submit">

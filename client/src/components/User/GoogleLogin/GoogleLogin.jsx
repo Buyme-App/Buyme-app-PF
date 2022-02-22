@@ -1,12 +1,12 @@
 import React from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
-import { createCustomer } from "../../../redux/actions";
+import { loginCustomer } from "../../../redux/actions";
 import styles from "../Login/LoginUser.module.css";
 
 // Id del usuario en la google console developers.
 const clientId =
-  "443144576490-k8m4imerk2v4jo8mof3qhddmdqdbp1pk.apps.googleusercontent.com";
+  "532893426828-r97cch5c0jid27g5ub373cu4n8kdo3qb.apps.googleusercontent.com";
 
 export function LoginGoogle(userData) {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export function LoginGoogle(userData) {
       googleId: googleId,
     };
 
-    dispatch(createCustomer(obj));
+    dispatch(loginCustomer(obj));
   };
 
   // Funcion onLoginFailire que recibe el error si no se pudo hacer login con google.

@@ -91,10 +91,7 @@ export default function Sales() {
   };
   //jj
   return (
-    <div className={sStyle.gral}>
-      <div className={sStyle.sales_container}>
-        {/* <h1 className={sStyle.title}>Sales</h1> */}
-
+      <div className={sStyle.container}>
         <div className={sStyle.input_box}>
           <div className={sStyle.input}>
             <input
@@ -102,7 +99,7 @@ export default function Sales() {
               placeholder="Search by order#, customers or products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && searchHandler(search)}
+              onKeyDown={(e) => e.key === "Enter" && searchHandler(search)}
             />
             <FaSistrix
               className={sStyle.icon}
@@ -158,6 +155,5 @@ export default function Sales() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

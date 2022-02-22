@@ -21,13 +21,12 @@
 }
 
 .thead{
-    /* margin: 2rem; */
-    grid-template-rows: 1;
+    /* grid-template-rows: 1; */
     background-color: var(--color-violet);
 }
 
 .body {
-    grid-template-rows: 2;
+    /* grid-template-rows: 2; */
 }
 
 .tr {

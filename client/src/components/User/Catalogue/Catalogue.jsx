@@ -59,26 +59,27 @@ export default function Catalogue() {
             ) : featuredProducts[0] === 404 ? (
               <NotFound />
             ) : (
-              featuredProducts?.map((p) => {
-                return (
-                  <>
-                    <Link
-                      className={styles.btnName}
-                      to={"/product/" + p.id}
-                      key={p.id}
-                    >
-                      <Cards2
-                        className={styles.grid}
-                        image={p.image}
-                        name={p.name}
-                        price={p.price}
-                        offerPrice={p.offerPrice}
-                      />
-                    </Link>
-                  </>
-                );
-              })
-            )}
+                  featuredProducts?.map((p) => {
+                    return (
+                      // para que no salga el warning de key prop en la ruta shop
+                      <li key={p.id}>
+                        <Link
+                          className={styles.btnName}
+                          to={"/product/" + p.id}
+                        >
+                          <Cards2
+                            key={p.id}
+                            className={styles.grid}
+                            image={p.image}
+                            name={p.name}
+                            price={p.price}
+                            offerPrice={p.offerPrice}
+                          />
+                        </Link>
+                      </li>
+                    );
+                  })
+                )}
           </div>
         </div>
         <div className={styles.productsbottom}>
@@ -100,26 +101,27 @@ export default function Catalogue() {
               ) : currentProducts[0] === 404 ? (
                 <NotFound />
               ) : (
-                currentProducts?.map((p) => {
-                  return (
-                    <>
-                      <Link
-                        className={styles.btnName}
-                        to={"/product/" + p.id}
-                        key={p.id}
-                      >
-                        <Cards
-                          className={styles.grid}
-                          image={p.image}
-                          name={p.name}
-                          price={p.price}
-                          offerPrice={p.offerPrice}
-                        />
-                      </Link>
-                    </>
-                  );
-                })
-              )}
+                    currentProducts?.map((p) => {
+                      return (
+                        // para que no salga el warning de key prop en la ruta shop
+                        <li key={p.id}>
+                          <Link
+                            className={styles.btnName}
+                            to={"/product/" + p.id}
+                          >
+                            <Cards
+                              key={p.id.toString()}
+                              className={styles.grid}
+                              image={p.image}
+                              name={p.name}
+                              price={p.price}
+                              offerPrice={p.offerPrice}
+                            />
+                          </Link>
+                        </li>
+                      );
+                    })
+                  )}
             </div>
             <div>
               <Paginate

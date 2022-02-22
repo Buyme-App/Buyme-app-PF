@@ -36,7 +36,9 @@ import {
   FILTER_BY_FEATURED,
   ORDER_BY_PRICE,
   FILTER_BY_DISCOUNT,
+  GET_ALL_INVOICES,
   FILTER_BY_CATEGORY,
+  POST_LOGIN_CUSTOMER
 } from "../actions/index";
 
 const initialState = {
@@ -52,6 +54,7 @@ const initialState = {
   loading: false,
   error: false,
   cart: [],
+  allInvoices:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -240,18 +243,33 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allUsers: [...state.allUsers, action.payload],
       };
-    case GET_CUSTOMER:
+    // case GET_CUSTOMER:
+    //   let currentCustomer = state.customer;
+    //   localStorage.setItem('cliente', JSON.stringify(currentCustomer));
+    //   let client = JSON.parse(localStorage.getItem('cliente'));
+    //   console.log(client);
+    //   return {
+    //     ...state,
+    //     customer: action.payload,
+    //   };
+    case POST_LOGIN_CUSTOMER:
       let currentCustomer = state.customer;
+      console.log(currentCustomer);
       localStorage.setItem('cliente', JSON.stringify(currentCustomer));
       let client = JSON.parse(localStorage.getItem('cliente'));
       console.log(client);
-      return {
+      return{
         ...state,
-        customer: action.payload,
-      };
+        customer: action.payload 
+      }
     case POST_CUSTOMER:
       return {
         ...state,
+      };
+    case GET_ALL_INVOICES:
+      return {
+        ...state,
+        allInvoices: action.payload
       };
     case ADD_TO_CART:
       let { product, amount } = action.payload;
