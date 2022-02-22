@@ -23,6 +23,8 @@ router.post("/", async (req, res) => {
 //  let [id, title, unit_price, quantity] = itemsHard
  
 console.log(clientId, itemsHard, valor);
+ let shipping=0; 
+ ((valor) && (valor>6000))?shipping=0:shipping=1500; 
 
  if(!itemsHard || itemsHard !== undefined){
   console.log('mpAccess.route', itemsHard)
@@ -40,7 +42,7 @@ console.log(clientId, itemsHard, valor);
         statement_descriptor: "Buyme App Shop",
         items: itemsHard,
         shipments: {
-          cost: 100,
+          cost: shipping,
           mode: "not_specified",
         }, 
         back_urls: {
