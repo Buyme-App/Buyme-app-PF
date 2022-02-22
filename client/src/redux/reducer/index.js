@@ -1,5 +1,6 @@
 import {
   LOGIN,
+  LOG_OUT,
   LOADING,
   ERROR_MODAL,
   GET_ALL_USERS,
@@ -263,14 +264,17 @@ export default function rootReducer(state = initialState, action) {
     //     customer: action.payload,
     //   };
     case POST_LOGIN_CUSTOMER:
-      let currentCustomer = state.customer;
-      console.log(currentCustomer);
-      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
-      let client = JSON.parse(localStorage.getItem('cliente'));
-      console.log(client);
+      localStorage.setItem('cliente', JSON.stringify(action.payload));
+      JSON.parse(localStorage.getItem('cliente'));
       return{
         ...state,
         customer: action.payload 
+      }
+    case LOG_OUT:
+      localStorage.setItem("cliente", JSON.stringify(state.customer === []));
+      return{
+         ...state,
+         customer:[]
       }
     case POST_CUSTOMER:
       return {
