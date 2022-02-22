@@ -14,6 +14,9 @@ export default function DropdownMyAccount(){
     const [dropdown, setDropdown] = useState(false);
     const customer = useSelector((state) => state.customer);
 
+    let client = JSON.parse(localStorage.getItem('cliente'));
+    let ctm = client.result;
+
     function handleDropdown(){
         setDropdown(!dropdown);
     };
@@ -32,9 +35,9 @@ export default function DropdownMyAccount(){
                     dropdown ? 
                         <DropdownMenu className={styles.content}>
                             {
-                                customer.length? 
+                                customer? 
                                         <div>
-                                            <DropdownItem header className={styles.header}>Hi customer.firstName!</DropdownItem>
+                                            <DropdownItem header className={styles.header}>Hi {ctm.firstName}!</DropdownItem>
                                             <DropdownItem className={styles.divider} divider />
                                             <Link to='/myOrders'><DropdownItem className={styles.item}>My Orders</DropdownItem></Link>
                                             <Link to='/myProfile'><DropdownItem className={styles.item}>My Profile</DropdownItem></Link>

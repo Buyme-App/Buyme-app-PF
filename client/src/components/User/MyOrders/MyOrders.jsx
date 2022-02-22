@@ -21,6 +21,8 @@ export default function MyOrders(){
     },[dispatch]);
 
     let client = JSON.parse(localStorage.getItem('cliente'));
+    let ctm = client.result;
+    const myOrders = orders.filter(el => el.clientId === ctm.id);
 
     return (
         <div>
@@ -42,7 +44,7 @@ export default function MyOrders(){
                             </tr>
                         </thead>
                             {
-                                orders.length ? orders.map(el => {
+                                myOrders ? myOrders.map(el => {
                                     return (
                                             <tbody key={el.id}>
                                                 <tr className={styles.body}>
@@ -70,7 +72,7 @@ export default function MyOrders(){
                                                 }
                                             </tbody>
                                     );
-                                }) : 'No purchases have been made'
+                                }) : <div><span>No purchases have been made</span></div>
                             } 
                         </table>
                     </div>
@@ -81,3 +83,19 @@ export default function MyOrders(){
         </div>
     )
 }
+
+    //     Object.entries(products).forEach(([key, value]) => {
+    //         return(
+    //             <tr key={value.id}>
+    //                 <th className={styles.item}></th>
+    //                 <th className={styles.item}></th>
+    //                 <th className={styles.item}>{value.name}</th>
+    //                 <th className={styles.item}>{value.quantity}</th>
+    //                 <th className={styles.item}>${value.price}</th>
+    //                 <th className={styles.total}></th>
+    //             </tr>
+    
+    //         )
+    //     })
+    
+    // 
