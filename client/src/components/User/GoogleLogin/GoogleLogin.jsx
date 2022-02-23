@@ -7,7 +7,7 @@ import styles from "../Login/LoginUser.module.css";
 
 // Id del usuario en la google console developers.
 const clientId =
-  "532893426828-r97cch5c0jid27g5ub373cu4n8kdo3qb.apps.googleusercontent.com";
+  "443144576490-k8m4imerk2v4jo8mof3qhddmdqdbp1pk.apps.googleusercontent.com";
 
 export function LoginGoogle(userData) {
   const dispatch = useDispatch();
