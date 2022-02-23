@@ -55,9 +55,10 @@ function validate(input) {
     errors.price = "Price is required";
   }
 
-  if (input.offerPrice.length > 0 && input.offerPrice < 0) {
+  if (input.offerPrice && input.offerPrice.length > 0 && input.offerPrice < 0) {
     errors.offerPrice = "Positive numbers only";
   }
+
   if (!input.offerPrice) {
     errors.offerPrice = "Price is required";
   }

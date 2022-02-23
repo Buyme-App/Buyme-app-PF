@@ -50,7 +50,7 @@ const getPaginatedProducts = require("./product/getPaginatedProducts.routes");
 const categories = require("./category/getCategoryAll.routes");
 const sendMail = require("./mail/sendMail.routes");
 const suscribe = require("./mail/suscribe.routes");
-
+const getInvoiceByClient = require("./invoice/getInvoiceByClient.route");
 // *****************************************Customer****************************
 
 const createOrder = require("./order/createOrder.routes");
@@ -113,7 +113,7 @@ const routes = (server) => {
   server.use("/getInvoiceDetail", getInvoiceDetail);
   server.use("/paginatedProducts", getInvoiceDetail);
   server.use("/categories", [verifyUser, roleSuperv], categories);
-
+  server.use("/getInvoiceByClient", getInvoiceByClient);
   server.use("/featured", [verifyUser, roleAdmin], getAllFeatured);
 
   server.use("/sendMail", sendMail);

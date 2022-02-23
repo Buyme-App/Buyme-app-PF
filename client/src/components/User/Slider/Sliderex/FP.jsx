@@ -39,7 +39,7 @@ const handleRightClick = (e) => {
       {
           featuredProducts?.map(c => {
              return( 
-               <Link className={styles.cart} to= {'/product/' + c.id}  key={c.id}>
+               <Link onclick={window.scrollTo(0,0)} className={styles.cart} to= {'/product/' + c.id}  key={c.id}>
                  <Cards  image={c.image? c.image : imgdft} name={c.name} price={c.price}/>
                     </Link>
                );             
@@ -73,8 +73,3 @@ const handleRightClick = (e) => {
      </div>
   )
 }
-
-
-
-
-

@@ -35,7 +35,7 @@ const checkout = {clientId: client, itemsHard: itemsHard}
       localStorage.setItem("cart", JSON.stringify(cartState))
       localStorage.setItem("checkout", JSON.stringify(checkout))
       }
-  }, [dispatch, cartState])
+  }, [dispatch])
 
     const addToCart = (id) => {
          dispatch({

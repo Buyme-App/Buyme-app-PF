@@ -1,12 +1,10 @@
 const showErrors = require("../../messageConsole");
-const { Client, Invoice } = require("../../database/db");
+const {Invoice } = require("../../database/db");
 
-async function getInvoiceByClientDB(id) {
+async function getInvoiceByClientDB(idClient) {
   try {
-    const result = await Client.findAll({
-      where: { id: id },
-      include: { model: Invoice },
-      attributes: ["id"],
+    const result = await Invoice.findAll({
+      where: { clientId: idClient }                 // jose: cambie donde estaba    where: {id: id}
     });
     if (result) return result;
     else return 404;
@@ -17,3 +15,5 @@ async function getInvoiceByClientDB(id) {
 }
 
 module.exports = getInvoiceByClientDB;
+
+//modificado jose 23/02

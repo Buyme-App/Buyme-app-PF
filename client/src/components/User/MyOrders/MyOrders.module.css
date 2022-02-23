@@ -1,3 +1,10 @@
+.page {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100vw;
+}
+
 .title {
     color: black;
     margin-right: 3.5rem;

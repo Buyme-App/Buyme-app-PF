@@ -68,20 +68,19 @@
 
 .account .bag {
     margin: 7px 0 0 20px;
-    width: 50px;
+    width: 30px;
     height: 30px;
+    background-image: url('../../../assets/bag.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bagbtn {
+    background: none; 
+    border: none;
+    outline: none;
     color: #fff;
     font-size: 14px;
     line-height: 40px;
-    /* text-align: center; */
-    background-image: url('../../../assets/bag.png');
-}
-
-.bagbtn{
-    background: none; 
-    border-width: 0px;
-    margin-right: 10px;
     cursor: pointer;
-    /* padding-left: 20x; */
-
 }
