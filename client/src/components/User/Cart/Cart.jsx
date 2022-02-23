@@ -22,7 +22,7 @@ export default function Cart(props) {
   if(cartState && !cartState[0]){
      dispatch({type:FILL_CART})
   }
-}, [dispatch, cartState])
+}, [dispatch])
  
 
 
