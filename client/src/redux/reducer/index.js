@@ -44,7 +44,8 @@ import {
   GET_PRODUCTS_BY_CATEGORY,
   POST_LOGIN_CUSTOMER,
   POST_EMAIL,
-  URL_MP
+  URL_MP,
+  GET_INVOICE_BY_CLIENT
 } from "../actions/index";
 
 const initialState = {
@@ -61,6 +62,7 @@ const initialState = {
   error: false,
   cart: [],
   allInvoices:[],
+  clientInvoices:[],
   urlMP:[]
 };
 //s
@@ -288,6 +290,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allInvoices: action.payload
       };
+    case GET_INVOICE_BY_CLIENT:
+      return {
+        ...state,
+        clientInvoices: action.payload
+      }
     case ADD_TO_CART:
       let { product, amount } = action.payload;
 

@@ -58,6 +58,7 @@ export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
 export const POST_EMAIL = "POST_EMAIL";
 export const URL_MP = "URL_MP";
+export const GET_INVOICE_BY_CLIENT = "GET_INVOICE_BY_CLIENT";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -570,3 +571,17 @@ export function postEmail(payload){
       }
     }
   }
+
+  export function getInvoiceByClient(clientId) {
+    return async function (dispatch) {
+      let json = await axios.get(
+        `${REACT_APP_API}/getInvoiceByClient/`+ clientId,
+        sendKey()
+      );
+      return dispatch({
+        type: GET_INVOICE_BY_CLIENT,
+        payload: json.data,
+      });
+    };
+  }
+  
