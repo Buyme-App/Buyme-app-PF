@@ -46,13 +46,13 @@ export default function Categories(){
                                 <div className={styles.btnCat}>
                                     {/* <button onClick={() => {setBtnDeleteCat(true)}} className={styles.delete} type="submit">x</button> */}
                                     <div className={styles.category} value={el.id}>{el.name}</div>
-                                    <PopAppDeleteCat
+                                    {/* <PopAppDeleteCat
                                         trigger={btnDeleteCat} 
                                         setTrigger={setBtnDeleteCat}
                                         id={el.id}
                                         handleDeleteCat={handleDeleteCat}
                                         >
-                                    </PopAppDeleteCat>
+                                    </PopAppDeleteCat> */}
                                 </div>
                                 {
                                     filterCategories?.filter(c => c.subCategories === el.subCategories).map(s => s.subCategories.map(el => { //mostrame la sc que pertenece a la categoria actual
