@@ -40,15 +40,16 @@ console.log("final checkoutttttttttttttttt", checkout)
     }
     if(cartState && cartState !== []){
       localStorage.setItem("cart", JSON.stringify(cartState))
+      localStorage.setItem("checkout", JSON.stringify(checkout))
       }
   }, [dispatch, cartState])
   
   
-   const handleCheckout = () => {
-    dispatch(
-     sendToMP(checkout)
-    )
-}
+//    const handleCheckout = () => {
+//     dispatch(
+//      sendToMP(checkout)
+//     )
+// }
 
     const addToCart = (id) => {
          dispatch({
@@ -106,7 +107,7 @@ console.log("final checkoutttttttttttttttt", checkout)
       </div>
         <div className={styles.btn_div}>
         <Link to="/shop"><button>Continue Shopping</button></Link>
-        <Link to="/clientform"><button onClick={handleCheckout}>Go To Checkout</button></Link>
+        <Link to="/clientform"><button>Go To Checkout</button></Link>
         </div>
       {/* <Footer /> */}
     </div>
