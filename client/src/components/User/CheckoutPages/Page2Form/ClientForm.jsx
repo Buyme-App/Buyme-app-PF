@@ -1,9 +1,10 @@
 import React, {useState} from "react";
+import axios from "axios";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import style from "./ClientForm.module.css";
 import Logo from "../../../../assets/logo2.png";
-import {sendToMP} from "../../../../redux/actions/index.js"
+// import {sendToMP} from "../../../../redux/actions/index.js"
 
 
 
@@ -18,6 +19,8 @@ function validate(input){
 
 export default function ClientForm(){
 const dispatch = useDispatch();
+const urlMP = useSelector(state => state.urlMP);
+console.log(urlMP)
 const [errors,setErrors] = useState({});
 const [input,setInput] = useState({
    email: "",
@@ -28,20 +31,12 @@ const [input,setInput] = useState({
 })
 
 const checkoutLS = JSON.parse(localStorage.getItem('checkout'));
-const urlMpLS = JSON.parse(localStorage.getItem('urlMP'));
-console.log(urlMpLS)
 
-const handleMP  = () => {
-dispatch(sendToMP(checkoutLS))
-    window.location.assign(urlMpLS)
-
-}
-
-//  const handleMP  = async function (){
-//     let json = await axios.post(`http://localhost:3001/mp`,checkoutLS);
-//     console.log(json.data.url)
-//        window.location.assign(json.data.url)
-//         }   
+ const handleMP  = async function (){
+    let json = await axios.post(`http://localhost:3001/mp`,checkoutLS);
+    console.log(json.data.url)
+       window.location.assign(json.data.url)
+        }   
 
 function handleChange(e){
     setInput({
