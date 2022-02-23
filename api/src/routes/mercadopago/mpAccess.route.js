@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
           cost: shipping,
           mode: "not_specified",
         },
-        back_urls: {
+        back_urls: { // MOdificadas
           failure: "http://localhost:3000/cart",
           success: "http://localhost:3000/successBA", //     ANDUVO TODO OK
         },
