@@ -112,7 +112,7 @@ const routes = (server) => {
   server.use("/getAllInvoices", getAllInvoices);
   server.use("/getInvoiceDetail", getInvoiceDetail);
   server.use("/paginatedProducts", getInvoiceDetail);
-  server.use("/categories", [verifyUser, roleSuperv], categories);
+  server.use("/categories",  categories);
   server.use("/getInvoiceByClient", getInvoiceByClient);
   server.use("/featured", [verifyUser, roleAdmin], getAllFeatured);
 
