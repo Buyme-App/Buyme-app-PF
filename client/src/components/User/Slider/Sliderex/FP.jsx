@@ -73,8 +73,3 @@ const handleRightClick = (e) => {
      </div>
   )
 }
-
-
-
-
-
