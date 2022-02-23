@@ -32,6 +32,7 @@ export function LoginGoogle(userData) {
     dispatch(loginCustomer(obj));
     navigate('/myProfile');
   };
+  //update
 
   // Funcion onLoginFailire que recibe el error si no se pudo hacer login con google.
   const onLoginFailure = (res) => {
