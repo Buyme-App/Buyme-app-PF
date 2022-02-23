@@ -12,8 +12,8 @@ function validate(input) {
   if (input.name.length < 5) {
     errors.name = "Name must have at least 5 characters";
   }
-  if (input.name.length > 30) {
-    errors.name = "Name must have at most 30 characters";
+  if (input.name.length > 50) {
+    errors.name = "Name must have at most 50 characters";
   }
   if (!input.name) {
     errors.name = "Name is required";
