@@ -6,13 +6,15 @@ const server = express();
 const cors = require("cors");
 
 
-const whiteList = ["http://localhost:3000", "http://localhost:3001"];
+const whiteList = ['https://buyme-app-pf.vercel.app'];
 
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
 
+
 server.use(cors({ origin: whiteList }));
+
 
 
 // Routes
