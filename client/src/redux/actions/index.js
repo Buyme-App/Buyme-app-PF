@@ -14,6 +14,7 @@ const REACT_APP_API = process.env.REACT_APP_API
 // estos son ejemplos
 
 export const LOGIN = "LOGIN";
+export const LOG_OUT = 'LOG_OUT';
 export const LOADING = "LOADIN";
 export const ERROR_MODAL = "ERROR_MODAL";
 export const GET_PRODUCTS_INIT = "GET_PRODUCTS_INIT";
@@ -55,6 +56,8 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_FEATURED_CAT = "FILTER_BY_FEATURED_CAT";
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
+export const POST_EMAIL = "POST_EMAIL";
+export const URL_MP = "URL_MP";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -537,26 +540,33 @@ export function loginCustomer(payload) {
   };
 }
 
-export function sendToMP(payload){
-    console.log('>>>>>>>>>>>>>--------', payload);
-    return async function () {
+export function postEmail(payload){
+  return async function (dispatch) {
+      var response = await axios.post(`${REACT_APP_API}/sendMail`, payload);
+      console.log(response);
+      return response;
+  }
+}
+
+// export function sendToMP(payload){
+//     return async function (dispatch) {
+//       try {
+//      let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+//      localStorage.setItem("urlMP", JSON.stringify(json.data.url))
+//       }catch(error){
+//         console.log(error)
+//       }
+//     }
+//   }
+
+  
+  export function sendToMpSuccess(payload){
+    return async function (dispatch) {
       try {
-  
-        
-      const data = { 
-        clientId: 1,
-        itemsHard: payload,
-        valor: 500
-      }   
-  
-      
-  
-      // let json = await axios.post(`${REACT_APP_API}/mp`,payload);
-      let json = await axios.post(`${REACT_APP_API}/mp`,data);
-      console.log('---------json----------->>',json);
+      await axios.post(`${REACT_APP_API}/mpsuccess`,payload);
+      console.log('---------success----------->>',payload);
       }catch(error){
         console.log(error)
       }
     }
   }
-

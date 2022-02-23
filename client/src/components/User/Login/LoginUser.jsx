@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./LoginUser.module.css";
-import { errorModal, getCustomer, loading, login } from "../../../redux/actions";
+import { errorModal, loading, login, loginCustomer } from "../../../redux/actions";
 import Loader from "../../Loader/Loader";
 import Error from "../../Login/ErrorPopUp/Error";
 import { LoginGoogle } from "../GoogleLogin/GoogleLogin";
@@ -17,6 +17,14 @@ export default function LoginUser() {
   
   const [errors, setErrors] = useState({});
   
+  useEffect(() => {
+    if (customer && customer !== []) { //que exista y que no este vacio
+      localStorage.setItem('cliente', JSON.stringify(customer));
+    } 
+    if (customer && !customer[0]) { //si esta vacio
+      JSON.parse(localStorage.getItem('cliente'));
+    }
+  },[customer]);
 
   const [input, setInput] = React.useState({
     email: "",
@@ -58,9 +66,7 @@ export default function LoginUser() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('soy',e.target.value);
-    dispatch(getCustomer(input));
-    console.log("customer:",customer);
+    dispatch(loginCustomer(input))
     setInput({
       email: "",
       password: ""

@@ -16,13 +16,13 @@ function validate(input) {
   if (input.name.length < 5) {
     errors.name = "Name must have at least 5 characters";
   }
-  if (input.name.length > 30) {
-    errors.name = "Name must have at most 30 characters";
+  if (input.name.length > 50) {
+    errors.name = "Name must have at most 50 characters";
   }
   if (!input.name) {
     errors.name = "Name is required";
   }
-  const validName = /^[0-9A-Za-z -]*(?<!\.)$/;
+  const validName = /^[0-9A-Za-z -"]*(?<!\.)$/;
   if (input.name.length > 0 && !validName.test(input.name)) {
     errors.name = "Only letters, numbers, spaces and (-)";
   }

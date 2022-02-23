@@ -1,5 +1,6 @@
 import {
   LOGIN,
+  LOG_OUT,
   LOADING,
   ERROR_MODAL,
   GET_ALL_USERS,
@@ -19,7 +20,7 @@ import {
   DELETE_SUBCATEGORY,
   DELETE_USER,
   UPDATE_USER,
-  GET_CUSTOMER,
+  // GET_CUSTOMER,
   POST_CUSTOMER,
   GET_ALL_PRODUCTS_CLIENT,
   GET_DETAIL_CLIENT,
@@ -30,7 +31,7 @@ import {
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
   FILL_CART,
-  SET_FILTERS,
+  // SET_FILTERS,
   FILTER_BY_FEATURED_BTN,
   FILTER_BY_DISCOUNTED_BTN,
   FILTER_BY_FEATURED,
@@ -41,7 +42,9 @@ import {
   GET_ALL_INVOICES,
   FILTER_BY_CATEGORY,
   GET_PRODUCTS_BY_CATEGORY,
-  POST_LOGIN_CUSTOMER
+  POST_LOGIN_CUSTOMER,
+  POST_EMAIL,
+  URL_MP
 } from "../actions/index";
 
 const initialState = {
@@ -57,7 +60,8 @@ const initialState = {
   loading: false,
   error: false,
   cart: [],
-  allInvoices:[]
+  allInvoices:[],
+  urlMP:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -263,14 +267,17 @@ export default function rootReducer(state = initialState, action) {
     //     customer: action.payload,
     //   };
     case POST_LOGIN_CUSTOMER:
-      let currentCustomer = state.customer;
-      console.log(currentCustomer);
-      localStorage.setItem('cliente', JSON.stringify(currentCustomer));
-      let client = JSON.parse(localStorage.getItem('cliente'));
-      console.log(client);
+      localStorage.setItem('cliente', JSON.stringify(action.payload));
+      JSON.parse(localStorage.getItem('cliente'));
       return{
         ...state,
         customer: action.payload 
+      }
+    case LOG_OUT:
+      localStorage.setItem("cliente", JSON.stringify(state.customer === []));
+      return{
+         ...state,
+         customer:[]
       }
     case POST_CUSTOMER:
       return {
@@ -651,6 +658,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         products: filterByDiscountedBtn,
       };
+
+    case POST_EMAIL:
+        return {
+            ...state
+        };
+      
 
     default:
       return state;

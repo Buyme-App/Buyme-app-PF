@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Featured from "../Featured/Featured";
+// import Featured from "../Featured/Featured";
+import FP from "../Slider/Sliderex/FP";
 import imgdft from "../../../assets/imgdft.png";
 import PopUpImage from "./PopUpImage";
 import PopUpImage1 from "./PopUpImage1";
@@ -188,10 +189,10 @@ export default function ProductDetail(props) {
                     <div className={styles.title}>Category:</div>
                     <div className={styles.info}>{product[0].category.name}</div>
                   </div>
-                  {/* <div className={styles.each}>
+                  <div className={styles.each}>
                     <div className={styles.title}>Subcategory:</div>
                     <div className={styles.info}>{product[0].subCategory.name}</div>
-                  </div> */}
+                  </div>
                   <div className={styles.each}>
                     <div className={styles.title}>SKU:</div>
                     <div className={styles.info}>{product[0].SKU}</div>
@@ -223,7 +224,7 @@ export default function ProductDetail(props) {
           // <Loading2 />
           <h1>Loading</h1>
         )}
-        <Featured />
+        <FP />
       </div>
       <Footer />
     </div>

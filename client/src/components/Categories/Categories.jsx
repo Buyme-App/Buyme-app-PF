@@ -44,22 +44,22 @@ export default function Categories(){
                         return (
                             <div className={styles.divCats} key={el.id}>
                                 <div className={styles.btnCat}>
-                                    <button onClick={() => {setBtnDeleteCat(true)}} className={styles.delete} type="submit">x</button>
+                                    {/* <button onClick={() => {setBtnDeleteCat(true)}} className={styles.delete} type="submit">x</button> */}
                                     <div className={styles.category} value={el.id}>{el.name}</div>
-                                    <PopAppDeleteCat
+                                    {/* <PopAppDeleteCat
                                         trigger={btnDeleteCat} 
                                         setTrigger={setBtnDeleteCat}
                                         id={el.id}
                                         handleDeleteCat={handleDeleteCat}
                                         >
-                                    </PopAppDeleteCat>
+                                    </PopAppDeleteCat> */}
                                 </div>
                                 {
                                     filterCategories?.filter(c => c.subCategories === el.subCategories).map(s => s.subCategories.map(el => { //mostrame la sc que pertenece a la categoria actual
                                         // mostrame por cada sub un boton          
                                         return (
                                             <div className={styles.btnSub} key={el.id}>
-                                                <button onClick={() => {setBtnDeleteSub(true)}} className={styles.delete} type="submit">x</button>
+                                                {/* <button onClick={() => {setBtnDeleteSub(true)}} className={styles.delete} type="submit">x</button> */}
                                                 <div className={styles.subcat} type="submit">{el.name}</div>
                                                 <PopAppDeleteSub
                                                     trigger={btnDeleteSub} 

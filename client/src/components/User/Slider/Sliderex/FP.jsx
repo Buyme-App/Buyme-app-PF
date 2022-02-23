@@ -33,12 +33,13 @@ const handleRightClick = (e) => {
       
   return(
     <div className={styles.gral}>
+      <h2>Featured Products</h2>
     <div className={styles.container}>
       <div className={styles.carousel} ref={carousel}>
       {
           featuredProducts?.map(c => {
              return( 
-               <Link className={styles.cart} to= {'/product/' + c.id}  key={c.id}>
+               <Link onclick={window.scrollTo(0,0)} className={styles.cart} to= {'/product/' + c.id}  key={c.id}>
                  <Cards  image={c.image? c.image : imgdft} name={c.name} price={c.price}/>
                     </Link>
                );             
@@ -72,8 +73,3 @@ const handleRightClick = (e) => {
      </div>
   )
 }
-
-
-
-
-

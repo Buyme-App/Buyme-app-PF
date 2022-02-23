@@ -28,8 +28,8 @@ const getSubcategory = require("./subcategory/getSubCategory.route"); //
 const deleteSubCategory = require("./subcategory/deleteSubCategory.routes"); //
 const modifySubCategory = require("./subcategory/modifySubCategory.routes"); //
 
-const mp = require('./mercadopago/mpAccess.route');  //agregar para mercado pago
-const MPsuccess = require('./mercadopago/MPsuccess.route'); // agregar para recibir notificacion
+const mp = require("./mercadopago/mpAccess.route"); //agregar para mercado pago
+const MPsuccess = require("./mercadopago/MPsuccess.route"); // agregar para recibir notificacion
 
 const getCatById = require("./category/getCatById.routes");
 
@@ -49,7 +49,8 @@ const getInvoiceDetail = require("./invoice/getInvoiceDetail.routes");
 const getPaginatedProducts = require("./product/getPaginatedProducts.routes");
 const categories = require("./category/getCategoryAll.routes");
 const sendMail = require("./mail/sendMail.routes");
-
+const suscribe = require("./mail/suscribe.routes");
+const getInvoiceByClient = require("./invoice/getInvoiceByClient.route");
 // *****************************************Customer****************************
 
 const createOrder = require("./order/createOrder.routes");
@@ -76,7 +77,6 @@ const addCart = require("./cart/addCart.routes");
 const delCart = require("./cart/delCart.routes");
 
 // ****************************mp*************************************
-
 
 const routes = (server) => {
   server.use("/", home);
@@ -113,11 +113,11 @@ const routes = (server) => {
   server.use("/getInvoiceDetail", getInvoiceDetail);
   server.use("/paginatedProducts", getInvoiceDetail);
   server.use("/categories", [verifyUser, roleSuperv], categories);
-
+  server.use("/getInvoiceByClient", getInvoiceByClient);
   server.use("/featured", [verifyUser, roleAdmin], getAllFeatured);
 
   server.use("/sendMail", sendMail);
-  
+  server.use("/suscribe", suscribe);
 
   // *****************************************Customer****************************
 
@@ -137,12 +137,10 @@ const routes = (server) => {
   // ---------Rutas getAllProducts y productDetail para el cliente sin restricciones de seguridad.
   server.use("/getProductsClient", routerGetProducts);
   server.use("/getProDetailClient", routerGetProductDetail);
-  
-  //mp
-  server.use('/mp', mp); //agregar para mercado pago
-  server.use('/MPsuccess', MPsuccess); // Se agrega para el url de respuesta
 
- 
+  //mp
+  server.use("/mp", mp); //agregar para mercado pago
+  server.use("/MPsuccess", MPsuccess); // Se agrega para el url de respuesta
 
   //cart
   server.use("/getCart", getCart);
@@ -154,4 +152,3 @@ const routes = (server) => {
 };
 
 module.exports = routes; // Update
-

@@ -3,7 +3,12 @@ const morgan = require("morgan");
 const router = require("./routes/index.routes");
 const bodyParser = require("body-parser");
 const server = express();
-const cors = require("cors");
+const cors = require('cors');
+
+
+const whiteList = ['https://buyme-app-pf.vercel.app', 'http://www.buymeapp.tk','https://vercel.com/nicolius888/buyme-app-pf/8XwrQTWhkNF3cABAQYXdUVnEtXvM']
+
+
 
 // Middlewares
 server.use(bodyParser.json({ limit: "10mb" }));
@@ -20,7 +25,7 @@ server.use(
 );
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", whiteList);
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -29,6 +34,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+
 
 // Routes
 router(server);
