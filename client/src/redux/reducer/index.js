@@ -43,6 +43,7 @@ import {
   FILTER_BY_CATEGORY,
   GET_PRODUCTS_BY_CATEGORY,
   POST_LOGIN_CUSTOMER,
+  POST_EMAIL,
   URL_MP
 } from "../actions/index";
 
@@ -658,11 +659,16 @@ export default function rootReducer(state = initialState, action) {
         products: filterByDiscountedBtn,
       };
 
+    case POST_EMAIL:
+        return {
+            ...state
+        };
+
     case URL_MP:  
         return {
           ...state,
           urlMP: action.payload,
-        };  
+        };
 
     default:
       return state;
