@@ -16,7 +16,6 @@ server.use(morgan("dev"));
 server.use(cors({origin: whiteList}));
 
 
-
 // server.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Credentials", "");
