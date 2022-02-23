@@ -17,47 +17,49 @@ mercadopago.configure({
 
 router.post("/", async (req, res) => {
   // Crea un objeto de preferencia que se envia a mercado pago
- console.log('>>>>>>>>>>>>>>>>>>>>-------post mpaccess.route ', req.body); 
- let {clientId, itemsHard, valor} = req.body;
+  console.log('>>>>>>>>>>>>>>>>>>>>-------post mpaccess.route ', req.body);
+  let { clientId, itemsHard, valor } = req.body;
 
-//  let [id, title, unit_price, quantity] = itemsHard
- 
-console.log(clientId, itemsHard, valor);
- let shipping=0; 
- ((valor) && (valor>6000))?shipping=0:shipping=1500; 
+  //  let [id, title, unit_price, quantity] = itemsHard
 
- if(!itemsHard || itemsHard !== undefined){
-  console.log('mpAccess.route', itemsHard)
+  console.log(clientId, itemsHard, valor);
+  let shipping = 0;
+  ((valor) && (valor > 6000)) ? shipping = 0 : shipping = 1500;
+
+  if (!itemsHard || itemsHard !== undefined) {
+    console.log('mpAccess.route', itemsHard)
     let itemsMp = itemsHard.map(e => {
-      return{
+      return {
         title: e.title,
         unit_price: parseFloat(e.unit_price),
         quantity: parseInt(e.quantity)
       }
-  } )
-  itemsHard = itemsMp;
+    })
+    itemsHard = itemsMp;
     try {
       let preference = {
-        binary_mode: true, 
+        binary_mode: true,
         statement_descriptor: "Buyme App Shop",
         items: itemsHard,
         shipments: {
           cost: shipping,
           mode: "not_specified",
-        }, 
+        },
         back_urls: {
-          failure: "http://localhost:3000/failure",
-          success: "http://localhost:3000/success", //     ANDUVO TODO OK
+          failure: "http://localhost:3000/cart",
+          success: "http://localhost:3000/successBA", //     ANDUVO TODO OK
         },
         auto_return: "approved",
       };
       mercadopago.preferences
         .create(preference)
         .then(function (response) {
-          res.json({url: response.body.init_point, 
-                    clientId: clientId,
-                    itemsHard: itemsHard,
-                    valor: valor }); //se usa el init point de producttion
+          res.json({
+            url: response.body.init_point,
+            clientId: clientId,
+            itemsHard: itemsHard,
+            valor: valor
+          }); //se usa el init point de producttion
         })
         .catch(function (error) {
           console.log('generacion de preferencia', error);
@@ -66,7 +68,7 @@ console.log(clientId, itemsHard, valor);
       showErrors("/mp", e);
       return 404;
     }
- }
+  }
 });
 
 module.exports = router;
