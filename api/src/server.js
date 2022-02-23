@@ -25,7 +25,7 @@ server.use(
 );
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", whiteList);
+  res.header("Access-Control-Allow-Origin", 'https://buyme-app-pf.vercel.app');
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
