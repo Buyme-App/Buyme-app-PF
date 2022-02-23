@@ -56,6 +56,7 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_FEATURED_CAT = "FILTER_BY_FEATURED_CAT";
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
+export const URL_MP = "URL_MP";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -540,24 +541,39 @@ export function loginCustomer(payload) {
 
 export function sendToMP(payload){
     console.log('>>>>>>>>>>>>>--------', payload);
-    return async function () {
+    return async function (dispatch) {
       try {
   
         
-      const data = { 
-        clientId: 1,
-        itemsHard: payload,
-        valor: 500
-      }   
+      // const data = { 
+      //   clientId: 1,
+      //   itemsHard: payload,
+      //   valor: 500
+      // }   
   
       
   
-      // let json = await axios.post(`${REACT_APP_API}/mp`,payload);
-      let json = await axios.post(`${REACT_APP_API}/mp`,data);
+     let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+      // let json = await axios.post(`${REACT_APP_API}/mp`,data);
       console.log('---------json----------->>',json);
+      return dispatch({
+        type: URL_MP,
+        payload: json.data,
+      });
       }catch(error){
         console.log(error)
       }
     }
   }
 
+  
+  export function sendToMpSuccess(payload){
+    return async function (dispatch) {
+      try {
+      // let json = await axios.post(`${REACT_APP_API}/mpsuccess`,payload);
+      console.log('---------success----------->>',payload);
+      }catch(error){
+        console.log(error)
+      }
+    }
+  }
