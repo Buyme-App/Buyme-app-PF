@@ -189,10 +189,10 @@ export default function ProductDetail(props) {
                     <div className={styles.title}>Category:</div>
                     <div className={styles.info}>{product[0].category.name}</div>
                   </div>
-                  {/* <div className={styles.each}>
+                  <div className={styles.each}>
                     <div className={styles.title}>Subcategory:</div>
                     <div className={styles.info}>{product[0].subCategory.name}</div>
-                  </div> */}
+                  </div>
                   <div className={styles.each}>
                     <div className={styles.title}>SKU:</div>
                     <div className={styles.info}>{product[0].SKU}</div>
