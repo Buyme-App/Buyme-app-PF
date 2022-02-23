@@ -15,7 +15,7 @@ export default function CartConfirmed() {
     const cartLS = JSON.parse(localStorage.getItem('cart'))
     const clientLS = JSON.parse(localStorage.getItem('cliente'));
     const client= clientLS.result.id;  
-    const itemsHard = cartLS.map(el => {
+    const itemsHard = cartState.map(el => {
       return{
         id: el.id,
         title: el.name,
@@ -24,18 +24,34 @@ export default function CartConfirmed() {
       }
     })
 
-const checkout = {clientId: client, itemsHard: itemsHard}
+let valor = cartState.map(el => el.price * el.amount)
+let valorTotal = valor.reduce(function(a, b){
+  return a + b;
+}, 0);
+
+
+
+
+let checkout = {clientId: client, itemsHard: itemsHard, valor: valorTotal}
+console.log("ESTO BUSCO YO",checkout)
     
    
-    useEffect(() => {
-    if(cartState && !cartState[0]){
-       dispatch({type:FILL_CART})
-    }
-    if(cartState && cartState !== []){
-      localStorage.setItem("cart", JSON.stringify(cartState))
-      localStorage.setItem("checkout", JSON.stringify(checkout))
-      }
-  }, [dispatch])
+useEffect(() => {
+  if(cartState && !cartState[0]){
+     dispatch({type:FILL_CART})
+  }
+}, [dispatch])
+ 
+
+ useEffect(() => {
+   if(cartState && cartState !== []){
+   localStorage.setItem("cart", JSON.stringify(cartState))
+   localStorage.setItem("checkout", JSON.stringify(checkout))
+   }else{
+     console.log('Estoy en el If')
+   }
+
+ }, [cartState])
 
     const addToCart = (id) => {
          dispatch({
