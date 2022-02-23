@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProductDetail.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Featured from "../Featured/Featured";
+// import Featured from "../Featured/Featured";
+import FP from "../Slider/Sliderex/FP";
 import imgdft from "../../../assets/imgdft.png";
 import PopUpImage from "./PopUpImage";
 import PopUpImage1 from "./PopUpImage1";
@@ -223,7 +224,7 @@ export default function ProductDetail(props) {
           // <Loading2 />
           <h1>Loading</h1>
         )}
-        <Featured />
+        <FP />
       </div>
       <Footer />
     </div>

@@ -33,6 +33,7 @@ const handleRightClick = (e) => {
       
   return(
     <div className={styles.gral}>
+      <h2>Featured Products</h2>
     <div className={styles.container}>
       <div className={styles.carousel} ref={carousel}>
       {
