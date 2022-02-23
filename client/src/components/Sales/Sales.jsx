@@ -1,66 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaSistrix, FaRedo } from "react-icons/fa";
-import sStyle from "./sales.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllInvoices } from "../../redux/actions";
+import style from "./sales.module.css";
 export default function Sales() {
-  let example = [
-    {
-      order: "#053",
-      date: "01/02/2022",
-      products: "Samsung A30s",
-      total: "$900.200",
-      customer: "Sofia Mieres",
-    },
-    {
-      order: "#013",
-      date: "01/02/2022",
-      products: "Mouse Prologic",
-      total: "$30.200",
-      customer: "Graciela alfano",
-    },
-    {
-      order: "#006",
-      date: "01/02/2022",
-      products: "Apple iPhone 11",
-      total: "$300.200",
-      customer: "Pedro",
-    },
-    {
-      order: "#005",
-      date: "01/02/2022",
-      products: "Apple iPhone 11",
-      total: "$300.200",
-      customer: "Jan perez",
-    },
-    {
-      order: "#004",
-      date: "01/02/2022",
-      products: "Apple AirPods",
-      total: "$50.000",
-      customer: "Hermione Granger",
-    },
-    {
-      order: "#003",
-      date: "01/02/2022",
-      products: "Asus Laptop",
-      total: "$900.200",
-      customer: "Jan perez",
-    },
-    {
-      order: "#002",
-      date: "01/02/2022",
-      products: "Apple iPhone 10",
-      total: "$300.200",
-      customer: "Alejando ",
-    },
-    {
-      order: "#001",
-      date: "01/02/2022",
-      products: "Samsung Galaxy S8",
-      total: "$300.200",
-      customer: "Taylor Swift",
-    },
-  ];
-  const [render, setRender] = React.useState(example);
+  
+  let client = JSON.parse(localStorage.getItem('cliente'));
+  let ctm = client.result;
+  const orders = useSelector((state) => state.allInvoices);
+  const dispatch = useDispatch();
+  console.log(orders);
+
+    useEffect(() => {
+        dispatch(getAllInvoices());
+    },[dispatch]);
+  
+  const [render, setRender] = React.useState(orders);
   const [search, setSearch] = React.useState("");
 
   const orderByDate = (value) => {
@@ -76,24 +31,24 @@ export default function Sales() {
   const searchHandler = (value) => {
     if (search.length) {
       setRender((prev) =>
-        example.filter(
+        orders.filter(
           (e) =>
             e.products.toUpperCase().includes(value.toUpperCase()) ||
-            e.order.toUpperCase().includes(value.toUpperCase()) ||
-            e.customer.toUpperCase().includes(value.toUpperCase())
+            e.id.toUpperCase().includes(value.toUpperCase()) ||
+            e.clientId.toUpperCase().includes(value.toUpperCase())
         )
       );
     } else alert("Search field empty");
   };
   const refreshHandler = () => {
-    setRender(example);
+    setRender(orders);
     setSearch("");
   };
   //jj
   return (
-      <div className={sStyle.container}>
-        <div className={sStyle.input_box}>
-          <div className={sStyle.input}>
+      <div className={style.container}>
+        <div className={style.input_box}>
+          <div className={style.input}>
             <input
               type="search"
               placeholder="Search by order#, customers or products..."
@@ -102,14 +57,14 @@ export default function Sales() {
               onKeyDown={(e) => e.key === "Enter" && searchHandler(search)}
             />
             <FaSistrix
-              className={sStyle.icon}
+              className={style.icon}
               onClick={() => searchHandler(search)}
             />
           </div>
 
           {/* -----------selects-------------- */}
-          <div className={sStyle.selects_box}>
-            <button className={sStyle.refresh} onClick={refreshHandler}>
+          <div className={style.selects_box}>
+            <button className={style.refresh} onClick={refreshHandler}>
               <FaRedo size={14} />
             </button>
 
@@ -124,7 +79,7 @@ export default function Sales() {
           </div>
         </div>
         {/* ---------Tables--------- */}
-        <div className={sStyle.table_container}>
+        <div className={style.table_container}>
           <table>
             <thead>
               <tr>
@@ -133,24 +88,26 @@ export default function Sales() {
                 <th>Products</th>
                 <th>Total</th>
                 <th>Customer</th>
+                <th>Delivered</th>
               </tr>
             </thead>
 
             <tbody>
-              {render.length
-                ? render.map((e) => (
-                    <tr key={e.order}>
-                      <td>{e.order}</td>
-                      <td>{e.date}</td>
-                      <td>{e.products}</td>
-                      <td>{e.total}</td>
-                      <td>{e.customer}</td>
+              {orders.length
+                ? orders.map((e) => (
+                    <tr key={e.id}>
+                      <td>{e.id}</td>
+                      <td>{e.createdAt.slice(0, 10)}</td>
+                      <td><select className={style.select}>{e.products? (e.products.map(el => {return(<option value={el.id}>{el.quantity}un - {el.id} - ${el.unit_price}</option>)})) : '-'}</select></td>
+                      <td>${e.total}</td>
+                      <td>{e.clientId}</td>
+                      <td>{e.delivered}</td>
                     </tr>
                   ))
                 : null}
             </tbody>
           </table>
-          <div className={sStyle.notMatch}>
+          <div className={style.notMatch}>
             {!render.length ? <h2>No matches found</h2> : null}
           </div>
         </div>
