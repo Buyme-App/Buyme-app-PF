@@ -18,7 +18,7 @@ server.use(
   cors({
     allowedHeaders: ["authorization", "Content-Type"], // you can change the headers
     exposedHeaders: ["authorization"], // you can change the headers
-    origin: "*",
+    origin: whiteList,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
   })
