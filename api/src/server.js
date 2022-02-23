@@ -3,37 +3,17 @@ const morgan = require("morgan");
 const router = require("./routes/index.routes");
 const bodyParser = require("body-parser");
 const server = express();
-const cors = require('cors');
+const cors = require("cors");
 
 
-const whiteList = ['https://buyme-app-pf.vercel.app', 'http://www.buymeapp.tk','https://vercel.com/nicolius888/buyme-app-pf/8XwrQTWhkNF3cABAQYXdUVnEtXvM']
+const whiteList = ["http://localhost:3000", "http://localhost:3001"];
+});
 
-
-
-// Middlewares
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
 server.use(morgan("dev"));
-server.use(
-  cors({
-    allowedHeaders: ["authorization", "Content-Type"], // you can change the headers
-    exposedHeaders: ["authorization"], // you can change the headers
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-  })
-);
 
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", whiteList);
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  next();
-});
+server.use(cors({ origin: whiteList }));
 
 
 // Routes
