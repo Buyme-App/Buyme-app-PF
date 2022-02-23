@@ -42,7 +42,9 @@ import {
   GET_ALL_INVOICES,
   FILTER_BY_CATEGORY,
   GET_PRODUCTS_BY_CATEGORY,
-  POST_LOGIN_CUSTOMER
+  POST_LOGIN_CUSTOMER,
+  POST_EMAIL,
+  URL_MP
 } from "../actions/index";
 
 const initialState = {
@@ -657,11 +659,11 @@ export default function rootReducer(state = initialState, action) {
         products: filterByDiscountedBtn,
       };
 
-    // case URL_MP:  
-    //     return {
-    //       ...state,
-    //       urlMP: action.payload,
-    //     };  
+    case POST_EMAIL:
+        return {
+            ...state
+        };
+      
 
     default:
       return state;

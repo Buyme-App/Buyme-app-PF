@@ -1,18 +1,146 @@
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { postEmail } from "../../../redux/actions";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import styles from "./Contact.module.css";
 
+function validate(input) {
+  let errors = {};
+  if (!input.name) {
+    errors.name = "Name is required";
+  }
+  if (!input.email) {
+    errors.email = "Email is required";
+  }
+  const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(input.email.length > 0 && !validEmail.test(input.email)) {
+        errors.email = 'Please enter a valid email'
+    }
+  if (!input.subject) {
+    errors.subject = "Subject is required";
+  }
+  if (!input.text) {
+    errors.text = "Message is required";
+  }
+
+  return errors;
+}
+
 export default function Contact() {
+  const dispatch = useDispatch();
+  const history = useNavigate();
+
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    text: "",
+  });
+
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!Object.keys(errors).length) {
+      dispatch(postEmail(input));
+      alert("Message sent successfully!!");
+      setInput({
+        name: "",
+        email: "",
+        subject: "",
+        text: "",
+      });
+      history("/contact");
+    } else {
+      alert("Please review the form!");
+    }
+  }
+
   return (
     <div>
       <Header />
       <div className={styles.main}>
         <div className={styles.title}>Contact Us</div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel metus quam. Ut sed consequat sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc auctor sapien ut ullamcorper feugiat. Donec augue libero, blandit sed ligula in, auctor tristique leo. Quisque eget tellus aliquam, tincidunt lectus ut, volutpat elit. Nulla facilisi. Quisque tempor feugiat lacus sed molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non dui dictum neque sagittis egestas dignissim nec nisl.</p>
-        <p>Ut in varius ante. Curabitur malesuada neque in erat molestie euismod. Donec semper vulputate diam, vel porta nisi ultrices vitae. Quisque aliquam nunc et enim molestie, in dignissim turpis fermentum. Vestibulum mattis bibendum purus, in maximus mauris lacinia non. In eu lacus libero. Praesent at mauris varius, porta felis rutrum, facilisis quam. Duis scelerisque interdum ante, eget mattis nulla sodales ut.</p>
-        <p>Nunc sit amet vehicula orci. Sed vel sagittis erat. Vestibulum accumsan velit at justo accumsan congue. Nunc lacinia ut nunc eget egestas. Proin semper arcu nec libero efficitur efficitur. Maecenas in dui lobortis, suscipit felis eget, tristique justo. Maecenas mattis vel dui quis sollicitudin.</p>
-        <p>Nulla vitae mollis ex. Nullam commodo mauris nec lectus tincidunt semper. Donec id vestibulum ligula. Fusce at maximus neque, ac convallis purus. Sed felis lectus, elementum eu placerat quis, rutrum non magna. Praesent viverra dui dolor, at volutpat eros sagittis in. Aliquam pretium, orci a interdum vehicula, diam ligula sagittis nisl, eu ultrices libero sapien quis nisl. Morbi dolor velit, vulputate eget egestas id, consequat eget ante. Cras eget posuere arcu. Phasellus rhoncus volutpat tellus, ac blandit metus egestas sed. Mauris ut congue nunc, ac auctor tellus. Phasellus eleifend ultricies felis sit amet sodales. Mauris tincidunt purus at finibus tincidunt.</p>
+        <p>
+          Please leave us your thoughts, concerns or suggestions. We are always
+          happy to hear from you!
+        </p>
+        <form onSubmit={(e) => handleSubmit(e)}>
+        <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.name}
+              name="name"
+              placeholder="Your name"
+              className={styles.input}
+              onChange={(e) => handleChange(e)}
+              // required
+            />
+            <div className={styles.errors}>
+              {errors.name && <span>{errors.name}</span>}
+            </div>
+          </div>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.email}
+              name="email"
+              placeholder="Your email"
+              className={styles.input}
+              onChange={(e) => handleChange(e)}
+              // required
+            />
+            <div className={styles.errors}>
+              {errors.email && <span>{errors.email}</span>}
+            </div>
+          </div>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              value={input.subject}
+              name="subject"
+              placeholder="Subject"
+              className={styles.input}
+              onChange={(e) => handleChange(e)}
+              // required
+            />
+            <div className={styles.errors}>
+              {errors.subject && <span>{errors.subject}</span>}
+            </div>
+          </div>
+          <div className={styles.inputs}>
+            <textarea
+              value={input.text}
+              name="text"
+              placeholder="Your message"
+              className={styles.textarea}
+              onChange={(e) => handleChange(e)}
+              // required
+            />
+            <div className={styles.errors}>
+              {errors.text && <span>{errors.text}</span>}
+            </div>
+          </div>
+          <div>
+            <button type="submit" className={styles.button}>Send message</button>
+          </div>
+        </form>
       </div>
       <Footer />
     </div>

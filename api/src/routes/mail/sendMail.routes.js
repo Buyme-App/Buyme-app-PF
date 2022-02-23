@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   let mailOptions = {
     to: `developerbuymeapp@gmail.com`,
     subject: `${subject}`,
-    text: `name: ${name}` + `\n` + `mail: ${email}` + `\n` + `${text}`,
+    text: `Name: ${name}` + `\n` + `Email: ${email}` + `\n` + `Message: ${text}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
