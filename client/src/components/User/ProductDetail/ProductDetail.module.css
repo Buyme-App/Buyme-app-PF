@@ -280,7 +280,6 @@
   flex-direction: row;
   padding: 0 10px;
   height: 40px;
-  font-size: 20px;
   font-weight: normal;
   text-align: left;
   line-height: 40px;
@@ -289,13 +288,13 @@
 
 .data .each .title {
   width: 30%;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 .data .each .info {
   width: 70%;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .data .each:last-child {
