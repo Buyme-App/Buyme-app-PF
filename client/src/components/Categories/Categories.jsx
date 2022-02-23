@@ -44,7 +44,7 @@ export default function Categories(){
                         return (
                             <div className={styles.divCats} key={el.id}>
                                 <div className={styles.btnCat}>
-                                    <button onClick={() => {setBtnDeleteCat(true)}} className={styles.delete} type="submit">x</button>
+                                    {/* <button onClick={() => {setBtnDeleteCat(true)}} className={styles.delete} type="submit">x</button> */}
                                     <div className={styles.category} value={el.id}>{el.name}</div>
                                     <PopAppDeleteCat
                                         trigger={btnDeleteCat} 
