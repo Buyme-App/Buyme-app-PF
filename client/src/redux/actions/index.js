@@ -548,16 +548,16 @@ export function postEmail(payload){
   }
 }
 
-export function sendToMP(payload){
-    return async function (dispatch) {
-      try {
-     let json = await axios.post(`${REACT_APP_API}/mp`,payload);
-     localStorage.setItem("urlMP", JSON.stringify(json.data.url))
-      }catch(error){
-        console.log(error)
-      }
-    }
-  }
+// export function sendToMP(payload){
+//     return async function (dispatch) {
+//       try {
+//      let json = await axios.post(`${REACT_APP_API}/mp`,payload);
+//      localStorage.setItem("urlMP", JSON.stringify(json.data.url))
+//       }catch(error){
+//         console.log(error)
+//       }
+//     }
+//   }
 
   
   export function sendToMpSuccess(payload){
