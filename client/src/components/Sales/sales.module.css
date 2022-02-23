@@ -182,3 +182,8 @@ background-color: rgba(197, 192, 192, 0.521);
   opacity: 0.4;
   cursor: default;
 }
+
+.select {
+  padding: .5rem;
+  border-radius: .5rem;
+}
