@@ -540,26 +540,10 @@ export function loginCustomer(payload) {
 }
 
 export function sendToMP(payload){
-    console.log('>>>>>>>>>>>>>--------', payload);
     return async function (dispatch) {
       try {
-  
-        
-      // const data = { 
-      //   clientId: 1,
-      //   itemsHard: payload,
-      //   valor: 500
-      // }   
-  
-      
-  
      let json = await axios.post(`${REACT_APP_API}/mp`,payload);
-      // let json = await axios.post(`${REACT_APP_API}/mp`,data);
-      console.log('---------json----------->>',json);
-      return dispatch({
-        type: URL_MP,
-        payload: json.data,
-      });
+     localStorage.setItem("urlMP", JSON.stringify(json.data.url))
       }catch(error){
         console.log(error)
       }
@@ -570,7 +554,7 @@ export function sendToMP(payload){
   export function sendToMpSuccess(payload){
     return async function (dispatch) {
       try {
-      // let json = await axios.post(`${REACT_APP_API}/mpsuccess`,payload);
+      await axios.post(`${REACT_APP_API}/mpsuccess`,payload);
       console.log('---------success----------->>',payload);
       }catch(error){
         console.log(error)
