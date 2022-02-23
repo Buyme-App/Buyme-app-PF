@@ -59,7 +59,7 @@ export default function Categories(){
                                         // mostrame por cada sub un boton          
                                         return (
                                             <div className={styles.btnSub} key={el.id}>
-                                                <button onClick={() => {setBtnDeleteSub(true)}} className={styles.delete} type="submit">x</button>
+                                                {/* <button onClick={() => {setBtnDeleteSub(true)}} className={styles.delete} type="submit">x</button> */}
                                                 <div className={styles.subcat} type="submit">{el.name}</div>
                                                 <PopAppDeleteSub
                                                     trigger={btnDeleteSub} 
