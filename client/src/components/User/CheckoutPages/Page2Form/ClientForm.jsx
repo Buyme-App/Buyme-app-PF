@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import style from "./ClientForm.module.css";
 import Logo from "../../../../assets/logo2.png";
+import {sendToMP} from "../../../../redux/actions/index.js"
+
 
 
 function validate(input){
@@ -25,6 +27,22 @@ const [input,setInput] = useState({
    country: ""
 })
 
+const checkoutLS = JSON.parse(localStorage.getItem('checkout'));
+const urlMpLS = JSON.parse(localStorage.getItem('urlMP'));
+console.log(urlMpLS)
+
+const handleMP  = () => {
+dispatch(sendToMP(checkoutLS))
+    window.location.assign(urlMpLS)
+
+}
+
+//  const handleMP  = async function (){
+//     let json = await axios.post(`http://localhost:3001/mp`,checkoutLS);
+//     console.log(json.data.url)
+//        window.location.assign(json.data.url)
+//         }   
+
 function handleChange(e){
     setInput({
     ...input,
@@ -39,6 +57,7 @@ function handleChange(e){
 function handleSubmit(e){
     e.preventDefault();
  // dispatch(getTypes())   //Falta la ruta de datos de envío
+    console.log(e)
     setInput({
         email: "",
         namelastname: "",
@@ -109,7 +128,7 @@ return(
             />
             </div>
             <Link to= '/cart'><button className={style.btnBack}>Go Back</button></Link>
-            <button className={style.btnCreate} type='submit'>Finish And Pay</button>
+            <button className={style.btnCreate} onClick={handleMP}type='submit'>Finish And Pay</button>
         </form>
       
     </div>

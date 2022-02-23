@@ -4,7 +4,6 @@ import ItemCC from "./ItemCC/ItemCC";
 import styles from "./CartConfirmed.module.css";
 import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART, ADD_ONE_TO_CART,FILL_CART} from "../../../../redux/actions/index.js"
 import {Link, useNavigate} from "react-router-dom";
-import {sendToMP} from "../../../../redux/actions/index.js"
 
 
 
@@ -25,13 +24,7 @@ export default function CartConfirmed() {
       }
     })
 
-// const client = "clientId:1"; //comentar esta y descomentar linea 23 y 24.
 const checkout = {clientId: client, itemsHard: itemsHard}
-console.log("final checkoutttttttttttttttt", checkout)
-
- // {clientId:2, itemsHard:[{id:1, title:'celular', unit_price:12.00, quantity:2},
-    //  {id:1, title:'Laptop', unit_price:1200.00, quantity:1}]}
-  
     
    
     useEffect(() => {
@@ -40,15 +33,9 @@ console.log("final checkoutttttttttttttttt", checkout)
     }
     if(cartState && cartState !== []){
       localStorage.setItem("cart", JSON.stringify(cartState))
+      localStorage.setItem("checkout", JSON.stringify(checkout))
       }
   }, [dispatch, cartState])
-  
-  
-   const handleCheckout = () => {
-    dispatch(
-     sendToMP(checkout)
-    )
-}
 
     const addToCart = (id) => {
          dispatch({
@@ -101,14 +88,12 @@ console.log("final checkoutttttttttttttttt", checkout)
         </div>
         <div>
         <button className={styles.btnClear} onClick={clearCart}>Clear Cart</button>
-        {/* <button onClick={fillingCart}>Fill Cart</button> */}
         </div>
       </div>
         <div className={styles.btn_div}>
         <Link to="/shop"><button>Continue Shopping</button></Link>
-        <Link to="/clientform"><button onClick={handleCheckout}>Go To Checkout</button></Link>
+        <Link to="/clientform"><button>Go To Checkout</button></Link>
         </div>
-      {/* <Footer /> */}
     </div>
   );
 }
