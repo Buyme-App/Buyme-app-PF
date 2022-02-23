@@ -12,7 +12,7 @@ export default function CartConfirmed() {
     const cartState = useSelector((state) => state.cart);
     const history = useNavigate();
     const dispatch = useDispatch();
-    const cartLS = JSON.parse(localStorage.getItem('cart'))
+    // const cartLS = JSON.parse(localStorage.getItem('cart'))
     const clientLS = JSON.parse(localStorage.getItem('cliente'));
     const client= clientLS.result.id;  
     const itemsHard = cartState.map(el => {
