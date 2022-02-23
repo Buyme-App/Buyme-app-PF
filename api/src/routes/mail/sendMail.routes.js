@@ -4,7 +4,7 @@ const showErrors = require("../../messageConsole");
 const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res) => {
-  const { to, subject, text } = req.body;
+  const { subject, text, name, email } = req.body;
   const transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -16,10 +16,9 @@ router.post("/", async (req, res) => {
   });
 
   let mailOptions = {
-    from: `Buyme-App Administration`,
-    to: `${to}`,
+    to: `developerbuymeapp@gmail.com`,
     subject: `${subject}`,
-    text: `${text}`,
+    text: `name: ${name}` + `\n` + `mail: ${email}` + `\n` + `${text}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
