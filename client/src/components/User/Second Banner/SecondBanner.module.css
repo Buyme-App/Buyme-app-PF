@@ -1,0 +1,27 @@
+
+.main{
+    position: relative;
+    margin-bottom: 150px;
+    width: 100%;
+    /* max-width: 1265px; */
+    max-height: 290px;
+}
+
+.btn{
+    position: absolute;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 140px;
+    height: 40px;
+    background-color: var(--color-pink-buttons);
+    color: white;
+    font-weight: bold;
+    /* bottom: 40px;
+    left: 565px; */
+    
+}
+
+.btn:hover {
+    background-color: var(--color-pinkHover-buttons);
+  }

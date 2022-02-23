@@ -1,0 +1,118 @@
+.queries_box{
+    padding: 20px;
+    margin-top: 0px;
+}
+.queries_box .title {
+    padding: 10px 10px;
+    text-align: start;
+    margin-bottom: 4%;
+    color: #333;
+
+}
+.container{
+    background-color: rgb(241, 239, 239);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+.reviewer_span{
+    color:#333;
+    display: flex;
+    width: 100%;
+    margin: 5px auto;
+    margin-right: 30px;
+    color:var(--color-pink-buttons);
+    align-items: center;
+}
+.reviewer_box{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.assign_btn{
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 260px;
+        height: 50px;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--color-pink-buttons);
+    }
+.assign_btn:hover{
+    color: #fff;
+    background-color: var(--color-pinkHover-buttons);
+
+}
+
+.ul_titles{
+    width: 100%;
+    background-color: var(--color-principal-violet);
+    display: flex;
+    list-style: none;
+    font-size: 15px;
+    /* espacio entre titulos */
+    padding: 12px 43px;
+    font-weight: normal;
+    color: #fff;
+    border-radius: 8px 8px 2px 2px;
+
+}
+
+.ul_titles li{
+    margin: 5px; 
+    /* mover de derecha a izquierda titulos */
+    margin-left: 20px;  
+    
+}
+.ul_file{
+    display: flex;
+    list-style: none;
+    height: 130px;
+    align-items: center;
+    /* espacio entre medio info */
+    padding: 5px;
+    border-bottom: solid 0.5px rgba(99, 77, 77, 0.171);
+    /* mover de derecha a izquierda info */
+    /* margin-left: 20px;   */
+
+}
+
+.check_input{
+margin-right: 20px;
+
+}
+.li_file_name{
+    margin-left: 10px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.li_message{
+    background-color: white;
+    padding: 5px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+    
+.li_message span {
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--color-pink-buttons);
+}
+.li_message p {
+    font-size: 13px;
+}

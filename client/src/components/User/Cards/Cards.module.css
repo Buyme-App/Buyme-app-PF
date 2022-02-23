@@ -1,0 +1,62 @@
+.Card {
+    background-color: var(--color-principal-violet);
+    border-radius: 15px;
+    height: 320px;
+    width: 200px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.Card:hover {
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.name {
+    height: 40px;
+    color:white;
+    text-decoration:none;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.price,
+.currentregprice,
+.currentofferprice {
+    color:white;
+    text-decoration:none;
+    padding-top: 15px;
+    font-size: 16px;
+}
+
+.currentregprice {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.currentofferprice {
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.crossed {
+    color:white;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+
+.bothprices {
+    margin-top: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.image {
+    border-color: rgb(0, 0, 0);
+    border-width: 0.5px;
+    border-bottom-width: 0px;
+}

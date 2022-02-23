@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .gral{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg-admin);
+  }
+  
+  .form {
+    position: relative;
+    background-image: url(../../../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+    width: 400px;
+    height: 100%;
+    /* display:flexbox; */
+    /* justify-content: center; */
+    border-radius: 20px;
+    padding: 100px 0 100px 0;
+    -webkit-box-shadow: 0px 9px 13px -2px #000000;
+    box-shadow: 0px 9px 13px -2px #000000;
+    background-position-x: -185px;
+    background-position-y: -50px;
+    margin: 100px;
+  }
+  .form small {
+    color: rgb(236, 228, 228);
+    width: 100%;
+    animation-name: error;
+    animation-duration: 3.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    -webkit-animation-name: error;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+  @-moz-keyframes error {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes error {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes error {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .title {
+    color: white;
+    margin-bottom: 50px;
+    font-size: 23px;
+    /* margin-left: 5px;*/
+    margin-top: 27px;
+    /* padding: 10px ; */
+    /* padding-right: 30px; */
+    margin-right: 78px;
+
+  }
+  
+  .form input {
+    width: 330px;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    color: gray;
+    border-style: thin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2.25rem;
+  }
+ 
+  .btn {
+    margin-top: 40px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    background-color: var(--color-pink-buttons);
+    color: white;
+  }
+  .btn:hover {
+    font-weight: 700;
+  }
+
+
+  

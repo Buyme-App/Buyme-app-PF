@@ -1,0 +1,16 @@
+
+.grid{
+    display: grid;
+    padding: 0px 220px;
+    /* -ms-grid-column-align: center; */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    margin-left: 70px;
+    
+    /* height: -500px; */
+    /* grid-gap: 2px; */
+  }
+
+.btnName{
+    text-decoration: none;
+  }

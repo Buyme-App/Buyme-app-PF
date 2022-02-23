@@ -1,0 +1,26 @@
+.main_box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25px 0;
+  margin-top: 130px;
+  width: 80vw;
+}
+.main_container {
+  min-height: 95vh;
+  width: 100%;
+  display: flex;
+  
+ 
+}
+.main_container section{
+  display: flex;
+  flex-flow: column;
+  width: 70%;
+  flex-grow: 1;
+  border-radius: inherit;
+  margin-top: -110px;
+  margin-left: 270px;
+}

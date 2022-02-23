@@ -1,0 +1,89 @@
+.main_box{
+    width: 38%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 180px;
+    /* left: 63%; */
+    right: 0;
+    padding: 3%;
+    background-color: rgb(219, 219, 219,0.8);
+    color: white;
+    z-index: 99;
+    border-radius: 8px 0px 8px 8px;
+}
+
+.main_box:hover{
+    background-color: rgb(219, 219, 219);
+
+}
+
+.main_box div {
+    width: 100%;
+
+    text-align: center;
+}
+
+.cart_div h1{
+    color: black;
+    font-weight: normal;
+    font-size: 24px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+
+}
+
+.cart_div h2{
+    margin: 0 auto;
+}
+
+.btn1{
+margin-top: 40px;
+  border-style: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+  font-weight: bold;
+  background-color: var(--color-pink-buttons);
+  color: white;
+}
+
+.btn1:hover{
+ background-color: var(--color-pinkHover-buttons);
+}
+
+.btn2{
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 130px;
+    height: 35px;
+    background: none;
+    font-size: 12px;
+    /* color: white; */
+}
+
+.close button{
+    background: none;
+    border-width: 0px;
+    /* font-weight: bold; */
+    color: rgb(39, 39, 39);
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    left: 50;
+    top:0;
+    right: 0;
+    margin-right: 23px;
+    margin-top: 13px;
+    /* padding: auto; */
+    position: absolute
+    /* margin-top: -5%;
+    margin-right: -5%;;  */
+}
+
+.close button:hover{
+    color: rgb(85, 85, 85);
+}

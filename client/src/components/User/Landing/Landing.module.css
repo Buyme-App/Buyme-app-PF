@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgb(243, 243, 243);
+}
+
+.landing {
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    min-height: calc(114vh - 88px);
+    background-image: url('../');
+    height: 937px; */
+    height: 100vh;
+    width: 100%;
+    /* background-size: 100% 100%; */
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+    align-items: center;
+    /* background-image: url('../assets/bg.jpg'); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    color: white;
+    font-size: 22px;
+  }
+
+  .content {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    width: 400px;
+  }
+
+  
+  .enter {
+    min-width: 130px;
+    height: 40px;
+    color: #495057;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 20px;
+    /* border: 2px solid #cbeb40; */
+    /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
+    /* background: #495057; */
+    background: #fff;
+    /* opacity: 0.5; */
+  }
+  .enter:hover {
+      color: #fff;
+      background-color: #6c757d;
+  }
+
+
+  .btnall{
+    margin-top: 60px;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 180px;
+    height: 40px;
+    background-color: var(--color-pink-buttons);
+    color: white;
+    margin-bottom: 100px;
+    font-weight: bold;
+  }
+
+.btnall:hover{
+    background-color: var(--color-pinkHover-buttons);
+}
+
+.infobanner{
+    display: flex;
+    justify-content: center;
+    margin: 80px 0px;
+}
+
+.maintext h1,h2{
+  color:black;
+  text-align: center;
+
+}
+
+.maintext h1{
+  margin: 40px auto;
+
+  }
+
+.maintext h2{
+  font-size: 19px;
+  font-weight: normal;
+  padding: 0px 19%;
+  color:#555555;
+  line-height: 1.9em;
+}
+
+.fp{
+/* display: flex; */
+text-align:center;
+margin-right: 40px;
+}

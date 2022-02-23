@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gral{
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-admin);
+}
+
+.form {
+  position: relative;
+  background-image: url(../../assets/0865a63ee1b0b77fd5942b2fe54d7ea7.jpg);
+  width: 400px;
+  height: 500px;
+  /* display:flexbox; */
+  /* justify-content: center; */
+  border-radius: 20px;
+  /* padding: 20px; */
+  -webkit-box-shadow: 0px 9px 13px -2px #000000;
+  box-shadow: 0px 9px 13px -2px #000000;
+  background-position-x: -185px;
+  background-position-y: -50px;
+}
+.form small {
+  color: rgb(236, 228, 228);
+  width: 100%;
+  animation-name: error;
+  animation-duration: 3.1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name: error;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+@-moz-keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes error {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.title {
+  color: white;
+  margin-bottom: 50px;
+  font-size: 23px;
+  /* margin-left: 5px;*/
+  margin-top: 27px;
+  /* padding: 10px ; */
+  padding-top: 60px;
+  /* padding-right: 30px; */
+  margin-right: 68px;
+}
+
+.form input {
+  width: 330px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: gray;
+  border-style: thin;
+  /* border-color: red; */
+}
+
+.btn {
+  margin-top: 40px;
+  border-style: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 130px;
+  height: 35px;
+  background-color: var(--color-pink-buttons);
+  color: white;
+}
+
+.btn:hover{
+  background-color: var(--color-pinkHover-buttons);
+}
+
+.link {
+  font-size: 13px;
+  text-decoration: none;
+  color: white;
+  margin-right: 135px;
+  margin-top: 15px;
+}
+
+.restPassword {
+  display: flex;
+  margin-top: -5px;
+  justify-content: flex-end;
+}

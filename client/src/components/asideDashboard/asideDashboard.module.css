@@ -1,0 +1,117 @@
+.gral{
+    left: 0px;
+    position: fixed;
+    top:0px;
+}
+
+.logo{
+height: 47px;
+padding: 13px;
+
+}
+
+/* fondo */
+.box {
+    box-sizing: border-box;
+    /* margin: 0; */
+    padding-top: 1%;
+    min-height: 730px;
+    min-width: 280px;
+    /* border-radius: 20px; */
+    background-color: var(--color-grey-navbarbg);
+    
+
+}
+.box ul {
+    list-style: none;    
+    
+
+
+
+   
+}
+.btn, .btn2{
+    
+    width: 100%;
+    height: 55px; 
+    border-style: solid;
+    border-color: rgb(201, 201, 201);
+    border-width: 0.5px;
+    border-right-width: 0px;
+    color: var(--color-principal-violet);
+    cursor: pointer;
+    font-weight: bold;
+    /* font-family: 'Segoe UI', Roboto; */
+    background-color: var(--color-grey-navbarbg);
+
+
+}
+
+/* boton logout */
+.btn2 {
+    background-color: var(--color-2nd-btn);
+    border-style: solid;
+    border-color: transparent;
+}
+
+/* iconos */
+.btn img {   
+    display:flex;
+    /* justify-content: space-around; */
+    justify-content: space-between;
+    height: 2.3rem;
+    padding: 9px;
+    margin: 40px;
+}
+
+.btn2 img {   
+    display:flex;
+    /* justify-content: space-around; */
+    justify-content: space-between;
+    height: 2.3rem;
+    padding: 10px;
+    margin: 40px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.btn2 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+
+.btn:hover {
+    background-color: var(--color-light-violet);
+}
+.active {
+    background-color: var(--color-principal-violet);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 13px -2px #b1b1b1;
+    padding: 10px;
+}
+
+.active:hover {
+    background-color: var(--color-principal-violet-hover);
+}
+.btn2:hover {
+    background-color: var(--color-light-violet);
+}
+
+/* .iconH {
+    justify-self: start;    
+} */
+
+ul li {
+    width: 100%;
+}
+
+span {
+    justify-content: center;
+}

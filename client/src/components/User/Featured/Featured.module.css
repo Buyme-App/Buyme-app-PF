@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .grid {
+    display: grid;
+    padding: 0px 220px;
+    -ms-grid-column-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-left: 70px;
+} */
+
+.main {
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    overflow: auto;
+}
+
+.btnName {
+    text-decoration: none;
+}

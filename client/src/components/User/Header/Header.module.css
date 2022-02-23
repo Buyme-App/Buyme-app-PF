@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    margin: 0 auto;
+    width: 100%;
+    height: 180px;
+    justify-content: space-between;
+    background-color: #8848b8;
+    /* box-shadow: 0 0 5px #000; */
+}
+
+.top {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #fff;
+    line-height: 30px;
+    background-color: #000;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.logo {
+    margin-left: 30px;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.account {
+    margin-right: 30px;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    display: flex;
+    /* background: #eee; */
+}
+
+.account span {
+    margin: 10px 0;
+    padding-right: 20px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    border-right: 1px solid #fff;
+    cursor: pointer;
+}
+
+.account span a,
+.account .bag a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.account span a:hover,
+.account .bag a:hover {
+    text-decoration: underline;
+}
+
+.account .bag {
+    margin: 7px 0 0 20px;
+    width: 30px;
+    height: 30px;
+    background-image: url('../../../assets/bag.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bagbtn {
+    background: none; 
+    border: none;
+    outline: none;
+    color: var(--color-pink-buttons);
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    cursor: pointer;
+}
