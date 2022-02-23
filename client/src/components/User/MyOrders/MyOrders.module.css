@@ -3,16 +3,17 @@
     margin: 0;
     box-sizing: border-box;
     width: 100vw;
+
 }
 
 .title {
     color: black;
-    margin-right: 3.5rem;
+    margin-right: 4.5rem;
 }
 
 .box{
     padding: 20px;
-    margin-top: 0px;
+    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +22,6 @@
 .container{
     /* background-color: gray; */
     min-height: 100%;
-    min-width: 43rem;
     display: grid;
     flex-direction: column;
     
@@ -37,7 +37,7 @@
 }
 
 .tr {
-    padding: 1rem 2rem 1rem 2rem;
+    
     font-weight: 700;
     background-color: var(--color-light-violet);
 }
@@ -52,4 +52,9 @@
     background-color: var(--color-violet);
     padding: 1rem 2rem 1rem 2rem;
 
+}
+
+.noOrd {
+    margin: 10rem;
+    font-size: 20px;
 }
