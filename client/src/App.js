@@ -43,7 +43,7 @@ function App() {
           <Route path="/careers" element = {<Careers/>}></Route>
           <Route path="/cart" element = {<CartConfirmed/>}></Route>
           <Route path="/clientform" element = {<ClientForm/>}></Route>
-          <Route path="/succesBA" element = {<SuccessBA/>}></Route>
+          <Route path="/successBA" element = {<SuccessBA/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/shop" element = {<Catalogue />}></Route>
           <Route exact path="/category/:categoryId" element = {<ProductsCategory />}></Route>
