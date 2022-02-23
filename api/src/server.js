@@ -7,7 +7,6 @@ const cors = require("cors");
 
 
 const whiteList = ["http://localhost:3000", "http://localhost:3001"];
-});
 
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.json());
