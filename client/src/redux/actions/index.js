@@ -56,6 +56,7 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_FEATURED_CAT = "FILTER_BY_FEATURED_CAT";
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 export const POST_LOGIN_CUSTOMER = "POST_LOGIN_CUSTOMER";
+export const POST_EMAIL = "POST_EMAIL";
 
 // Used in Account component
 export const UPDATE_USER = "UPDATE_USER";
@@ -536,6 +537,14 @@ export function loginCustomer(payload) {
       payload: json.data,
     });
   };
+}
+
+export function postEmail(payload){
+  return async function (dispatch) {
+      var response = await axios.post(`${REACT_APP_API}/sendMail`, payload);
+      console.log(response);
+      return response;
+  }
 }
 
 export function sendToMP(payload){
