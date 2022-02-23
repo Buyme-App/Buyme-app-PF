@@ -61,13 +61,13 @@ export default function Categories(){
                                             <div className={styles.btnSub} key={el.id}>
                                                 {/* <button onClick={() => {setBtnDeleteSub(true)}} className={styles.delete} type="submit">x</button> */}
                                                 <div className={styles.subcat} type="submit">{el.name}</div>
-                                                <PopAppDeleteSub
+                                                {/* <PopAppDeleteSub
                                                     trigger={btnDeleteSub} 
                                                     setTrigger={setBtnDeleteSub}
                                                     id={el.id}
                                                     handleDeleteSubcat={handleDeleteSubcat}
                                                     >
-                                                </PopAppDeleteSub>
+                                                </PopAppDeleteSub> */}
                                             </div>
                                         )
                                     })
