@@ -37,9 +37,6 @@ export default function Landing() {
       <div className={styles.infobanner}>
         <InformativeBanner />
       </div>
-      <div className={styles.fp}>
-        <h2>Featured Products</h2>
-        </div>
       <div>
         <FP />
       </div>
