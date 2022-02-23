@@ -79,8 +79,9 @@
     background: none; 
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--color-pink-buttons);
     font-size: 14px;
+    font-weight: bold;
     line-height: 40px;
     cursor: pointer;
 }
