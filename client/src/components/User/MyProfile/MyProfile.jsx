@@ -25,7 +25,7 @@ export default function MyProfile(){
     // console.log(client);
 
     return (
-        <div>
+        <div className={styles.page}>
             <Header></Header>
             <div>
             <h1 className={styles.title}>My Profile</h1>

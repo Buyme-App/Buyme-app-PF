@@ -1,16 +1,17 @@
-* {
+.page {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100vw;
   }
 
 .title {
     color: black;
-    margin-right: 5rem;
+    margin-right: 3rem;
 }
 
 .container{
-    width: 35rem;
+    width: 50rem;
     height: 25rem;
     box-sizing: border-box;
     box-shadow: .1rem .1rem 0 0 rgba(0, 0, 0, 0.25);
@@ -32,6 +33,7 @@
     width: 10rem;
     height: 7rem;
     padding: .5rem;
+    font-size: 18px;
 
 }
 
@@ -46,8 +48,8 @@
 }
 
 .boxE{
-    grid-column: 3;
-    grid-row: 1;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .boxA{
@@ -56,8 +58,8 @@
 }
 
 .boxP{
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 3;
+    grid-row: 1;
 }
 
 .key {
