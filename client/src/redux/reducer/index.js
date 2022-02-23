@@ -20,7 +20,7 @@ import {
   DELETE_SUBCATEGORY,
   DELETE_USER,
   UPDATE_USER,
-  GET_CUSTOMER,
+  // GET_CUSTOMER,
   POST_CUSTOMER,
   GET_ALL_PRODUCTS_CLIENT,
   GET_DETAIL_CLIENT,
@@ -31,7 +31,7 @@ import {
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
   FILL_CART,
-  SET_FILTERS,
+  // SET_FILTERS,
   FILTER_BY_FEATURED_BTN,
   FILTER_BY_DISCOUNTED_BTN,
   FILTER_BY_FEATURED,
@@ -61,7 +61,7 @@ const initialState = {
   error: false,
   cart: [],
   allInvoices:[],
-  urlMP:""
+  urlMP:[]
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -663,12 +663,7 @@ export default function rootReducer(state = initialState, action) {
         return {
             ...state
         };
-
-    case URL_MP:  
-        return {
-          ...state,
-          urlMP: action.payload,
-        };
+      
 
     default:
       return state;
