@@ -10,6 +10,7 @@
     color: white;
     margin-bottom: 2rem;
     cursor: pointer;
+    
 }
 
 .addCat:hover {
@@ -28,10 +29,14 @@
     color: var(--color-principal-violet);
     margin: .75rem;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .category {
-    margin-top: -1rem;
+    /* margin-top: -1rem; */
 }
 
 .delete {
@@ -62,8 +67,12 @@
     cursor: pointer;
     margin: .75rem;
     margin-left: 5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .subcat {
-    margin-top: -1rem;
+    /* margin-top: -1rem; */
 }
