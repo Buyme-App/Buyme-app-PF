@@ -20,7 +20,7 @@ import PasswordRecovery from './components/User/Login/PasswordRecovery/PasswordR
 import SignUp from "./components/User/Login/SignUp/SignUp";
 import MyProfile from "./components/User/MyProfile/MyProfile";
 import MyOrders from "./components/User/MyOrders/MyOrders";
-import CartConfirmed from "./components/User/CheckoutPages/Page1(Cart)/CartConfirmed";
+import CartConfirmed from "./components/User/CheckoutPages/Page1Cart/CartConfirmed";
 import ClientForm from "./components/User/CheckoutPages/Page2Form/ClientForm";
 import SuccessBA from "./components/User/CheckoutPages/Page3Success/SuccessBA";
 import Success from "./components/Success/success";
