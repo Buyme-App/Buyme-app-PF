@@ -10,6 +10,7 @@ import FAQ from './components/User/FAQ/FAQ';
 import Terms from './components/User/Terms/Terms';
 import Sustainability from './components/User/Sustainability/Sustainability';
 import Careers from './components/User/Careers/Careers';
+import Catalogue from './components/User/Catalogue/Catalogue';
 import ProductsCategory from './components/User/Category/Category';
 import ProductDetail from "./components/User/ProductDetail/ProductDetail";
 import PassRecovery from "./components/PassRecovery/PassRecovery";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/clientform" element = {<ClientForm/>}></Route>
           <Route path="/succesBA" element = {<SuccessBA/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
+          <Route exact path="/shop" element = {<Catalogue />}></Route>
           <Route exact path="/category/:categoryId" element = {<ProductsCategory />}></Route>
           <Route exact path="/admin" element={<Login />} />
           <Route exact path="/admin/home" element={<AdminHome />} />

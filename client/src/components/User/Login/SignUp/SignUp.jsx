@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
-import { createCustomer, errorModal, loading, login } from "../../../../redux/actions";
+import { createCustomer, errorModal, loading, login, loginCustomer } from "../../../../redux/actions";
 import Loader from "../../../Loader/Loader";
 import Error from "../../../Login/ErrorPopUp/Error";
 
@@ -11,6 +11,7 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const globalState = useSelector((state) => state);
+  const customer = useSelector((state) => state.customer);
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = React.useState({
@@ -19,15 +20,15 @@ export default function SignUp() {
     email:"",
     password:""
   });
-  const [notValidated, setNotValidated] = React.useState(true);
-
-  const setSession = (key, value) => {
-    sessionStorage.setItem(key, value);
-  };
-
-  const getSession = (value) => {
-    return sessionStorage;
-  };
+  
+  useEffect(() => {
+    if (customer && customer !== []) { //que exista y que no este vacio
+      localStorage.setItem('cliente', JSON.stringify(customer));
+    } 
+    if (customer && !customer[0]) { //si esta vacio
+      JSON.parse(localStorage.getItem('cliente'));
+    }
+  },[customer]);
 
   const loginValidate = (form) => {
     let error = {};
@@ -73,26 +74,10 @@ export default function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    //si ambos campos están vacíos
-    if (input.email === "" || input.password === "") {
-      return setErrors(loginValidate(input));
-    }
-
-    //si las props de error poseen algun valor, haveError será true
-    const haveError = Object.values(errors).some((v) => v !== undefined);
-
-    if (haveError === false) {
-      loading(dispatch, true);
-      const credential = login(dispatch, input.email, input.password);
-      credential.then((re) => {
-        re ? navigate("/") : errorModal(dispatch, true);
-      });
-      // alert("Loading...");
-    } else alert("There are still errors in the fields");
-
     dispatch(createCustomer(input));
+    // dispatch(loginCustomer(input));
     alert('Sign up was successfully!');
+    navigate('/');
     setInput({
       firstName:"",
       lastName:"",

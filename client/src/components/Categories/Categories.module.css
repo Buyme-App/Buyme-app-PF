@@ -17,16 +17,21 @@
 }
 
 .btnCat {
-    padding: .1rem .1rem 1.5rem .1rem;
-    width: 25rem;
+    width: 18rem;
+    height: 3rem;
     border-radius: .25rem;
-    border-style: solid;
+    /* border-style: solid;
     border-width: .1rem;
-    border-color: gray;
+    border-color: gray; */
+    box-shadow: 0.1rem 0.1rem 0.1rem 0rem rgba(0, 0, 0, 0.2);
     background-color: var(--color-light-violet);
     color: var(--color-principal-violet);
     margin: .75rem;
 
+}
+
+.category {
+    margin-top: -1rem;
 }
 
 .delete {
@@ -45,15 +50,20 @@
 }
 
 .btnSub {
-    padding: .1rem .1rem 1.5rem .1rem;
-    width: 25rem;
+    width: 18rem;
+    height: 3rem;
     border-radius: .25rem;
-    border-style: solid;
+    /* border-style: solid;
     border-width: .1rem;
-    border-color: gray;
+    border-color: gray; */
+    box-shadow: 0.1rem 0.1rem 0.1rem 0rem rgba(0, 0, 0, 0.2);
     background-color: var(--color-light-violet);
     color: var(--color-principal-violet);
     cursor: pointer;
     margin: .75rem;
     margin-left: 5rem;
+}
+
+.subcat {
+    margin-top: -1rem;
 }

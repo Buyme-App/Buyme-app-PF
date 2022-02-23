@@ -8,11 +8,19 @@ import styles from './MyOrders.module.css';
 
 export default function MyOrders(){
 
-    const customer = useSelector((state) => state.customer);
+    let client = JSON.parse(localStorage.getItem('cliente'));
+    let ctm = client.result;
     const orders = useSelector((state) => state.allInvoices);
+    const myOrders = orders.filter(el => el.clientId === ctm.id);
+    const customer = useSelector((state) => state.customer);
+
     const products = orders.map(el => el.products);
-    // const products = JSON.parse(productJson);
     console.log(products);
+    
+
+    
+    // const products = JSON.parse(productJson);
+    
 
     const dispatch = useDispatch();
 
@@ -20,9 +28,7 @@ export default function MyOrders(){
         dispatch(getAllInvoices());
     },[dispatch]);
 
-    let client = JSON.parse(localStorage.getItem('cliente'));
-    let ctm = client.result;
-    const myOrders = orders.filter(el => el.clientId === ctm.id);
+    
 
     return (
         <div>
@@ -36,16 +42,17 @@ export default function MyOrders(){
                         <thead >
                             <tr className={styles.thead}>
                                 <th className={styles.th}>Order</th>
-                                <th className={styles.th}>date</th>
+                                <th className={styles.th}>Date</th>
                                 <th className={styles.th}>Products</th>
-                                <th className={styles.th}>units</th>
+                                <th className={styles.th}>Units</th>
                                 <th className={styles.th}>Price</th>
                                 <th className={styles.totalTh}>Total</th>
                             </tr>
                         </thead>
                             {
-                                ctm ? myOrders.map(el => {
-                                    return (
+                                ctm ? //hay un cliente logueado?
+                                myOrders? myOrders.map(el => { //si, entonces, tiene ordenes hechas?
+                                    return ( //si tiene ordenes hechas
                                             <tbody key={el.id}>
                                                 <tr className={styles.body}>
                                                     <td className={styles.item}>{el.id}</td>
@@ -72,7 +79,8 @@ export default function MyOrders(){
                                                 }
                                             </tbody>
                                     );
-                                }) : <div><span>No purchases have been made</span></div>
+                                }) : <div><span>No purchases have been made</span></div> // no tiene ordenes hechas
+                                : <div><span>You have to log in to see your orders</span></div> //no esta loguedo
                             } 
                         </table>
                     </div>
