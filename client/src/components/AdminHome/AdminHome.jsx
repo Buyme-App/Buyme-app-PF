@@ -31,12 +31,12 @@ export default function AdminHome() {
 
   // Comentar para no loguearte
 
-  React.useEffect(() => {
-    // login(dispatch);
-    !globalState.login && navigate("/admin");
+  // React.useEffect(() => {
+  //   // login(dispatch);
+  //   !globalState.login && navigate("/admin");
 
-    dispatch(getAllProducts());
-  }, []);
+  //   dispatch(getAllProducts());
+  // }, []);
 
   return (
     <div className={style.main_box}>

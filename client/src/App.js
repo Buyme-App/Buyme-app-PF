@@ -22,6 +22,7 @@ import MyProfile from "./components/User/MyProfile/MyProfile";
 import MyOrders from "./components/User/MyOrders/MyOrders";
 import CartConfirmed from "./components/User/CheckoutPages/Page1(Cart)/CartConfirmed";
 import ClientForm from "./components/User/CheckoutPages/Page2Form/ClientForm";
+import SuccessBA from "./components/User/CheckoutPages/Page3Success/SuccessBA";
 import Success from "./components/Success/success";
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/careers" element = {<Careers/>}></Route>
           <Route path="/cart" element = {<CartConfirmed/>}></Route>
           <Route path="/clientform" element = {<ClientForm/>}></Route>
+          <Route path="/succesBA" element = {<SuccessBA/>}></Route>
           <Route exact path="/product/:idProduct" element = {<ProductDetail />}></Route>
           <Route exact path="/shop" element = {<Catalogue />}></Route>
           <Route exact path="/category/:categoryId" element = {<ProductsCategory />}></Route>

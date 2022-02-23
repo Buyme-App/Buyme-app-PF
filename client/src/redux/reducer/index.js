@@ -44,6 +44,7 @@ import {
   GET_PRODUCTS_BY_CATEGORY,
   POST_LOGIN_CUSTOMER,
   POST_EMAIL,
+  URL_MP
 } from "../actions/index";
 
 const initialState = {
@@ -59,7 +60,8 @@ const initialState = {
   loading: false,
   error: false,
   cart: [],
-  allInvoices:[]
+  allInvoices:[],
+  urlMP:""
 };
 //s
 export default function rootReducer(state = initialState, action) {
@@ -660,6 +662,12 @@ export default function rootReducer(state = initialState, action) {
     case POST_EMAIL:
         return {
             ...state
+        };
+
+    case URL_MP:  
+        return {
+          ...state,
+          urlMP: action.payload,
         };
 
     default:
