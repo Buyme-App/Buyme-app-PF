@@ -27,3 +27,7 @@ p {
   font-size: 20px;
   margin-bottom: 40px;
 }
+
+.name{
+  font-weight: 700;
+}
