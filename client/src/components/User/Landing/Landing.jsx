@@ -8,7 +8,6 @@ import Slider from "../Slider/Main Banner/Slider";
 import FP from "../Slider/Sliderex/FP";
 import FP2 from "../Slider/Sliderex/FP2";
 import styles from "./Landing.module.css";
-import SecondBanner from "../Second Banner/SecondBanner";
 import { useDispatch } from "react-redux";
 import { getProductsClient } from "../../../redux/actions";
 
@@ -48,9 +47,6 @@ export default function Landing() {
         <Link className={styles.btnName} to="/shop">
           <button className={styles.btnall}>View All Products</button>
         </Link>
-      </div>
-      <div>
-        <SecondBanner />
       </div>
       <Footer />
     </div>
