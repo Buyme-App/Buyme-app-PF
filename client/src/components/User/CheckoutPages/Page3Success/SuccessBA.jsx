@@ -1,7 +1,7 @@
-import React from "react";
-// import {useDispatch} from "react-redux";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
 import styles from "./SuccessBA.module.css";
-// import {sendToMpSuccess} from "../../../../redux/actions/index.js"
+import {sendToMpSuccess} from "../../../../redux/actions/index.js"
 import {Link} from "react-router-dom";
 import Logo from "../../../../assets/logo2.png";
 import ItemSC from "./ItemSC/ItemSC";
@@ -10,7 +10,7 @@ import marcado from "../../../../assets/marcado.png";
 
 
 export default function SuccessBA() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const checkoutLS = JSON.parse(localStorage.getItem('checkout'));
     const totalAmount = checkoutLS.valor
     const cartLS = JSON.parse(localStorage.getItem('cart'));
@@ -18,10 +18,10 @@ export default function SuccessBA() {
 
 
 
-    // useEffect(() => {
-    //    dispatch(
-    //     sendToMpSuccess(checkoutLS))
-    //   }, [dispatch, checkoutLS])
+    useEffect(() => {
+       dispatch(
+        sendToMpSuccess(checkoutLS))
+      }, [dispatch, checkoutLS])
 
     // useEffect(() => {
     //   if(cartState && !cartState[0]){
