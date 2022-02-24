@@ -5,7 +5,7 @@
    box-sizing: border-box;
 }
 
-body{
+body {
     width: 100%;
     min-height: 100vh;
     background-color: transparent;
@@ -26,7 +26,16 @@ body{
     padding: 15px;
     display: flex;
     justify-content: center;
+}
 
+.title {
+    width: 70vw;
+    margin: 80px 15vw 20px 15vw;
+    /* padding-top: 20px; */
+    font-size: 20px;
+    font-weight: bold;
+    /* background-color: aliceblue; */
+    /* border-top: 1px solid #ddd; */
 }
 
 .cart{
@@ -41,8 +50,6 @@ body{
     position: relative;
     width: 65vw;
     padding-left: 13px;
-
-
 }
 
 .container .carousel::-webkit-scrollbar{

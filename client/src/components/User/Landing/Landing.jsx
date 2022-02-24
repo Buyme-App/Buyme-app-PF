@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import InformativeBanner from "../Informative Banner/InformativeBanner";
 import Slider from "../Slider/Main Banner/Slider";
 import FP from "../Slider/Sliderex/FP";
+import FP2 from "../Slider/Sliderex/FP2";
 import styles from "./Landing.module.css";
 import SecondBanner from "../Second Banner/SecondBanner";
 import { useDispatch } from "react-redux";
@@ -39,6 +40,9 @@ export default function Landing() {
       </div>
       <div>
         <FP />
+      </div>
+      <div>
+        <FP2 />
       </div>
       <div>
         <Link className={styles.btnName} to="/shop">
