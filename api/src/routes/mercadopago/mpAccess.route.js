@@ -3,10 +3,10 @@ const router = Router();
 const bodyParser = require("body-parser");
 // const { SELLER_ACCESS_TOKEN } = process.env;
 
-const urlFront = process.env.CORS_URL
+const CORS_URL = process.env.CORS_URL
   ? process.env.CORS_URL
   : "http://localhost:3000";
-
+console.log(CORS_URL)
 //llamas a la sdk de mercadopago ya instalada
 const mercadopago = require("mercadopago");
 const showErrors = require("../../messageConsole");
