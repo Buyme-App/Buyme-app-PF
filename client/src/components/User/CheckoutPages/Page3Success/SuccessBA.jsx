@@ -14,13 +14,14 @@ export default function SuccessBA() {
     const checkoutLS = JSON.parse(localStorage.getItem('checkout'));
     const totalAmount = checkoutLS.valor
     const cartLS = JSON.parse(localStorage.getItem('cart'));
-    console.log(cartLS)
+    // console.log(cartLS)
 
 
 
     useEffect(() => {
        dispatch(
         sendToMpSuccess(checkoutLS))
+        localStorage.setItem("cart", JSON.stringify([]))
       }, [dispatch, checkoutLS])
 
     // useEffect(() => {

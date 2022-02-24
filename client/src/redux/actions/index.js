@@ -566,6 +566,9 @@ export function postEmail(payload){
       try {
       await axios.post(`${REACT_APP_API}/mpsuccess`,payload);
       console.log('---------success----------->>',payload);
+      return dispatch({
+        type: FILL_CART
+      });
       }catch(error){
         console.log(error)
       }
