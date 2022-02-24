@@ -21,7 +21,7 @@ import styles from "./Catalogue.module.css";
 
 export default function Catalogue() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products.filter(p => p.paused === false));
   console.log("ALLPRODUCTSSSSSS", allProducts)
   // const allProducts = useSelector((state) => state.products.filter((p) => p.paused === false));
   const categories = useSelector((state) => state.allCategories);
