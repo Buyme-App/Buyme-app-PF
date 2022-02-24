@@ -97,8 +97,11 @@ useEffect(() => {
               delFromCart={delFromCart}
               addToCart={addToCart}
          />
-        ))): <h2>Your cart is empty</h2>
+        ))
+        ): <h2>Your cart is empty</h2>
         }
+        <h2>-------------------------------</h2>
+        <h2>Total:  $ {valorTotal},00</h2>
         </div>
         {/* <div>
         <button className={styles.btnClear} onClick={clearCart}>Clear Cart</button>
