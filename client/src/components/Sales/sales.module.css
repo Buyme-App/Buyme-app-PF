@@ -186,4 +186,6 @@ background-color: rgba(197, 192, 192, 0.521);
 .select {
   padding: .5rem;
   border-radius: .5rem;
+  text-align-last: center;
+
 }

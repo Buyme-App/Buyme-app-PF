@@ -5,8 +5,6 @@ import { getAllInvoices } from "../../redux/actions";
 import style from "./sales.module.css";
 export default function Sales() {
   
-  let client = JSON.parse(localStorage.getItem('cliente'));
-  let ctm = client.result;
   const orders = useSelector((state) => state.allInvoices);
   const dispatch = useDispatch();
   console.log(orders);
@@ -17,7 +15,7 @@ export default function Sales() {
   
   const [render, setRender] = React.useState(orders);
   const [search, setSearch] = React.useState("");
-
+    console.log('render!!!',render);
   const orderByDate = (value) => {
     let order = render.sort((a, b) => {
       return (
@@ -33,9 +31,9 @@ export default function Sales() {
       setRender((prev) =>
         orders.filter(
           (e) =>
-            e.products.toUpperCase().includes(value.toUpperCase()) ||
-            e.id.toUpperCase().includes(value.toUpperCase()) ||
-            e.clientId.toUpperCase().includes(value.toUpperCase())
+            //e.products.toUpperCase().includes(value.toUpperCase()) ||
+            e.id === value 
+            // e.clientId === value
         )
       );
     } else alert("Search field empty");
@@ -51,7 +49,7 @@ export default function Sales() {
           <div className={style.input}>
             <input
               type="search"
-              placeholder="Search by order#, customers or products..."
+              placeholder="Search by order..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && searchHandler(search)}
@@ -98,7 +96,7 @@ export default function Sales() {
                     <tr key={e.id}>
                       <td>{e.id}</td>
                       <td>{e.createdAt.slice(0, 10)}</td>
-                      <td><select className={style.select}>{e.products? (e.products.map(el => {return(<option value={el.id}>{el.quantity}un - {el.id} - ${el.unit_price}</option>)})) : '-'}</select></td>
+                      <td><select className={style.select}>{e.products? (e.products.map(el => {return(<option value={el.id}>{el.quantity}un - {el.title} - ${el.unit_price}</option>)})) : '-'}</select></td>
                       <td>${e.total}</td>
                       <td>{e.clientId}</td>
                       <td>{e.delivered}</td>
@@ -108,7 +106,7 @@ export default function Sales() {
             </tbody>
           </table>
           <div className={style.notMatch}>
-            {!render.length ? <h2>No matches found</h2> : null}
+            {!render ? <h2>No matches found</h2> : null}
           </div>
         </div>
       </div>
