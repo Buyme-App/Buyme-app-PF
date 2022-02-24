@@ -8,10 +8,10 @@ import { useEffect, useRef } from "react";
 import { getAllProducts } from "../../../../redux/actions";
 import { Link } from "react-router-dom";
 
-export default function FP() {
+export default function FP2() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts);
-  const featuredProducts = products.filter((el) => el.featured === true);
+  const discountedProducts = products.filter((el) => el.offerPrice !== null);
   const carousel = useRef(null);
 
   const handleLeftClick = (e) => {
@@ -30,10 +30,10 @@ export default function FP() {
 
   return (
     <div className={styles.gral}>
-      <div className={styles.title}>Featured Products</div>
+      <div className={styles.title}>Discounted Products</div>
       <div className={styles.container}>
         <div className={styles.carousel} ref={carousel}>
-          {featuredProducts?.map((c) => {
+          {discountedProducts?.map((c) => {
             return (
               <Link
                 onclick={window.scrollTo(0, 0)}
@@ -60,25 +60,6 @@ export default function FP() {
           <img src={Right} alt="Scroll Right" height="35px" width="35px" />
         </button>
       </div>
-
-      {/* <div className={styles.logo}>
-        <img src={img1} alt="" />
-      </div>
-      <div className={styles.carousel}>
-        <div className={styles.item}>
-        <div className={styles.image}>
-         <img src="" alt="shoe" />
-        </div>
-        <div className={styles.info}>
-          <span className={styles.name}>Macbook Pro</span>
-          <span className={styles.oldPrice}>1000</span>
-          <span className={styles.price}>500</span>
-
-
-        </div>
-        </div>
-
-      </div> */}
     </div>
   );
 }

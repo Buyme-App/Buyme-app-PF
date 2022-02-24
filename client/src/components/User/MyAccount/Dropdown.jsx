@@ -4,7 +4,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { LOG_OUT } from '../../../redux/actions';
+import { LOG_OUT, FILL_CART} from '../../../redux/actions';
 
 export default function DropdownMyAccount() {
 
@@ -13,6 +13,7 @@ export default function DropdownMyAccount() {
 
     const [dropdown, setDropdown] = useState(false);
     const customer = useSelector((state) => state.customer);
+    const cartState = useSelector((state) => state.cart);
 
     let client = JSON.parse(localStorage.getItem('cliente'));
     let ctm = client ? client.result : null;
@@ -23,8 +24,11 @@ export default function DropdownMyAccount() {
 
     function handleLogOut() {
         dispatch({ type: LOG_OUT });
+        localStorage.setItem("cart", JSON.stringify([]))
+        dispatch({ type: FILL_CART })
         navigate('/');
     };
+
 
     return (
         <div className={styles.dropdown}>

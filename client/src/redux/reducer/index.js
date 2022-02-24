@@ -435,46 +435,16 @@ export default function rootReducer(state = initialState, action) {
     //     ...state,
     //     products: sortedList,
     //   };
-
-    // case FILTER_BY_CATEGORY:
-    //   const filteredByCategory = state.allProducts.filter(
-    //     (p) =>
-    //       p.allCategories.id === action.payload ||
-    //       action.payload === "All");
-    //       if(!filteredByCategory.length){
-    //         return {
-    //           ...state,
-    //           products: [404]
-    //           }
-    //       } else {
-    //           return {
-    //               ...state,
-    //               products: filteredByCategory
-    //           }
-    //       };
       
-      // const allProductsF = state.allProducts;
-      case FILTER_BY_CATEGORY:
-      const agus = state.allProducts.map(p => {
-        return {
-          categoryId: p.categoryId
-        }
-      });
-      console.log("AGUSSSSSS", agus)
-      const filteredByCategory = action.payload === 'All' ? state.allProducts :
-      console.log("XXXXXXX", action.payload);
-      agus.filter((p) => p.categoryId === action.payload)
-      console.log("AAAAAAAAA", state.allProducts[0].categoryId)
-      // if(!filteredByCategory.length){
-      //     return {
-      //         ...state,
-      //         products: [404]
-      //     }
-      // } else {
-          return {
-              ...state,
-              products: filteredByCategory
-          }
+    case FILTER_BY_CATEGORY:
+      const filteredByCategory =
+        action.payload === "All"
+          ? state.allProducts
+          : state.allProducts.filter((el) => el.categoryId == action.payload);
+      return {
+        ...state,
+        products: filteredByCategory,
+      };
       
 
     case FILTER_BY_FEATURED:

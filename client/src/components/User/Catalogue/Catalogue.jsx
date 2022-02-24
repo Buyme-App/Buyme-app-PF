@@ -21,7 +21,7 @@ import styles from "./Catalogue.module.css";
 
 export default function Catalogue() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products.filter(p => p.paused === false));
   console.log("ALLPRODUCTSSSSSS", allProducts)
   // const allProducts = useSelector((state) => state.products.filter((p) => p.paused === false));
   const categories = useSelector((state) => state.allCategories);
@@ -207,7 +207,7 @@ export default function Catalogue() {
                   return 0;
                 })
                 .map((t) => (
-                  <option value="3" key={t.id}>
+                  <option value={t.id} key={t.id}>
                     {t.name}
                   </option>
                 ))}
@@ -288,7 +288,7 @@ export default function Catalogue() {
             </button> */}
           </div>
           <div className={styles.detail}>
-            <h1>Search results</h1>
+            <h1>Your products selection</h1>
             <div>
               {!currentProducts.length ? (
                 <Loading />

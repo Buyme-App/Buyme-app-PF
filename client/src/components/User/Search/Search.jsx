@@ -21,9 +21,8 @@ import styles from "./Search.module.css";
 
 export default function Search() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products.filter(p => p.paused === false));
   console.log("ALLPRODUCTSSSSSS", allProducts)
-  // const allProducts = useSelector((state) => state.products.filter((p) => p.paused === false));
   const categories = useSelector((state) => state.allCategories);
   console.log("CATEGORIESSSSSS", categories);
   // const featuredProducts = useSelector((state) => state.allProducts.filter(p => p.featured === true));
@@ -169,7 +168,7 @@ export default function Search() {
                   return 0;
                 })
                 .map((t) => (
-                  <option value="3" key={t.id}>
+                  <option value={t.id} key={t.id}>
                     {t.name}
                   </option>
                 ))}
