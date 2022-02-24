@@ -65,17 +65,25 @@ export default function MyOrders(){
                                                             ordersFiltered?.filter(o => o.products === el.products).map(p => p.products.map(e => {
                                                                 return(
                                                                     <tr key={e.id}>
-                                                                        <td className={styles.item}></td>
-                                                                        <td className={styles.item}></td>
-                                                                        <td className={styles.item}>{e.id}</td>
-                                                                        <td className={styles.item}>{e.quantity}</td>
-                                                                        <td className={styles.item}>${e.unit_price}</td>
+                                                                        <td className={styles.prod}></td>
+                                                                        <td className={styles.prod}></td>
+                                                                        <td className={styles.prod}>{e.title}</td>
+                                                                        <td className={styles.prod}>{e.quantity}</td>
+                                                                        <td className={styles.prod}>${e.unit_price}</td>
                                                                         <td className={styles.total}></td>
                                                                     </tr>
         
                                                                 )
                                                             }))
                                                         } 
+                                                    <tr className={styles.body}>
+                                                        <td className={styles.empty}></td>
+                                                        <td className={styles.empty}></td>
+                                                        <td className={styles.empty}></td>
+                                                        <td className={styles.empty}></td>
+                                                        <td className={styles.empty}></td>
+                                                        <td className={styles.empty}></td>
+                                                    </tr>
                                                     </tbody>
                                         );
                                         }) : <div className={styles.notLog}>You have to log in to see your orders</div> //no esta loguedo
