@@ -23,7 +23,6 @@ import styles from "./Category.module.css";
 export default function ProductsCategory(params) {
   const dispatch = useDispatch();
   const { categoryId } = useParams();
-  const allProducts = useSelector((state) => state.products);
   const allProducts = useSelector((state) => state.products.filter(p => p.paused === false));
   console.log("ALLPRODUCTSSSSSS", allProducts);
   const categories = useSelector((state) => state.allCategories);
