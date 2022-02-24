@@ -71,11 +71,11 @@ useEffect(() => {
      }
     }
   
-    const clearCart = () => {
-      dispatch({type:CLEAR_CART})
-      history('/shop')
+    // const clearCart = () => {
+    //   dispatch({type:CLEAR_CART})
+    //   history('/shop')
 
-    }
+    // }
 
   return (
       <div className={styles.main}>
@@ -84,7 +84,8 @@ useEffect(() => {
         </div>
         <div className={styles.gral}>
         <div className={styles.item_div}>
-        {cartState.map((el,index) => (
+        {cartState[0]?
+        (cartState.map((el,index) => (
          <ItemCC 
               key={index}
               id={el.id}
@@ -96,16 +97,18 @@ useEffect(() => {
               delFromCart={delFromCart}
               addToCart={addToCart}
          />
-        ))
+        ))): <h2>Your cart is empty</h2>
         }
         </div>
-        <div>
+        {/* <div>
         <button className={styles.btnClear} onClick={clearCart}>Clear Cart</button>
-        </div>
+        </div> */}
       </div>
         <div className={styles.btn_div}>
         <Link to="/shop"><button>Continue Shopping</button></Link>
+        {cartState[0]?(
         <Link to="/clientform"><button>Go To Checkout</button></Link>
+        ): (console.log("llena el carrito primero"))}
         </div>
     </div>
   );
