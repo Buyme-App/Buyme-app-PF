@@ -75,7 +75,7 @@ export default function Cart(props) {
                 key={index}
                 id={item.id}
                 name={item.name}
-                img={item.img}
+                img={item.img[0]}
                 price={item.price}
                 amount={item.amount}
                 stock={item.stock}
