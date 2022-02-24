@@ -288,7 +288,7 @@ export default function Catalogue() {
             </button> */}
           </div>
           <div className={styles.detail}>
-            <h1>Search results</h1>
+            <h1>Your products selection</h1>
             <div>
               {!currentProducts.length ? (
                 <Loading />
