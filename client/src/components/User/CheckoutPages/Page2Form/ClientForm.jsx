@@ -6,7 +6,7 @@ import style from "./ClientForm.module.css";
 import Logo from "../../../../assets/logo2.png";
 // import {sendToMP} from "../../../../redux/actions/index.js"
 
-const REACT_APP_API = process.env.REACT_APP_API
+const urlBack = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
     : "http://localhost:3001";
 
@@ -35,7 +35,7 @@ export default function ClientForm() {
     const checkoutLS = JSON.parse(localStorage.getItem('checkout'));
 
     const handleMP = async function () {
-        let json = await axios.post(`http://localhost:3001/mp`, checkoutLS);
+        let json = await axios.post(`${urlBack}/mp`, checkoutLS);
         console.log(json.data.url)
         window.location.assign(json.data.url)
     }
