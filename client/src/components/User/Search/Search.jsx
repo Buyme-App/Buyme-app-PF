@@ -169,7 +169,7 @@ export default function Search() {
                   return 0;
                 })
                 .map((t) => (
-                  <option value="3" key={t.id}>
+                  <option value={t.id} key={t.id}>
                     {t.name}
                   </option>
                 ))}
