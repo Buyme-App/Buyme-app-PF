@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const CORS_URL = process.env.CORS_URL
   ? process.env.CORS_URL
   : "http://localhost:3000";
-
+console.log(CORS_URL)
 //llamas a la sdk de mercadopago ya instalada
 const mercadopago = require("mercadopago");
 const showErrors = require("../../messageConsole");
