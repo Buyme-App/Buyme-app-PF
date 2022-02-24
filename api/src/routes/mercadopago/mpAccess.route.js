@@ -50,8 +50,8 @@ router.post("/", async (req, res) => {
           mode: "not_specified",
         },
         back_urls: { // MOdificadas
-          failure: `${CORS_URL}/cart`,
-          success: `${CORS_URL}/successBA`, //     ANDUVO TODO OK
+          failure: `${urlFront}/cart`,
+          success: `${urlFront}/successBA`, //     ANDUVO TODO OK
         },
         auto_return: "approved",
       };
