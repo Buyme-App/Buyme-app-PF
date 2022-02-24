@@ -76,6 +76,10 @@ const updateCart = require("./cart/updateCart.routes");
 const addCart = require("./cart/addCart.routes");
 const delCart = require("./cart/delCart.routes");
 
+
+// Transporte
+const transport = require('./transport/transport.route');
+
 // ****************************mp*************************************
 
 const routes = (server) => {
@@ -149,6 +153,10 @@ const routes = (server) => {
   server.use("/delCart", delCart);
   server.use("/addCart", addCart);
   server.use("/loginCostumer", loginCostumer);
+
+  server.use('/transport', transport); //para cargar la orden de transporte y disparar el email de despachado;
+
+  
 };
 
 module.exports = routes; // Update
