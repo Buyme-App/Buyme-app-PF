@@ -1,11 +1,8 @@
 # Buyme App es un Proyecto Final (PF) del bootcamp Soy Henry realizado en grupo.
 
-## Este es un subtitulo de algo.....
+- <vr></vr> Backend Heroku deploy
+- - <vr></vr> https://buyme-pf.herokuapp.com/
 
-## Ya lo hice..../
+- <vr></vr> Frontend Vercel deploy
+- - <vr></vr> http://buyme-app-pf.vercel.app/
 
-//cambio de lucawssSSsssssssss
-
-//cambios de lucas
-
-//cambios lau
