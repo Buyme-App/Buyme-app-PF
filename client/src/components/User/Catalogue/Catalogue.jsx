@@ -207,7 +207,7 @@ export default function Catalogue() {
                   return 0;
                 })
                 .map((t) => (
-                  <option value="3" key={t.id}>
+                  <option value="{t.id}" key={t.id}>
                     {t.name}
                   </option>
                 ))}
